@@ -1,4 +1,4 @@
-package com.valyrian.valyrianFirstGame;
+package com.valyrian.firstgame;
 
 import android.os.Bundle;
 

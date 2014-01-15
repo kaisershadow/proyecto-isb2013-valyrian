@@ -1,4 +1,4 @@
-package com.valyrian.valyrianFirstGame;
+package com.valyrian.firstgame;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
