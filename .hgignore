@@ -1,0 +1,5 @@
+.metadata/
+.hg/
+valyrianFirstGame/bin/
+valyrianFirstGame-android/bin/
+valyrianFirstGame-desktop/bin/
