@@ -1,4 +1,4 @@
-package com.valyrian.firstgame;
+package com.valyrian.firstgame.pantallas;
 
 import com.badlogic.gdx.Screen;
 
