@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="20" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="bw5" tilewidth="32" tileheight="32">
+  <image source="bw5.gif" trans="ff00ff" width="512" height="512"/>
+ </tileset>
+ <layer name="Background" width="20" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2thYGBoGcWjeBSP4lE8iknEALH1VcxABgAA
+  </data>
+ </layer>
+ <layer name="Foreground" width="20" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC1vCwMBQDMSFUFwE5ZcAcSkBjKwOxC4D4i0M1ANto+bR1bztQLwDD945wO4bCPMIhQksXAbKfcPJvCUMo+mP1uYRk56JxaD4AAC7DqXBQAYAAA==
+  </data>
+ </layer>
+ <objectgroup name="objetos" width="20" height="20">
+  <object name="spawnPoint" x="135" y="72" width="61" height="57"/>
+  <object name="circulo" x="389" y="69" width="89" height="87">
+   <ellipse/>
+  </object>
+  <object x="9" y="319" width="309" height="36"/>
+  <object x="353" y="193" width="287" height="39"/>
+  <object name="limite" type="bloqueo" x="0" y="633">
+   <polyline points="0,0 1,-633 633,-633 639,0 -5,1"/>
+  </object>
+ </objectgroup>
+ <layer name="colectables" width="20" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkgHADV9EcVABgAA
+  </data>
+ </layer>
+</map>

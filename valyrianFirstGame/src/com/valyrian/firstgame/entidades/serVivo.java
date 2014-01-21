@@ -1,13 +1,44 @@
 package com.valyrian.firstgame.entidades;
 
+import com.badlogic.gdx.math.Vector2;
+
 public abstract class serVivo {
 	
-	private int MAX_VIDA;
-	private int vida;
-	private float velocidad;
+	protected int MAX_VIDA;
+	protected float MAX_VELOCIDAD;
+	protected int vida;
+	protected float velocidad;
+	protected Vector2 posicion = new Vector2();
+	protected int ANCHO, ALTO;
+	
+	public int getANCHO() {
+		return ANCHO;
+	}
+
+	public void setANCHO(int aNCHO) {
+		ANCHO = aNCHO;
+	}
+
+	public int getALTO() {
+		return ALTO;
+	}
+
+	public void setALTO(int aLTO) {
+		ALTO = aLTO;
+	}
+
+	public Vector2 getPosicion() {
+		return posicion;
+	}
+
+	public void setPosicion(Vector2 posicion) {
+		this.posicion = posicion;
+	}
+
 	public int getVida() {
 		return vida;
 	}
+	
 	public void setVida(int vida) {
 		this.vida = vida;
 	}
