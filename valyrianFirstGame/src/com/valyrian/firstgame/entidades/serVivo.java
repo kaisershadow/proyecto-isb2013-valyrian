@@ -2,15 +2,19 @@ package com.valyrian.firstgame.entidades;
 
 import com.badlogic.gdx.math.Vector2;
 
-public abstract class serVivo {
+public abstract class SerVivo {
 	
-	protected int MAX_VIDA;
+	protected final int MAX_VIDA;
 	protected float MAX_VELOCIDAD;
 	protected int vida;
 	protected float velocidad;
 	protected Vector2 posicion = new Vector2();
 	protected int ANCHO, ALTO;
 	
+	
+	public SerVivo(int maxvida){
+		MAX_VIDA=maxvida;
+	}
 	public int getANCHO() {
 		return ANCHO;
 	}

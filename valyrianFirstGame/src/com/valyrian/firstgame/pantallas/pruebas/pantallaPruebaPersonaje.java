@@ -21,10 +21,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.utils.Array;
-import com.valyrian.firstgame.entidades.jugadorNativo;
-import com.valyrian.firstgame.entidades.jugadorNativo.ESTADO_ACTUAL;
+import com.valyrian.firstgame.entidades.JugadorNativo;
+import com.valyrian.firstgame.entidades.JugadorNativo.ESTADO_ACTUAL;
 
-public class pantallaPruebaPersonaje implements Screen {
+public class PantallaPruebaPersonaje implements Screen {
 	
 	private static final float TIMESTEP = 1/60f;
 	private static final int VELOCITYITERATIONS = 8;
@@ -35,7 +35,7 @@ public class pantallaPruebaPersonaje implements Screen {
 	//private Array<Body> tmpBodies = new Array<Body>();
 	
 	private SpriteBatch batch;
-	private jugadorNativo personaje;
+	private JugadorNativo personaje;
 	private World mundo;
 	private Body playerBody;
 	private OrthogonalTiledMapRenderer otmr;
@@ -137,7 +137,7 @@ public class pantallaPruebaPersonaje implements Screen {
 		//playerBody.applyAngularImpulse(50, true);
 		boxShape.dispose();
 		//playerBody.setUserData(personaje);
-		personaje = new jugadorNativo(100, 110, 100, 100, 64, 64);
+		personaje = new JugadorNativo(100, 110, 100, 100, 64, 64);
 		//Gdx.input.setInputProcessor(personaje);
 		
 		
@@ -248,6 +248,8 @@ public class pantallaPruebaPersonaje implements Screen {
 		System.out.println("LA MASA DEL JUGADOR AHORA ES: "+playerBody.getMass());
 	playerBody.setFixedRotation(true);
 	System.out.println("LA MASA DEL JUGADOR AHORA ES: "+playerBody.getMass());
+	
+	
 	}
 
 	@Override

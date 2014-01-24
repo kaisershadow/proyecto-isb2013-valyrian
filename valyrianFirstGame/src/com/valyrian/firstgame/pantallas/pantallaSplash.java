@@ -16,7 +16,7 @@ import  static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
 import  static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
 import  static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
-public class pantallaSplash implements Screen {
+public class PantallaSplash implements Screen {
 
 	private Sound sound;
 	Texture splashTexture;

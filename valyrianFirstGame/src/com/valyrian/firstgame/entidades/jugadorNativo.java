@@ -13,7 +13,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 
 
 
-public class jugadorNativo extends serVivo implements InputProcessor {
+public class JugadorNativo extends SerVivo implements InputProcessor {
 	
 //	public Body cuerpo;
 	Texture nativoCamina;
@@ -25,9 +25,9 @@ public class jugadorNativo extends serVivo implements InputProcessor {
 	}
 	public ESTADO_ACTUAL estado=ESTADO_ACTUAL.Quieto;
 	
-	public jugadorNativo(float velocidad,int maxvida,int posX,int posY, int ancho, int alto){
+	public JugadorNativo(float velocidad,int maxvida,int posX,int posY, int ancho, int alto){
+		super(maxvida);
 		this.vida =maxvida;
-		MAX_VIDA=maxvida;
 		this.velocidad=0;
 		this.MAX_VELOCIDAD=velocidad;
 		posicion.x = posX;
