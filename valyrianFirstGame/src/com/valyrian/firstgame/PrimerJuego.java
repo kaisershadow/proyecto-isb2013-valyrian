@@ -8,6 +8,8 @@ public class PrimerJuego extends Game {
 
 	@Override
 	public void create() {
+
 		setScreen(new PantallaPruebaPersonaje());
+
 	}
 }

@@ -67,7 +67,7 @@ public class PantallaSplash implements Screen {
 			      public boolean act(float delta )        
 			        {         
 			    	  
-			          // la última acción nos direcciona hacia la siguiente pantalla (menu) 
+			          // la ï¿½ltima acciï¿½n nos direcciona hacia la siguiente pantalla (menu) 
 			          ((Game)Gdx.app.getApplicationListener()).setScreen(new MenuInicio());
 			          return true; 
 			        }  

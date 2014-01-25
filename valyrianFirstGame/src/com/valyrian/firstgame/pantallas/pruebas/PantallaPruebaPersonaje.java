@@ -1,5 +1,8 @@
 package com.valyrian.firstgame.pantallas.pruebas;
 
+import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
+import net.dermetfan.utils.libgdx.graphics.Box2DSprite;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
@@ -21,6 +24,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.utils.Array;
+import com.sun.xml.internal.bind.v2.util.CollisionCheckStack;
 import com.valyrian.firstgame.entidades.JugadorNativo;
 import com.valyrian.firstgame.entidades.JugadorNativo.ESTADO_ACTUAL;
 
@@ -41,6 +45,8 @@ public class PantallaPruebaPersonaje implements Screen {
 	private OrthogonalTiledMapRenderer otmr;
 	private Vector2 movement = new Vector2();
 	private float speed=500000;
+	private Box2DMapObjectParser manejocol;
+	private Box2DSprite imageneEnObjetosTile;
 	
 	
 	@Override
@@ -106,16 +112,23 @@ public class PantallaPruebaPersonaje implements Screen {
 		
 		batch = new SpriteBatch();
 		
-		
-		
 		mundo = new World(new Vector2(0,-9.81f), true);
+		
+		
+		//Creacion del mapa con Box2d
+		manejocol= new Box2DMapObjectParser(1);
+		manejocol.load(mundo, new TmxMapLoader().load("mapas/platformer_test.tmx"));	
+		manejocol.setUnitScale(1);
 		
 		///Definicicion y creacion del cuerpo
 		BodyDef bodyDef = new BodyDef();
 		FixtureDef fixtureDef = new FixtureDef();
 		
 		bodyDef.type = BodyType.DynamicBody;
-		bodyDef.position.set(0,100);
+		//manejocol.getBodies().get("spawnPoint").setAwake(false);
+		//El personaje se crea en la posicion de spwan.
+		
+		bodyDef.position.set(manejocol.getBodies().get("spawnPoint").getPosition().x,manejocol.getBodies().get("spawnPoint").getPosition().y);
 		
 		//Box Shape
 		PolygonShape boxShape = new PolygonShape();
@@ -138,7 +151,10 @@ public class PantallaPruebaPersonaje implements Screen {
 		boxShape.dispose();
 		//playerBody.setUserData(personaje);
 		personaje = new JugadorNativo(100, 110, 100, 100, 64, 64);
+		
+		
 		//Gdx.input.setInputProcessor(personaje);
+		
 		
 		
 		Gdx.input.setInputProcessor(new InputProcessor(){
@@ -225,6 +241,33 @@ public class PantallaPruebaPersonaje implements Screen {
 			}
 		});
 		
+		mundo.setContactListener(new ContactListener() {
+			
+			@Override
+			public void preSolve(Contact contact, Manifold oldManifold) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void postSolve(Contact contact, ContactImpulse impulse) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void endContact(Contact contact) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void beginContact(Contact contact) {
+				//if(manejocol.getBodies().get("colectible").getUserData)
+				
+			}
+		});
+		
 		
 		
 		
@@ -233,7 +276,7 @@ public class PantallaPruebaPersonaje implements Screen {
 		bodyDef.type = BodyType.StaticBody;
 		bodyDef.position.set(0, 0);
 		
-		ChainShape groundShape = new ChainShape();
+		/*ChainShape groundShape = new ChainShape();
 		groundShape.createChain(new Vector2[]  {new Vector2(0,0), new Vector2(640,0)});
 		
 		fixtureDef.shape = groundShape;
@@ -241,7 +284,7 @@ public class PantallaPruebaPersonaje implements Screen {
 		fixtureDef.restitution = 0;
 		
 		Body ground= mundo.createBody(bodyDef);
-		ground.createFixture(fixtureDef);
+		ground.createFixture(fixtureDef);*/
 		System.out.println("LA MASA DEL JUGADOR ES: "+playerBody.getMass());
 		//playerBody.setTransform(personaje.getPosicion(), 0);
 		System.out.println("EL ORIGGEN DEL BODY ES: X,Y"+playerBody.getPosition().x+", "+playerBody.getPosition().y);
