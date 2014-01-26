@@ -6,7 +6,7 @@ public class MenuInicio implements Screen{
 
 	@Override
 	public void render(float delta) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated smethod stub
 		
 	}
 
