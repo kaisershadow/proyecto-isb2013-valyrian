@@ -112,7 +112,7 @@ public class PantallaPruebaPersonaje implements Screen {
 		
 		batch = new SpriteBatch();
 		
-		mundo = new World(new Vector2(0,-9.81f), true);
+		mundo = new World(new Vector2(0,-9.81f*3600*32), true);
 		
 		
 		//Creacion del mapa con Box2d
@@ -138,7 +138,7 @@ public class PantallaPruebaPersonaje implements Screen {
 		fixtureDef.shape = boxShape;
 		fixtureDef.friction = 0.4f;
 		fixtureDef.restitution = 0;
-		fixtureDef.density = 10;
+		fixtureDef.density = 1;
 		
 		playerBody= mundo.createBody(bodyDef);
 		playerBody.createFixture(fixtureDef);
