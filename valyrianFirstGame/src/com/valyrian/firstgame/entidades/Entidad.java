@@ -1,27 +1,20 @@
 package com.valyrian.firstgame.entidades;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
-public class Entidad {
+public abstract class Entidad {
 	//Atributos comunes de todas las entidades
-	protected float posX;
-	protected float posY;
+	protected Vector2 posicion;
 	protected int alto;
 	protected int ancho;
-	Body cuerpo;
+	public Body cuerpo;
 	
-	
-	public float getPosX() {
-		return posX;
+	public Vector2 getPosicion() {
+		return posicion;
 	}
-	public void setPosX(float posX) {
-		this.posX = posX;
-	}
-	public float getPosY() {
-		return posY;
-	}
-	public void setPosY(float posY) {
-		this.posY = posY;
+	public void setPosicion(Vector2 pos) {
+		this.posicion = pos;
 	}
 	public int getAlto() {
 		return alto;
@@ -41,7 +34,4 @@ public class Entidad {
 	public void setCuerpo(Body cuerpo) {
 		this.cuerpo = cuerpo;
 	}
-	
-	
-	
 }

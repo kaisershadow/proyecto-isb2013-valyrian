@@ -19,12 +19,14 @@ import  static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 public class PantallaSplash implements Screen {
 
 	private Sound sound;
-	Texture splashTexture;
-	SpriteBatch spriteBatch;
-	Image splashImage;
+	private Texture splashTexture;
+	private SpriteBatch spriteBatch;
+	private Image splashImage;
 	
 	@Override
 	public void render(float delta) {
+		
+		//Limpiar la pantalla y asignar un color de fondo a la ventana
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
@@ -60,13 +62,13 @@ public class PantallaSplash implements Screen {
 		splashImage.setFillParent(true);
 		splashImage.getColor().a=0;
 		sound.play();
+		
 		 //Se agrega la accion para que haga el efecto de desvanecimiento
 		 splashImage.addAction( sequence(fadeIn(1.5f), delay(2), fadeOut(1.5f),         
 			      new Action() {       
 			      @Override       
 			      public boolean act(float delta )        
 			        {         
-			    	  
 			          // la última acción nos direcciona hacia la siguiente pantalla (menu) 
 			          ((Game)Gdx.app.getApplicationListener()).setScreen(new MenuInicio());
 			          return true; 
@@ -78,20 +80,8 @@ public class PantallaSplash implements Screen {
 	@Override
 	public void hide() {
 		dispose();
-
 	}
 
-	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void resume() {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void dispose() {
@@ -100,4 +90,15 @@ public class PantallaSplash implements Screen {
 		splashTexture.dispose();
 	}
 
+
+//Metodos no definidos (Especificos de ANDROID)
+	@Override
+	public void pause() {
+		// TODO Auto-generated method stub
+	}
+	
+	@Override
+	public void resume() {
+		// TODO Auto-generated method stub
+	}
 }

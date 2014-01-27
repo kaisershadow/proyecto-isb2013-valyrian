@@ -1,34 +1,53 @@
 package com.valyrian.firstgame.entidades;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 
-public abstract class SerVivo {
+public abstract class SerVivo extends Entidad {
 	
-	protected final int MAX_VIDA;
-	protected float MAX_VELOCIDAD;
-	protected int vida;
-	protected float velocidad;
-	protected Vector2 posicion = new Vector2();
-	protected int ANCHO, ALTO;
+	public final int MAXVIDA;
+	public float MAXVELOCIDAD;
+	protected int vidaActual;
+	protected int densidad;
 	
 	
-	public SerVivo(int maxvida){
-		MAX_VIDA=maxvida;
+	public SerVivo(){
+		this.alto=0;
+		this.ancho=0;
+		this.MAXVELOCIDAD=0;
+		this.densidad=1;
+		this.MAXVIDA=100;
+		this.posicion =new Vector2();
+		this.vidaActual=0;
+		this.cuerpo =null;
 	}
-	public int getANCHO() {
-		return ANCHO;
+	
+	public SerVivo(int ancho, int alto, int vidaMax, float velMax,int densidad,Vector2 pos,Body cuerpo){
+		MAXVIDA =vidaMax;
+		this.alto=alto;
+		this.ancho=ancho;
+		this.MAXVELOCIDAD=velMax;
+		this.densidad=densidad;
+		this.posicion =pos;
+		this.vidaActual=vidaMax;
+		this.cuerpo =cuerpo;
+		cuerpo.setUserData(this);
+	}
+	
+	public int getAncho() {
+		return ancho;
 	}
 
-	public void setANCHO(int aNCHO) {
-		ANCHO = aNCHO;
+	public void setAncho(int aNCHO) {
+		this.ancho = aNCHO;
 	}
 
-	public int getALTO() {
-		return ALTO;
+	public int getAlto() {
+		return alto;
 	}
 
-	public void setALTO(int aLTO) {
-		ALTO = aLTO;
+	public void setAlto(int aLTO) {
+		this.alto = aLTO;
 	}
 
 	public Vector2 getPosicion() {
@@ -39,40 +58,26 @@ public abstract class SerVivo {
 		this.posicion = posicion;
 	}
 
-	public int getVida() {
-		return vida;
+	public int getVidaActual() {
+		return vidaActual;
 	}
 	
-	public void setVida(int vida) {
-		this.vida = vida;
+	public void setVidaActual(int vida) {
+		this.vidaActual = vida;
 	}
-	public float getVelocidad() {
-		return velocidad;
-	}
-	public void setVelocidad(float velocidad) {
-		this.velocidad = velocidad;
-	}
-	//@brief Metodo para reducir la vida 
-	int cambiarVida(int value){
+
+	//@brief Metodo para aumentar o reducir la vida en @value unidades
+	int cambiarVidaActual(int value){
 		
-		vida=vida+value;
-		if(vida>MAX_VIDA)
-			vida=MAX_VIDA;
-		if(vida<0)
-			vida=0;				
-		return vida;
+		vidaActual+=value;
+		if(vidaActual>MAXVIDA)
+			vidaActual=MAXVIDA;
+		else if(vidaActual<0)
+			vidaActual=0;				
+		return vidaActual;
 	}
 	
 	boolean estaMuerto(){
-		return(vida<=0);
+		return(vidaActual<=0);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
