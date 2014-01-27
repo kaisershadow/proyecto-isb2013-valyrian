@@ -34,12 +34,12 @@ public class Jugador extends SerVivo implements InputProcessor {
 		TextureRegion[] nativo = TextureRegion.split(nativoTexture, 32, 64)[0];
 		//OJO: Cambiar esta animacion cuando se tengan los sprites
 		quieto = new Animation(0,nativo[2]);
-		caminando= new Animation(0.1f, nativo[2],nativo[3],nativo[4],nativo[5],nativo[6],nativo[7]);
+		caminando= new Animation(1/7f, nativo[2],nativo[3],nativo[4],nativo[5],nativo[6],nativo[7]);
 		caminando.setPlayMode(Animation.LOOP);
-		atacando =new Animation(1/30f,nativo[0],nativo[1]);
-		saltando = new Animation(1/20f,nativo[8],nativo[9],nativo[10]);
-		saltando.setPlayMode(Animation.NORMAL);
-		atacando.setPlayMode(Animation.NORMAL);
+		atacando =new Animation(1/3,nativo[1],nativo[0],nativo[2]);
+		saltando = new Animation(1/3f,nativo[8],nativo[9],nativo[10]);
+		saltando.setPlayMode(Animation.LOOP);
+		atacando.setPlayMode(Animation.LOOP);
 	}
 	
 	public void renderJugador(float deltaTime,SpriteBatch batch)
