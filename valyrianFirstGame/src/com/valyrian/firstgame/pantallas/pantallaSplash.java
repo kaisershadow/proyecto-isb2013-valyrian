@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.valyrian.firstgame.pantallas.pruebas.PantallaPruebaPersonaje;
 
 import  static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn;
 import  static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
@@ -34,8 +35,6 @@ public class PantallaSplash implements Screen {
 		spriteBatch.begin();
 		splashImage.draw(spriteBatch, 1);
 		spriteBatch.end();
-		
-
 	}
 
 	@Override
@@ -70,8 +69,9 @@ public class PantallaSplash implements Screen {
 			      public boolean act(float delta )        
 			        {         
 			          // la última acción nos direcciona hacia la siguiente pantalla (menu) 
-			          ((Game)Gdx.app.getApplicationListener()).setScreen(new MenuInicio());
-			          return true; 
+			          ((Game)Gdx.app.getApplicationListener()).setScreen(new PantallaPruebaPersonaje());
+			      //    System.out.println("SI LLEGA AQUI");
+			    	  return true; 
 			        }  
 			     } ) );
 
@@ -79,7 +79,7 @@ public class PantallaSplash implements Screen {
 
 	@Override
 	public void hide() {
-		dispose();
+		//dispose();
 	}
 
 

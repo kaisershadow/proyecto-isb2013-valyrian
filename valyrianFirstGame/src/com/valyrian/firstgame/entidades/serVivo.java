@@ -15,19 +15,17 @@ public abstract class SerVivo extends Entidad {
 		this.alto=0;
 		this.ancho=0;
 		this.MAXVELOCIDAD=0;
-		this.densidad=1;
 		this.MAXVIDA=100;
 		this.posicion =new Vector2();
 		this.vidaActual=0;
 		this.cuerpo =null;
 	}
 	
-	public SerVivo(int ancho, int alto, int vidaMax, float velMax,int densidad,Vector2 pos,Body cuerpo){
+	public SerVivo(int ancho, int alto, int vidaMax, float velMax,Vector2 pos,Body cuerpo){
 		MAXVIDA =vidaMax;
 		this.alto=alto;
 		this.ancho=ancho;
 		this.MAXVELOCIDAD=velMax;
-		this.densidad=densidad;
 		this.posicion =pos;
 		this.vidaActual=vidaMax;
 		this.cuerpo =cuerpo;

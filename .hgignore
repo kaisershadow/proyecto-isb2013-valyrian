@@ -1,5 +1,15 @@
 .metadata/
 .hg/
+valyrianFirstGame/.settings/
 valyrianFirstGame/bin/
+valyrianFirstGame/.classpath
+valyrianFirstGame/.project
+valyrianFirstGame-android/.settings/
 valyrianFirstGame-android/bin/
+valyrianFirstGame-android/gen/
+valyrianFirstGame-android/.classpath
+valyrianFirstGame-android/.project
+valyrianFirstGame-desktop/.settings/
 valyrianFirstGame-desktop/bin/
+valyrianFirstGame-desktop/.classpath
+valyrianFirstGame-desktop/.project

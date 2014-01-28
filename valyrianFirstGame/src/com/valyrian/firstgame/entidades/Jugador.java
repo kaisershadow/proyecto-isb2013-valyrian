@@ -23,11 +23,12 @@ public class Jugador extends SerVivo implements InputProcessor {
 	private Animation quieto, caminando,saltando,atacando;
 	public enum ESTADO_ACTUAL{Quieto, Saltando, Atacando,Caminando}
 	public ESTADO_ACTUAL estado=ESTADO_ACTUAL.Quieto;
+	private float desiredVel=0;
 	
 	
 	//@brief Se crea un nuevo jugador. NOTA: ANtes ya debe haber sido definido un cuerpo en el mundo de Box2D
-	public Jugador(int ancho, int alto,int maxvida,float maxvel, int posX,int posY, int densidad, Body cuerpo){
-		super(ancho,alto,maxvida,maxvel,densidad,new Vector2(posX, posY),cuerpo);
+	public Jugador(int ancho, int alto,int maxvida,float maxvel, int posX,int posY, Body cuerpo){
+		super(ancho,alto,maxvida,maxvel,new Vector2(posX, posY),cuerpo);
 		
 		//Deficion de las diferentes animaciones para el personaje
 		nativoTexture = new Texture("personajes/nativo.png");
@@ -61,7 +62,7 @@ public class Jugador extends SerVivo implements InputProcessor {
 				frame = atacando.getKeyFrame(this.stateTime);
 				break;
 		}
-		actualizarJugador();
+	//	actualizarPosicionJugador();
 		if(mirandoDerecha)
 			batch.draw(frame, this.posicion.x, this.posicion.y, this.ancho, this.alto);
 		else
@@ -69,7 +70,15 @@ public class Jugador extends SerVivo implements InputProcessor {
 		//	System.out.println("Posicion del nativo (x,y): ("+this.posicion.x+","+this.posicion.y+")");
 	}
 	
-	public void actualizarJugador(){
+	public void actualizarPosicionJugador(){
+		float impulse = cuerpo.getMass() * (desiredVel - cuerpo.getLinearVelocity().x);
+		if(estado ==ESTADO_ACTUAL.Saltando)
+			cuerpo.applyLinearImpulse(cuerpo.getLinearVelocity().x,impulse*3, cuerpo.getWorldCenter().x, cuerpo.getWorldCenter().y, true);
+			//cuerpo.setLinearVelocity(cuerpo.getLinearVelocity().x, 4*32*600);
+			else
+		cuerpo.applyLinearImpulse(impulse, impulse, cuerpo.getWorldCenter().x, cuerpo.getWorldCenter().y, true);
+		
+		
 		posicion.x=cuerpo.getPosition().x-ancho/2;
 		posicion.y=cuerpo.getPosition().y-alto/2;
 	}
@@ -98,14 +107,14 @@ public class Jugador extends SerVivo implements InputProcessor {
 	
 	@Override
 	public boolean keyDown(int keycode) {
-		float cuerpoVelX = cuerpo.getLinearVelocity().x;
-		float desiredVel = 0;
+		//float cuerpoVelX = cuerpo.getLinearVelocity().x;
+	//	float desiredVel = 0;
 	 		
 		switch(keycode){
 		case(Input.Keys.D):
 			desiredVel = MAXVELOCIDAD;
 			mirandoDerecha=true;
-		if(estado!=ESTADO_ACTUAL.Saltando)
+		//if(estado!=ESTADO_ACTUAL.Saltando)
 			estado=ESTADO_ACTUAL.Caminando;
 			
 			break;
@@ -115,17 +124,19 @@ public class Jugador extends SerVivo implements InputProcessor {
 			estado=ESTADO_ACTUAL.Caminando;
 			break;
 		case(Input.Keys.SPACE):
-			if(estado!= ESTADO_ACTUAL.Saltando)
+		//	if(estado!= ESTADO_ACTUAL.Saltando)
+			desiredVel = MAXVELOCIDAD;
 				estado =ESTADO_ACTUAL.Saltando;
 				//IMPLEMENTAR SALTO	
+				//cuerpo.getPosition().y+=32f;
 				break;
 		case(Input.Keys.J):
 			estado=ESTADO_ACTUAL.Atacando;
 	//		cuerpo.setLinearVelocity(100, 0);
+		cuerpo.getPosition().y-=32f;
 		break;
 		}
-	   float impulse = cuerpo.getMass() * (desiredVel - cuerpoVelX); 
-	   cuerpo.applyLinearImpulse(impulse, 0, cuerpo.getWorldCenter().x, cuerpo.getWorldCenter().y, true);
+	 
 	//   cuerpo.setLinearVelocity(new Vector2(100, 0));
 		return false;
 	}
@@ -135,11 +146,15 @@ public class Jugador extends SerVivo implements InputProcessor {
 		switch(keycode){
 		case Input.Keys.A:
 		case Input.Keys.D:
-		//case Input.Keys.J:
+		case Input.Keys.SPACE:
+			//case Input.Keys.J:
+			desiredVel=0;
 			estado=ESTADO_ACTUAL.Quieto;
 			break;
-	
-		
+		case Input.Keys.J:
+			//if(estado!=ESTADO_ACTUAL.Quieto)
+			estado=ESTADO_ACTUAL.Quieto;
+			break;
 		}
 		return false;
 	}

@@ -8,9 +8,9 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "valyrianFirstGame";
 		cfg.useGL20 = true;
-		cfg.width = 640;
-		cfg.height = 480;
-		
+		cfg.width = LwjglApplicationConfiguration.getDesktopDisplayMode().width/2;
+		cfg.height = LwjglApplicationConfiguration.getDesktopDisplayMode().height/2;
+		//cfg.fullscreen=true;
 		new LwjglApplication(new PrimerJuego(), cfg);
 	}
 }

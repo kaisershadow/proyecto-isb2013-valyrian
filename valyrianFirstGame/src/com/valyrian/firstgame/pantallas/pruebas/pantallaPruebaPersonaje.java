@@ -43,7 +43,9 @@ public class PantallaPruebaPersonaje implements Screen {
 	int mapW,mapH,tileW,tileH;
 	//private Vector2 movement = new Vector2();
 	//private float speed=500000;
-	private Vector2 linVel = new Vector2(32, 0);	
+	private Vector2 linVel = new Vector2(32, 0);
+	
+	
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -79,7 +81,7 @@ public class PantallaPruebaPersonaje implements Screen {
 //		else if(camera.position.y+camera.viewportHeight/2>otmr.getMap().getProperties().get("height", Integer.class)*otmr.getMap().getProperties().get("tileheight", Integer.class))
 //			camera.position.y =-camera.viewportHeight/2+otmr.getMap().getProperties().get("height", Integer.class)*otmr.getMap().getProperties().get("tileheight", Integer.class);
 //		
-		personaje.actualizarJugador();
+		personaje.actualizarPosicionJugador();
 		personaje.actualizarCamara(camera, mapW, mapH, tileW, tileH);
 		
 		camera.update();
@@ -174,9 +176,9 @@ public class PantallaPruebaPersonaje implements Screen {
 		
 		//Fixture definition
 		fixtureDef.shape = boxShape;
-		fixtureDef.friction = 1;
+		fixtureDef.friction = 0.1f;
 		fixtureDef.restitution = 0;
-		fixtureDef.density = 1;
+		fixtureDef.density = 1/32f;
 		fixtureDef.isSensor =false;
 		platformBody= mundo.createBody(bodyDef);
 		platformBody.createFixture(fixtureDef);
@@ -208,9 +210,7 @@ public class PantallaPruebaPersonaje implements Screen {
 		//playerBody.applyAngularImpulse(50, true);
 		boxShape.dispose();
 		//playerBody.setUserData(personaje);
-		personaje = new Jugador(32, 64, 100, 5*60*32, 20, 80, 1, playerBody);
-		
-		
+		personaje = new Jugador(32, 64, 100, 5*60*32, 20, 80, playerBody);
 		//Gdx.input.setInputProcessor(personaje);
 		
 
@@ -310,7 +310,7 @@ public class PantallaPruebaPersonaje implements Screen {
 		groundShape.createChain(new Vector2[]  {new Vector2(0,0), new Vector2(640,0)});
 		
 		fixtureDef.shape = groundShape;
-		fixtureDef.friction = 0;
+		fixtureDef.friction = 0.3f;
 		fixtureDef.restitution = 0;
 		fixtureDef.isSensor =false;
 		Body ground= mundo.createBody(bodyDef);
