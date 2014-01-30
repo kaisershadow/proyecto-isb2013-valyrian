@@ -1,0 +1,4 @@
+Esta es una breve descripcion de un nivel de 
+nuestro juego piloto "Quetzal: La búsqueda" 
+esto es lo que se verá a lo que se presione 
+cada boton con el nivel correspondiente.

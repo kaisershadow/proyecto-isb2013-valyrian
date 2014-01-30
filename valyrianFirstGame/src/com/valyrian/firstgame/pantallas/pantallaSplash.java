@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.valyrian.firstgame.PrimerJuego;
 import com.valyrian.firstgame.pantallas.pruebas.PantallaPruebaPersonaje;
 
 import  static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn;
@@ -19,10 +20,18 @@ import  static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 
 public class PantallaSplash implements Screen {
 
+	private PrimerJuego juego;
 	private Sound sound;
 	private Texture splashTexture;
 	private SpriteBatch spriteBatch;
 	private Image splashImage;
+	
+	public PantallaSplash(PrimerJuego primerJuego) {
+	juego = primerJuego;
+	}
+	
+	
+	
 	
 	@Override
 	public void render(float delta) {
@@ -30,10 +39,9 @@ public class PantallaSplash implements Screen {
 		//Limpiar la pantalla y asignar un color de fondo a la ventana
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
 		splashImage.act(delta);
 		spriteBatch.begin();
-		splashImage.draw(spriteBatch, 1);
+		splashImage.draw(spriteBatch, 1);	
 		spriteBatch.end();
 	}
 
@@ -51,7 +59,7 @@ public class PantallaSplash implements Screen {
 		//Carga del archivo de sonido
 		sound = Gdx.audio.newSound(Gdx.files.internal("audio/splash_sound.mp3"));
 		
-		// cargar la imagen de splash y crear la region de textura 
+		// carga de la imagen de splash y creacion de la region de textura 
 		splashTexture = new Texture("images/splash.png");
 		
 		// seleccionar Linear para mejorar el estiramiento 
@@ -69,8 +77,10 @@ public class PantallaSplash implements Screen {
 			      public boolean act(float delta )        
 			        {         
 			          // la última acción nos direcciona hacia la siguiente pantalla (menu) 
-			          ((Game)Gdx.app.getApplicationListener()).setScreen(new PantallaPruebaPersonaje());
-			      //    System.out.println("SI LLEGA AQUI");
+			//    	  Juego.setScreen(Juego.pantalla);
+			    	 // dispose();
+			    	  juego.setScreen(juego.pantallaMenu);
+			    	 // System.out.println("SE EJECUTO LA ACCION");
 			    	  return true; 
 			        }  
 			     } ) );
@@ -88,6 +98,7 @@ public class PantallaSplash implements Screen {
 		spriteBatch.dispose();
 		sound.dispose();
 		splashTexture.dispose();
+		
 	}
 
 

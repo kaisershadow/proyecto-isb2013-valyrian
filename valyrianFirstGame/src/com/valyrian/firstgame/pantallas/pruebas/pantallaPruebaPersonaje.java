@@ -1,5 +1,7 @@
 package com.valyrian.firstgame.pantallas.pruebas;
 
+import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
@@ -22,6 +24,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.sun.xml.internal.bind.v2.util.CollisionCheckStack;
+import com.valyrian.firstgame.PrimerJuego;
 import com.valyrian.firstgame.entidades.Jugador;
 import com.valyrian.firstgame.entidades.Jugador.ESTADO_ACTUAL;
 
@@ -40,12 +43,21 @@ public class PantallaPruebaPersonaje implements Screen {
 	private World mundo;
 	private Body platformBody;
 	private OrthogonalTiledMapRenderer otmr;
-	int mapW,mapH,tileW,tileH;
+	private int mapW,mapH,tileW,tileH;
+	
+	private Box2DMapObjectParser manejocol;
+	
+	private PrimerJuego juego;
+	
 	//private Vector2 movement = new Vector2();
 	//private float speed=500000;
 	private Vector2 linVel = new Vector2(32, 0);
 	
 	
+	public PantallaPruebaPersonaje(PrimerJuego primerJuego) {
+		juego = primerJuego;
+	}
+
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -144,6 +156,10 @@ public class PantallaPruebaPersonaje implements Screen {
 
 		otmr = new OrthogonalTiledMapRenderer(new TmxMapLoader().load("mapas/platformer_test.tmx"),1);
 		
+		//manejocol.setUnitScale(1);
+		
+//		imageneEnObjetosTile= new Box2DSprite(new Texture("personajes/left1.png"));
+		
 		//otmr.setView(camera.combined,0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		//camera.zoom=0.5f;
 		//camera.zoom=2;
@@ -158,6 +174,8 @@ public class PantallaPruebaPersonaje implements Screen {
 		
 		mundo = new World(new Vector2(0,-9.81f*32*3600), true);
 	
+		manejocol= new Box2DMapObjectParser(1);
+		manejocol.load(mundo, otmr.getMap());	
 		
 		
 		///Definicicion y creacion del cuerpo
