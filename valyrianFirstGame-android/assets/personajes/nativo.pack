@@ -1,0 +1,129 @@
+
+nativo.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+ataque1
+  rotate: false
+  xy: 0, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+ataque2
+  rotate: false
+  xy: 32, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+camina1
+  rotate: false
+  xy: 64, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+camina2
+  rotate: false
+  xy: 96, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+camina7
+  rotate: false
+  xy: 96, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+camina3
+  rotate: false
+  xy: 128, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+camina4
+  rotate: false
+  xy: 160, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+camina5
+  rotate: false
+  xy: 192, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+camina6
+  rotate: false
+  xy: 224, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+salto1
+  rotate: false
+  xy: 256, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+salto2
+  rotate: false
+  xy: 288, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+salto3
+  rotate: false
+  xy: 320, 0
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+
+nativo2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+dardo/Dardo1
+  rotate: false
+  xy: 0, 6
+  size: 7, 3
+  orig: 7, 3
+  offset: 0, 0
+  index: -1
+dardo/Dardo2
+  rotate: false
+  xy: 0, 3
+  size: 7, 3
+  orig: 7, 3
+  offset: 0, 0
+  index: -1
+dardo/Dardo5
+  rotate: false
+  xy: 7, 6
+  size: 7, 3
+  orig: 7, 3
+  offset: 0, 0
+  index: -1
+dardo/Dardo6
+  rotate: false
+  xy: 0, 0
+  size: 7, 3
+  orig: 7, 3
+  offset: 0, 0
+  index: -1
+dardo/Dardo7
+  rotate: false
+  xy: 7, 3
+  size: 7, 3
+  orig: 7, 3
+  offset: 0, 0
+  index: -1
