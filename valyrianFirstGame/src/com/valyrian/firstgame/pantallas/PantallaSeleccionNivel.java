@@ -6,7 +6,6 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -14,9 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.valyrian.firstgame.PrimerJuego;
@@ -26,22 +23,23 @@ public class PantallaSeleccionNivel implements Screen{
 	private Stage escena;
 	private Table tablaNiveles;
 	private Table tablaControles;
+	private Table captura;
 	private TextButton botonJugar;
 	private TextButton botonRegresar;
 	private TextButton niveles[];
 	private Skin skin;
+	private Color color;
 	private SpriteBatch batch;
 	private Texture textureFondo;
 	private Texture textureTitulo;
 	private Texture textureSeleccionar;
-	private Texture textureCaptura1;
 	private Image fondo;
 	private Image tituloNiveles;
 	private Image subSeleccionar;
-	private Image captura;
-	private TextField texto;
+	private Texture capturaNivel[];
 	private Window zonaTexto;
 	private PrimerJuego juego;
+	private int numNiveles; //numero de niveles del juego
 	
 	public PantallaSeleccionNivel(PrimerJuego primerJuego) {
 		juego = primerJuego;
@@ -91,15 +89,16 @@ escena.setViewport(width , height, true);
 		zonaTexto.setBounds(width*0.4f, height*0.15f, width, height);
 		zonaTexto.setSize(width*0.55f, height*0.45f);
 		
-		texto.setSize(width*0.55f, height*0.45f);
 
 	}
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
+		
+		numNiveles=3;
 		FileHandle skinFile = Gdx.files.internal("ui/skin/uiskin.json"); 
         skin = new Skin(skinFile);
+        color = new Color(99, 145, 0, 0.4f);
         batch = new SpriteBatch();
         textureFondo = new Texture(Gdx.files.internal("images/menus/niveles_BG.jpg"));
         fondo = new Image(textureFondo);
@@ -107,58 +106,64 @@ escena.setViewport(width , height, true);
         tituloNiveles = new Image(textureTitulo);
         textureSeleccionar = new Texture(Gdx.files.internal("images/menus/titulo_seleccionarnivel.png"));
         subSeleccionar = new Image(textureSeleccionar);
-        
-        textureCaptura1 = new Texture(Gdx.files.internal("images/menus/preview_nivel1.png"));
-        captura = new Image(textureCaptura1);
+        captura = new Table(skin);
 		escena = new Stage();
 		tablaNiveles = new Table(skin);
 		tablaControles = new Table(skin);
-		texto = new TextField(Gdx.files.internal("ui/texto/nivel1.txt").readString(), skin);
 		zonaTexto = new Window("Resumen: ", skin);
-		
-		Gdx.input.setInputProcessor(escena);
-		
-		
-		Color color;
-		color = new Color(99, 145, 0, 0.4f);
-		
-		
-		niveles = new TextButton[5];
-		for (int i = 0; i < 5 ; i++) {
-			niveles[i] = new TextButton("Nivel " + Integer.toString(i+1) , skin);
-			niveles[i].setColor(color);
-			tablaNiveles.add(niveles[i]).fill().expand().space(10f);
-			tablaNiveles.row();
-		}
 		botonJugar = new TextButton("Jugar", skin);
 		botonRegresar = new TextButton("Regresar", skin);
 		
+		niveles = new TextButton[numNiveles];
+		for (int i = 0; i < numNiveles ; i++) {
+			niveles[i] = new TextButton("nivel " + Integer.toString(i+1) , skin);
+			niveles[i].setColor(color);
+			niveles[i].setName("nivel" + Integer.toString(i+1) );
+			tablaNiveles.add(niveles[i]).fill().expand().space(10f);
+			tablaNiveles.row();
+		}
+		
+		capturaNivel = new Texture[numNiveles];
+
+		for (int i = 0; i < numNiveles; i++) {
+			capturaNivel[i] = new Texture(Gdx.files.internal("images/menus/nivel" + Integer.toString(i+1) +".png"));
+		}
+		
+		Gdx.input.setInputProcessor(escena);
 		botonRegresar.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				Gdx.app.exit();
 			}
 			
-			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				botonRegresar.setText("Vas a salirte pendejo");	
+			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {	
+				event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
             }
 			
 			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				botonRegresar.setText("Salir");
-            }
-				
+				event.getListenerActor().setColor(color);
+            }	
 		});
-		
-		botonJugar.addListener(new ClickListener(){
-			
-			public void changed (ChangeEvent event, Actor actor) {
+	
+		for(int i = 0; i < numNiveles; i++){
+			niveles[i].addListener(new ClickListener(){
+				@Override
+				public void clicked(InputEvent event, float x, float y) {
+					zonaTexto.clear();
+					zonaTexto.add(Gdx.files.internal("ui/texto/" + event.getListenerActor().getName()+ ".txt").readString());
+					captura.clear();
+					captura.add(new Image(capturaNivel[Integer.parseInt(event.getListenerActor().getName().substring(5,6))-1]));
+				}	
 				
-                System.out.println("Clicked! Is checked: " + botonJugar.isChecked());
-                botonJugar.setText("Good job!");
-			}
-				
-			
-		});
+				public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+					event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
+	            }
+	
+				public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+					event.getListenerActor().setColor(color);
+	            }	
+			});		
+		}
 		
  
 		botonJugar.setColor(color);
@@ -167,7 +172,7 @@ escena.setViewport(width , height, true);
 		tablaControles.add(botonJugar).fill().expand().space(10f);
 		
 		zonaTexto.setColor(color);
-		zonaTexto.add(Gdx.files.internal("ui/texto/nivel1.txt").readString());
+		//zonaTexto.add(Gdx.files.internal("ui/texto/nivel1.txt").readString());
 		
 		//tablaNiveles.debug();
 		//tablaControles.debug();
@@ -188,7 +193,7 @@ escena.setViewport(width , height, true);
 	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
-		dispose();
+		//dispose();
 	}
 
 	@Override
@@ -209,10 +214,12 @@ escena.setViewport(width , height, true);
 		escena.dispose();
 		skin.dispose();
 		batch.dispose();
-		textureCaptura1.dispose();
 		textureFondo.dispose();
 		textureSeleccionar.dispose();
 		textureTitulo.dispose();
+		for (int i = 0; i < numNiveles; i++) {
+			capturaNivel[i].dispose();
+		}
 	}
 	
 
