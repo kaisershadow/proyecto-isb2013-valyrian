@@ -6,54 +6,37 @@ import com.badlogic.gdx.physics.box2d.Body;
 public abstract class SerVivo extends Entidad {
 	
 	public final int MAXVIDA;
-	public float MAXVELOCIDAD;
-	protected int vidaActual;
-	protected int densidad;
+	protected Vector2 velocidad;
+	protected int vidaActual;	
 	
-	
+
 	public SerVivo(){
 		this.alto=0;
 		this.ancho=0;
-		this.MAXVELOCIDAD=0;
-		this.MAXVIDA=100;
 		this.posicion =new Vector2();
-		this.vidaActual=0;
 		this.cuerpo =null;
+		
+		this.velocidad =new Vector2();
+		this.vidaActual=100;
+		this.MAXVIDA=100;
 	}
 	
-	public SerVivo(int ancho, int alto, int vidaMax, float velMax,Vector2 pos,Body cuerpo){
+	public SerVivo(int ancho, int alto, int vidaMax, Vector2 velMax,Vector2 pos){
 		MAXVIDA =vidaMax;
 		this.alto=alto;
 		this.ancho=ancho;
-		this.MAXVELOCIDAD=velMax;
+		this.velocidad=velMax;
 		this.posicion =pos;
 		this.vidaActual=vidaMax;
-		this.cuerpo =cuerpo;
-		cuerpo.setUserData(this);
+		this.cuerpo =null;
 	}
 	
-	public int getAncho() {
-		return ancho;
+	public Vector2 getVelocidad() {
+		return velocidad;
 	}
-
-	public void setAncho(int aNCHO) {
-		this.ancho = aNCHO;
-	}
-
-	public int getAlto() {
-		return alto;
-	}
-
-	public void setAlto(int aLTO) {
-		this.alto = aLTO;
-	}
-
-	public Vector2 getPosicion() {
-		return posicion;
-	}
-
-	public void setPosicion(Vector2 posicion) {
-		this.posicion = posicion;
+	
+	public void setVelocidad(Vector2 velocidad) {
+		this.velocidad = velocidad;
 	}
 
 	public int getVidaActual() {

@@ -4,6 +4,7 @@ import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -27,6 +28,9 @@ import com.sun.xml.internal.bind.v2.util.CollisionCheckStack;
 import com.valyrian.firstgame.PrimerJuego;
 import com.valyrian.firstgame.entidades.Jugador;
 import com.valyrian.firstgame.entidades.Jugador.ESTADO_ACTUAL;
+import com.valyrian.firstgame.utilitarios.Joystick;
+import com.valyrian.firstgame.utilitarios.ManejadorUnidades;
+import com.valyrian.firstgame.utilitarios.Teclado;
 
 public class PantallaPruebaPersonaje implements Screen {
 	
@@ -51,7 +55,7 @@ public class PantallaPruebaPersonaje implements Screen {
 	
 	//private Vector2 movement = new Vector2();
 	//private float speed=500000;
-	private Vector2 linVel = new Vector2(32, 0);
+	private Vector2 linVel = new Vector2(32, 32);
 	
 	
 	public PantallaPruebaPersonaje(PrimerJuego primerJuego) {
@@ -68,7 +72,7 @@ public class PantallaPruebaPersonaje implements Screen {
 				if(contador>=2){
 	//		System.out.println(contador);
 			contador=0;
-			platformBody.setLinearVelocity(platformBody.getLinearVelocity().x*(-1),linVel.y);
+			platformBody.setLinearVelocity(platformBody.getLinearVelocity().x*(-1),platformBody.getLinearVelocity().y*(-1));
 			//System.out.println("LINVEL ="+platformBody.getLinearVelocity().x +", "+linVel.y);
 		}
 		 
@@ -76,41 +80,20 @@ public class PantallaPruebaPersonaje implements Screen {
 //		playerBody.getPosition().y=personaje.getPosicion().y;
 //		
 		mundo.step(TIMESTEP, VELOCITYITERATIONS, POSITIONITERATIONS);
-	//ALGORITMO 1 PARA POSICION DE LA CAMARA	
-//		if(playerBody.getPosition().x-camera.viewportWidth/2>=0 && playerBody.getPosition().x+camera.viewportWidth/2<=otmr.getMap().getProperties().get("width", Integer.class)*otmr.getMap().getProperties().get("tilewidth", Integer.class))
-//		camera.position.x=playerBody.getPosition().x;
-//		if(playerBody.getPosition().y-camera.viewportHeight/2>=0 && playerBody.getPosition().y+camera.viewportHeight/2<=otmr.getMap().getProperties().get("height", Integer.class)*otmr.getMap().getProperties().get("tileheight", Integer.class))
-//			camera.position.y=playerBody.getPosition().y;
-//		
-//		camera.position.set(playerBody.getPosition().x, playerBody.getPosition().y, 0);
-//		if(camera.position.x<camera.viewportWidth/2)
-//			camera.position.x =camera.viewportWidth/2;
-//		else if(camera.position.x+camera.viewportWidth/2>otmr.getMap().getProperties().get("width", Integer.class)*otmr.getMap().getProperties().get("tilewidth", Integer.class))
-//			camera.position.x =-camera.viewportWidth/2+otmr.getMap().getProperties().get("width", Integer.class)*otmr.getMap().getProperties().get("tilewidth", Integer.class);
-//		
-//		if(camera.position.y<camera.viewportHeight/2)
-//			camera.position.y =camera.viewportHeight/2;
-//		else if(camera.position.y+camera.viewportHeight/2>otmr.getMap().getProperties().get("height", Integer.class)*otmr.getMap().getProperties().get("tileheight", Integer.class))
-//			camera.position.y =-camera.viewportHeight/2+otmr.getMap().getProperties().get("height", Integer.class)*otmr.getMap().getProperties().get("tileheight", Integer.class);
-//		
 		personaje.actualizarPosicionJugador();
-		personaje.actualizarCamara(camera, mapW, mapH, tileW, tileH);
+		personaje.actualizarCamara(camera, mapW, mapH, tileW, tileH);		
 		
 		camera.update();
 		//otmr.setView(camera.combined,camera.position.x-Gdx.graphics.getWidth()/2, camera.position.y-Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		//otmr.setView(camera);
 		otmr.setView(camera);
 		otmr.render();
-		//System.out.println("ERROR 3");
 		batch.setProjectionMatrix(camera.combined);
-		//personaje.setPosicion(playerBody.getPosition());
 		
-		//otmr.setView(camera);
 		batch.begin();
-		//System.out.println("ERROR 4");
+				
 		
 		
-			//mundo.getBodies(tmpBodies);
 			personaje.renderJugador(delta, batch);
 //			for(Body body :tmpBodies)
 //				if(body.getUserData()!= null){
@@ -120,9 +103,6 @@ public class PantallaPruebaPersonaje implements Screen {
 //				}
 			
 		batch.end();
-		//System.out.println("EL ORIGGEN DEL BODY ES: X,Y"+playerBody.getPosition().x+", "+playerBody.getPosition().y);
-		//playerBody.applyForceToCenter(movement, true);
-		//playerBody.setLinearVelocity(movement);
 		debugRenderer.render(mundo, camera.combined);
 		
 		
@@ -141,7 +121,6 @@ public class PantallaPruebaPersonaje implements Screen {
 
 	@Override
 	public void show() {
-		
 		debugRenderer = new Box2DDebugRenderer();
 		
 		camera = new OrthographicCamera();
@@ -172,7 +151,7 @@ public class PantallaPruebaPersonaje implements Screen {
 		mapH = otmr.getMap().getProperties().get("height", Integer.class);
 		tileH= otmr.getMap().getProperties().get("tileheight", Integer.class);
 		
-		mundo = new World(new Vector2(0,-9.81f*32*3600), true);
+		mundo = new World(new Vector2(0,-9.81f*ManejadorUnidades.PIXELSTOMETERS), true);
 	
 		manejocol= new Box2DMapObjectParser(1);
 		manejocol.load(mundo, otmr.getMap());	
@@ -186,7 +165,6 @@ public class PantallaPruebaPersonaje implements Screen {
 		bodyDef.type = BodyType.KinematicBody;
 		bodyDef.position.set(200,200);
 		bodyDef.angle = 0;
-		
 		
 		//Box Shape
 		PolygonShape boxShape = new PolygonShape();
@@ -202,16 +180,6 @@ public class PantallaPruebaPersonaje implements Screen {
 		platformBody.createFixture(fixtureDef);
 		
 		platformBody.setLinearVelocity(linVel);
-	//	System.out.println("LINVEL ="+linVel.x +", "+linVel.y);
-		bodyDef.type = BodyType.DynamicBody;
-		bodyDef.position.set(100,100);
-		bodyDef.angle =0;
-		boxShape.setAsBox(16, 32);
-		fixtureDef.isSensor =false;
-		fixtureDef.shape=boxShape;
-		//fixtureDef.filter.maskBits=0;
-		Body playerBody =mundo.createBody(bodyDef);
-		playerBody.createFixture(fixtureDef);
 
 //		boxShape.setAsBox(32, 32,new Vector2(64, 32),0);
 //		fixtureDef.isSensor =true;
@@ -228,9 +196,8 @@ public class PantallaPruebaPersonaje implements Screen {
 		//playerBody.applyAngularImpulse(50, true);
 		boxShape.dispose();
 		//playerBody.setUserData(personaje);
-		personaje = new Jugador(32, 64, 100, 5*60*32, 20, 80, playerBody);
+		personaje = new Jugador(32, 64, 100, new Vector2(5*ManejadorUnidades.PIXELSTOMETERS,6*ManejadorUnidades.PIXELSTOMETERS), new Vector2(20, 80),mundo);
 		//Gdx.input.setInputProcessor(personaje);
-		
 
 	//	Array<Contact> contacto = mundo.getContactList();
 //		Gdx.input.setInputProcessor(new InputProcessor(){
@@ -317,18 +284,18 @@ public class PantallaPruebaPersonaje implements Screen {
 //				return false;
 //			}
 //		});
-
-		Gdx.input.setInputProcessor(personaje);
+		Gdx.input.setInputProcessor(new InputMultiplexer(new Teclado(personaje)));
+		//Gdx.input.setInputProcessor(Teclado);
 		
 		
 		bodyDef.type = BodyType.StaticBody;
-		bodyDef.position.set(0, 32);
+		bodyDef.position.set(0, 40);
 		
 		ChainShape groundShape = new ChainShape();
 		groundShape.createChain(new Vector2[]  {new Vector2(0,0), new Vector2(640,0)});
 		
 		fixtureDef.shape = groundShape;
-		fixtureDef.friction = 0.3f;
+		fixtureDef.friction = 0.1f;
 		fixtureDef.restitution = 0;
 		fixtureDef.isSensor =false;
 		Body ground= mundo.createBody(bodyDef);
@@ -336,12 +303,12 @@ public class PantallaPruebaPersonaje implements Screen {
 		//System.out.println("LA MASA DEL JUGADOR ES: "+playerBody.getMass());
 		//playerBody.setTransform(personaje.getPosicion(), 0);
 		//System.out.println("EL ORIGGEN DEL BODY ES: X,Y"+playerBody.getPosition().x+", "+playerBody.getPosition().y);
-		System.out.println("LA MASA DEL JUGADOR AHORA ES: "+personaje.cuerpo.getMass());
-	personaje.cuerpo.setFixedRotation(true);
+		System.out.println("LA MASA DEL JUGADOR AHORA ES: "+personaje.getCuerpo().getMass());
+		//personaje.getCuerpo().setFixedRotation(true);
 	//System.out.println("LA MASA DEL JUGADOR AHORA ES: "+playerBody.getMass());
 	
-	camera.position.set(personaje.cuerpo.getPosition().x, personaje.cuerpo.getPosition().y, 0);
-//	camera.position.set(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2, 0);
+	camera.position.set(personaje.getCuerpo().getPosition().x, personaje.getCuerpo().getPosition().y, 0);
+//	camera.position.set(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2, 0)
 	}
 
 	@Override

@@ -12,25 +12,32 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 
 
 
-public class Jugador extends SerVivo implements InputProcessor {
+public class Jugador extends SerVivo {
 	
 	private Texture nativoTexture;
-	private boolean mirandoDerecha=true;
-	private	float stateTime = 0;
+	private	float stateTime = 0; //Variable para controlar el tiempo de cada animacion
 	private Animation quieto, caminando,saltando,atacando;
-	public enum ESTADO_ACTUAL{Quieto, Saltando, Atacando,Caminando}
+	private Vector2 desiredVel = new Vector2(); //Variable para calcular velocidad deseada para moverse
+	
+	public boolean mirandoDerecha=true;
+	public boolean puedeSaltar = true;
+	public enum ESTADO_ACTUAL{Atacando, Caminando, Quieto,Saltando}
 	public ESTADO_ACTUAL estado=ESTADO_ACTUAL.Quieto;
-	private float desiredVel=0;
 	
 	
-	//@brief Se crea un nuevo jugador. NOTA: ANtes ya debe haber sido definido un cuerpo en el mundo de Box2D
-	public Jugador(int ancho, int alto,int maxvida,float maxvel, int posX,int posY, Body cuerpo){
-		super(ancho,alto,maxvida,maxvel,new Vector2(posX, posY),cuerpo);
-		
-		//Deficion de las diferentes animaciones para el personaje
+	
+	//@brief Se crea un nuevo jugador.
+	public Jugador(int ancho, int alto,int maxvida,Vector2 vel, Vector2 pos,World mundo){
+		super(ancho,alto,maxvida,vel,pos);
+		//Definicion de las diferentes animaciones para el personaje
 		nativoTexture = new Texture("personajes/nativo.png");
 		TextureRegion[] nativo = TextureRegion.split(nativoTexture, 32, 64)[0];
 		//OJO: Cambiar esta animacion cuando se tengan los sprites
@@ -38,11 +45,49 @@ public class Jugador extends SerVivo implements InputProcessor {
 		caminando= new Animation(1/7f, nativo[2],nativo[3],nativo[4],nativo[5],nativo[6],nativo[7]);
 		caminando.setPlayMode(Animation.LOOP);
 		atacando =new Animation(1/3,nativo[1],nativo[0],nativo[2]);
-		saltando = new Animation(1/3f,nativo[8],nativo[9],nativo[10]);
+		//saltando = new Animation(1/3f,nativo[8],nativo[9],nativo[10]);
+		saltando = new Animation(1,nativo[10]);
 		saltando.setPlayMode(Animation.LOOP);
 		atacando.setPlayMode(Animation.LOOP);
+		crearCuerpo(mundo,pos,ancho,alto);
 	}
 	
+	private void crearCuerpo(World mundo,Vector2 pos,int ancho,int alto) {
+		///Definicicion del cuerpo
+		BodyDef bodyDef = new BodyDef();
+		bodyDef.type = BodyType.DynamicBody;
+		bodyDef.position.set(pos.x,pos.y);
+		bodyDef.angle = 0;
+	
+		//Definicion de la forma del fixture
+		PolygonShape boxShape = new PolygonShape();
+		boxShape.setAsBox(ancho/2,alto/2);
+		
+		//Definicion del fixture
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = boxShape;
+		fixtureDef.friction = 0;
+		fixtureDef.restitution = 0;
+		fixtureDef.density = 1/(ancho*alto);
+		fixtureDef.isSensor =false;
+		
+		
+		
+		this.cuerpo= mundo.createBody(bodyDef);
+		this.cuerpo.createFixture(fixtureDef);		
+		this.cuerpo.setFixedRotation(true);
+		//cuerpo.setGravityScale(0);
+		
+	
+		 boxShape.setAsBox(ancho/2, 1f,new Vector2(0, -alto/2) , 0);
+	     fixtureDef.isSensor = true;
+	     cuerpo.createFixture(fixtureDef);
+	    // cuerpo.setGravityScale(0);
+	     //cuerpo.setLinearDamping(0);
+//	     System.out.println(cuerpo.getLinearDamping());
+	     boxShape.dispose();
+	}
+
 	public void renderJugador(float deltaTime,SpriteBatch batch)
 	{
 		stateTime+=deltaTime;
@@ -71,25 +116,32 @@ public class Jugador extends SerVivo implements InputProcessor {
 	}
 	
 	public void actualizarPosicionJugador(){
-		float impulse = cuerpo.getMass() * (desiredVel - cuerpo.getLinearVelocity().x);
-		if(estado ==ESTADO_ACTUAL.Saltando)
-			cuerpo.applyLinearImpulse(cuerpo.getLinearVelocity().x,impulse*3, cuerpo.getWorldCenter().x, cuerpo.getWorldCenter().y, true);
-			//cuerpo.setLinearVelocity(cuerpo.getLinearVelocity().x, 4*32*600);
-			else
-		cuerpo.applyLinearImpulse(impulse, impulse, cuerpo.getWorldCenter().x, cuerpo.getWorldCenter().y, true);
+//	if(cuerpo.getLinearVelocity().x>0 && cuerpo.getLinearVelocity().x <velocidad.x)
+//		{cuerpo.setLinearVelocity(velocidad.x, cuerpo.getLinearVelocity().y);}
+//	else {if(cuerpo.getLinearVelocity().x<0 && cuerpo.getLinearVelocity().x >-velocidad.x)
+//		cuerpo.setLinearVelocity(-velocidad.x, cuerpo.getLinearVelocity().y);
+//	}
+	
+//	if(cuerpo.getLinearVelocity().y>0 && cuerpo.getLinearVelocity().y <velocidad.y)
+//		cuerpo.setLinearVelocity(cuerpo.getLinearVelocity().x,velocidad.y);
 		
 		
+		//	Vector2 impulse = new Vector2();
+		//impulse.x =	cuerpo.getMass() * (desiredVel.x - cuerpo.getLinearVelocity().x);
+		//impulse.y =	cuerpo.getMass() * (desiredVel.y - cuerpo.getLinearVelocity().y);
+		//impulse.y =	cuerpo.getMass() * (desiredVel.y);
+		//cuerpo.applyLinearImpulse(impulse.x,0, cuerpo.getWorldCenter().x,cuerpo.getWorldCenter().y, true);	
+		//cuerpo.applyLinearImpulse(0,impulse.y, cuerpo.getWorldCenter().x,cuerpo.getWorldCenter().y, true);
+		//cuerpo.applyLinearImpulse(impulse, cuerpo.getWorldCenter(), true);
 		posicion.x=cuerpo.getPosition().x-ancho/2;
 		posicion.y=cuerpo.getPosition().y-alto/2;
+		System.out.println("VELOCIDAD :"+cuerpo.getLinearVelocity().x+", "+cuerpo.getLinearVelocity().y);
 	}
 	
-	public void dispose(){
-		nativoTexture.dispose();
-	}
 
 	public void actualizarCamara(OrthographicCamera camera,int mapW,int mapH,int tileW,int tileH){
 		camera.position.set(cuerpo.getPosition().x, cuerpo.getPosition().y, 0);
-		
+
 		//Correcion posicion X
 		if(camera.position.x < camera.viewportWidth/2)
 			camera.position.x = camera.viewportWidth/2;
@@ -103,96 +155,17 @@ public class Jugador extends SerVivo implements InputProcessor {
 		else if(camera.position.y+camera.viewportHeight/2 > mapH*tileH)
 			camera.position.y =-camera.viewportHeight/2+mapH*tileH;		
 	}
-	
-	
-	@Override
-	public boolean keyDown(int keycode) {
-		//float cuerpoVelX = cuerpo.getLinearVelocity().x;
-	//	float desiredVel = 0;
-	 		
-		switch(keycode){
-		case(Input.Keys.D):
-			desiredVel = MAXVELOCIDAD;
-			mirandoDerecha=true;
-		//if(estado!=ESTADO_ACTUAL.Saltando)
-			estado=ESTADO_ACTUAL.Caminando;
-			
-			break;
-		case(Input.Keys.A):
-			desiredVel = -MAXVELOCIDAD;
-			mirandoDerecha = false;
-			estado=ESTADO_ACTUAL.Caminando;
-			break;
-		case(Input.Keys.SPACE):
-		//	if(estado!= ESTADO_ACTUAL.Saltando)
-			desiredVel = MAXVELOCIDAD;
-				estado =ESTADO_ACTUAL.Saltando;
-				//IMPLEMENTAR SALTO	
-				//cuerpo.getPosition().y+=32f;
-				break;
-		case(Input.Keys.J):
-			estado=ESTADO_ACTUAL.Atacando;
-	//		cuerpo.setLinearVelocity(100, 0);
-		cuerpo.getPosition().y-=32f;
-		break;
-		}
-	 
-	//   cuerpo.setLinearVelocity(new Vector2(100, 0));
-		return false;
+
+
+	public Vector2 getDesiredVel() {
+		return desiredVel;
 	}
 
-	@Override
-	public boolean keyUp(int keycode) {
-		switch(keycode){
-		case Input.Keys.A:
-		case Input.Keys.D:
-		case Input.Keys.SPACE:
-			//case Input.Keys.J:
-			desiredVel=0;
-			estado=ESTADO_ACTUAL.Quieto;
-			break;
-		case Input.Keys.J:
-			//if(estado!=ESTADO_ACTUAL.Quieto)
-			estado=ESTADO_ACTUAL.Quieto;
-			break;
-		}
-		return false;
+	public void setDesiredVel(Vector2 desiredVel) {
+		this.desiredVel = desiredVel;
 	}
 
-	@Override
-	public boolean keyTyped(char character) {
-		// TODO Auto-generated method stub
-		return false;
+	public void dispose(){
+		nativoTexture.dispose();
 	}
-
-	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean mouseMoved(int screenX, int screenY) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean scrolled(int amount) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

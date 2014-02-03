@@ -53,7 +53,7 @@ public class PantallaSplash implements Screen {
 
 	@Override
 	public void show() {
-
+		
 		spriteBatch = new SpriteBatch();
 		
 		//Carga del archivo de sonido
@@ -79,7 +79,7 @@ public class PantallaSplash implements Screen {
 			          // la última acción nos direcciona hacia la siguiente pantalla (menu) 
 			//    	  Juego.setScreen(Juego.pantalla);
 			    	 // dispose();
-			    	  juego.setScreen(juego.pantallaMenu);
+			    	  juego.setScreen(juego.pantallaPrueba);
 			    	 // System.out.println("SE EJECUTO LA ACCION");
 			    	  return true; 
 			        }  
@@ -98,6 +98,7 @@ public class PantallaSplash implements Screen {
 		spriteBatch.dispose();
 		sound.dispose();
 		splashTexture.dispose();
+		System.out.println("SE LLAMO AL DISPOSE DE SPLASH");
 		
 	}
 

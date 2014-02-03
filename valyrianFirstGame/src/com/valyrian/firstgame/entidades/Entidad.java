@@ -4,11 +4,12 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
 public abstract class Entidad {
+	
 	//Atributos comunes de todas las entidades
 	protected Vector2 posicion;
 	protected int alto;
 	protected int ancho;
-	public Body cuerpo;
+	protected Body cuerpo;
 	
 	public Vector2 getPosicion() {
 		return posicion;
