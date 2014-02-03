@@ -37,6 +37,7 @@ public class PrimerJuego extends Game {
 	@Override
 	public void create() {
 		//setScreen(pantallaSplash);
-		setScreen(pantallaPrueba);
+		//setScreen(pantallaNiveles);
+		setScreen(pantallaMenu);
 	}
 }
