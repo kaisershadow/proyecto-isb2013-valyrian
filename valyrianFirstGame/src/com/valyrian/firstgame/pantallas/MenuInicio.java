@@ -2,11 +2,11 @@ package com.valyrian.firstgame.pantallas;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -24,6 +24,7 @@ public class MenuInicio implements Screen{
 	private TextButton botonConfiguraciones;
 	private TextButton botonPuntuaciones;
 	private TextButton botonSalir;
+	private TextButton botonCreditos;
 	private Skin skin;
 	private SpriteBatch batch;
 	private Texture textureFondo;
@@ -33,9 +34,10 @@ public class MenuInicio implements Screen{
 	private Image tituloQuetzal;
 	private Image subQuetzal;
 	private PrimerJuego juego;
+	private Color color;
 	
 	public MenuInicio(PrimerJuego primerJuego) {
-	juego = primerJuego;
+		juego = primerJuego;
 	}
 	
 	
@@ -63,12 +65,12 @@ public class MenuInicio implements Screen{
 
 		escena.setViewport(width , height, true);
 		
-		tabla.setBounds(width*0.05f, 30, width*0.15f, height*0.3f);
-		tabla.setSize(width*0.20f,height*0.30f);
+		tabla.setBounds(width*0.05f, 30, width, height);
+		tabla.setSize(width*0.2f,height*0.50f);
 		tabla.invalidateHierarchy();
 		
 		botonSalir.setBounds(width*0.75f , 30, width , height*0.30f);
-		botonSalir.setSize(width*0.2f, (int)(height*0.3/3));
+		botonSalir.setSize(width*0.2f, (int)(height*0.5/4));
 		
 		fondo.setSize(width, height);
 		
@@ -82,65 +84,18 @@ public class MenuInicio implements Screen{
 	@Override
 	public void show() {
 		
-		FileHandle skinFile = Gdx.files.internal("ui/skin/uiskin.json"); 
-        skin = new Skin(skinFile);
-        batch = new SpriteBatch();
-        
-        textureFondo = new Texture(Gdx.files.internal("images/menus/mainmenu_BG.jpg"));
-        fondo = new Image(textureFondo);
-        textureTitulo = new Texture(Gdx.files.internal("images/menus/titulo_quetzal.png"));
-        tituloQuetzal = new Image(textureTitulo);
-        textureSubtitulo = new Texture(Gdx.files.internal("images/menus/titulo_labusqueda.png"));
-        subQuetzal = new Image(textureSubtitulo);
-		escena = new Stage();
-		tabla = new Table(skin);
+		inicializar_variables();
 		
-		Gdx.input.setInputProcessor(escena);	
-		Color color;
-		color = new Color(99, 145, 0, 0.4f);
-	
-		botonJugar = new TextButton("Jugar", skin);
-		botonConfiguraciones = new TextButton("Configuraciones", skin);
-		botonPuntuaciones = new TextButton("Puntuaciones", skin);
-		botonSalir = new TextButton("Salir del juego", skin);
+		Gdx.input.setInputProcessor(escena);
+		mouse_listeners();
 		
-		
-		//Agregar o crear otro listener para eventos del teclado
-		botonSalir.addListener(new ClickListener(){
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				super.clicked(event, x, y);
-				Gdx.app.exit();
-			}
-		});
- 
-		botonJugar.setColor(color);
-		botonConfiguraciones.setColor(color);
-		botonPuntuaciones.setColor(color);
-		botonSalir.setColor(color);
-		
-		
-		//tabla.debug();
-		tabla.add(botonJugar).space( 10f ).fill().expand();
-		tabla.row();
-		tabla.add(botonConfiguraciones).space(10f).fill().expand();
-		tabla.row();
-		tabla.add(botonPuntuaciones).space(10f).fill().expand();
-		
-		escena.addActor(fondo);
-		escena.addActor(botonSalir);
-		escena.addActor(tabla);
-		escena.addActor(tituloQuetzal);
-		escena.addActor(subQuetzal);
-		
-		
-		
+		cargar_actores_escenario();
 	}
 
 	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
-		//dispose();
+		dispose();
 	}
 
 	@Override
@@ -165,4 +120,140 @@ public class MenuInicio implements Screen{
 		textureTitulo.dispose();
 		skin.dispose();
 	}
+
+	void inicializar_variables(){
+	    skin = new Skin(Gdx.files.internal("ui/skin/uiskin.json"));
+	    color = new Color(99, 145, 0, 0.4f);
+	    batch = new SpriteBatch();
+	    
+	    textureFondo = new Texture(Gdx.files.internal("images/menus/mainmenu_BG.jpg"));
+	    fondo = new Image(textureFondo);
+	    
+	    textureTitulo = new Texture(Gdx.files.internal("images/menus/titulo_quetzal.png"));
+	    tituloQuetzal = new Image(textureTitulo);
+	    
+	    textureSubtitulo = new Texture(Gdx.files.internal("images/menus/titulo_labusqueda.png"));
+	    subQuetzal = new Image(textureSubtitulo);
+		
+	    escena = new Stage();
+		tabla = new Table(skin);
+		
+		botonJugar = new TextButton("Jugar", skin);
+		botonConfiguraciones = new TextButton("Configuraciones", skin);
+		botonPuntuaciones = new TextButton("Puntuaciones", skin);
+		botonSalir = new TextButton("Salir del juego", skin);
+		botonCreditos = new TextButton("Creditos", skin);
+		
+		botonJugar.setColor(color);
+		botonConfiguraciones.setColor(color);
+		botonPuntuaciones.setColor(color);
+		botonSalir.setColor(color);
+		botonCreditos.setColor(color);
+	}
+	
+	void mouse_listeners(){
+		
+		botonSalir.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				super.clicked(event, x, y);
+				Gdx.app.exit();
+			}
+			
+			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
+            }
+
+			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				event.getListenerActor().setColor(color);
+            }	
+		});
+		
+		botonJugar.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				super.clicked(event, x, y);
+				//Gdx.app.exit();
+			}
+			
+			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
+            }
+
+			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				event.getListenerActor().setColor(color);
+            }	
+		});
+		
+		botonConfiguraciones.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				super.clicked(event, x, y);
+				//Gdx.app.exit();
+			}
+			
+			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
+            }
+
+			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				event.getListenerActor().setColor(color);
+            }	
+		});
+ 
+		botonPuntuaciones.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				super.clicked(event, x, y);
+				//Gdx.app.exit();
+			}
+			
+			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
+            }
+
+			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				event.getListenerActor().setColor(color);
+            }	
+		});
+
+		botonCreditos.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				super.clicked(event, x, y);
+				//Gdx.app.exit();
+			}
+			
+			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
+            }
+
+			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				event.getListenerActor().setColor(color);
+            }	
+		});
+				
+	}
+	
+	/*private void keyboard_listeners(){
+		// TODO implementar listeners para el teclado
+	}*/
+	
+	void cargar_actores_escenario(){
+		//tabla.debug();
+				tabla.add(botonJugar).space( 10f ).fill().expand();
+				tabla.row();
+				tabla.add(botonConfiguraciones).space(10f).fill().expand();
+				tabla.row();
+				tabla.add(botonPuntuaciones).space(10f).fill().expand();
+				tabla.row();
+				tabla.add(botonCreditos).space(10f).fill().expand();
+				
+				escena.addActor(fondo);
+				escena.addActor(botonSalir);
+				escena.addActor(tabla);
+				escena.addActor(tituloQuetzal);
+				escena.addActor(subQuetzal);
+	}
+
 }
