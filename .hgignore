@@ -1,0 +1,9 @@
+.metadata/
+.hg/
+valyrianFirstGame/.settings/
+valyrianFirstGame/bin/
+valyrianFirstGame-android/.settings/
+valyrianFirstGame-android/bin/
+valyrianFirstGame-android/gen/
+valyrianFirstGame-desktop/.settings/
+valyrianFirstGame-desktop/bin/
