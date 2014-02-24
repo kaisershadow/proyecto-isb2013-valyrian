@@ -4,16 +4,19 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.valyrian.firstgame.entidades.Jugador;
 import com.valyrian.firstgame.entidades.Jugador.ESTADO_ACTUAL;
 import com.valyrian.firstgame.entidades.Proyectil;
+import com.valyrian.firstgame.pantallas.pruebas.PantallaPruebaPersonaje;
 
 public class Teclado implements InputProcessor {
 
 	private Jugador personaje;
-	
-	public Teclado(Jugador player) {
+	private OrthographicCamera camera;
+	public Teclado(Jugador player, OrthographicCamera cam) {
 		personaje = player;
+		camera = cam;
 	}
 
 
@@ -36,10 +39,12 @@ public class Teclado implements InputProcessor {
 		
 
 		if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
-			personaje.getCuerpo().setLinearVelocity(personaje.getVelocidad().x,personaje.getVelocidad().y);
+		//	personaje.getCuerpo().setLinearVelocity(personaje.getVelocidad().x,personaje.getVelocidad().y);
+			personaje.getCuerpo().applyLinearImpulse(personaje.getVelocidad().x, personaje.getCuerpo().getLinearVelocity().y,personaje.getCuerpo().getWorldCenter().x, personaje.getCuerpo().getWorldCenter().y, true);
 		else
-			personaje.getCuerpo().setLinearVelocity(personaje.getVelocidad().x, 0);
-			
+			//personaje.getCuerpo().setLinearVelocity(personaje.getVelocidad().x, 0);
+			personaje.getCuerpo().applyLinearImpulse(personaje.getVelocidad().x, 0,personaje.getCuerpo().getWorldCenter().x, personaje.getCuerpo().getWorldCenter().y, true);
+
 		personaje.mirandoDerecha = true;
 		personaje.estado=ESTADO_ACTUAL.Caminando;
 			
@@ -47,9 +52,9 @@ public class Teclado implements InputProcessor {
 		case(Input.Keys.A):
 			
 		if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
-			personaje.getCuerpo().setLinearVelocity(-personaje.getVelocidad().x,personaje.getVelocidad().y);
+			personaje.getCuerpo().applyLinearImpulse(-personaje.getVelocidad().x, personaje.getCuerpo().getLinearVelocity().y,personaje.getCuerpo().getWorldCenter().x, personaje.getCuerpo().getWorldCenter().y, true);
 		else
-			personaje.getCuerpo().setLinearVelocity(-personaje.getVelocidad().x,0);
+			personaje.getCuerpo().applyLinearImpulse(-personaje.getVelocidad().x, 0,personaje.getCuerpo().getWorldCenter().x, personaje.getCuerpo().getWorldCenter().y, true);
 			
 			
 		//personaje.getCuerpo().applyLinearImpulse(-personaje.getVelocidad().x,0,personaje.getCuerpo().getWorldCenter().x,personaje.getCuerpo().getWorldCenter().y,true);
@@ -65,20 +70,20 @@ public class Teclado implements InputProcessor {
 //				else
 //					desiredVel.x = -velocidad.x;
 //			}
-			personaje.getCuerpo().setGravityScale(0);
+			//personaje.getCuerpo().setGravityScale(0);
 			
 		
 		
 			//personaje.getDesiredVel().y = personaje.getVelocidad().y;
 			//personaje.getCuerpo().applyLinearImpulse(0,personaje.getVelocidad().y,personaje.getCuerpo().getWorldCenter().x,personaje.getCuerpo().getWorldCenter().y,true);
 			if(Gdx.input.isKeyPressed(Input.Keys.A))
-				personaje.getCuerpo().setLinearVelocity(-personaje.getVelocidad().x,personaje.getVelocidad().y);
+				personaje.getCuerpo().applyLinearImpulse(-personaje.getCuerpo().getLinearVelocity().x,personaje.getVelocidad().y,personaje.getCuerpo().getWorldCenter().x, personaje.getCuerpo().getWorldCenter().y, true);
 				//personaje.getCuerpo().applyLinearImpulse(-personaje.getVelocidad().x,0,personaje.getCuerpo().getWorldCenter().x,personaje.getCuerpo().getWorldCenter().y,true);
 			else if(Gdx.input.isKeyPressed(Keys.D))
 				//personaje.getCuerpo().applyLinearImpulse(personaje.getVelocidad().x,0,personaje.getCuerpo().getWorldCenter().x,personaje.getCuerpo().getWorldCenter().y,true);
-				personaje.getCuerpo().setLinearVelocity(personaje.getVelocidad().x,personaje.getVelocidad().y);
+				personaje.getCuerpo().applyLinearImpulse(personaje.getCuerpo().getLinearVelocity().x,personaje.getVelocidad().y,personaje.getCuerpo().getWorldCenter().x, personaje.getCuerpo().getWorldCenter().y, true);
 			else
-			personaje.getCuerpo().setLinearVelocity(0,personaje.getVelocidad().y);
+				personaje.getCuerpo().applyLinearImpulse(0,personaje.getVelocidad().y,personaje.getCuerpo().getWorldCenter().x, personaje.getCuerpo().getWorldCenter().y, true);
 			
 			
 			//personaje.getCuerpo().applyLinearImpulse(personaje.getVelocidad().x,personaje.getVelocidad().y,personaje.getCuerpo().getWorldCenter().x,personaje.getCuerpo().getWorldCenter().y,true);
@@ -92,8 +97,19 @@ public class Teclado implements InputProcessor {
 			personaje.estado=ESTADO_ACTUAL.Atacando;
 			Proyectil bala;
 			bala = new Proyectil();
-			bala.crearCuerpo(personaje.getCuerpo().getWorld(), personaje.getCuerpo().getWorldCenter(), 7, 3);
-	//		cuerpo.setLinearVelocity(100, 0);
+			if (personaje.mirandoDerecha)
+				bala.crearCuerpo(personaje.getCuerpo().getWorld(), personaje.getCuerpo().getWorldCenter().x+personaje.getAncho()+10,personaje.getCuerpo().getWorldCenter().y+8, 7, 3, 300);
+			else 
+				bala.crearCuerpo(personaje.getCuerpo().getWorld(), personaje.getCuerpo().getWorldCenter().x-personaje.getAncho()-10,personaje.getCuerpo().getWorldCenter().y+8, 7, 3, -300);
+		
+			if(personaje.disparos ==null)
+				System.out.println("ERROR DE NULL POINTER");
+			
+			else{
+				personaje.disparos.add(bala);
+				System.out.println("ERROR DE PRUEBA");
+			}
+			//		cuerpo.setLinearVelocity(100, 0);
 		break;
 		}
 
@@ -109,9 +125,9 @@ public class Teclado implements InputProcessor {
 		//	personaje.getDesiredVel().x=0;
 			//personaje.getDesiredVel().y = -personaje.getVelocidad().y;
 			if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
-				personaje.getCuerpo().setLinearVelocity(0, personaje.getVelocidad().y);
+				personaje.getCuerpo().applyLinearImpulse(-personaje.getCuerpo().getLinearVelocity().x,0,personaje.getCuerpo().getWorldCenter().x, personaje.getCuerpo().getWorldCenter().y, true);
 			else
-				personaje.getCuerpo().setLinearVelocity(0, 0);
+				personaje.getCuerpo().applyLinearImpulse(-personaje.getCuerpo().getLinearVelocity().x,0,personaje.getCuerpo().getWorldCenter().x, personaje.getCuerpo().getWorldCenter().y, true);
 				
 			personaje.estado=ESTADO_ACTUAL.Quieto;
 		//	cuerpo.setLinearVelocity(0,cuerpo.getLinearVelocity().y);
@@ -120,7 +136,7 @@ public class Teclado implements InputProcessor {
 		//	if(personaje.getCuerpo().getLinearVelocity().y<personaje.getVelocidad().y)
 			
 			//personaje.getDesiredVel().y=personaje.getVelocidad().y;
-			personaje.getCuerpo().setGravityScale(1);
+			//personaje.getCuerpo().setGravityScale(1);
 	//		personaje.getDesiredVel().y=(personaje.getCuerpo().getWorld().getGravity().y)*60;
 	//	cuerpo.setLinearVelocity(cuerpo.getLinearVelocity().x, 0);
 			if(personaje.getCuerpo().getLinearVelocity().x!=0)
@@ -175,7 +191,7 @@ public class Teclado implements InputProcessor {
 
 	@Override
 	public boolean scrolled(int amount) {
-		// TODO Auto-generated method stub
-		return false;
+		camera.zoom+=amount/25f;
+		return true;
 	}
 }

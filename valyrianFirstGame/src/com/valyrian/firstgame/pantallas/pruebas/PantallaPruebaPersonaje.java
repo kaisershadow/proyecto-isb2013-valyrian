@@ -89,7 +89,7 @@ public class PantallaPruebaPersonaje implements Screen {
 		otmr.setView(camera);
 		otmr.render();
 		batch.setProjectionMatrix(camera.combined);
-		
+		System.out.println("SI PASA POR AQUI?");
 		batch.begin();
 				
 		
@@ -151,7 +151,8 @@ public class PantallaPruebaPersonaje implements Screen {
 		mapH = otmr.getMap().getProperties().get("height", Integer.class);
 		tileH= otmr.getMap().getProperties().get("tileheight", Integer.class);
 		
-		mundo = new World(new Vector2(0,-9.81f*ManejadorUnidades.PIXELSTOMETERS), true);
+	//	mundo = new World(new Vector2(0,-9.81f*ManejadorUnidades.PIXELSTOMETERS), true);
+		mundo = new World(new Vector2(0,-10*8), true);
 	
 		manejocol= new Box2DMapObjectParser(1);
 		manejocol.load(mundo, otmr.getMap());	
@@ -162,7 +163,7 @@ public class PantallaPruebaPersonaje implements Screen {
 		FixtureDef fixtureDef = new FixtureDef();
 		
 
-		bodyDef.type = BodyType.KinematicBody;
+		bodyDef.type = BodyType.DynamicBody;
 		bodyDef.position.set(200,200);
 		bodyDef.angle = 0;
 		
@@ -172,7 +173,7 @@ public class PantallaPruebaPersonaje implements Screen {
 		
 		//Fixture definition
 		fixtureDef.shape = boxShape;
-		fixtureDef.friction = 0.1f;
+		fixtureDef.friction = 0;
 		fixtureDef.restitution = 0;
 		fixtureDef.density = 1/32f;
 		fixtureDef.isSensor =false;
@@ -196,7 +197,8 @@ public class PantallaPruebaPersonaje implements Screen {
 		//playerBody.applyAngularImpulse(50, true);
 		boxShape.dispose();
 		//playerBody.setUserData(personaje);
-		personaje = new Jugador(32, 64, 100, new Vector2(5*ManejadorUnidades.PIXELSTOMETERS,6*ManejadorUnidades.PIXELSTOMETERS), new Vector2(20, 80),mundo);
+	//	personaje = new Jugador(32, 64, 100, new Vector2(5*ManejadorUnidades.PIXELSTOMETERS,6*ManejadorUnidades.PIXELSTOMETERS), new Vector2(20, 80),mundo);
+		personaje = new Jugador(32, 64, 100, new Vector2(4*16,8*16), new Vector2(20, 80),mundo);
 		//Gdx.input.setInputProcessor(personaje);
 
 	//	Array<Contact> contacto = mundo.getContactList();
@@ -284,7 +286,7 @@ public class PantallaPruebaPersonaje implements Screen {
 //				return false;
 //			}
 //		});
-		Gdx.input.setInputProcessor(new InputMultiplexer(new Teclado(personaje)));
+		Gdx.input.setInputProcessor(new InputMultiplexer(new Teclado(personaje,camera)));
 		//Gdx.input.setInputProcessor(Teclado);
 		
 		
@@ -295,7 +297,7 @@ public class PantallaPruebaPersonaje implements Screen {
 		groundShape.createChain(new Vector2[]  {new Vector2(0,0), new Vector2(640,0)});
 		
 		fixtureDef.shape = groundShape;
-		fixtureDef.friction = 0.1f;
+		fixtureDef.friction = 0;
 		fixtureDef.restitution = 0;
 		fixtureDef.isSensor =false;
 		Body ground= mundo.createBody(bodyDef);

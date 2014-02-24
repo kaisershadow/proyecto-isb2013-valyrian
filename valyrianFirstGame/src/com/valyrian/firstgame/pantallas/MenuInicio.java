@@ -173,6 +173,7 @@ public class MenuInicio implements Screen{
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				super.clicked(event, x, y);
+				juego.setScreen(juego.pantallaNiveles);;
 				//Gdx.app.exit();
 			}
 			

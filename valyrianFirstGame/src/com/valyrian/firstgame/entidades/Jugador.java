@@ -17,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.utils.Array;
 
 
 
@@ -26,6 +27,8 @@ public class Jugador extends SerVivo {
 	private	float stateTime = 0; //Variable para controlar el tiempo de cada animacion
 	private Animation quieto, caminando,saltando,atacando;
 	private Vector2 desiredVel = new Vector2(); //Variable para calcular velocidad deseada para moverse
+	public Array<Proyectil> disparos;
+	
 	
 	public boolean mirandoDerecha=true;
 	public boolean puedeSaltar = true;
@@ -50,6 +53,7 @@ public class Jugador extends SerVivo {
 		saltando.setPlayMode(Animation.LOOP);
 		atacando.setPlayMode(Animation.LOOP);
 		crearCuerpo(mundo,pos,ancho,alto);
+		disparos = new Array<Proyectil>();
 	}
 	
 	private void crearCuerpo(World mundo,Vector2 pos,int ancho,int alto) {
@@ -113,6 +117,16 @@ public class Jugador extends SerVivo {
 		else
 			batch.draw(frame, this.posicion.x+this.ancho, this.posicion.y, -this.ancho, this.alto);
 		//	System.out.println("Posicion del nativo (x,y): ("+this.posicion.x+","+this.posicion.y+")");
+		
+		System.out.println("ANTES DE RENDERIZAR LAS BALAS");
+
+		if(disparos.size > 0){
+			System.out.println("SE RENDERIZAN  LAS BALAS");
+		for (Proyectil bala : this.disparos) {
+			bala.renderBala(batch);
+			}
+		}
+	
 	}
 	
 	public void actualizarPosicionJugador(){
@@ -135,9 +149,19 @@ public class Jugador extends SerVivo {
 		//cuerpo.applyLinearImpulse(impulse, cuerpo.getWorldCenter(), true);
 		posicion.x=cuerpo.getPosition().x-ancho/2;
 		posicion.y=cuerpo.getPosition().y-alto/2;
+		
+		if(disparos.size > 0){
+				System.out.println("SE ACTUALIZAN LAS BALAS");
+				for (Proyectil bala : this.disparos) {
+					System.out.println("ACTUALIZE LA BALA NUEVA");
+					bala.actualizarPosicionBala();
+					System.out.println("ACTUALIZE LA BALA NUEVA 2");
+				}			
+		}
+		
+		
 		System.out.println("VELOCIDAD :"+cuerpo.getLinearVelocity().x+", "+cuerpo.getLinearVelocity().y);
-	}
-	
+	}	
 
 	public void actualizarCamara(OrthographicCamera camera,int mapW,int mapH,int tileW,int tileH){
 		camera.position.set(cuerpo.getPosition().x, cuerpo.getPosition().y, 0);

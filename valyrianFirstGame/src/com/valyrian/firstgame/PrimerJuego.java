@@ -38,6 +38,6 @@ public class PrimerJuego extends Game {
 	public void create() {
 		//setScreen(pantallaSplash);
 		//setScreen(pantallaNiveles);
-		setScreen(pantallaMenu);
+		setScreen(pantallaPrueba);
 	}
 }
