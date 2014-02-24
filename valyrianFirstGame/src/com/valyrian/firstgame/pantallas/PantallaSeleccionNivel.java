@@ -39,6 +39,7 @@ public class PantallaSeleccionNivel implements Screen{
 	private Window zonaTexto;
 	private PrimerJuego juego;
 	private int numNiveles; //numero de niveles del juego
+	private int nivelActual;
 	
 	public PantallaSeleccionNivel(PrimerJuego primerJuego) {
 		juego = primerJuego;
@@ -136,7 +137,8 @@ public class PantallaSeleccionNivel implements Screen{
 	}
 	
 	void inicializar_variables(){
-		numNiveles=3;
+	//	nivelActual = 1;
+		numNiveles = 3;
         skin = new Skin(Gdx.files.internal("ui/skin/uiskin.json"));
         color = new Color(99, 145, 0, 0.4f);
         batch = new SpriteBatch();
@@ -161,6 +163,7 @@ public class PantallaSeleccionNivel implements Screen{
 			niveles[i].setName("nivel" + Integer.toString(i+1) );
 		}
 		
+		zonaTexto.add("Por favor seleccione un nivel de \n\r y presione el botón Jugar");
 		capturaNivel = new Texture[numNiveles];
 		for (int i = 0; i < numNiveles; i++) {
 			capturaNivel[i] = new Texture(Gdx.files.internal("images/menus/nivel" + Integer.toString(i+1) +".png"));
@@ -173,11 +176,43 @@ public class PantallaSeleccionNivel implements Screen{
 	}
 	
 	void mouse_listeners(){
+		
+		botonJugar.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				switch (nivelActual){
+				case 1:
+					juego.setScreen(juego.pantallaPrueba);
+					break;
+					
+				case 2:
+					
+					break;
+					
+				case 3:
+					
+					break;
+				
+				default:
+					//nivel secreto
+					juego.setScreen(juego.pantallaPrueba);
+					break;
+				}
+			}
+			
+			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {	
+				event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
+	        }
+			
+			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
+				event.getListenerActor().setColor(color);
+	        }	
+		});
 			
 		botonRegresar.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				Gdx.app.exit();
+				juego.setScreen(juego.pantallaMenu);
 			}
 			
 			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {	
@@ -197,6 +232,7 @@ public class PantallaSeleccionNivel implements Screen{
 					zonaTexto.add(Gdx.files.internal("ui/texto/" + event.getListenerActor().getName()+ ".txt").readString());
 					captura.clear();
 					captura.add(new Image(capturaNivel[Integer.parseInt(event.getListenerActor().getName().substring(5,6))-1]));
+					nivelActual = Integer.parseInt(event.getListenerActor().getName().substring(5, 6));
 				}	
 				
 				public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
@@ -222,6 +258,7 @@ public class PantallaSeleccionNivel implements Screen{
 			tablaNiveles.add(niveles[i]).fill().expand().space(10f);
 			tablaNiveles.row();
 		}
+		
 		tablaControles.add(botonRegresar).fill().expand().space(10f);
 		tablaControles.add(botonJugar).fill().expand().space(10f);		
 		escena.addActor(fondo);

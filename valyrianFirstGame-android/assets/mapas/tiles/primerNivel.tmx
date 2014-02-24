@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="400" height="25" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="agua" tilewidth="32" tileheight="32">
+  <image source="tiles/agua.PNG" width="305" height="152">
+ </tileset>
+ <tileset firstgid="37" name="ozumas" tilewidth="32" tileheight="32">
+  <image source="../Descargas/til.../ozumas.PNG" width="175" height="129"/>
+ </tileset>
+ <tileset firstgid="57" name="qubodup-bush_berries_0" tilewidth="32" tileheight="32">
+  <image source="../Descargas/til.../qubodup-bush_berries_0.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="58" name="tierra" tilewidth="32" tileheight="32">
+  <image source="../Descargas/til.../tierra.jpg" width="174" height="290"/>
+ </tileset>
+ <tileset firstgid="103" name="tutomapeadoPaso2-1" tilewidth="32" tileheight="32">
+  <image source="../Descargas/til.../tutomapeadoPaso2-1.png" width="646" height="508"/>
+ </tileset>
+ <tileset firstgid="403" name="tronco" tilewidth="32" tileheight="32">
+  <image source="../Descargas/til.../tronco.png" width="553" height="183"/>
+ </tileset>
+ <tileset firstgid="488" name="mud-tile-example" tilewidth="32" tileheight="32">
+  <image source="../Descargas/til.../mud-tile-example.png" width="463" height="320"/>
+ </tileset>
+ <tileset firstgid="628" name="tileset" tilewidth="32" tileheight="32">
+  <image source="../Descargas/til.../tileset.jpg" width="450" height="312"/>
+ </tileset>
+ <tileset firstgid="754" name="sprites" tilewidth="32" tileheight="32">
+  <image source="../Descargas/til.../sprites.png" width="256" height="256"/>
+ </tileset>
+ <layer name="Capa de Patrones 1" width="400" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2dYXIaMQyFfXBSrpCGK6ThCm24Qkiv1PUMb/LykBebTlph3o9vSMTuWpohekiy28dSymMnG2OMMXfJw8K3hS3xPECvzhhjjJmLSEt+DjCiNcYYY+aBdQT68TbAiNYYY4yZB+gI6wfqkaoPx4X3hd8C7h/RGmOMMfMAHWD9iGqSbfnc98L9rC+tV6zxa+F14SA/Hxr2qms/Fl4W9o01mf2JF3n917YMPjgmxzSLLYMPjim2ISezVnANwvrBfa9WHtf+GGsVX6/3RnbVHP2ddSeTLYMPjskxzWLL4INjim3QBu1fRfXHaG8Mz2FUXzblvH9W14o0J9IsrXUy2DL44Jgc0yy2DD44ptiGPbvav1rL6VyzXEL1QjXmsXxojTHm4+8k+g61O/Ekr7dky+DDvcRU8zY+Oz2fvd6a4Lusx/XGczmfiUBnWH969gfr+qw7vN9r0/k8Y2YHfyesGxl63e79315M0JD6Ger57K3NypGjdS69L5/rDc7zrB/887H07Q9WH44nH/jZ/L3LmHsnqjsy9Lrd+7+9mGpuHz0THqFaoHNorQeO5TzHR2fVeS5ybb3+UPpqJ2PugUv7Gm/dlsGHe4mJZ9zXfh6jnhV/PlUb9PeWfuwC22itzvrxv/cyG2PMDHB+51nI6HNaPav30taESD9Uf3C9zlFGaiWtb1px3/oMa8a5nGPK54Njckx4rXWD5vzt4LPXelZR3bE7rRPpivqCdXSOsivrtZL2rHjPl+rHLDOsGedyjimfD47JMeG15tKabznnI5/3PDvSBt3PodfsT+ugr8Tvqy9YR+co+3Jeu+jsXefn0CfVj1lmWDPO5RxTPh8ck2NiW6uf03NvpA2al/Waw+l9PX8e9Zawjp7nqzbuaUV1UGvfsa4xywxrxrmcY8rng2NyTGpr9bEu3av1wza4vvW+5vaotwQinWNfX4J1AP/+FqxrjDHmeqI+Vv1er/0hvS/qEUXP5/eR/3WP1HOJ6wOG7ezrazmfvUfzn7dgXWOMMX+H5m3MLiJ90O/5qjP8XL0eP+s+KWiH+nFJj1DraP0UzX82wbrGGGOup1WDsAb0ovNqtbXOmUTa0Tr3Ea2pvuvchq8zxhhzPdqHimoQ6MtIHXNJU7BP69J5lPos7ketnTvcBvdHc5hNY11jjDFtotkFgE7U6zgH678h0tor2+pvRdoBm66FOTn6TdUf7kdBR1RXWv2xNd/Xem9ZbRl8cEyOaRZbBh8cU19MFcywkf9rXynSEPSbao3E/aiWrqieRDP0LGc4faY1nw+OyTHNYsvgw1fEVMEMG/kfmsFnGdf+H6eWrqieRDP0LGc4faY1nw+OyTHNYsvgw1fEVME8G/n/DyP6FcZAnAAA
+  </data>
+ </layer>
+ <layer name="Capa de patrones 2" width="400" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2cS07DMBRFK4v1MGHEApixJfbARthFM2AF7IPPHEWpJSut4997/vUc6apSROyEKu/UsZPTKY0Hk7iDMo+Nj2ft3w3Mx/sue152KWHflmYAaoM/rvvHHyAF/oCZwR/X/eMPkAJ/wMys/ni9pAfWmv3cuP+jwPi8OdEGf8DM9Dj+6LVW93xsEE9NfwDMTG/+gPkJjen+zHEk+weAfEbxx61rnjpwX+APgL7Y+8POhfQ0JwLtkKrZEuAPgL4YZfyRSs0aUXOuvfbagpx7R1rOkbqPhT8AZCjxR8/jk1lrROi8Pszt5JJTq7X9kQPr6QDkyfHH/h5X6F5X63tiI9QKqdrm80dum7P4wwWXAMhQ6o9bnM2WhWsyGg1/SIA/dOD5DxiF1RF7T9htGv5oNdYY+Xdkb/4omWvQWHPrtluKljNSajn+gHuF9VlpxHih9Jl3yTkPl6Oa7fOD9vijdA1BS3/w/DncA0eOGN0fvvrR8l64lD+kyanZOf74Nlti2g2Na0L/t5zvWWJsyPtLoHdqrO8c3R+WUfyRst4qt08ftdbvpvgjhD2nH09afM+8/wpGoGReI0TKmqvU9iy/ZovLrW12e0ktWPex8/xLQs3WGL/k+mOlhj9SSNnHemNWf9TwBv6AkdDwh+9aD6WFPzSI8ceXJyP7w4I/8Af0Sex4JNYJo/njaLzgrjUunYMoAX9sOXuymLH8UdMb+AM0wR/l/vDVNYmE+u7BHynnUuqPxfl04x7LcvDZ2h8t3IE/QIJPE87TJTF/mxKtdgkhhOgnBlvnpdFqFwAA+sCO46XhnSUAAHODPwAAIAf8AQAAe/4BOGPcwkCcAAA=
+  </data>
+ </layer>
+</map>
