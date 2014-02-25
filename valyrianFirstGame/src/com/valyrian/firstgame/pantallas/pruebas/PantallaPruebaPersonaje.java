@@ -66,15 +66,15 @@ public class PantallaPruebaPersonaje implements Screen {
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		 
-				contador+=delta;
-				//System.out.println(contador);
-				if(contador>=2){
-	//		System.out.println(contador);
-			contador=0;
-			platformBody.setLinearVelocity(platformBody.getLinearVelocity().x*(-1),platformBody.getLinearVelocity().y*(-1));
+//		 
+//				contador+=delta;
+//				//System.out.println(contador);
+//				if(contador>=2){
+//	//		System.out.println(contador);
+//			contador=0;
+//			platformBody.setLinearVelocity(platformBody.getLinearVelocity().x*(-1),platformBody.getLinearVelocity().y*(-1));
 			//System.out.println("LINVEL ="+platformBody.getLinearVelocity().x +", "+linVel.y);
-		}
+//		}
 		 
 //		playerBody.getPosition().x=personaje.getPosicion().x;
 //		playerBody.getPosition().y=personaje.getPosicion().y;
@@ -89,7 +89,7 @@ public class PantallaPruebaPersonaje implements Screen {
 		otmr.setView(camera);
 		otmr.render();
 		batch.setProjectionMatrix(camera.combined);
-		System.out.println("SI PASA POR AQUI?");
+	//	System.out.println("SI PASA POR AQUI?");
 		batch.begin();
 				
 		
@@ -133,7 +133,7 @@ public class PantallaPruebaPersonaje implements Screen {
 //		camera.position.y=0;
 	//	System.out.println("CAMARA POS: "+camera.position.x+", "+camera.position.y);
 
-		otmr = new OrthogonalTiledMapRenderer(new TmxMapLoader().load("mapas/platformer_test.tmx"),1);
+		otmr = new OrthogonalTiledMapRenderer(new TmxMapLoader().load("mapas/tiles/bosque2.tmx"),1);
 		
 		//manejocol.setUnitScale(1);
 		
@@ -159,28 +159,28 @@ public class PantallaPruebaPersonaje implements Screen {
 		
 		
 		///Definicicion y creacion del cuerpo
-		BodyDef bodyDef = new BodyDef();
-		FixtureDef fixtureDef = new FixtureDef();
-		
-
-		bodyDef.type = BodyType.DynamicBody;
-		bodyDef.position.set(200,200);
-		bodyDef.angle = 0;
-		
-		//Box Shape
-		PolygonShape boxShape = new PolygonShape();
-		boxShape.setAsBox(128, 16);
+//		BodyDef bodyDef = new BodyDef();
+//		FixtureDef fixtureDef = new FixtureDef();
+//		
+//
+//		bodyDef.type = BodyType.DynamicBody;
+//		bodyDef.position.set(200,200);
+//		bodyDef.angle = 0;
+//		
+//		//Box Shape
+//		PolygonShape boxShape = new PolygonShape();
+//		boxShape.setAsBox(128, 16);
 		
 		//Fixture definition
-		fixtureDef.shape = boxShape;
-		fixtureDef.friction = 0;
-		fixtureDef.restitution = 0;
-		fixtureDef.density = 1/32f;
-		fixtureDef.isSensor =false;
-		platformBody= mundo.createBody(bodyDef);
-		platformBody.createFixture(fixtureDef);
-		
-		platformBody.setLinearVelocity(linVel);
+//		fixtureDef.shape = boxShape;
+//		fixtureDef.friction = 0;
+//		fixtureDef.restitution = 0;
+//		fixtureDef.density = 1/32f;
+//		fixtureDef.isSensor =false;
+//		platformBody= mundo.createBody(bodyDef);
+//		platformBody.createFixture(fixtureDef);
+//		
+//		platformBody.setLinearVelocity(linVel);
 
 //		boxShape.setAsBox(32, 32,new Vector2(64, 32),0);
 //		fixtureDef.isSensor =true;
@@ -195,10 +195,13 @@ public class PantallaPruebaPersonaje implements Screen {
 //		boxSprite.setOrigin(boxSprite.getWidth()/2, boxSprite.getHeight()/2);
 		//box.setUserData(ani);
 		//playerBody.applyAngularImpulse(50, true);
-		boxShape.dispose();
+	//	boxShape.dispose();
 		//playerBody.setUserData(personaje);
 	//	personaje = new Jugador(32, 64, 100, new Vector2(5*ManejadorUnidades.PIXELSTOMETERS,6*ManejadorUnidades.PIXELSTOMETERS), new Vector2(20, 80),mundo);
-		personaje = new Jugador(32, 64, 100, new Vector2(4*16,8*16), new Vector2(20, 80),mundo);
+		
+		
+		
+		personaje = new Jugador(32, 64, 100, new Vector2(4*16,8*16), new Vector2(200, 200),mundo);
 		//Gdx.input.setInputProcessor(personaje);
 
 	//	Array<Contact> contacto = mundo.getContactList();
@@ -289,7 +292,7 @@ public class PantallaPruebaPersonaje implements Screen {
 		Gdx.input.setInputProcessor(new InputMultiplexer(new Teclado(personaje,camera)));
 		//Gdx.input.setInputProcessor(Teclado);
 		
-		
+	/*	
 		bodyDef.type = BodyType.StaticBody;
 		bodyDef.position.set(0, 40);
 		
@@ -308,7 +311,7 @@ public class PantallaPruebaPersonaje implements Screen {
 		System.out.println("LA MASA DEL JUGADOR AHORA ES: "+personaje.getCuerpo().getMass());
 		//personaje.getCuerpo().setFixedRotation(true);
 	//System.out.println("LA MASA DEL JUGADOR AHORA ES: "+playerBody.getMass());
-	
+	*/
 	camera.position.set(personaje.getCuerpo().getPosition().x, personaje.getCuerpo().getPosition().y, 0);
 //	camera.position.set(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2, 0)
 	}
