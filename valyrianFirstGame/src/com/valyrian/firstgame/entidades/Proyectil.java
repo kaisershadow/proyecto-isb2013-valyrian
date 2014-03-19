@@ -43,8 +43,8 @@ public void crearCuerpo(World mundo,float posX,float posY,int ancho,int alto,flo
 	this.cuerpo.createFixture(fixtureDef);		
 	this.cuerpo.setFixedRotation(true);
 	this.cuerpo.setBullet(true);
-	cuerpo.setGravityScale(0);
-
+	this.cuerpo.setUserData("bala");
+	cuerpo.setGravityScale(0.005f);
      boxShape.dispose();
      cuerpo.setLinearVelocity(velX, 0);
      System.out.println("VEL BALA :"+cuerpo.getLinearVelocity().x);
