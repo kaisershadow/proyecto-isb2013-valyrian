@@ -32,6 +32,11 @@ import com.valyrian.firstgame.utilitarios.Joystick;
 import com.valyrian.firstgame.utilitarios.ManejadorUnidades;
 import com.valyrian.firstgame.utilitarios.Teclado;
 
+import com.valyrian.firstgame.entidades.Rana;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class PantallaPruebaPersonaje implements Screen {
 	
 	private static final float TIMESTEP = 1/60f;
@@ -44,10 +49,16 @@ public class PantallaPruebaPersonaje implements Screen {
 	private float contador=0;
 	private SpriteBatch batch;
 	private Jugador personaje;
+
+	private Rana inicir;
+	private ArrayList<Rana> rana;
+	
 	private World mundo;
 	private Body platformBody;
 	private OrthogonalTiledMapRenderer otmr;
 	private int mapW,mapH,tileW,tileH;
+	
+	private ChequeaColision col;
 	
 	private Box2DMapObjectParser manejocol;
 	
@@ -95,6 +106,25 @@ public class PantallaPruebaPersonaje implements Screen {
 		
 		
 			personaje.renderJugador(delta, batch);
+			
+			
+			if(col.getlista().isEmpty()){
+				rana.get(0).renderRana(batch);
+				}
+			else{
+				mundo.destroyBody(col.getlista().get(0));
+				rana.get(0).dispose();
+			}
+			if(!col.getlistbala().isEmpty())
+				mundo.destroyBody(col.getlistbala().get(0));
+			if(col.getGameOver())
+			System.out.println("Se acabo el juego");
+			
+			
+			
+			
+			
+			
 //			for(Body body :tmpBodies)
 //				if(body.getUserData()!= null){
 //				//	System.out.println("LLEGA AQUI?");
@@ -201,7 +231,26 @@ public class PantallaPruebaPersonaje implements Screen {
 		
 		
 		
-		personaje = new Jugador(32, 64, 100, new Vector2(4*16,8*16), new Vector2(200, 200),mundo);
+		//personaje = new Jugador(32, 64, 100, new Vector2(4*16,8*16), new Vector2(200, 200),mundo);
+		
+		//OJO 
+			personaje = new Jugador(30, 62, 100, new Vector2(5*ManejadorUnidades.PIXELSTOMETERS,6*ManejadorUnidades.PIXELSTOMETERS), manejocol.getBodies().get("spawn").getPosition(),mundo);
+	
+		rana = new ArrayList<Rana>();
+		for(int i=0;i<17;i++){
+		rana.add(new Rana(30, 62, 100, new Vector2(5*ManejadorUnidades.PIXELSTOMETERS,6*ManejadorUnidades.PIXELSTOMETERS),  manejocol.getBodies().get("spawnrana"+i).getPosition(),mundo));
+		}
+		for(int i=0;i<11;i++){
+		 manejocol.getBodies().get("muerte"+i).setUserData("muerte");
+		}
+			col= new ChequeaColision();
+			mundo.setContactListener(col);
+		//}
+
+
+
+
+
 		//Gdx.input.setInputProcessor(personaje);
 
 	//	Array<Contact> contacto = mundo.getContactList();
@@ -339,6 +388,7 @@ public class PantallaPruebaPersonaje implements Screen {
 		batch.dispose();
 		personaje.dispose();
 		debugRenderer.dispose();
+		rana.get(0).dispose();
 		otmr.getMap().dispose();
 		otmr.dispose();
 	}

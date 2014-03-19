@@ -76,11 +76,13 @@ public class Jugador extends SerVivo {
 		fixtureDef.isSensor =false;
 		
 		
-		
 		this.cuerpo= mundo.createBody(bodyDef);
 		this.cuerpo.createFixture(fixtureDef);		
 		this.cuerpo.setFixedRotation(true);
+		this.cuerpo.setBullet(true);
+		this.cuerpo.setUserData("Personaje");
 		//cuerpo.setGravityScale(0);
+		
 		
 	
 		 boxShape.setAsBox(ancho/2, 1f,new Vector2(0, -alto/2) , 0);
