@@ -16,7 +16,6 @@ public class Joystick implements ControllerListener {
 	@Override
 	public void disconnected(Controller controller) {
 		System.out.println("Se desconecto el control");
-
 	}
 
 	@Override

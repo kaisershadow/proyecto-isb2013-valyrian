@@ -16,7 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.valyrian.firstgame.PrimerJuego;
 
-public class MenuInicio implements Screen{
+public class PantallaMenuInicio implements Screen{
 	
 	private Stage escena;
 	private Table tabla;
@@ -36,7 +36,7 @@ public class MenuInicio implements Screen{
 	private PrimerJuego juego;
 	private Color color;
 	
-	public MenuInicio(PrimerJuego primerJuego) {
+	public PantallaMenuInicio(PrimerJuego primerJuego) {
 		juego = primerJuego;
 	}
 	
@@ -50,11 +50,12 @@ public class MenuInicio implements Screen{
         //Se actualiza la escena (escene)
         escena.act(delta);
         batch.begin();
-        
+       
 	        fondo.draw(batch, 1);
 			escena.draw();
 			
         batch.end();
+        
         //Para ver las lineas de decupuracion
 		Table.drawDebug(escena);
 	}
@@ -94,7 +95,6 @@ public class MenuInicio implements Screen{
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
 		dispose();
 	}
 
@@ -112,13 +112,13 @@ public class MenuInicio implements Screen{
 
 	@Override
 	public void dispose() {
-
 		escena.dispose();
 		batch.dispose();
 		textureFondo.dispose();
 		textureSubtitulo.dispose();
 		textureTitulo.dispose();
 		skin.dispose();
+		System.out.println("SE LLAMO AL DISPOSE DE MENU INICIO");
 	}
 
 	void inicializar_variables(){
@@ -173,8 +173,7 @@ public class MenuInicio implements Screen{
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				super.clicked(event, x, y);
-				juego.setScreen(juego.pantallaNiveles);;
-				//Gdx.app.exit();
+				juego.setScreen(juego.pantallaNiveles);
 			}
 			
 			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
@@ -190,7 +189,6 @@ public class MenuInicio implements Screen{
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				super.clicked(event, x, y);
-				//Gdx.app.exit();
 			}
 			
 			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
@@ -206,7 +204,7 @@ public class MenuInicio implements Screen{
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				super.clicked(event, x, y);
-				//Gdx.app.exit();
+				juego.setScreen(juego.pantallaPuntuaciones);
 			}
 			
 			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
@@ -222,7 +220,7 @@ public class MenuInicio implements Screen{
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				super.clicked(event, x, y);
-				//Gdx.app.exit();
+				juego.setScreen(juego.pantallaCreditos);
 			}
 			
 			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {

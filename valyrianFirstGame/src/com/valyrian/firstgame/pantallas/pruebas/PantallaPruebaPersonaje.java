@@ -1,11 +1,11 @@
 package com.valyrian.firstgame.pantallas.pruebas;
 
+import java.util.Iterator;
+
 import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -13,61 +13,45 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.ChainShape;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.physics.box2d.Filter;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.Array;
-import com.sun.xml.internal.bind.v2.util.CollisionCheckStack;
 import com.valyrian.firstgame.PrimerJuego;
 import com.valyrian.firstgame.entidades.Jugador;
-import com.valyrian.firstgame.entidades.Jugador.ESTADO_ACTUAL;
-import com.valyrian.firstgame.utilitarios.Joystick;
+import com.valyrian.firstgame.entidades.Rana;
+import com.valyrian.firstgame.utilitarios.ManejadorColisiones;
 import com.valyrian.firstgame.utilitarios.ManejadorUnidades;
 import com.valyrian.firstgame.utilitarios.Teclado;
-
-import com.valyrian.firstgame.entidades.Rana;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import java.util.ArrayList;
-import java.util.Iterator;
+import com.badlogic.gdx.utils.Array;
+
 
 public class PantallaPruebaPersonaje implements Screen {
 	
-	private static final float TIMESTEP = 1/60f;
-	private static final int VELOCITYITERATIONS = 8;
-	private static final int POSITIONITERATIONS = 3;
+	//Variable auxiliar para decir si se hace debug-render o no
+	private boolean debug =true;
 	
 	private Box2DDebugRenderer debugRenderer;
 	private OrthographicCamera camera;	
 	
-	private float contador=0;
 	private SpriteBatch batch;
 	private Jugador personaje;
 
-	private Rana inicir;
-	private ArrayList<Rana> rana;
+	//private Rana inicir;
+	private Array<Rana> ranas;
+	private Rana rana;
+//	private Box2DSprite ImagenEnFixture;
+
+	
 	
 	private World mundo;
-	private Body platformBody;
 	private OrthogonalTiledMapRenderer otmr;
 	private int mapW,mapH,tileW,tileH;
 	
-	private ChequeaColision col;
+	private ManejadorColisiones manejaColisiones;
 	
-	private Box2DMapObjectParser manejocol;
+	private Box2DMapObjectParser mapParser;
 	
 	private PrimerJuego juego;
-	
-	//private Vector2 movement = new Vector2();
-	//private float speed=500000;
-	private Vector2 linVel = new Vector2(32, 32);
-	
 	
 	public PantallaPruebaPersonaje(PrimerJuego primerJuego) {
 		juego = primerJuego;
@@ -77,310 +61,135 @@ public class PantallaPruebaPersonaje implements Screen {
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-//		 
-//				contador+=delta;
-//				//System.out.println(contador);
-//				if(contador>=2){
-//	//		System.out.println(contador);
-//			contador=0;
-//			platformBody.setLinearVelocity(platformBody.getLinearVelocity().x*(-1),platformBody.getLinearVelocity().y*(-1));
-			//System.out.println("LINVEL ="+platformBody.getLinearVelocity().x +", "+linVel.y);
-//		}
-		 
-//		playerBody.getPosition().x=personaje.getPosicion().x;
-//		playerBody.getPosition().y=personaje.getPosicion().y;
-//		
-		mundo.step(TIMESTEP, VELOCITYITERATIONS, POSITIONITERATIONS);
-		personaje.actualizarPosicionJugador();
-		personaje.actualizarCamara(camera, mapW, mapH, tileW, tileH);		
+
+		mundo.step(ManejadorUnidades.TIMESTEP, ManejadorUnidades.VELOCITYITERATIONS, ManejadorUnidades.POSITIONITERATIONS);
 		
-		camera.update();
-		//otmr.setView(camera.combined,camera.position.x-Gdx.graphics.getWidth()/2, camera.position.y-Gdx.graphics.getHeight()/2, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		//otmr.setView(camera);
+		//Actualizar Personaje
+		personaje.actualizarPosicionJugador();
+		personaje.actualizarCamara(camera, mapW, mapH, tileW/ManejadorUnidades.PIXELSTOMETERS, tileH/ManejadorUnidades.PIXELSTOMETERS);
+
+		//Renderizar mapa
 		otmr.setView(camera);
 		otmr.render();
+	
+		//Renderizar personajes, enemigos y recolectables
 		batch.setProjectionMatrix(camera.combined);
-	//	System.out.println("SI PASA POR AQUI?");
 		batch.begin();
-				
-		
-		
-			personaje.renderJugador(delta, batch);
-			
-			
-			if(col.getlista().isEmpty()){
-				rana.get(0).renderRana(batch);
-				}
-			else{
-				mundo.destroyBody(col.getlista().get(0));
-				rana.get(0).dispose();
-			}
-			if(!col.getlistbala().isEmpty())
-				mundo.destroyBody(col.getlistbala().get(0));
-			if(col.getGameOver())
-			System.out.println("Se acabo el juego");
-			
-			
-			
-			
-			
-			
-//			for(Body body :tmpBodies)
-//				if(body.getUserData()!= null){
-//				//	System.out.println("LLEGA AQUI?");
-//				
-//					
-//				}
-			
-		batch.end();
-		debugRenderer.render(mundo, camera.combined);
-		
-		
-		
-		
+		personaje.renderJugador(delta, batch);
+		//rana.renderRana(batch);
+		//OJO
+//		ranas.get(0).renderRana(batch);
+//		ranas.get(10).renderRana(batch);
+		for (Rana r : ranas) {
+			r.renderRana(batch);
+		}
+		//HASTA AQUI EL OJO
+		//Roger hizo esto			
+		//Box2DSprite.draw(batch, mundo);
+		Iterator<Fixture> i = manejaColisiones.getListaABorrar().iterator();
+		if(!mundo.isLocked()){
+		   while(i.hasNext()){
+			  Fixture b = i.next();
+			  if(b.getUserData()!=null){
+				  ((Rana)(b.getBody().getUserData())).dispose();
+				  mundo.destroyBody(b.getBody());
+			  }
+		      i.remove();
+		   }
+		   manejaColisiones.getListaABorrar().clear();
+		}
 
+		if(manejaColisiones.getGameOver())
+			System.out.println("Se acabo el juego");
+			//hasta aca
+		
+		
+		batch.end();
+		
+		if(debug)
+			debugRenderer.render(mundo, camera.combined);
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		camera.viewportWidth = width/2;
-		camera.viewportHeight =height/2;
+		camera.viewportWidth = (width/2/ManejadorUnidades.PIXELSTOMETERS);
+		camera.viewportHeight =(height/2/ManejadorUnidades.PIXELSTOMETERS);
 		camera.update();
-		//otmr.setView(camera);
 	}
 
 	@Override
 	public void show() {
+		//Inicializacion de las variables
 		debugRenderer = new Box2DDebugRenderer();
-		
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false);
-//		camera.viewportWidth=Gdx.graphics.getWidth();
-//		camera.viewportHeight=Gdx.graphics.getHeight();
-		camera.update();
-		//System.out.println("CAMARA POS: "+camera.position.x+", "+camera.position.y);
-//		camera.position.x =0;
-//		camera.position.y=0;
-	//	System.out.println("CAMARA POS: "+camera.position.x+", "+camera.position.y);
-
-		otmr = new OrthogonalTiledMapRenderer(new TmxMapLoader().load("mapas/tiles/bosque2.tmx"),1);
-		
-		//manejocol.setUnitScale(1);
-		
-//		imageneEnObjetosTile= new Box2DSprite(new Texture("personajes/left1.png"));
-		
-		//otmr.setView(camera.combined,0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		//camera.zoom=0.5f;
-		//camera.zoom=2;
-		//otmr.setView(camera);
+		otmr = new OrthogonalTiledMapRenderer(new TmxMapLoader().load("mapas/tiles/bosque2.tmx"),1/ManejadorUnidades.PIXELSTOMETERS);
 		batch = new SpriteBatch();
+		
+		
+	//	ImagenEnFixture= new Box2DSprite(new Texture("mapas/tiles/waspidle.png"));
+
 		
 		mapW = otmr.getMap().getProperties().get("width", Integer.class);
 		tileW= otmr.getMap().getProperties().get("tilewidth", Integer.class);
-		
 		mapH = otmr.getMap().getProperties().get("height", Integer.class);
 		tileH= otmr.getMap().getProperties().get("tileheight", Integer.class);
-		
-	//	mundo = new World(new Vector2(0,-9.81f*ManejadorUnidades.PIXELSTOMETERS), true);
-		mundo = new World(new Vector2(0,-10*8), true);
-	
-		manejocol= new Box2DMapObjectParser(1);
-		manejocol.load(mundo, otmr.getMap());	
-		
-		
-		///Definicicion y creacion del cuerpo
-//		BodyDef bodyDef = new BodyDef();
-//		FixtureDef fixtureDef = new FixtureDef();
-//		
-//
-//		bodyDef.type = BodyType.DynamicBody;
-//		bodyDef.position.set(200,200);
-//		bodyDef.angle = 0;
-//		
-//		//Box Shape
-//		PolygonShape boxShape = new PolygonShape();
-//		boxShape.setAsBox(128, 16);
-		
-		//Fixture definition
-//		fixtureDef.shape = boxShape;
-//		fixtureDef.friction = 0;
-//		fixtureDef.restitution = 0;
-//		fixtureDef.density = 1/32f;
-//		fixtureDef.isSensor =false;
-//		platformBody= mundo.createBody(bodyDef);
-//		platformBody.createFixture(fixtureDef);
-//		
-//		platformBody.setLinearVelocity(linVel);
 
-//		boxShape.setAsBox(32, 32,new Vector2(64, 32),0);
-//		fixtureDef.isSensor =true;
-//		fixtureDef.shape=boxShape;
-//		playerBody.createFixture(fixtureDef);
-//		//		Filter filtro = new Filter();
-//		filtro.maskBits =0;
-//		playerBody.getFixtureList().first().setFilterData(filtro);
-		//boxSprite = new Sprite(new Texture(Gdx.files.internal("img/luigi_front.png")));
-//		boxSprite = new Sprite(new Texture(Gdx.files.internal("frog_idle.gif")));
-//		boxSprite.setSize(10, 20);
-//		boxSprite.setOrigin(boxSprite.getWidth()/2, boxSprite.getHeight()/2);
-		//box.setUserData(ani);
-		//playerBody.applyAngularImpulse(50, true);
-	//	boxShape.dispose();
-		//playerBody.setUserData(personaje);
-	//	personaje = new Jugador(32, 64, 100, new Vector2(5*ManejadorUnidades.PIXELSTOMETERS,6*ManejadorUnidades.PIXELSTOMETERS), new Vector2(20, 80),mundo);
+		mundo = new World(new Vector2(0,-9.8f), true);
+		
+		mapParser= new Box2DMapObjectParser(1/ManejadorUnidades.PIXELSTOMETERS);
+		mapParser.load(mundo, otmr.getMap());	
+		
+		personaje = new Jugador(32/ManejadorUnidades.PIXELSTOMETERS, 64/ManejadorUnidades.PIXELSTOMETERS, 100, new Vector2(3,6), new Vector2(500/ManejadorUnidades.PIXELSTOMETERS, 500/ManejadorUnidades.PIXELSTOMETERS),mundo);
 		
 		
+		//rana = new Rana(64/ManejadorUnidades.PIXELSTOMETERS, 64/ManejadorUnidades.PIXELSTOMETERS, 100, new Vector2(2,3),new Vector2(300/ManejadorUnidades.PIXELSTOMETERS, 300/ManejadorUnidades.PIXELSTOMETERS),mundo);
+		//Gdx.input.setInputProcessor(Teclado);
+		Gdx.input.setInputProcessor(new InputMultiplexer(new Teclado(personaje,camera,juego)));
+		//OJO CON ESTO
 		
-		//personaje = new Jugador(32, 64, 100, new Vector2(4*16,8*16), new Vector2(200, 200),mundo);
-		
-		//OJO 
-			personaje = new Jugador(30, 62, 100, new Vector2(5*ManejadorUnidades.PIXELSTOMETERS,6*ManejadorUnidades.PIXELSTOMETERS), manejocol.getBodies().get("spawn").getPosition(),mundo);
-	
-		rana = new ArrayList<Rana>();
-		for(int i=0;i<17;i++){
-		rana.add(new Rana(30, 62, 100, new Vector2(5*ManejadorUnidades.PIXELSTOMETERS,6*ManejadorUnidades.PIXELSTOMETERS),  manejocol.getBodies().get("spawnrana"+i).getPosition(),mundo));
+		ranas = new Array<Rana>();
+		Vector2 posAux = new Vector2();
+		for(int i=0;i<4;i++){
+			posAux.x = mapParser.getBodies().get("spawnrana"+i).getPosition().x;
+			posAux.y = mapParser.getBodies().get("spawnrana"+i).getPosition().y;
+			System.out.println("POSICION ANTES DE ESTAR EN LA LISTA: ("+posAux.x+" ,"+posAux.y+")");
+			//posAux.x = (64*i+256)/ManejadorUnidades.PIXELSTOMETERS;
+			//posAux.y = (64*i+256)/ManejadorUnidades.PIXELSTOMETERS;
+			//ranas.add(rana);
+			//System.out.println("POSICION AL CREARSE: ("+rana.getPosicion().x+" ,"+rana.getPosicion().y+")");
+			rana =new Rana(32/ManejadorUnidades.PIXELSTOMETERS, 64/ManejadorUnidades.PIXELSTOMETERS, 100, new Vector2(5,6), posAux,mundo);
+			ranas.insert(i, rana);
+			System.out.println("POSICION LUEGO DE ESTAR EN LA LISTA: ("+ranas.get(i).getPosicion().x+" ,"+ranas.get(i).getPosicion().y+")");
+			System.out.println("POSICION DEL PRIMERO DENTRO DEL FOR EN LA LISTA: ("+ranas.get(0).getPosicion().x+" ,"+ranas.get(0).getPosicion().y+")");
+
 		}
 		for(int i=0;i<11;i++){
-		 manejocol.getBodies().get("muerte"+i).setUserData("muerte");
+		 mapParser.getBodies().get("muerte"+i).setUserData("muerte");
 		}
-			col= new ChequeaColision();
-			mundo.setContactListener(col);
+			manejaColisiones= new ManejadorColisiones(personaje);
+			mundo.setContactListener(manejaColisiones);
 		//}
 
+			
 
+			//HASTA AQUI EL OJO
 
-
-
-		//Gdx.input.setInputProcessor(personaje);
-
-	//	Array<Contact> contacto = mundo.getContactList();
-//		Gdx.input.setInputProcessor(new InputProcessor(){
-//			@Override
-//			public boolean keyDown(int keycode) {
-//				switch(keycode){
-//					case Keys.W:
-//						movement.y = speed;
-//						personaje.estado=ESTADO_ACTUAL.Saltando;
-//						break;
-//					case Keys.A:
-//						movement.x = -speed;
-//						personaje.estado =ESTADO_ACTUAL.Corriendo;
-//						break;
-//					case Keys.S:
-//						movement.y = -speed;
-//						
-//						break;
-//					case Keys.D:
-//						movement.x = speed;
-//						personaje.estado =ESTADO_ACTUAL.Caminando;
-//						break;
-//					default:
-//						return false;
-//				}
-//				return true;
-//			}
-//			
-//			@Override
-//			public boolean keyUp(int keycode) {
-//				
-//				switch(keycode){
-//				case Keys.W:
-//				case Keys.S:
-//					movement.y = 0;
-//					
-//					break;
-//				case Keys.A:
-//				case Keys.D:
-//					movement.x = 0;
-//					personaje.estado =ESTADO_ACTUAL.Quieto;
-//					break;
-//				default:
-//					return false;
-//			}
-//			return true;
-//			}
-//			
-//			@Override
-//			public boolean scrolled(int amount) {
-//				camera.zoom+=amount/25f;
-//				return true;
-//			}
-//
-//			@Override
-//			public boolean keyTyped(char character) {
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//
-//			@Override
-//			public boolean touchDown(int screenX, int screenY, int pointer,
-//					int button) {
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//
-//			@Override
-//			public boolean touchUp(int screenX, int screenY, int pointer,
-//					int button) {
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//
-//			@Override
-//			public boolean touchDragged(int screenX, int screenY, int pointer) {
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//
-//			@Override
-//			public boolean mouseMoved(int screenX, int screenY) {
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//		});
-		Gdx.input.setInputProcessor(new InputMultiplexer(new Teclado(personaje,camera)));
-		//Gdx.input.setInputProcessor(Teclado);
-		
-	/*	
-		bodyDef.type = BodyType.StaticBody;
-		bodyDef.position.set(0, 40);
-		
-		ChainShape groundShape = new ChainShape();
-		groundShape.createChain(new Vector2[]  {new Vector2(0,0), new Vector2(640,0)});
-		
-		fixtureDef.shape = groundShape;
-		fixtureDef.friction = 0;
-		fixtureDef.restitution = 0;
-		fixtureDef.isSensor =false;
-		Body ground= mundo.createBody(bodyDef);
-		ground.createFixture(fixtureDef);
-		//System.out.println("LA MASA DEL JUGADOR ES: "+playerBody.getMass());
-		//playerBody.setTransform(personaje.getPosicion(), 0);
-		//System.out.println("EL ORIGGEN DEL BODY ES: X,Y"+playerBody.getPosition().x+", "+playerBody.getPosition().y);
-		System.out.println("LA MASA DEL JUGADOR AHORA ES: "+personaje.getCuerpo().getMass());
-		//personaje.getCuerpo().setFixedRotation(true);
-	//System.out.println("LA MASA DEL JUGADOR AHORA ES: "+playerBody.getMass());
-	*/
-	camera.position.set(personaje.getCuerpo().getPosition().x, personaje.getCuerpo().getPosition().y, 0);
-//	camera.position.set(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2, 0)
 	}
 
 	@Override
 	public void hide() {
 		dispose();
-
 	}
 
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -388,9 +197,12 @@ public class PantallaPruebaPersonaje implements Screen {
 		batch.dispose();
 		personaje.dispose();
 		debugRenderer.dispose();
-		rana.get(0).dispose();
 		otmr.getMap().dispose();
 		otmr.dispose();
+//		for (Rana frog : ranas) {
+//			frog.dispose();
+//		}
+		System.out.println("SE LLAMO AL DISPOSE DE PANTALLA PRUEBA");
 	}
 
 }
