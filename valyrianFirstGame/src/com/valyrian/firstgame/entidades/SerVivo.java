@@ -1,7 +1,6 @@
 package com.valyrian.firstgame.entidades;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 
 public abstract class SerVivo extends Entidad {
 	
@@ -17,11 +16,11 @@ public abstract class SerVivo extends Entidad {
 		this.cuerpo =null;
 		
 		this.velocidad =new Vector2();
-		this.vidaActual=100;
-		this.MAXVIDA=100;
+		this.vidaActual=10;
+		this.MAXVIDA=10;
 	}
 	
-	public SerVivo(int ancho, int alto, int vidaMax, Vector2 velMax,Vector2 pos){
+	public SerVivo(float ancho, float alto, int vidaMax, Vector2 velMax,Vector2 pos){
 		MAXVIDA =vidaMax;
 		this.alto=alto;
 		this.ancho=ancho;

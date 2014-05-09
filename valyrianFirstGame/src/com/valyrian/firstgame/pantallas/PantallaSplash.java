@@ -1,6 +1,5 @@
 package com.valyrian.firstgame.pantallas;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
@@ -11,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.valyrian.firstgame.PrimerJuego;
-import com.valyrian.firstgame.pantallas.pruebas.PantallaPruebaPersonaje;
 
 import  static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn;
 import  static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
@@ -27,18 +25,15 @@ public class PantallaSplash implements Screen {
 	private Image splashImage;
 	
 	public PantallaSplash(PrimerJuego primerJuego) {
-	juego = primerJuego;
+		juego = primerJuego;
 	}
 	
-	
-	
-	
 	@Override
-	public void render(float delta) {
-		
+	public void render(float delta) {	
 		//Limpiar la pantalla y asignar un color de fondo a la ventana
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+	
 		splashImage.act(delta);
 		spriteBatch.begin();
 		splashImage.draw(spriteBatch, 1);	
@@ -53,10 +48,7 @@ public class PantallaSplash implements Screen {
 
 	@Override
 	public void show() {
-		
 		spriteBatch = new SpriteBatch();
-		
-		//Carga del archivo de sonido
 		sound = Gdx.audio.newSound(Gdx.files.internal("audio/splash_sound.mp3"));
 		
 		// carga de la imagen de splash y creacion de la region de textura 
@@ -71,25 +63,20 @@ public class PantallaSplash implements Screen {
 		sound.play();
 		
 		 //Se agrega la accion para que haga el efecto de desvanecimiento
-		 splashImage.addAction( sequence(fadeIn(1.5f), delay(2), fadeOut(1.5f),         
-			      new Action() {       
-			      @Override       
-			      public boolean act(float delta )        
-			        {         
-			          // la última acción nos direcciona hacia la siguiente pantalla (menu) 
-			//    	  Juego.setScreen(Juego.pantalla);
-			    	 // dispose();
-			    	  juego.setScreen(juego.pantallaPrueba);
-			    	 // System.out.println("SE EJECUTO LA ACCION");
-			    	  return true; 
+		splashImage.addAction( sequence(fadeIn(1.5f), delay(1.5f), fadeOut(1.5f),
+				new Action() {       
+			    	@Override       
+			    	public boolean act(float delta){
+			    	// La última acción nos direcciona hacia la siguiente pantalla (menu) 
+			    		juego.setScreen(juego.pantallaMenu);
+			    		return true; 
 			        }  
-			     } ) );
-
+			     }));
 	}
 
 	@Override
 	public void hide() {
-		//dispose();
+		dispose();
 	}
 
 

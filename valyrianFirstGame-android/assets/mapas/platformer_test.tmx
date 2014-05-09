@@ -5,12 +5,12 @@
  </tileset>
  <layer name="Background" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2thYGBoGcWjeBSP4lE8iknEALH1VcxABgAA
+   H4sIAAAAAAAAC2thYGBoGcWjeBSP4lE8iknEALH1VcxABgAA
   </data>
  </layer>
  <layer name="Foreground" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA1vCwMBQDMSFUFwE5ZcAcSkBjKwOxC4D4i0M1ANto+bR1bztQLwDD945wO4bCPMIhQksXAbKfcPJvCUMo+mP1uYRk56JxaD4AAC7DqXBQAYAAA==
+   H4sIAAAAAAAAC1vCwMBQDMSFUFwE5ZcAcSkBjKwOxC4D4i0M1ANto+bR1bztQLwDD945wO4bCPMIhQksXAbKfcPJvCUMo+mP1uYRk56JxaD4AAC7DqXBQAYAAA==
   </data>
  </layer>
  <objectgroup name="objetos" width="20" height="20">
@@ -38,7 +38,7 @@
    <properties>
     <property name="bodyType" value="KinematicBody"/>
     <property name="density" value="10"/>
-    <property name="linearVelocityX" value="10"/>
+    <property name="linearVelocityX" value="1"/>
    </properties>
   </object>
   <object name="suelo" type="fixture" x="0" y="608">
@@ -72,7 +72,7 @@
  </objectgroup>
  <layer name="colectables" width="20" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgGAWjYHiDqQPtgFEwCoYpAABQiSx9QAYAAA==
+   H4sIAAAAAAAAC2NgGAWjYHiDqQPtgFEwCoYpAABQiSx9QAYAAA==
   </data>
  </layer>
 </map>

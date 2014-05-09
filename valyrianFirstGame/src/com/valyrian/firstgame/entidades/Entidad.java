@@ -7,8 +7,8 @@ public abstract class Entidad {
 	
 	//Atributos comunes de todas las entidades
 	protected Vector2 posicion;
-	protected int alto;
-	protected int ancho;
+	protected float alto;
+	protected float ancho;
 	protected Body cuerpo;
 	
 	public Vector2 getPosicion() {
@@ -17,13 +17,13 @@ public abstract class Entidad {
 	public void setPosicion(Vector2 pos) {
 		this.posicion = pos;
 	}
-	public int getAlto() {
+	public float getAlto() {
 		return alto;
 	}
 	public void setAlto(int alto) {
 		this.alto = alto;
 	}
-	public int getAncho() {
+	public float getAncho() {
 		return ancho;
 	}
 	public void setAncho(int ancho) {

@@ -106,8 +106,7 @@ public class PantallaSeleccionNivel implements Screen{
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
-		//dispose();
+		dispose();
 	}
 
 	@Override
@@ -124,7 +123,6 @@ public class PantallaSeleccionNivel implements Screen{
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
 		escena.dispose();
 		skin.dispose();
 		batch.dispose();
@@ -134,10 +132,10 @@ public class PantallaSeleccionNivel implements Screen{
 		for (int i = 0; i < numNiveles; i++) {
 			capturaNivel[i].dispose();
 		}
+		System.out.println("SE LLAMO AL DISPOSE DE SELECCION NIVEL");
 	}
 	
 	void inicializar_variables(){
-	//	nivelActual = 1;
 		numNiveles = 3;
         skin = new Skin(Gdx.files.internal("ui/skin/uiskin.json"));
         color = new Color(99, 145, 0, 0.4f);
@@ -172,7 +170,6 @@ public class PantallaSeleccionNivel implements Screen{
 		botonJugar.setColor(color);
 		botonRegresar.setColor(color);
 		zonaTexto.setColor(color);
-		//zonaTexto.add(Gdx.files.internal("ui/texto/nivel1.txt").readString());
 	}
 	
 	void mouse_listeners(){
@@ -182,19 +179,19 @@ public class PantallaSeleccionNivel implements Screen{
 			public void clicked(InputEvent event, float x, float y) {
 				switch (nivelActual){
 				case 1:
-					juego.setScreen(juego.pantallaPrueba);
+					juego.setScreen(juego.pantallaNivel1);
 					break;
 					
 				case 2:
-					
+					juego.setScreen(juego.pantallaNivel1);
 					break;
 					
 				case 3:
-					
+					juego.setScreen(juego.pantallaNivel1);
 					break;
 				
 				default:
-					//nivel secreto
+					//Si no se selecciona ningun nivel, se carga el nivel secreto
 					juego.setScreen(juego.pantallaPrueba);
 					break;
 				}
