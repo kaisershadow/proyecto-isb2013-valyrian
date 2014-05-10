@@ -43,22 +43,24 @@ public class Teclado implements InputProcessor {
 				break;
 			
 			case(Input.Keys.SPACE):
-				if(personaje.estado !=ESTADO_ACTUAL.Saltando){
-					//personaje.getCuerpo().applyForceToCenter(0, personaje.getVelocidad().y*50, true);
-					personaje.getCuerpo().setLinearVelocity(personaje.getCuerpo().getLinearVelocity().x, personaje.getVelocidad().y);
-					personaje.estado = ESTADO_ACTUAL.Saltando;
+				if(personaje.numContactos>0){
+					if(personaje.estado !=ESTADO_ACTUAL.Saltando){
+						//personaje.getCuerpo().applyForceToCenter(0, personaje.getVelocidad().y*50, true);
+						personaje.getCuerpo().setLinearVelocity(personaje.getCuerpo().getLinearVelocity().x, personaje.getVelocidad().y);
+						personaje.estado = ESTADO_ACTUAL.Saltando;
+					}
 				}
 				break;
 			
 			case(Input.Keys.J):
 				personaje.estado=ESTADO_ACTUAL.Atacando;
 				Proyectil bala;
-				bala = new Proyectil();
+				bala = new Proyectil(20);
 
 				if (personaje.mirandoDerecha)
-					bala.crearCuerpo(personaje.getCuerpo().getWorld(), personaje.getCuerpo().getWorldCenter().x+personaje.getAncho()+10/ManejadorUnidades.PIXELSTOMETERS,personaje.getCuerpo().getWorldCenter().y+8/ManejadorUnidades.PIXELSTOMETERS, 3);
+					bala.crearCuerpo(personaje.getCuerpo().getWorld(), personaje.getCuerpo().getWorldCenter().x+personaje.getAncho()+10/ManejadorVariables.PIXELSTOMETERS,personaje.getCuerpo().getWorldCenter().y+8/ManejadorVariables.PIXELSTOMETERS, 3);
 				else 
-					bala.crearCuerpo(personaje.getCuerpo().getWorld(), personaje.getCuerpo().getWorldCenter().x-personaje.getAncho()-10/ManejadorUnidades.PIXELSTOMETERS,personaje.getCuerpo().getWorldCenter().y+8/ManejadorUnidades.PIXELSTOMETERS, -3);				
+					bala.crearCuerpo(personaje.getCuerpo().getWorld(), personaje.getCuerpo().getWorldCenter().x-personaje.getAncho()-10/ManejadorVariables.PIXELSTOMETERS,personaje.getCuerpo().getWorldCenter().y+8/ManejadorVariables.PIXELSTOMETERS, -3);				
 			
 				personaje.disparos.add(bala);
 			

@@ -47,7 +47,7 @@ public abstract class SerVivo extends Entidad {
 	}
 
 	//@brief Metodo para aumentar o reducir la vida en @value unidades
-	int cambiarVidaActual(int value){
+	public int cambiarVidaActual(int value){
 		
 		vidaActual+=value;
 		if(vidaActual>MAXVIDA)
@@ -57,7 +57,7 @@ public abstract class SerVivo extends Entidad {
 		return vidaActual;
 	}
 	
-	boolean estaMuerto(){
+	public boolean estaMuerto(){
 		return(vidaActual<=0);
 	}
 }

@@ -1,5 +1,7 @@
 package com.valyrian.firstgame.entidades;
 
+import static com.valyrian.firstgame.utilitarios.ManejadorVariables.*;
+
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
@@ -8,17 +10,20 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.valyrian.firstgame.utilitarios.ManejadorVariables;
 
 public class Rana extends SerVivo {
 	private Texture enemigo;
+	private int damage;
 	public Rana() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Rana(float ancho, float alto, int vidaMax, Vector2 velMax, Vector2 pos,World mundo) {
+	public Rana(float ancho, float alto, int vidaMax,int danio, Vector2 velMax, Vector2 pos,World mundo) {
 		super(ancho, alto, vidaMax, velMax, pos);
 		// TODO Auto-generated constructor stub
 		enemigo = new Texture("mapas/tiles/frog_idle.gif");
+		setDamage(danio);
 		
 		crearCuerpo(mundo,pos,ancho,alto);
 		posicion.x=(cuerpo.getPosition().x-ancho/2);
@@ -42,7 +47,8 @@ public class Rana extends SerVivo {
 		fixtureDef.restitution = 0;
 		//fixtureDef.density = 1/(ancho*alto);
 		fixtureDef.isSensor =false;
-		
+		fixtureDef.filter.categoryBits = BITS_ENEMIGO;
+		fixtureDef.filter.maskBits = BITS_JUGADOR |BITS_ENTORNO|BITS_PROYECTIL;
 		
 		
 		this.cuerpo= mundo.createBody(bodyDef);
@@ -51,25 +57,27 @@ public class Rana extends SerVivo {
 		this.cuerpo.getFixtureList().first().setUserData("Enemigo");
 		//cuerpo.setGravityScale(0);
 		this.cuerpo.setUserData(this);
-//	
-//		 boxShape.setAsBox(ancho/2, 1f,new Vector2(0, -alto/2) , 0);
-//	     fixtureDef.isSensor = true;
-//	     cuerpo.createFixture(fixtureDef);
-	    // cuerpo.setGravityScale(0);
-	     //cuerpo.setLinearDamping(0);
-//	     System.out.println(cuerpo.getLinearDamping());
-	     boxShape.dispose();
+		
+		boxShape.dispose();
 
 	}
 	
 	public void renderRana(SpriteBatch batch){
-		if(enemigo!=null)
+		//if(enemigo!=null)
 		batch.draw(this.enemigo, this.posicion.x,this.posicion.y,this.ancho,this.alto);
 //		batch.draw(enemigo, this.cuerpo.getPosition().x,this.cuerpo.getPosition().y,this.ancho,this.alto);
 	}
 	public void dispose(){
 		enemigo.dispose();
-		enemigo=null;
+		//enemigo=null;
 		System.out.println("SE LLAMO EL DISPOSE DE RANA");
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
+	public void setDamage(int damage) {
+		this.damage = damage;
 	}
 }
