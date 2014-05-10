@@ -12,8 +12,8 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.utils.Array;
-import com.valyrian.firstgame.utilitarios.ManejadorUnidades;
-
+import com.valyrian.firstgame.utilitarios.ManejadorVariables;
+import static com.valyrian.firstgame.utilitarios.ManejadorVariables.*;
 
 
 public class Jugador extends SerVivo {
@@ -25,7 +25,7 @@ public class Jugador extends SerVivo {
 	
 	
 	public boolean mirandoDerecha=true;
-	public boolean puedeSaltar = true;
+	public int numContactos;
 	public enum ESTADO_ACTUAL{Atacando, Caminando, Quieto,Saltando}
 	public ESTADO_ACTUAL estado=ESTADO_ACTUAL.Quieto;
 	
@@ -33,6 +33,8 @@ public class Jugador extends SerVivo {
 	//@brief Se crea un nuevo jugador.
 	public Jugador(float ancho, float alto,int maxvida,Vector2 vel, Vector2 pos,World mundo){
 		super(ancho,alto,maxvida,vel,pos);
+		
+		numContactos=0;
 		
 		//Definicion de las diferentes animaciones para el personaje
 		nativoTexture = new Texture("personajes/nativo.png");
@@ -46,7 +48,7 @@ public class Jugador extends SerVivo {
 		atacando =new Animation(1/12f,nativo[1],nativo[0]);
 		atacando.setPlayMode(Animation.NORMAL);
 		
-		saltando = new Animation(1,nativo[10]);
+		saltando = new Animation(0,nativo[10]);
 		saltando.setPlayMode(Animation.LOOP);
 
 		disparos = new Array<Proyectil>();
@@ -63,7 +65,7 @@ public class Jugador extends SerVivo {
 	
 		//Definicion de la forma del fixture
 		PolygonShape boxShape = new PolygonShape();
-		boxShape.setAsBox((ancho/2-3/ManejadorUnidades.PIXELSTOMETERS),(alto/2-3/ManejadorUnidades.PIXELSTOMETERS));
+		boxShape.setAsBox((ancho/2-3/ManejadorVariables.PIXELSTOMETERS),(alto/2-3/ManejadorVariables.PIXELSTOMETERS));
 
 		//		System.out.println("(ANCHO, ALTO) -- ("+ancho+", "+alto+")");
 		
@@ -73,16 +75,18 @@ public class Jugador extends SerVivo {
 		fixtureDef.friction = 0;
 		fixtureDef.restitution = 0;
 		fixtureDef.isSensor =false;
+		fixtureDef.filter.categoryBits = BITS_JUGADOR;
+		fixtureDef.filter.maskBits = BITS_ENEMIGO |BITS_MUERTE |BITS_ENTORNO;
 		
 		this.cuerpo= mundo.createBody(bodyDef);
 		this.cuerpo.createFixture(fixtureDef);		
 		this.cuerpo.setFixedRotation(true);
 		this.cuerpo.setBullet(true);
-		this.cuerpo.getFixtureList().first().setUserData("Personaje");
+		this.cuerpo.getFixtureList().first().setUserData("Jugador");
 		
 		
 		//Definicion del sensor para el salto
-		 boxShape.setAsBox((ancho/2 -3/ManejadorUnidades.PIXELSTOMETERS), 1/ManejadorUnidades.PIXELSTOMETERS,new Vector2(0, (-alto/2+3/ManejadorUnidades.PIXELSTOMETERS)) , 0);
+		 boxShape.setAsBox((ancho/2 -5/ManejadorVariables.PIXELSTOMETERS), 1/ManejadorVariables.PIXELSTOMETERS,new Vector2(0, (-alto/2+3/ManejadorVariables.PIXELSTOMETERS)) , 0);
 	     fixtureDef.isSensor = true;
 	     cuerpo.createFixture(fixtureDef);
 	     this.cuerpo.getFixtureList().get(1).setUserData("Salto");

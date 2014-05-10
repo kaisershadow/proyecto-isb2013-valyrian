@@ -1,35 +1,29 @@
 package com.valyrian.firstgame.utilitarios;
 
+import java.util.ArrayList;
+
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.badlogic.gdx.scenes.scene2d.ui.List;
+import com.badlogic.gdx.utils.Array;
 import com.valyrian.firstgame.entidades.Jugador;
+import com.valyrian.firstgame.entidades.Proyectil;
 import com.valyrian.firstgame.entidades.Jugador.ESTADO_ACTUAL;
-
-import java.lang.String;
-import java.util.ArrayList;
-import java.util.Stack;
-
-import sun.misc.Queue;
+import com.valyrian.firstgame.entidades.Rana;
 public class ManejadorColisiones implements ContactListener {
 
-	private ArrayList<Fixture> ListaABorrar;
-	private ArrayList<Fixture> ListaEnemigo;
-
-
-//private int numcontacts=0;
-
-private boolean gameover;
-private Jugador player;
+	private Array<Body> cuerposABorrar;
+	private boolean gameover;
+	private Jugador player;
 
 
 	public ManejadorColisiones(Jugador personaje) {
-		ListaABorrar= new ArrayList<Fixture>();
-		ListaEnemigo = new ArrayList<Fixture>();
+		super();
+		cuerposABorrar= new Array<Body>();
 		gameover= false;
 		player=personaje;
 	}
@@ -37,108 +31,66 @@ private Jugador player;
 
 	@Override
 	public void beginContact(Contact contact) {
-//		// TODO Auto-generated method stub
-//		Body A=contact.getFixtureA().getBody();
-//		Body B=contact.getFixtureB().getBody();
-//		if((A.getUserData()!=null) &&(B.getUserData()!=null)){
-//			if(A.getUserData().equals("Enemigo"))
-//				lista.add(A);
-//			else 
-//				if(B.getUserData().equals("Enemigo"))
-//					lista.add(B);
-//	
-//			if(A.getUserData().equals("bala"))
-//				bala.add(A);
-//			else
-//				if(B.getUserData().equals("bala"))
-//					bala.add(B);
-//		}
-//		
-//		if((A.getUserData()=="muerte") || (B.getUserData()=="muerte"))
-//			gameover=true;
-//			
-//		if((A.getUserData()=="bala") || (B.getUserData()=="bala")){
-//			if(A.getUserData()!=null)
-//				bala.add(A);
-//			else
-//				if(B.getUserData()!=null)
-//						bala.add(B);
-
 	
-		Fixture A=contact.getFixtureA();
-		Fixture B=contact.getFixtureB();
-		if((A.getUserData()=="Personaje" || B.getUserData()=="Personaje") && (A.getUserData()!=null && B.getUserData()!=null)){
-			if(A.getUserData().equals("Enemigo"))
-				ListaABorrar.add(A);
-			else
-				if(B.getUserData().equals("Enemigo"))
-					ListaABorrar.add(B);
-						
-			if(A.getUserData().equals("muerte") || B.getUserData().equals("muerte"))
-				gameover=true;
+		Fixture fA=contact.getFixtureA();
+		Fixture fB=contact.getFixtureB();
+		//Verificacion del salto del personaje, para evitar que pueda saltar varias veces
+		if(fA.getUserData() !=null && fA.getUserData().equals("Salto")){
+			player.numContactos++;
+		}
+		if(fB.getUserData() !=null && fB.getUserData().equals("Salto")){
+			player.numContactos++;
 		}
 		
-		if(A.getUserData()=="bala" || B.getUserData()=="bala"){
-			if(A.getUserData()==null)
-					ListaABorrar.add(B);
-			else
-				if(A.getUserData().equals("Enemigo")){
-					ListaABorrar.add(A);					
-					ListaABorrar.add(B);
-				}
-
-			if(B.getUserData()==null)
-				ListaABorrar.add(A);	
-			else
-				if(B.getUserData().equals("Enemigo")){
-					ListaABorrar.add(A);
-					ListaABorrar.add(B);
-				}
+		if(fA.getUserData() !=null && fA.getUserData().equals("Enemigo")){
+			if(fB.getUserData() !=null && fB.getUserData().equals("Jugador")){
+				System.out.println("VIDA ANTES: "+player.getVidaActual());
+				player.cambiarVidaActual(((Rana)fA.getBody().getUserData()).getDamage()*-1);
+				System.out.println("VIDA DESPUEs: "+player.getVidaActual());
+			}else if(fB.getUserData() !=null && fB.getUserData().equals("Proyectil")){
+				System.out.println("VIDA RANA ANTES FA: "+((Rana)fA.getBody().getUserData()).getVidaActual());
+				//((Rana)fA.getBody().getUserData()).cambiarVidaActual(((Proyectil)fB.getUserData()).getDamage()*-1);
+				((Rana)fA.getBody().getUserData()).cambiarVidaActual(-10);
+				System.out.println("VIDA RANA DESPUEs FA: "+((Rana)fA.getBody().getUserData()).getVidaActual());
+			}
+			if(((Rana)fA.getBody().getUserData()).estaMuerto())
+				cuerposABorrar.add(fA.getBody());
 		}
-	
-	
-	
-	
-	
-	
-	}
-//		if(A.getFixtureList().size > 1){
-//			if((String)A.getFixtureList().get(1).getUserData() == "Salto"){
-//				numcontacts++;
-//				player.estado=ESTADO_ACTUAL.Quieto;
-//			}
-//		} else if(B.getFixtureList().size > 1){
-//			if((String)B.getFixtureList().get(1).getUserData() == "Salto"){
-//				numcontacts++;
-//				player.estado=ESTADO_ACTUAL.Quieto;
-//			}
-//		}
+		if(fB.getUserData() !=null && fB.getUserData().equals("Enemigo")){
+			if(fA.getUserData() !=null && fA.getUserData().equals("Jugador")){
+				System.out.println("VIDA ANTES FB: "+player.getVidaActual());
+				player.cambiarVidaActual(((Rana)fB.getBody().getUserData()).getDamage()*-1);
+				fA.getBody().applyLinearImpulse(new Vector2(-10,0), fA.getBody().getWorldCenter(), true);
+				System.out.println("VIDA DESPUEs FB: "+player.getVidaActual());
+			}else if(fA.getUserData() !=null && fA.getUserData().equals("Proyectil")){
+				System.out.println("VIDA RANA ANTES FB: "+((Rana)fB.getBody().getUserData()).getVidaActual());
+//				((Rana)fB.getBody().getUserData()).cambiarVidaActual(((Proyectil)fA.getUserData()).getDamage()*-1);
+				((Rana)fB.getBody().getUserData()).cambiarVidaActual(-10);
 
-
-		
+				System.out.println("VIDA RANA DESPUEs FB: "+((Rana)fB.getBody().getUserData()).getVidaActual());
+			}else if(((Rana)fB.getBody().getUserData()).estaMuerto())
+				cuerposABorrar.add(fB.getBody());
+		}
+	}	
 	
 	
-	public boolean getGameOver(){
-		return gameover;
-	}
 
 	@Override
 	public void endContact(Contact contact) {
-//		Body A=contact.getFixtureA().getBody();
-//		Body B=contact.getFixtureB().getBody();
-//		if(A.getFixtureList().size > 1){
-//			if((String)A.getFixtureList().get(1).getUserData() == "Salto"){
-//				numcontacts--;
-//				if(numcontacts<0)
-//					player.estado=ESTADO_ACTUAL.Saltando;
-//			}
-//		}else if(B.getFixtureList().size > 1){
-//			if((String)B.getFixtureList().get(1).getUserData() == "Salto"){
-//				numcontacts--;
-//				if(numcontacts<0)
-//					player.estado=ESTADO_ACTUAL.Saltando;
-//			}
-//		}
+		Fixture fA=contact.getFixtureA();
+		Fixture fB=contact.getFixtureB();
+		
+		if(fA ==null || fB==null)
+			return;
+		
+		if(fA.getUserData() !=null && fA.getUserData().equals("Salto")){
+			player.numContactos--;
+			player.estado = ESTADO_ACTUAL.Saltando;
+		}
+		if(fB.getUserData() !=null && fB.getUserData().equals("Salto")){
+			player.numContactos--;
+			player.estado = ESTADO_ACTUAL.Saltando;
+		}
 	}
 	
 	
@@ -156,24 +108,16 @@ private Jugador player;
 
 	}
 
+	public boolean getGameOver(){
+		return gameover;
+	}
 
-	public ArrayList<Fixture> getListaEnemigo() {
-		return ListaEnemigo;
+	public Array<Body> getCuerposABorrar() {
+		return cuerposABorrar;
 	}
 
 
-	public void setListaEnemigo(ArrayList<Fixture> listaEnemigo) {
-		ListaEnemigo = listaEnemigo;
+	public void setCuerposABorrar(Array<Body> listaABorrar) {
+		cuerposABorrar= listaABorrar;
 	}
-
-
-	public ArrayList<Fixture> getListaABorrar() {
-		return ListaABorrar;
-	}
-
-
-	public void setListaABorrar(ArrayList<Fixture> listaABorrar) {
-		ListaABorrar = listaABorrar;
-	}
-
 }
