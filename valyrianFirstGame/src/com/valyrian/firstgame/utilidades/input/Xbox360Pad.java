@@ -1,4 +1,4 @@
-package com.valyrian.firstgame.utilitarios;
+package com.valyrian.firstgame.utilidades.input;
 
 
 import com.badlogic.gdx.controllers.PovDirection;

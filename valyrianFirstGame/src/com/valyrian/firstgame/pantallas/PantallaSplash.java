@@ -10,7 +10,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.valyrian.firstgame.PrimerJuego;
+import com.valyrian.firstgame.utilidades.recursos.ManejadorRecursos;
 
+import 	static com.valyrian.firstgame.utilidades.GameVariables.*;
 import  static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn;
 import  static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
 import  static com.badlogic.gdx.scenes.scene2d.actions.Actions.delay;
@@ -48,12 +50,16 @@ public class PantallaSplash implements Screen {
 
 	@Override
 	public void show() {
+		//Agregar recursos al manejador
+		ManejadorRecursos.getInstancia().cargarSound("audio/splash_sound.mp3", "roar_sound");
+		ManejadorRecursos.getInstancia().cargarTexture("images/splash.png", "splash_texture");
+		
 		spriteBatch = new SpriteBatch();
-		sound = Gdx.audio.newSound(Gdx.files.internal("audio/splash_sound.mp3"));
-		
-		// carga de la imagen de splash y creacion de la region de textura 
-		splashTexture = new Texture("images/splash.png");
-		
+	
+		//Cargar recursos del manejador
+		sound = ManejadorRecursos.getInstancia().getSound("roar_sound");
+		splashTexture = ManejadorRecursos.getInstancia().getTexture("splash_texture");
+	
 		// seleccionar Linear para mejorar el estiramiento 
 		splashTexture.setFilter( TextureFilter.Linear, TextureFilter.Linear ); 
 		
@@ -83,13 +89,13 @@ public class PantallaSplash implements Screen {
 	@Override
 	public void dispose() {
 		spriteBatch.dispose();
-		sound.dispose();
-		splashTexture.dispose();
-		System.out.println("SE LLAMO AL DISPOSE DE SPLASH");
+		ManejadorRecursos.getInstancia().disposeTexture("splash_texture");
+		ManejadorRecursos.getInstancia().disposeSound("roar_sound");
+		if(debug)
+			System.out.println("SE LLAMO AL DISPOSE DE SPLASH");
 		
 	}
-
-
+	
 //Metodos no definidos (Especificos de ANDROID)
 	@Override
 	public void pause() {

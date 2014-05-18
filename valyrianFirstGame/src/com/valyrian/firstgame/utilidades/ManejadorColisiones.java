@@ -1,6 +1,5 @@
-package com.valyrian.firstgame.utilitarios;
+package com.valyrian.firstgame.utilidades;
 
-import java.util.ArrayList;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -37,15 +36,24 @@ public class ManejadorColisiones implements ContactListener {
 		//Verificacion del salto del personaje, para evitar que pueda saltar varias veces
 		if(fA.getUserData() !=null && fA.getUserData().equals("Salto")){
 			player.numContactos++;
+			if(player.getCuerpo().getLinearVelocity().x!= 0)
+				player.estado = ESTADO_ACTUAL.Caminando;
+			else
+				player.estado = ESTADO_ACTUAL.Quieto;
 		}
 		if(fB.getUserData() !=null && fB.getUserData().equals("Salto")){
 			player.numContactos++;
+			if(player.getCuerpo().getLinearVelocity().x!= 0)
+				player.estado = ESTADO_ACTUAL.Caminando;
+			else
+				player.estado = ESTADO_ACTUAL.Quieto;
 		}
 		
 		if(fA.getUserData() !=null && fA.getUserData().equals("Enemigo")){
 			if(fB.getUserData() !=null && fB.getUserData().equals("Jugador")){
 				System.out.println("VIDA ANTES: "+player.getVidaActual());
 				player.cambiarVidaActual(((Rana)fA.getBody().getUserData()).getDamage()*-1);
+				fB.getBody().applyLinearImpulse(new Vector2(player.getDireccion()*-10,0), fB.getBody().getWorldCenter(), true);
 				System.out.println("VIDA DESPUEs: "+player.getVidaActual());
 			}else if(fB.getUserData() !=null && fB.getUserData().equals("Proyectil")){
 				System.out.println("VIDA RANA ANTES FA: "+((Rana)fA.getBody().getUserData()).getVidaActual());
@@ -60,7 +68,9 @@ public class ManejadorColisiones implements ContactListener {
 			if(fA.getUserData() !=null && fA.getUserData().equals("Jugador")){
 				System.out.println("VIDA ANTES FB: "+player.getVidaActual());
 				player.cambiarVidaActual(((Rana)fB.getBody().getUserData()).getDamage()*-1);
-				fA.getBody().applyLinearImpulse(new Vector2(-10,0), fA.getBody().getWorldCenter(), true);
+				
+				
+				fA.getBody().applyLinearImpulse(new Vector2(player.getDireccion()*-10,0), fA.getBody().getWorldCenter(), true);
 				System.out.println("VIDA DESPUEs FB: "+player.getVidaActual());
 			}else if(fA.getUserData() !=null && fA.getUserData().equals("Proyectil")){
 				System.out.println("VIDA RANA ANTES FB: "+((Rana)fB.getBody().getUserData()).getVidaActual());
@@ -68,9 +78,24 @@ public class ManejadorColisiones implements ContactListener {
 				((Rana)fB.getBody().getUserData()).cambiarVidaActual(-10);
 
 				System.out.println("VIDA RANA DESPUEs FB: "+((Rana)fB.getBody().getUserData()).getVidaActual());
-			}else if(((Rana)fB.getBody().getUserData()).estaMuerto())
+			}
+			if(((Rana)fB.getBody().getUserData()).estaMuerto())
 				cuerposABorrar.add(fB.getBody());
 		}
+		if(fA.getUserData() !=null && fA.getUserData().equals("Proyectil")){
+			if(fB.getUserData() !=null && fB.getUserData().equals("Jugador")){
+				System.out.println("CHOCO CON BALA");
+			}
+		}
+		if(fB.getUserData() !=null && fB.getUserData().equals("Proyectil")){
+			if(fA.getUserData() !=null && fA.getUserData().equals("Jugador")){
+				System.out.println("CHOCO CON BALA");
+			}
+		}
+
+
+		
+		
 	}	
 	
 	
@@ -85,11 +110,13 @@ public class ManejadorColisiones implements ContactListener {
 		
 		if(fA.getUserData() !=null && fA.getUserData().equals("Salto")){
 			player.numContactos--;
-			player.estado = ESTADO_ACTUAL.Saltando;
+			if(player.numContactos==0)
+				player.estado = ESTADO_ACTUAL.Saltando;
 		}
 		if(fB.getUserData() !=null && fB.getUserData().equals("Salto")){
 			player.numContactos--;
-			player.estado = ESTADO_ACTUAL.Saltando;
+			if(player.numContactos==0)
+				player.estado = ESTADO_ACTUAL.Saltando;
 		}
 	}
 	

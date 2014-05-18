@@ -4,10 +4,11 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;
 import com.valyrian.firstgame.pantallas.PantallaMenuInicio;
 import com.valyrian.firstgame.pantallas.PantallaCreditos;
+import com.valyrian.firstgame.pantallas.PantallaPruebaPersonaje;
 import com.valyrian.firstgame.pantallas.PantallaPuntuaciones;
 import com.valyrian.firstgame.pantallas.PantallaSeleccionNivel;
 import com.valyrian.firstgame.pantallas.PantallaSplash;
-import com.valyrian.firstgame.pantallas.pruebas.PantallaPruebaPersonaje;
+import com.valyrian.firstgame.utilidades.recursos.ManejadorRecursos;
 
 public class PrimerJuego extends Game {
 	public Screen pantallaSplash;
@@ -38,6 +39,8 @@ public class PrimerJuego extends Game {
 	
 	@Override
 	public void create() {
+		//Cargar la imagen de fondo , que es compartida entre pantallas
+	    ManejadorRecursos.getInstancia().cargarTexture("images/menus/mainmenu_BG.jpg", "mainmenu_BG");
 		//setScreen(pantallaSplash);
 		//setScreen(pantallaNiveles);
 		setScreen(pantallaNiveles);

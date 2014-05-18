@@ -1,6 +1,6 @@
 package com.valyrian.firstgame.entidades;
 
-import static com.valyrian.firstgame.utilitarios.ManejadorVariables.*;
+import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,15 +11,15 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.valyrian.firstgame.utilitarios.ManejadorVariables;
+import com.valyrian.firstgame.utilidades.GameVariables;
 
 public class Proyectil extends Entidad{
 	
 	private Texture textureProyectil;
 	private int damage;
 	public Proyectil(int danio) {
-		ancho =7/ManejadorVariables.PIXELSTOMETERS;
-		alto =3/ManejadorVariables.PIXELSTOMETERS;
+		ancho =7/GameVariables.PIXELSTOMETERS;
+		alto =3/GameVariables.PIXELSTOMETERS;
 		this.posicion = new Vector2();
 
 		textureProyectil = new Texture(Gdx.files.internal("personajes/dardo.png"));
@@ -36,7 +36,7 @@ public class Proyectil extends Entidad{
 	
 		//Definicion de la forma del fixture
 		PolygonShape boxShape = new PolygonShape();
-		boxShape.setAsBox(ancho/2/ManejadorVariables.PIXELSTOMETERS,alto/2/ManejadorVariables.PIXELSTOMETERS);
+		boxShape.setAsBox(ancho/2/GameVariables.PIXELSTOMETERS,alto/2/GameVariables.PIXELSTOMETERS);
 		
 		//Definicion del fixture
 		FixtureDef fixtureDef = new FixtureDef();
@@ -45,7 +45,7 @@ public class Proyectil extends Entidad{
 		fixtureDef.restitution = 0;
 		fixtureDef.isSensor =false;
 		fixtureDef.filter.categoryBits = BITS_PROYECTIL;
-		fixtureDef.filter.maskBits = BITS_ENEMIGO |BITS_ENTORNO;
+		fixtureDef.filter.maskBits = BITS_ENEMIGO |BITS_ENTORNO|BITS_JUGADOR;
 		
 		
 		this.cuerpo= mundo.createBody(bodyDef);

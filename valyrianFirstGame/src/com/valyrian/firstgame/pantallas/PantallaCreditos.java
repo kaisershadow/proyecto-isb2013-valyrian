@@ -16,6 +16,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.valyrian.firstgame.PrimerJuego;
+import com.valyrian.firstgame.utilidades.recursos.ManejadorRecursos;
+
+import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
 public class PantallaCreditos implements Screen{
 	
@@ -52,7 +55,8 @@ public class PantallaCreditos implements Screen{
 			
         batch.end();
         //Para ver las lineas de decupuracion
-		Table.drawDebug(escena);
+		if(debug)
+        Table.drawDebug(escena);
 	}
 
 	@Override
@@ -108,11 +112,10 @@ public class PantallaCreditos implements Screen{
 
 		escena.dispose();
 		batch.dispose();
-		textureFondo.dispose();
-		textureTitulo.dispose();
+		ManejadorRecursos.getInstancia().disposeTexture("titulo_creditos"); 
 		skin.dispose();
-		System.out.println("SE LLAMO AL DISPOSE DE CREDITOS");
-
+		if(debug)
+			System.out.println("SE LLAMO AL DISPOSE DE CREDITOS");
 	}
 
 	void inicializar_variables(){
@@ -120,10 +123,12 @@ public class PantallaCreditos implements Screen{
 	    color = new Color(99, 145, 0, 0.4f);
 	    batch = new SpriteBatch();
 	    
-	    textureFondo = new Texture(Gdx.files.internal("images/menus/mainmenu_BG.jpg"));
+	    textureFondo = ManejadorRecursos.getInstancia().getTexture("mainmenu_BG");
 	    fondo = new Image(textureFondo);
 	    
-	    textureTitulo = new Texture(Gdx.files.internal("images/menus/titulo_creditos.png"));
+	    
+	    ManejadorRecursos.getInstancia().cargarTexture("images/menus/titulo_creditos.png", "titulo_creditos");
+	    textureTitulo = ManejadorRecursos.getInstancia().getTexture("titulo_creditos"); 
 	    tituloQuetzal = new Image(textureTitulo);
 		
 	    escena = new Stage();

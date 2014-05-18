@@ -1,6 +1,6 @@
 package com.valyrian.firstgame.entidades;
 
-import static com.valyrian.firstgame.utilitarios.ManejadorVariables.*;
+import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.valyrian.firstgame.utilitarios.ManejadorVariables;
+import com.valyrian.firstgame.utilidades.GameVariables;
 
 public class Rana extends SerVivo {
 	private Texture enemigo;
@@ -26,8 +26,8 @@ public class Rana extends SerVivo {
 		setDamage(danio);
 		
 		crearCuerpo(mundo,pos,ancho,alto);
-		posicion.x=(cuerpo.getPosition().x-ancho/2);
-		posicion.y=(cuerpo.getPosition().y-alto/2);
+		posicion.x=(cuerpo.getPosition().x);
+		posicion.y=(cuerpo.getPosition().y);
 	}
 
 	private void crearCuerpo(World mundo, Vector2 pos, float ancho, float alto) {
@@ -38,7 +38,7 @@ public class Rana extends SerVivo {
 	
 		//Definicion de la forma del fixture
 		PolygonShape boxShape = new PolygonShape();
-		boxShape.setAsBox(ancho/2,alto/2);
+		boxShape.setAsBox(ancho/2-5/PIXELSTOMETERS,alto/2-5/PIXELSTOMETERS);
 		
 		//Definicion del fixture
 		FixtureDef fixtureDef = new FixtureDef();
@@ -64,7 +64,7 @@ public class Rana extends SerVivo {
 	
 	public void renderRana(SpriteBatch batch){
 		//if(enemigo!=null)
-		batch.draw(this.enemigo, this.posicion.x,this.posicion.y,this.ancho,this.alto);
+		batch.draw(this.enemigo, this.posicion.x-ancho-0/PIXELSTOMETERS,this.posicion.y-alto/2+5/PIXELSTOMETERS,this.ancho*2,this.alto*2);
 //		batch.draw(enemigo, this.cuerpo.getPosition().x,this.cuerpo.getPosition().y,this.ancho,this.alto);
 	}
 	public void dispose(){
