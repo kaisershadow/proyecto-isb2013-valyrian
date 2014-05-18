@@ -15,6 +15,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.valyrian.firstgame.PrimerJuego;
+import com.valyrian.firstgame.utilidades.recursos.ManejadorRecursos;
+
+import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
 public class PantallaPuntuaciones implements Screen{
 	
@@ -52,7 +55,8 @@ public class PantallaPuntuaciones implements Screen{
 			
         batch.end();
         //Para ver las lineas de decupuracion
-		Table.drawDebug(escena);
+		if(debug)
+			Table.drawDebug(escena);
 	}
 
 	@Override
@@ -110,11 +114,11 @@ public class PantallaPuntuaciones implements Screen{
 
 		escena.dispose();
 		batch.dispose();
-		textureFondo.dispose();
-		textureSubtitulo.dispose();
-		textureTitulo.dispose();
+		ManejadorRecursos.getInstancia().disposeTexture("titulo_puntuaciones");
+		ManejadorRecursos.getInstancia().disposeTexture("titulo_mas_altas");
 		skin.dispose();
-		System.out.println("SE LLAMO AL DISPOSE DE Puntuaciones");
+		if(debug)
+			System.out.println("SE LLAMO AL DISPOSE DE Puntuaciones");
 	}
 
 	void inicializar_variables(){
@@ -122,13 +126,16 @@ public class PantallaPuntuaciones implements Screen{
 	    color = new Color(99, 145, 0, 0.4f);
 	    batch = new SpriteBatch();
 	    
-	    textureFondo = new Texture(Gdx.files.internal("images/menus/mainmenu_BG.jpg"));
+	    
+	    textureFondo = ManejadorRecursos.getInstancia().getTexture("mainmenu_BG");
 	    fondo = new Image(textureFondo);
 	    
-	    textureTitulo = new Texture(Gdx.files.internal("images/menus/titulo_puntuaciones.png"));
+	    ManejadorRecursos.getInstancia().cargarTexture("images/menus/titulo_puntuaciones.png", "titulo_puntuaciones");
+	    textureTitulo = ManejadorRecursos.getInstancia().getTexture("titulo_puntuaciones");
 	    tituloQuetzal = new Image(textureTitulo);
 	    
-	    textureSubtitulo = new Texture(Gdx.files.internal("images/menus/titulo_mas_altas.png"));
+	    ManejadorRecursos.getInstancia().cargarTexture("images/menus/titulo_mas_altas.png", "titulo_mas_altas");
+	    textureSubtitulo = ManejadorRecursos.getInstancia().getTexture("titulo_mas_altas");
 	    subQuetzal = new Image(textureSubtitulo);
 		
 	    escena = new Stage();
