@@ -3,6 +3,7 @@ package com.valyrian.firstgame.entidades;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
 
 public class Hud {
@@ -46,6 +47,9 @@ public class Hud {
 		tex.dispose();
 		texHeart.dispose();
 		score.dispose();
+		if(debug){
+			System.out.println("Se llamo al dispose de HUD");
+		}
 	}
 	
 	private void drawString(SpriteBatch sb, String s, float x, float y) {

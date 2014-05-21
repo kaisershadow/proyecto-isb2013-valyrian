@@ -1,6 +1,13 @@
 package com.valyrian.firstgame.pantallas;
 
 
+import static com.valyrian.firstgame.utilidades.GameVariables.PIXELSTOMETERS;
+import static com.valyrian.firstgame.utilidades.GameVariables.POSITIONITERATIONS;
+import static com.valyrian.firstgame.utilidades.GameVariables.TIMESTEP;
+import static com.valyrian.firstgame.utilidades.GameVariables.VELOCITYITERATIONS;
+import static com.valyrian.firstgame.utilidades.GameVariables.V_HEIGHT;
+import static com.valyrian.firstgame.utilidades.GameVariables.V_WIDTH;
+import static com.valyrian.firstgame.utilidades.GameVariables.debug;
 import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
 
 import com.badlogic.gdx.Gdx;
@@ -17,16 +24,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.valyrian.firstgame.PrimerJuego;
+import com.valyrian.firstgame.entidades.Hud;
 import com.valyrian.firstgame.entidades.Jugador;
 import com.valyrian.firstgame.entidades.Rana;
 import com.valyrian.firstgame.utilidades.ManejadorColisiones;
 import com.valyrian.firstgame.utilidades.input.Joystick;
 import com.valyrian.firstgame.utilidades.input.Teclado;
-import com.valyrian.firstgame.utilidades.recursos.ManejadorRecursos;
-import com.badlogic.gdx.utils.Array;
-
-import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
 public class PantallaPruebaPersonaje implements Screen {
 		
@@ -34,11 +39,13 @@ public class PantallaPruebaPersonaje implements Screen {
 	
 	
 	private Box2DDebugRenderer debugRenderer;
-	private OrthographicCamera camera;	
+	private OrthographicCamera camera,hudCam;	
 	
 	private SpriteBatch batch;
 	private Jugador personaje;
-
+	private Hud hud;
+	
+	
 	private Array<Rana> ranas;
 	private Rana rana;
 	
@@ -108,8 +115,10 @@ public class PantallaPruebaPersonaje implements Screen {
 		if(manejaColisiones.getGameOver())
 			System.out.println("Se acabo el juego");
 			//hasta aca
-
 		batch.end();
+
+		batch.setProjectionMatrix(hudCam.combined);
+		hud.render(batch);
 		
 		if(debug)
 			debugRenderer.render(mundo, camera.combined);
@@ -139,6 +148,9 @@ public class PantallaPruebaPersonaje implements Screen {
 		camera.viewportHeight =(V_HEIGHT/PIXELSTOMETERS);
 		camera.update();
 		
+		hudCam = new OrthographicCamera();
+		hudCam.setToOrtho(false);
+		
 	//	ImagenEnFixture= new Box2DSprite(new Texture("mapas/tiles/waspidle.png"));
 
 		
@@ -153,6 +165,8 @@ public class PantallaPruebaPersonaje implements Screen {
 		mapParser.load(mundo, otmr.getMap());	
 		
 		personaje = new Jugador(32/PIXELSTOMETERS, 64/PIXELSTOMETERS, 100, new Vector2(2.5f,5.5f), new Vector2(500/PIXELSTOMETERS, 500/PIXELSTOMETERS),mundo);
+		hud = new Hud(personaje);
+		
 		
 		Gdx.input.setInputProcessor(new Teclado(personaje, camera, juego));
 //		Gdx.input.setInputProcessor(new Joystick(personaje, camera, juego));
@@ -198,6 +212,7 @@ public class PantallaPruebaPersonaje implements Screen {
 		debugRenderer.dispose();
 		otmr.getMap().dispose();
 		otmr.dispose();
+		hud.dispose();
 //		for (Rana frog : ranas) {
 //			frog.dispose();
 //		}
