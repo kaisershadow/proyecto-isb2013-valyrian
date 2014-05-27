@@ -132,8 +132,13 @@ public class PantallaMenuInicio implements Screen{
 	    batch = new SpriteBatch();
 	    
 //	    ManejadorRecursos.getInstancia().cargarTexture("images/menus/mainmenu_BG.jpg", "mainmenu_BG");
-	    textureFondo = ManejadorRecursos.getInstancia().getTexture("mainmenu_BG");
+	    //textureFondo = ManejadorRecursos.getInstancia().getTexture("mainmenu_BG");
+		
+	    textureFondo = juego.manejadorRecursos.get("images/menus/mainmenu_BG.jpg",Texture.class);
+	    if(textureFondo == null)
+	    	System.out.println("NO SE CARGO LA TEXTURA");
 	    fondo = new Image(textureFondo);
+	    
 	    
 	    ManejadorRecursos.getInstancia().cargarTexture("images/menus/titulo_quetzal.png", "titulo_quetzal");
 	    textureTitulo = ManejadorRecursos.getInstancia().getTexture("titulo_quetzal");
@@ -181,7 +186,7 @@ public class PantallaMenuInicio implements Screen{
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
 				super.clicked(event, x, y);
-				juego.setScreen(juego.pantallaNiveles);
+				juego.setScreen(juego.pantallaSeleccionNivel);
 			}
 			
 			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {

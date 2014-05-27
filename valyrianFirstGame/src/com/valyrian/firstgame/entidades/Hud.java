@@ -3,7 +3,10 @@ package com.valyrian.firstgame.entidades;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
 import static com.valyrian.firstgame.utilidades.GameVariables.*;
+
+import com.valyrian.firstgame.refactor.entidades.Jugador;
 
 
 public class Hud {

@@ -10,11 +10,17 @@ public final class  GameVariables {
 	public static final short BITS_ENTORNO = 1;
 	public static final short BITS_JUGADOR = 2;
 	public static final short BITS_ENEMIGO = 4;
-	public static final short BITS_MUERTE = 6;
-	public static final short BITS_META = 8;
-	public static final short BITS_PROYECTIL = 9;
+	public static final short BITS_MUERTE = 8;
+	public static final short BITS_PROYECTIL = 16;
+	public static final short BITS_COLECTABLE = 32;
+	public static final short BITS_PLATAFORMA = 64;
+	public static final short BITS_META = 128;
 	
 	public static final boolean debug = true;
 	public static final int V_WIDTH = 640;
 	public static final int V_HEIGHT = 400;
+	
+	public static boolean PAUSE = false;
+
+	public enum ESTADO_ACTUAL{Atacando, Moviendose, Quieto,Saltando}
 }

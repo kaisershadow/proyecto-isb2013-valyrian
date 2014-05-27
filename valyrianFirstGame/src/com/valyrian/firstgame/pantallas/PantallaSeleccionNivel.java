@@ -195,15 +195,15 @@ public class PantallaSeleccionNivel implements Screen{
 			public void clicked(InputEvent event, float x, float y) {
 				switch (nivelActual){
 				case 1:
-					juego.setScreen(juego.pantallaNivel1);
+//					juego.setScreen(juego.pantallaNivel(th);
 					break;
 					
 				case 2:
-					juego.setScreen(juego.pantallaNivel1);
+//					juego.setScreen(juego.pantallaNivel1);
 					break;
 					
 				case 3:
-					juego.setScreen(juego.pantallaNivel1);
+//					juego.setScreen(juego.pantallaNivel1);
 					break;
 				
 				default:
