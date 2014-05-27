@@ -1,25 +1,21 @@
 package com.valyrian.firstgame.utilidades.input;
 
+import static com.valyrian.firstgame.utilidades.GameVariables.*;
+
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerListener;
 import com.badlogic.gdx.controllers.PovDirection;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector3;
-import com.valyrian.firstgame.PrimerJuego;
-import com.valyrian.firstgame.entidades.Jugador;
+import com.valyrian.firstgame.pantallas.PantallaPruebaPersonaje;
+import com.valyrian.firstgame.refactor.entidades.Proyectil;
 
 public class Joystick implements ControllerListener {
 
-	private Jugador personaje;
-	private PrimerJuego juego;
-	private OrthographicCamera camera;
+	PantallaPruebaPersonaje pantallaNivel;
 	
-	public Joystick(Jugador player, OrthographicCamera cam, PrimerJuego game) {
-		personaje = player;
-		camera = cam;
-		juego =game;
+	public Joystick(PantallaPruebaPersonaje p) {
+		this.pantallaNivel = p;
 	}
-	
 	
 	@Override
 	public void connected(Controller controller) {
@@ -34,18 +30,20 @@ public class Joystick implements ControllerListener {
 
 	@Override
 	public boolean buttonDown(Controller controller, int buttonCode) {
-		if(personaje.isPaused() && buttonCode !=Xbox360Pad.BUTTON_START)
+		if(PAUSE && buttonCode !=Xbox360Pad.BUTTON_START)
 			return true;
 		
 		switch(buttonCode){
 		case Xbox360Pad.BUTTON_A:
-			personaje.Saltar();
+			pantallaNivel.getJugador().Saltar();
 			break;
 		case Xbox360Pad.BUTTON_B:
 			//System.out.println("Se presiona el boton B");
 			break;
 		case Xbox360Pad.BUTTON_X:
-			personaje.Disparar(20);
+			Proyectil bala = pantallaNivel.getJugador().Disparar(pantallaNivel.getWorld(),20);
+			if(bala!=null)
+				pantallaNivel.getEntidades().add(bala);
 			break;
 		case Xbox360Pad.BUTTON_Y:
 			System.out.println("Se presiona el boton Y");
@@ -57,10 +55,10 @@ public class Joystick implements ControllerListener {
 			System.out.println("Se presiona el boton RB");
 			break;
 		case Xbox360Pad.BUTTON_BACK:
-			juego.setScreen(juego.pantallaNiveles);
+			
 			break;
 		case Xbox360Pad.BUTTON_START:
-			personaje.Pausar();
+			pantallaNivel.getJugador().Pausar();
 			break;
 		case Xbox360Pad.BUTTON_L3:
 			System.out.println("Se presiona el boton L3");
@@ -77,18 +75,18 @@ public class Joystick implements ControllerListener {
 
 	@Override
 	public boolean buttonUp(Controller controller, int buttonCode) {
-		if(personaje.isPaused())
+		if(PAUSE)
 			return true;
 		
 		switch(buttonCode){
 		case Xbox360Pad.BUTTON_A:
-			personaje.Aterrizar();
+			pantallaNivel.getJugador().Aterrizar();
 			break;
 		case Xbox360Pad.BUTTON_B:
 			System.out.println("Se solto el boton B");
 			break;
 		case Xbox360Pad.BUTTON_X:
-			personaje.Enfundar();
+			pantallaNivel.getJugador().Enfundar();
 			break;
 		case Xbox360Pad.BUTTON_Y:
 			System.out.println("Se solto el boton Y");
@@ -100,7 +98,7 @@ public class Joystick implements ControllerListener {
 			System.out.println("Se solto el boton RB");
 			break;
 		case Xbox360Pad.BUTTON_BACK:
-			System.out.println("Se solto el boton BACK");
+			pantallaNivel.getJuego().setScreen(pantallaNivel.getJuego().pantallaSeleccionNivel);
 			break;
 		case Xbox360Pad.BUTTON_START:
 			System.out.println("Se solto el boton START");
@@ -119,18 +117,18 @@ public class Joystick implements ControllerListener {
 
 	@Override
 	public boolean axisMoved(Controller controller, int axisCode, float value) {
-		if(personaje.isPaused())
+		if(PAUSE)
 			return true;
 		
 		switch(axisCode){
 		case Xbox360Pad.AXIS_LEFT_X:
 			System.out.println("Se movio el AXIS LEFT_X a valor: "+ value);
 			if(value>0.5)
-				personaje.MoverDerecha();
+				pantallaNivel.getJugador().MoverDerecha();
 			else if(value<-0.5)
-				personaje.MoverIzquierda();
+				pantallaNivel.getJugador().MoverIzquierda();
 			else 
-				personaje.Detener();
+				pantallaNivel.getJugador().Detener();
 			break;
 //		case Xbox360Pad.AXIS_LEFT_Y:
 //			System.out.println("Se movio el AXIS LEFT_Y a valor: "+ value);
@@ -140,7 +138,7 @@ public class Joystick implements ControllerListener {
 //			break;
 		case Xbox360Pad.AXIS_RIGHT_Y:
 			if(value< -0.5 || value>0.5)
-				camera.zoom+=value;
+				pantallaNivel.getCamera().zoom+=value/25f;
 			break;
 		case Xbox360Pad.AXIS_LEFT_TRIGGER:
 			System.out.println("Se movio el AXIS LT a valor: "+ value);
@@ -181,5 +179,4 @@ public class Joystick implements ControllerListener {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 }

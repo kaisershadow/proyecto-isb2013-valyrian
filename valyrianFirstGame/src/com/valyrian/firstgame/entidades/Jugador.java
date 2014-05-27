@@ -130,7 +130,7 @@ public class Jugador extends SerVivo {
 		}
 	}
 	
-	public void actualizarPosicionJugador(){
+	public void actualizarPosicion(){
 		
 		posicion.x=(cuerpo.getPosition().x-ancho/2);
 		posicion.y=(cuerpo.getPosition().y-alto/2);

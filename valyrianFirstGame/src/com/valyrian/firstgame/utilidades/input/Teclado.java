@@ -1,49 +1,50 @@
 package com.valyrian.firstgame.utilidades.input;
 
+import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
 import com.badlogic.gdx.Input;
-
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.valyrian.firstgame.PrimerJuego;
-import com.valyrian.firstgame.entidades.Jugador;
+import com.valyrian.firstgame.pantallas.PantallaPruebaPersonaje;
+import com.valyrian.firstgame.refactor.entidades.Proyectil;
 
 public class Teclado implements InputProcessor {
 
-	private Jugador personaje;
-	private PrimerJuego juego;
-	private OrthographicCamera camera;
-	
-	public Teclado(Jugador player, OrthographicCamera cam, PrimerJuego game) {
-		personaje = player;
-		camera = cam;
-		juego =game;
+	PantallaPruebaPersonaje pantallaNivel;
+	public Teclado(PantallaPruebaPersonaje p) {
+		this.pantallaNivel = p;
 	}
 
 	@Override
 	public boolean keyDown(int keycode) {
-		if(personaje.isPaused() && keycode !=Input.Keys.P)
+		if(PAUSE && keycode !=Input.Keys.P)
 			return true;
 		
 		switch(keycode){
 			case(Input.Keys.P):
-				personaje.Pausar();
+				pantallaNivel.getJugador().Pausar();
 				break;
 			
 			case(Input.Keys.D):
-				personaje.MoverDerecha();
+				pantallaNivel.getJugador().MoverDerecha();
 				break;
 			
 			case(Input.Keys.A):
-				personaje.MoverIzquierda();
+				pantallaNivel.getJugador().MoverIzquierda();
 				break;
 			
 			case(Input.Keys.SPACE):
-				personaje.Saltar();
+				pantallaNivel.getJugador().Saltar();
 				break;
 			
 			case(Input.Keys.J):
-				personaje.Disparar(20);
+				Proyectil bala= pantallaNivel.getJugador().Disparar(pantallaNivel.getWorld(),20);
+				if(bala!=null)
+					pantallaNivel.getEntidades().add(bala);
+				break;
+			case(Input.Keys.L):
+				Proyectil bala2= pantallaNivel.getJugador().Disparar(pantallaNivel.getWorld(),10);
+				if(bala2!=null)
+				pantallaNivel.getEntidades().add(bala2);
 				break;
 		}
 		return true;
@@ -52,26 +53,26 @@ public class Teclado implements InputProcessor {
 
 	@Override
 	public boolean keyUp(int keycode) {
-		if(personaje.isPaused())
+		if(PAUSE)
 			return true;
 		
 		switch(keycode){
 		
 		case Input.Keys.A:
 		case Input.Keys.D:
-			personaje.Detener();
+			pantallaNivel.getJugador().Detener();
 			break;
 		
 		case Input.Keys.SPACE:		
-			personaje.Aterrizar();
+			pantallaNivel.getJugador().Aterrizar();
 			break;
 			
 		case Input.Keys.J:
-			personaje.Enfundar();			
+			pantallaNivel.getJugador().Enfundar();			
 			break;
 			
 		case Input.Keys.ESCAPE:
-			juego.setScreen(juego.pantallaNiveles);
+			pantallaNivel.getJuego().setScreen(pantallaNivel.getJuego().pantallaSeleccionNivel);
 			break;
 		}
 		return false;
@@ -114,7 +115,8 @@ public class Teclado implements InputProcessor {
 
 	@Override
 	public boolean scrolled(int amount) {
-		camera.zoom+=amount/20f;
+		if(!PAUSE)
+			pantallaNivel.getCamera().zoom+=amount/20f;
 		return true;
 	}
 }
