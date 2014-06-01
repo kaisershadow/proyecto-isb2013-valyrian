@@ -14,8 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.valyrian.firstgame.PrimerJuego;
-import com.valyrian.firstgame.utilidades.recursos.ManejadorRecursos;
+import com.valyrian.firstgame.Quetzal;
 
 import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
@@ -32,10 +31,10 @@ public class PantallaPuntuaciones implements Screen{
 	private Image fondo;
 	private Image tituloQuetzal;
 	private Image subQuetzal;
-	private PrimerJuego juego;
+	private Quetzal juego;
 	private Color color;
 	
-	public PantallaPuntuaciones(PrimerJuego primerJuego) {
+	public PantallaPuntuaciones(Quetzal primerJuego) {
 		juego = primerJuego;
 	}
 	
@@ -111,31 +110,32 @@ public class PantallaPuntuaciones implements Screen{
 
 	@Override
 	public void dispose() {
-
 		escena.dispose();
-		batch.dispose();
-		ManejadorRecursos.getInstancia().disposeTexture("titulo_puntuaciones");
-		ManejadorRecursos.getInstancia().disposeTexture("titulo_mas_altas");
-		skin.dispose();
 		if(debug)
-			System.out.println("SE LLAMO AL DISPOSE DE Puntuaciones");
+			System.out.println("SE LLAMO AL DISPOSE DE PUNTUACIONES");
 	}
 
 	void inicializar_variables(){
-	    skin = new Skin(Gdx.files.internal("ui/skin/uiskin.json"));
+	    skin = juego.manejadorRecursos.get("ui/skin/uiskin.json");
 	    color = new Color(99, 145, 0, 0.4f);
-	    batch = new SpriteBatch();
+	    batch = juego.getSpriteBatch();
 	    
+	    //Cargar las imagenes de la pantalla
+	    if(!juego.manejadorRecursos.isLoaded("images/menus/mainmenu_BG.jpg"))
+			juego.manejadorRecursos.load("images/menus/mainmenu_BG.jpg", Texture.class);
+	 
+	    juego.manejadorRecursos.load("images/menus/titulo_puntuaciones.png",Texture.class);
+	    juego.manejadorRecursos.load("images/menus/titulo_mas_altas.png",Texture.class);
+	    juego.manejadorRecursos.finishLoading();
+
 	    
-	    textureFondo = ManejadorRecursos.getInstancia().getTexture("mainmenu_BG");
+	    textureFondo = juego.manejadorRecursos.get("images/menus/mainmenu_BG.jpg");
 	    fondo = new Image(textureFondo);
 	    
-	    ManejadorRecursos.getInstancia().cargarTexture("images/menus/titulo_puntuaciones.png", "titulo_puntuaciones");
-	    textureTitulo = ManejadorRecursos.getInstancia().getTexture("titulo_puntuaciones");
+	    textureTitulo = juego.manejadorRecursos.get("images/menus/titulo_puntuaciones.png");
 	    tituloQuetzal = new Image(textureTitulo);
 	    
-	    ManejadorRecursos.getInstancia().cargarTexture("images/menus/titulo_mas_altas.png", "titulo_mas_altas");
-	    textureSubtitulo = ManejadorRecursos.getInstancia().getTexture("titulo_mas_altas");
+	    textureSubtitulo = juego.manejadorRecursos.get("images/menus/titulo_mas_altas.png");
 	    subQuetzal = new Image(textureSubtitulo);
 		
 	    escena = new Stage();
@@ -173,13 +173,14 @@ public class PantallaPuntuaciones implements Screen{
 	}*/
 	
 	void cargar_actores_escenario(){
-		//tabla.debug();
-				
-				escena.addActor(fondo);
-				escena.addActor(botonSalir);
-				escena.addActor(tabla);
-				escena.addActor(tituloQuetzal);
-				escena.addActor(subQuetzal);
+		if(debug)
+			tabla.debug();
+
+		escena.addActor(fondo);
+		escena.addActor(botonSalir);
+		escena.addActor(tabla);
+		escena.addActor(tituloQuetzal);
+		escena.addActor(subQuetzal);
 	}
 
 }
