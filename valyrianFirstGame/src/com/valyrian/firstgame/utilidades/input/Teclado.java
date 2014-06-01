@@ -4,13 +4,13 @@ import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.valyrian.firstgame.pantallas.PantallaPruebaPersonaje;
-import com.valyrian.firstgame.refactor.entidades.Proyectil;
+import com.valyrian.firstgame.entidades.Proyectil;
+import com.valyrian.firstgame.pantallas.PantallaNivel;
 
 public class Teclado implements InputProcessor {
 
-	PantallaPruebaPersonaje pantallaNivel;
-	public Teclado(PantallaPruebaPersonaje p) {
+	PantallaNivel pantallaNivel;
+	public Teclado(PantallaNivel p) {
 		this.pantallaNivel = p;
 	}
 
@@ -39,12 +39,12 @@ public class Teclado implements InputProcessor {
 			case(Input.Keys.J):
 				Proyectil bala= pantallaNivel.getJugador().Disparar(pantallaNivel.getWorld(),20);
 				if(bala!=null)
-					pantallaNivel.getEntidades().add(bala);
+					PantallaNivel.getEntidades().add(bala);
 				break;
 			case(Input.Keys.L):
 				Proyectil bala2= pantallaNivel.getJugador().Disparar(pantallaNivel.getWorld(),10);
 				if(bala2!=null)
-				pantallaNivel.getEntidades().add(bala2);
+					PantallaNivel.getEntidades().add(bala2);
 				break;
 		}
 		return true;

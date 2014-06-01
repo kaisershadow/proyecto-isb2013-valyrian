@@ -1,5 +1,7 @@
 package com.valyrian.firstgame.pantallas;
 
+import static com.valyrian.firstgame.utilidades.GameVariables.*;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -14,10 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.valyrian.firstgame.PrimerJuego;
-import com.valyrian.firstgame.utilidades.recursos.ManejadorRecursos;
-
-import static com.valyrian.firstgame.utilidades.GameVariables.*;
+import com.valyrian.firstgame.Quetzal;
 
 public class PantallaMenuInicio implements Screen{
 	
@@ -36,10 +35,10 @@ public class PantallaMenuInicio implements Screen{
 	private Image fondo;
 	private Image tituloQuetzal;
 	private Image subQuetzal;
-	private PrimerJuego juego;
+	private Quetzal juego;
 	private Color color;
 	
-	public PantallaMenuInicio(PrimerJuego primerJuego) {
+	public PantallaMenuInicio(Quetzal primerJuego) {
 		juego = primerJuego;
 	}
 	
@@ -117,35 +116,34 @@ public class PantallaMenuInicio implements Screen{
 	@Override
 	public void dispose() {
 		escena.dispose();
-		batch.dispose();
-		//ManejadorRecursos.getInstancia().disposeTexture("mainmenu_BG");
-		ManejadorRecursos.getInstancia().disposeTexture("titulo_quetzal");
-		ManejadorRecursos.getInstancia().disposeTexture("titulo_labusqueda");
-		skin.dispose();
+//		batch.dispose();
+//		skin.dispose();
+		juego.manejadorRecursos.unload("images/menus/titulo_labusqueda.png");
+		juego.manejadorRecursos.unload("images/menus/titulo_quetzal.png");
 		if(debug)
 			System.out.println("SE LLAMO AL DISPOSE DE MENU INICIO");
 	}
 
 	void inicializar_variables(){
-	    skin = new Skin(Gdx.files.internal("ui/skin/uiskin.json"));
+	    skin = juego.manejadorRecursos.get("ui/skin/uiskin.json");
 	    color = new Color(99, 145, 0, 0.4f);
-	    batch = new SpriteBatch();
+	    batch = juego.getSpriteBatch();
 	    
-//	    ManejadorRecursos.getInstancia().cargarTexture("images/menus/mainmenu_BG.jpg", "mainmenu_BG");
-	    //textureFondo = ManejadorRecursos.getInstancia().getTexture("mainmenu_BG");
+		if(!juego.manejadorRecursos.isLoaded("images/menus/mainmenu_BG.jpg"))
+			juego.manejadorRecursos.load("images/menus/mainmenu_BG.jpg", Texture.class);
+		if(!juego.manejadorRecursos.isLoaded("images/menus/titulo_quetzal.png"))
+			juego.manejadorRecursos.load("images/menus/titulo_quetzal.png", Texture.class);
+		if(!juego.manejadorRecursos.isLoaded("images/menus/titulo_labusqueda.png"))
+			juego.manejadorRecursos.load("images/menus/titulo_labusqueda.png", Texture.class);
+		juego.manejadorRecursos.finishLoading();
 		
-	    textureFondo = juego.manejadorRecursos.get("images/menus/mainmenu_BG.jpg",Texture.class);
-	    if(textureFondo == null)
-	    	System.out.println("NO SE CARGO LA TEXTURA");
+		textureFondo = juego.manejadorRecursos.get("images/menus/mainmenu_BG.jpg");
 	    fondo = new Image(textureFondo);
 	    
-	    
-	    ManejadorRecursos.getInstancia().cargarTexture("images/menus/titulo_quetzal.png", "titulo_quetzal");
-	    textureTitulo = ManejadorRecursos.getInstancia().getTexture("titulo_quetzal");
+	    textureTitulo = juego.manejadorRecursos.get("images/menus/titulo_quetzal.png");
 	    tituloQuetzal = new Image(textureTitulo);
 	    
-	    ManejadorRecursos.getInstancia().cargarTexture("images/menus/titulo_labusqueda.png", "titulo_labusqueda");
-	    textureSubtitulo = ManejadorRecursos.getInstancia().getTexture("titulo_labusqueda");
+	    textureSubtitulo = juego.manejadorRecursos.get("images/menus/titulo_labusqueda.png");
 	    subQuetzal = new Image(textureSubtitulo);
 		
 	    escena = new Stage();
@@ -252,20 +250,22 @@ public class PantallaMenuInicio implements Screen{
 	}*/
 	
 	void cargar_actores_escenario(){
-		//tabla.debug();
-				tabla.add(botonJugar).space( 10f ).fill().expand();
-				tabla.row();
-				tabla.add(botonConfiguraciones).space(10f).fill().expand();
-				tabla.row();
-				tabla.add(botonPuntuaciones).space(10f).fill().expand();
-				tabla.row();
-				tabla.add(botonCreditos).space(10f).fill().expand();
-				
-				escena.addActor(fondo);
-				escena.addActor(botonSalir);
-				escena.addActor(tabla);
-				escena.addActor(tituloQuetzal);
-				escena.addActor(subQuetzal);
+		if(debug)
+			tabla.debug();
+
+		tabla.add(botonJugar).space( 10f ).fill().expand();
+		tabla.row();
+		tabla.add(botonConfiguraciones).space(10f).fill().expand();
+		tabla.row();
+		tabla.add(botonPuntuaciones).space(10f).fill().expand();
+		tabla.row();
+		tabla.add(botonCreditos).space(10f).fill().expand();
+
+		escena.addActor(fondo);
+		escena.addActor(botonSalir);
+		escena.addActor(tabla);
+		escena.addActor(tituloQuetzal);
+		escena.addActor(subQuetzal);
 	}
 
 }

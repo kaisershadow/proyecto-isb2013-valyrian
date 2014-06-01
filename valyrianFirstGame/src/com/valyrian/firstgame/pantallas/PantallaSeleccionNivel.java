@@ -15,8 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.valyrian.firstgame.PrimerJuego;
-import com.valyrian.firstgame.utilidades.recursos.ManejadorRecursos;
+import com.valyrian.firstgame.Quetzal;
 
 import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
@@ -40,11 +39,11 @@ public class PantallaSeleccionNivel implements Screen{
 	private Image subSeleccionar;
 	private Texture capturaNivel[];
 	private Window zonaTexto;
-	private PrimerJuego juego;
+	private Quetzal juego;
 	private int numNiveles; //numero de niveles del juego
 	private int nivelActual;
 	
-	public PantallaSeleccionNivel(PrimerJuego primerJuego) {
+	public PantallaSeleccionNivel(Quetzal primerJuego) {
 		juego = primerJuego;
 	}
 
@@ -127,38 +126,42 @@ public class PantallaSeleccionNivel implements Screen{
 	@Override
 	public void dispose() {
 		escena.dispose();
-		skin.dispose();
-		batch.dispose();
-		
-		//textureFondo.dispose();
-		//textureSeleccionar.dispose();
-		//textureTitulo.dispose();
-		ManejadorRecursos.getInstancia().disposeTexture("niveles_BG");
-		ManejadorRecursos.getInstancia().disposeTexture("titulo_niveles");
-		ManejadorRecursos.getInstancia().disposeTexture("titulo_seleccionarnivel");
-		for (int i = 0; i < numNiveles; i++) {
-			 ManejadorRecursos.getInstancia().disposeTexture("nivel" + Integer.toString(i+1));
-		}
+		juego.manejadorRecursos.unload("images/menus/titulo_niveles.png");
+		juego.manejadorRecursos.unload("images/menus/titulo_seleccionarnivel.png");
+		for(int i=1;i<=numNiveles;i++)
+			juego.manejadorRecursos.unload("images/menus/nivel"+i+".png");
+
 		if(debug)
 			System.out.println("SE LLAMO AL DISPOSE DE SELECCION NIVEL");
 	}
 	
 	void inicializar_variables(){
 		numNiveles = 3;
-        skin = new Skin(Gdx.files.internal("ui/skin/uiskin.json"));
+        skin = juego.manejadorRecursos.get("ui/skin/uiskin.json");
         color = new Color(99, 145, 0, 0.4f);
-        batch = new SpriteBatch();
+        batch = juego.getSpriteBatch();
         
-        ManejadorRecursos.getInstancia().cargarTexture("images/menus/niveles_BG.jpg","niveles_BG");
-        textureFondo = ManejadorRecursos.getInstancia().getTexture("niveles_BG"); 
+        if(!juego.manejadorRecursos.isLoaded("images/menus/mainmenu_BG.jpg"))
+			juego.manejadorRecursos.load("images/menus/mainmenu_BG.jpg", Texture.class);
+	 
+	    juego.manejadorRecursos.load("images/menus/titulo_niveles.png",Texture.class);
+	    juego.manejadorRecursos.load("images/menus/titulo_seleccionarnivel.png",Texture.class);
+	    for(int i=1;i<=numNiveles;i++)
+	    	juego.manejadorRecursos.load("images/menus/nivel"+i+".png",Texture.class);
+	    juego.manejadorRecursos.finishLoading();
+
+        
+        
+
+        textureFondo = juego.manejadorRecursos.get("images/menus/mainmenu_BG.jpg"); 
         fondo = new Image(textureFondo);
         
-        ManejadorRecursos.getInstancia().cargarTexture("images/menus/titulo_niveles.png","titulo_niveles");
-        textureTitulo = ManejadorRecursos.getInstancia().getTexture("titulo_niveles");
+        
+        textureTitulo = juego.manejadorRecursos.get("images/menus/titulo_niveles.png");
         tituloNiveles = new Image(textureTitulo);
         
-        ManejadorRecursos.getInstancia().cargarTexture("images/menus/titulo_seleccionarnivel.png","titulo_seleccionarnivel");
-        textureSeleccionar = ManejadorRecursos.getInstancia().getTexture("titulo_seleccionarnivel");
+        
+        textureSeleccionar = textureTitulo = juego.manejadorRecursos.get("images/menus/titulo_seleccionarnivel.png");
         subSeleccionar = new Image(textureSeleccionar);
         
         captura = new Table(skin);
@@ -176,12 +179,10 @@ public class PantallaSeleccionNivel implements Screen{
 			niveles[i].setName("nivel" + Integer.toString(i+1) );
 		}
 		
-		zonaTexto.add("Por favor seleccione un nivel de \n\r y presione el botón Jugar");
+		zonaTexto.add("Por favor seleccione un nivel de \n\r y presione el boton Jugar");
 		capturaNivel = new Texture[numNiveles];
-		for (int i = 0; i < numNiveles; i++) {
-			ManejadorRecursos.getInstancia().cargarTexture("images/menus/nivel" + Integer.toString(i+1) +".png","nivel" + Integer.toString(i+1)); 
-			capturaNivel[i] = ManejadorRecursos.getInstancia().getTexture("nivel" + Integer.toString(i+1));
-		}
+		for (int i = 0; i < numNiveles; i++) 
+			capturaNivel[i] = juego.manejadorRecursos.get("images/menus/nivel"+(i+1)+".png");
 		
 		botonJugar.setColor(color);
 		botonRegresar.setColor(color);
@@ -208,7 +209,8 @@ public class PantallaSeleccionNivel implements Screen{
 				
 				default:
 					//Si no se selecciona ningun nivel, se carga el nivel secreto
-					juego.setScreen(juego.pantallaPrueba);
+					//juego.setScreen(juego.pantallaPrueba);
+					juego.setScreen(juego.pantallaCargaNivel);
 					break;
 				}
 			}
@@ -265,8 +267,10 @@ public class PantallaSeleccionNivel implements Screen{
 	}*/
 	
 	void cargar_actores_escenario(){
-		//tablaNiveles.debug();
-		//tablaControles.debug();
+		if(debug){
+			tablaNiveles.debug();
+			tablaControles.debug();			
+		}
 		for (int i = 0; i < numNiveles ; i++) {
 			tablaNiveles.add(niveles[i]).fill().expand().space(10f);
 			tablaNiveles.row();
@@ -280,8 +284,6 @@ public class PantallaSeleccionNivel implements Screen{
 		escena.addActor(tituloNiveles);
 		escena.addActor(subSeleccionar);
 		escena.addActor(captura);
-		escena.addActor(zonaTexto);
-		
+		escena.addActor(zonaTexto);		
 	}
-
 }

@@ -3,10 +3,9 @@ package com.valyrian.firstgame.entidades;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.valyrian.firstgame.Quetzal;
 
 import static com.valyrian.firstgame.utilidades.GameVariables.*;
-
-import com.valyrian.firstgame.refactor.entidades.Jugador;
 
 
 public class Hud {
@@ -14,12 +13,14 @@ public class Hud {
 	private Jugador jugador;
 	private TextureRegion[] font;
 	private Texture tex, texHeart, score;
+	private Quetzal juego;
 	
-	public Hud(Jugador j){
+	public Hud(Jugador j,Quetzal game){
 		jugador = j;
-		tex = new Texture("images/hud.png");
-		texHeart = new Texture("images/heart.png");
-		score = new Texture("images/calendario_maya.png");
+		juego = game;
+		tex = juego.manejadorRecursos.get("images/hud.png",Texture.class);
+		texHeart = juego.manejadorRecursos.get("images/corazon.png",Texture.class);
+		score = juego.manejadorRecursos.get("images/calendario_maya.png",Texture.class);
 		
 		//cargar los valores de cada numero
 		font = new TextureRegion[11];
@@ -47,8 +48,8 @@ public class Hud {
 	
 	public void dispose(){
 		
-		tex.dispose();
-		texHeart.dispose();
+//		tex.dispose();
+//		texHeart.dispose();
 		score.dispose();
 		if(debug){
 			System.out.println("Se llamo al dispose de HUD");

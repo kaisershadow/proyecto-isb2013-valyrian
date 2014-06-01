@@ -10,9 +10,10 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.utils.Array;
-import com.valyrian.firstgame.entidades.Proyectil;
-import com.valyrian.firstgame.refactor.entidades.Enemigo;
-import com.valyrian.firstgame.refactor.entidades.Jugador;
+import com.valyrian.firstgame.entidades.Enemigo;
+import com.valyrian.firstgame.entidades.Jugador;
+import com.valyrian.firstgame.entidades.Jugador.ESTADO_ACTUAL;
+
 public class ManejadorColisiones implements ContactListener {
 
 	private Array<Body> cuerposABorrar;
@@ -52,13 +53,13 @@ public class ManejadorColisiones implements ContactListener {
 		if(fA.getUserData() !=null && fA.getUserData().equals("Enemigo")){
 			if(fB.getUserData() !=null && fB.getUserData().equals("Jugador")){
 				//System.out.println("VIDA ANTES: "+player.getVidaActual());
-				player.cambiarVidaActual(((Enemigo)fA.getBody().getUserData()).getDamage()*-1);
+				player.setVidaActual(((Enemigo)fA.getBody().getUserData()).getDanio()*-1);
 				fB.getBody().applyLinearImpulse(new Vector2(player.getDireccion().x*-10,0), fB.getBody().getWorldCenter(), true);
 				//System.out.println("VIDA DESPUEs: "+player.getVidaActual());
 			}else if(fB.getUserData() !=null && fB.getUserData().equals("Proyectil")){
 				System.out.println("VIDA Enemigo ANTES FA: "+((Enemigo)fA.getBody().getUserData()).getVidaActual());
 				//((Enemigo)fA.getBody().getUserData()).cambiarVidaActual(((Proyectil)fB.getUserData()).getDamage()*-1);
-				((Enemigo)fA.getBody().getUserData()).cambiarVidaActual(-10);
+				((Enemigo)fA.getBody().getUserData()).setVidaActual(-10);
 				System.out.println("VIDA Enemigo DESPUEs FA: "+((Enemigo)fA.getBody().getUserData()).getVidaActual());
 			}
 			if(((Enemigo)fA.getBody().getUserData()).estaMuerto())
@@ -67,7 +68,7 @@ public class ManejadorColisiones implements ContactListener {
 		if(fB.getUserData() !=null && fB.getUserData().equals("Enemigo")){
 			if(fA.getUserData() !=null && fA.getUserData().equals("Jugador")){
 				//System.out.println("VIDA ANTES FB: "+player.getVidaActual());
-				player.cambiarVidaActual(((Enemigo)fB.getBody().getUserData()).getDamage()*-1);
+				player.setVidaActual(((Enemigo)fB.getBody().getUserData()).getDanio()*-1);
 				
 				
 				fA.getBody().applyLinearImpulse(new Vector2(player.getDireccion().x*-10,0), fA.getBody().getWorldCenter(), true);
@@ -75,7 +76,7 @@ public class ManejadorColisiones implements ContactListener {
 			}else if(fA.getUserData() !=null && fA.getUserData().equals("Proyectil")){
 				System.out.println("VIDA Enemigo ANTES FB: "+((Enemigo)fB.getBody().getUserData()).getVidaActual());
 //				((Enemigo)fB.getBody().getUserData()).cambiarVidaActual(((Proyectil)fA.getUserData()).getDamage()*-1);
-				((Enemigo)fB.getBody().getUserData()).cambiarVidaActual(-10);
+				((Enemigo)fB.getBody().getUserData()).setVidaActual(-10);
 
 				System.out.println("VIDA Enemigo DESPUEs FB: "+((Enemigo)fB.getBody().getUserData()).getVidaActual());
 			}
@@ -85,11 +86,13 @@ public class ManejadorColisiones implements ContactListener {
 		if(fA.getUserData() !=null && fA.getUserData().equals("Proyectil")){
 			if(fB.getUserData() !=null && fB.getUserData().equals("Jugador")){
 				System.out.println("CHOCO CON BALA");
+				cuerposABorrar.add(fA.getBody());
 			}
 		}
 		if(fB.getUserData() !=null && fB.getUserData().equals("Proyectil")){
 			if(fA.getUserData() !=null && fA.getUserData().equals("Jugador")){
 				System.out.println("CHOCO CON BALA");
+				cuerposABorrar.add(fB.getBody());
 			}
 		}
 

@@ -1,5 +1,7 @@
 package com.valyrian.firstgame.pantallas;
 
+import static com.valyrian.firstgame.utilidades.GameVariables.*;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -15,10 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.valyrian.firstgame.PrimerJuego;
-import com.valyrian.firstgame.utilidades.recursos.ManejadorRecursos;
-
-import static com.valyrian.firstgame.utilidades.GameVariables.*;
+import com.valyrian.firstgame.Quetzal;
 
 public class PantallaCreditos implements Screen{
 	
@@ -32,10 +31,10 @@ public class PantallaCreditos implements Screen{
 	private Texture textureTitulo;
 	private Image fondo;
 	private Image tituloQuetzal;
-	private PrimerJuego juego;
+	private Quetzal juego;
 	private Color color;
 	
-	public PantallaCreditos(PrimerJuego primerJuego) {
+	public PantallaCreditos(Quetzal primerJuego) {
 		juego = primerJuego;
 	}
 	
@@ -56,7 +55,7 @@ public class PantallaCreditos implements Screen{
         batch.end();
         //Para ver las lineas de decupuracion
 		if(debug)
-        Table.drawDebug(escena);
+			Table.drawDebug(escena);
 	}
 
 	@Override
@@ -111,24 +110,26 @@ public class PantallaCreditos implements Screen{
 	public void dispose() {
 
 		escena.dispose();
-		batch.dispose();
-		ManejadorRecursos.getInstancia().disposeTexture("titulo_creditos"); 
-		skin.dispose();
+		juego.manejadorRecursos.unload("images/menus/titulo_creditos.png");
 		if(debug)
 			System.out.println("SE LLAMO AL DISPOSE DE CREDITOS");
 	}
 
 	void inicializar_variables(){
-	    skin = new Skin(Gdx.files.internal("ui/skin/uiskin.json"));
+	    skin = juego.manejadorRecursos.get("ui/skin/uiskin.json");
 	    color = new Color(99, 145, 0, 0.4f);
-	    batch = new SpriteBatch();
+	    batch = juego.getSpriteBatch();
 	    
-	    textureFondo = ManejadorRecursos.getInstancia().getTexture("mainmenu_BG");
+	    if(!juego.manejadorRecursos.isLoaded("images/menus/mainmenu_BG.jpg"))
+			juego.manejadorRecursos.load("images/menus/mainmenu_BG.jpg", Texture.class);
+	 
+	    juego.manejadorRecursos.load("images/menus/titulo_creditos.png",Texture.class);
+	    juego.manejadorRecursos.finishLoading();
+	    
+	    textureFondo = juego.manejadorRecursos.get("images/menus/mainmenu_BG.jpg");
 	    fondo = new Image(textureFondo);
 	    
-	    
-	    ManejadorRecursos.getInstancia().cargarTexture("images/menus/titulo_creditos.png", "titulo_creditos");
-	    textureTitulo = ManejadorRecursos.getInstancia().getTexture("titulo_creditos"); 
+	    textureTitulo = juego.manejadorRecursos.get("images/menus/titulo_creditos.png"); 
 	    tituloQuetzal = new Image(textureTitulo);
 		
 	    escena = new Stage();
@@ -172,7 +173,8 @@ public class PantallaCreditos implements Screen{
 	}*/
 	
 	void cargar_actores_escenario(){
-		tabla.debug();
+		if(debug)
+			tabla.debug();
 		
 		tabla.add(t1).fill().expand();
 		tabla.row();

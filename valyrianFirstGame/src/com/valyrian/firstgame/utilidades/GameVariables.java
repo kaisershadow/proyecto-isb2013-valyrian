@@ -22,5 +22,5 @@ public final class  GameVariables {
 	
 	public static boolean PAUSE = false;
 
-	public enum ESTADO_ACTUAL{Atacando, Moviendose, Quieto,Saltando}
+	
 }

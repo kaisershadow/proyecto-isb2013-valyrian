@@ -1016,7 +1016,7 @@
  <objectgroup name="Muerte" width="400" height="36">
   <object name="muerte1" type="object" x="768" y="1120">
    <properties>
-    <property name="categoryBits" value="6"/>
+    <property name="categoryBits" value="8"/>
     <property name="maskBits" value="2"/>
     <property name="userData" value="Muerte"/>
    </properties>
@@ -1024,78 +1024,89 @@
   </object>
   <object name="muerte2" type="object" x="1696" y="1120">
    <properties>
-    <property name="categoryBits" value="6"/>
+    <property name="categoryBits" value="8"/>
     <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
    </properties>
    <polyline points="0,0 64,0"/>
   </object>
   <object name="muerte3" type="object" x="2144" y="1056">
    <properties>
-    <property name="categoryBits" value="6"/>
+    <property name="categoryBits" value="8"/>
     <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
    </properties>
    <polyline points="0,0 512,0"/>
   </object>
   <object name="muerte4" type="object" x="3680" y="1120">
    <properties>
-    <property name="categoryBits" value="6"/>
+    <property name="categoryBits" value="8"/>
     <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
    </properties>
    <polyline points="0,0 416,0"/>
   </object>
   <object name="muerte5" type="object" x="4192" y="1120">
    <properties>
-    <property name="categoryBits" value="6"/>
+    <property name="categoryBits" value="8"/>
     <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
    </properties>
    <polyline points="-32,0 928,0"/>
   </object>
   <object name="muerte6" type="object" x="5216" y="1056">
    <properties>
-    <property name="categoryBits" value="6"/>
+    <property name="categoryBits" value="8"/>
     <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
    </properties>
    <polyline points="-32,0 160,0 160,-32"/>
   </object>
   <object name="muerte7" type="object" x="5504" y="1056">
    <properties>
-    <property name="categoryBits" value="6"/>
+    <property name="categoryBits" value="8"/>
     <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
    </properties>
    <polyline points="-64,-32 -64,0 1056,0"/>
   </object>
   <object name="muerte8" type="object" x="6720" y="1056">
    <properties>
-    <property name="categoryBits" value="6"/>
+    <property name="categoryBits" value="8"/>
     <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
    </properties>
    <polyline points="-96,0 1248,0"/>
   </object>
   <object name="muerte9" type="object" x="9120" y="1056">
    <properties>
-    <property name="categoryBits" value="6"/>
+    <property name="categoryBits" value="8"/>
     <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
    </properties>
    <polyline points="-64,0 320,0"/>
   </object>
   <object name="muerte10" type="object" x="10912" y="1056">
    <properties>
-    <property name="categoryBits" value="6"/>
+    <property name="categoryBits" value="8"/>
     <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
    </properties>
    <polyline points="-32,0 256,0"/>
   </object>
   <object name="muerte11" type="object" x="11136" y="704">
    <properties>
-    <property name="categoryBits" value="6"/>
+    <property name="categoryBits" value="8"/>
     <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
    </properties>
    <polyline points="0,32 0,0 96,0 96,32"/>
   </object>
   <object name="muerte12" type="object" x="11264" y="1056">
    <properties>
-    <property name="categoryBits" value="6"/>
+    <property name="categoryBits" value="8"/>
     <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
    </properties>
    <polyline points="-32,0 224,0"/>
   </object>

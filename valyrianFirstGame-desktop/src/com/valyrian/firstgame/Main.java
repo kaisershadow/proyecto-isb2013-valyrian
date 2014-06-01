@@ -11,6 +11,6 @@ public class Main {
 		cfg.width = LwjglApplicationConfiguration.getDesktopDisplayMode().width/2;
 		cfg.height = LwjglApplicationConfiguration.getDesktopDisplayMode().height/2;
 //		cfg.fullscreen=true;
-		new LwjglApplication(new PrimerJuego(), cfg);
+		new LwjglApplication(new Quetzal(), cfg);
 	}
 }
