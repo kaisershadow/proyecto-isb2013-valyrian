@@ -2,7 +2,9 @@ package com.valyrian.firstgame.pantallas;
 
 import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.valyrian.firstgame.Quetzal;
@@ -21,27 +23,33 @@ public class PantallaCargaNivel implements Screen {
 	
 	@Override
 	public void render(float delta) {
-	batch.begin();
+		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		batch.begin();
 		barra.draw(batch, 1);
 		batch.end();
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		
+//		barra.setPosition(width/2-200,height/2);
 	}
 
 	@Override
 	public void show() {
-		this.batch = juego.getSpriteBatch();
+		this.batch = Quetzal.getSpriteBatch();
 		barra = new BarraCarga(juego);
-		juego.manejadorRecursos.load("personajes/nativo.png", Texture.class);
-		juego.manejadorRecursos.load("personajes/rana.png", Texture.class);
-		juego.manejadorRecursos.load("personajes/dardo.png", Texture.class);
-		juego.manejadorRecursos.load("images/corazon.png", Texture.class);
-		juego.manejadorRecursos.load("images/hud.png", Texture.class);
-		juego.manejadorRecursos.load("images/calendario_maya.png", Texture.class);
-		juego.manejadorRecursos.load("images/pausa.png", Texture.class);
+		Quetzal.getManejaRecursos().load("personajes/nativo.png", Texture.class);
+		Quetzal.getManejaRecursos().load("personajes/rana.png", Texture.class);
+		Quetzal.getManejaRecursos().load("personajes/avispa.png", Texture.class);
+		Quetzal.getManejaRecursos().load("personajes/dardo.png", Texture.class);
+		Quetzal.getManejaRecursos().load("images/corazon.png", Texture.class);
+		Quetzal.getManejaRecursos().load("images/hud.png", Texture.class);
+		Quetzal.getManejaRecursos().load("images/calendario_maya.png", Texture.class);
+		Quetzal.getManejaRecursos().load("images/pausa.png", Texture.class);
+		
+		Quetzal.getManejaRecursos().load("secreto/balde.png", Texture.class);
+		Quetzal.getManejaRecursos().load("secreto/gota.png", Texture.class);
 	}
 
 	@Override

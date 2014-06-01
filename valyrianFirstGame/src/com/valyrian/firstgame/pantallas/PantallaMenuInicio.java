@@ -118,32 +118,36 @@ public class PantallaMenuInicio implements Screen{
 		escena.dispose();
 //		batch.dispose();
 //		skin.dispose();
-		juego.manejadorRecursos.unload("images/menus/titulo_labusqueda.png");
-		juego.manejadorRecursos.unload("images/menus/titulo_quetzal.png");
+		Quetzal.getManejaRecursos().unload("images/menus/titulo_labusqueda.png");
+		Quetzal.getManejaRecursos().unload("images/menus/titulo_quetzal.png");
 		if(debug)
 			System.out.println("SE LLAMO AL DISPOSE DE MENU INICIO");
 	}
 
 	void inicializar_variables(){
-	    skin = juego.manejadorRecursos.get("ui/skin/uiskin.json");
-	    color = new Color(99, 145, 0, 0.4f);
-	    batch = juego.getSpriteBatch();
-	    
-		if(!juego.manejadorRecursos.isLoaded("images/menus/mainmenu_BG.jpg"))
-			juego.manejadorRecursos.load("images/menus/mainmenu_BG.jpg", Texture.class);
-		if(!juego.manejadorRecursos.isLoaded("images/menus/titulo_quetzal.png"))
-			juego.manejadorRecursos.load("images/menus/titulo_quetzal.png", Texture.class);
-		if(!juego.manejadorRecursos.isLoaded("images/menus/titulo_labusqueda.png"))
-			juego.manejadorRecursos.load("images/menus/titulo_labusqueda.png", Texture.class);
-		juego.manejadorRecursos.finishLoading();
+		if(!Quetzal.getManejaRecursos().isLoaded("ui/skin/uiskin.json", Skin.class))
+			Quetzal.getManejaRecursos().load("ui/skin/uiskin.json", Skin.class);
+		Quetzal.getManejaRecursos().finishLoading();
 		
-		textureFondo = juego.manejadorRecursos.get("images/menus/mainmenu_BG.jpg");
+	    skin = Quetzal.getManejaRecursos().get("ui/skin/uiskin.json");
+	    color = new Color(99, 145, 0, 0.4f);
+	    batch = Quetzal.getSpriteBatch();
+	    
+		if(!Quetzal.getManejaRecursos().isLoaded("images/menus/mainmenu_BG.jpg"))
+			Quetzal.getManejaRecursos().load("images/menus/mainmenu_BG.jpg", Texture.class);
+		if(!Quetzal.getManejaRecursos().isLoaded("images/menus/titulo_quetzal.png"))
+			Quetzal.getManejaRecursos().load("images/menus/titulo_quetzal.png", Texture.class);
+		if(!Quetzal.getManejaRecursos().isLoaded("images/menus/titulo_labusqueda.png"))
+			Quetzal.getManejaRecursos().load("images/menus/titulo_labusqueda.png", Texture.class);
+		Quetzal.getManejaRecursos().finishLoading();
+		
+		textureFondo = Quetzal.getManejaRecursos().get("images/menus/mainmenu_BG.jpg");
 	    fondo = new Image(textureFondo);
 	    
-	    textureTitulo = juego.manejadorRecursos.get("images/menus/titulo_quetzal.png");
+	    textureTitulo = Quetzal.getManejaRecursos().get("images/menus/titulo_quetzal.png");
 	    tituloQuetzal = new Image(textureTitulo);
 	    
-	    textureSubtitulo = juego.manejadorRecursos.get("images/menus/titulo_labusqueda.png");
+	    textureSubtitulo = Quetzal.getManejaRecursos().get("images/menus/titulo_labusqueda.png");
 	    subQuetzal = new Image(textureSubtitulo);
 		
 	    escena = new Stage();

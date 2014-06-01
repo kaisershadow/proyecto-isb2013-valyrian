@@ -31,15 +31,15 @@ public class Jugador extends EntidadDibujable{
 	
 	private ManejadorAnimacion mab;
 	
-	public Jugador(Quetzal game,float ancho, float alto,float posIniX,float posIniY,Vector2 vel,int vidaMax, World mundo,ManejadorAnimacion ma) {
-		super(game,ancho, alto,vel,posIniX,posIniY, mundo,ma);
+	public Jugador(float ancho, float alto,float posIniX,float posIniY,Vector2 vel,int vidaMax, World mundo,ManejadorAnimacion ma) {
+		super(ancho, alto,vel,posIniX,posIniY, mundo,ma);
 		this.vidaActual = this.maxVida = vidaMax;
 		this.nombre = "Jugador";
 		this.mirandoDerecha=true;
 		estado=ESTADO_ACTUAL.Quieto;
 //		this.cuerpo.getPosition().x = posIniX/PIXELSTOMETERS;
 //		this.cuerpo.getPosition().y = posIniY/PIXELSTOMETERS;
-		mab = new AnimacionEstatica(juego.manejadorRecursos.get("personajes/dardo.png", Texture.class));
+		mab = new AnimacionEstatica(Quetzal.getManejaRecursos().get("personajes/dardo.png", Texture.class));
 //		manAnim = new AnimacionJugador(t);
 	}
 	
@@ -188,7 +188,7 @@ public class Jugador extends EntidadDibujable{
 		velAux.x = this.direccion.x*3;
 		velAux.y = 0;
 //		bala = new Proyectil(7, 3, posAux, velAux, mundo, new Texture("personajes/dardo.png"),danio);
-		bala = new Proyectil(juego,7, 3, posAux.x, posAux.y, velAux, mundo, mab, danio);
+		bala = new Proyectil(7, 3, posAux.x, posAux.y, velAux, mundo, mab, danio);
 		
 		Filter filter = bala.getCuerpo().getFixtureList().first().getFilterData();
 		filter.maskBits |=BITS_ENEMIGO;

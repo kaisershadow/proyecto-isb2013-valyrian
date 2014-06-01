@@ -9,14 +9,13 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.valyrian.firstgame.Quetzal;
 import com.valyrian.firstgame.interfaces.ManejadorAnimacion;
 
 public class Proyectil extends EntidadDibujable{
 	
 	private int damage;
-	public Proyectil(Quetzal game,float ancho,float alto,float posIniX, float posIniY, Vector2 vel,World mundo,ManejadorAnimacion ma,int danio) {
-		super(game,ancho, alto, vel,posIniX,posIniY,mundo,ma);
+	public Proyectil(float ancho,float alto,float posIniX, float posIniY, Vector2 vel,World mundo,ManejadorAnimacion ma,int danio) {
+		super(ancho, alto, vel,posIniX,posIniY,mundo,ma);
 		setDamage(danio);
 	}
 	

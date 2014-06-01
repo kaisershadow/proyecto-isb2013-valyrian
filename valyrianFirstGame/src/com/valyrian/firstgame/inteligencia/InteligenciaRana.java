@@ -23,16 +23,14 @@ public class InteligenciaRana implements ManejadorInteligencia {
 	private boolean dispIzq;
 	private boolean dispDer;
 	private ManejadorAnimacion mab;
-	private Quetzal juego;
 	
 
-	public InteligenciaRana(Quetzal game,float lim,Enemigo e) {
+	public InteligenciaRana(float lim,Enemigo e) {
 		enemigo = e;
 		this.limite = lim;
 		dispIzq=false;
 		dispDer=false;
-		juego = game;
-		mab = new AnimacionEstatica(juego.manejadorRecursos.get("personajes/dardo.png", Texture.class));
+		mab = new AnimacionEstatica(Quetzal.getManejaRecursos().get("personajes/dardo.png", Texture.class));
 		stateTime =0;
 	}
 	
@@ -68,7 +66,7 @@ public class InteligenciaRana implements ManejadorInteligencia {
 		posAux.y =this.enemigo.getCuerpo().getPosition().y;
 		velAux.x = this.enemigo.getDireccion().x*3;
 		velAux.y = 0;
-		bala = new Proyectil(juego,7, 3, posAux.x, posAux.y, velAux, mundo, mab, this.enemigo.getDanio());
+		bala = new Proyectil(7, 3, posAux.x, posAux.y, velAux, mundo, mab, this.enemigo.getDanio());
 //		bala = new Proyectil(7, 3, posAux, velAux, mundo, new Texture("personajes/dardo.png"),this.enemigo.getDanio());
 		Filter filter = bala.getCuerpo().getFixtureList().first().getFilterData();
 		filter.maskBits |=BITS_JUGADOR;
