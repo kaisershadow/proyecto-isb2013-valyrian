@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
-import com.valyrian.firstgame.Quetzal;
 import com.valyrian.firstgame.interfaces.ManejadorAnimacion;
 
 public abstract class EntidadDibujable {
@@ -15,7 +14,6 @@ public abstract class EntidadDibujable {
 	protected float ancho;
 	protected Body cuerpo;
 	protected ManejadorAnimacion manAnim;
-	protected Quetzal juego;
 	//Sentido de la velocidad
 	protected Vector2 direccion;
 	
@@ -24,13 +22,12 @@ public abstract class EntidadDibujable {
 	public abstract void render(float deltaTime, SpriteBatch batch);
 	
 	//Constructor
-	EntidadDibujable(Quetzal game,float ancho,float alto,Vector2 vel, float posX,float posY, World m,ManejadorAnimacion ma){
+	protected EntidadDibujable(float ancho,float alto,Vector2 vel, float posX,float posY, World m,ManejadorAnimacion ma){
 		this.ancho = ancho;
 		this.alto = alto;
 		this.velocidad = vel;
 		this.manAnim = ma;
 		direccion = new Vector2(1,0);
-		juego = game;
 		crearCuerpo(m, ancho, alto,posX,posY);
 	}
 	

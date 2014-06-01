@@ -116,26 +116,26 @@ public class PantallaPuntuaciones implements Screen{
 	}
 
 	void inicializar_variables(){
-	    skin = juego.manejadorRecursos.get("ui/skin/uiskin.json");
+	    skin = Quetzal.getManejaRecursos().get("ui/skin/uiskin.json");
 	    color = new Color(99, 145, 0, 0.4f);
-	    batch = juego.getSpriteBatch();
+	    batch = Quetzal.getSpriteBatch();
 	    
 	    //Cargar las imagenes de la pantalla
-	    if(!juego.manejadorRecursos.isLoaded("images/menus/mainmenu_BG.jpg"))
-			juego.manejadorRecursos.load("images/menus/mainmenu_BG.jpg", Texture.class);
+	    if(!Quetzal.getManejaRecursos().isLoaded("images/menus/mainmenu_BG.jpg"))
+			Quetzal.getManejaRecursos().load("images/menus/mainmenu_BG.jpg", Texture.class);
 	 
-	    juego.manejadorRecursos.load("images/menus/titulo_puntuaciones.png",Texture.class);
-	    juego.manejadorRecursos.load("images/menus/titulo_mas_altas.png",Texture.class);
-	    juego.manejadorRecursos.finishLoading();
+	    Quetzal.getManejaRecursos().load("images/menus/titulo_puntuaciones.png",Texture.class);
+	    Quetzal.getManejaRecursos().load("images/menus/titulo_mas_altas.png",Texture.class);
+	    Quetzal.getManejaRecursos().finishLoading();
 
 	    
-	    textureFondo = juego.manejadorRecursos.get("images/menus/mainmenu_BG.jpg");
+	    textureFondo = Quetzal.getManejaRecursos().get("images/menus/mainmenu_BG.jpg");
 	    fondo = new Image(textureFondo);
 	    
-	    textureTitulo = juego.manejadorRecursos.get("images/menus/titulo_puntuaciones.png");
+	    textureTitulo = Quetzal.getManejaRecursos().get("images/menus/titulo_puntuaciones.png");
 	    tituloQuetzal = new Image(textureTitulo);
 	    
-	    textureSubtitulo = juego.manejadorRecursos.get("images/menus/titulo_mas_altas.png");
+	    textureSubtitulo = Quetzal.getManejaRecursos().get("images/menus/titulo_mas_altas.png");
 	    subQuetzal = new Image(textureSubtitulo);
 		
 	    escena = new Stage();

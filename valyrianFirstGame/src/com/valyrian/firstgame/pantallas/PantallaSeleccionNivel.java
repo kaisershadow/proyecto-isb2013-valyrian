@@ -126,10 +126,10 @@ public class PantallaSeleccionNivel implements Screen{
 	@Override
 	public void dispose() {
 		escena.dispose();
-		juego.manejadorRecursos.unload("images/menus/titulo_niveles.png");
-		juego.manejadorRecursos.unload("images/menus/titulo_seleccionarnivel.png");
+		Quetzal.getManejaRecursos().unload("images/menus/titulo_niveles.png");
+		Quetzal.getManejaRecursos().unload("images/menus/titulo_seleccionarnivel.png");
 		for(int i=1;i<=numNiveles;i++)
-			juego.manejadorRecursos.unload("images/menus/nivel"+i+".png");
+			Quetzal.getManejaRecursos().unload("images/menus/nivel"+i+".png");
 
 		if(debug)
 			System.out.println("SE LLAMO AL DISPOSE DE SELECCION NIVEL");
@@ -137,31 +137,36 @@ public class PantallaSeleccionNivel implements Screen{
 	
 	void inicializar_variables(){
 		numNiveles = 3;
-        skin = juego.manejadorRecursos.get("ui/skin/uiskin.json");
+		
+		if(!Quetzal.getManejaRecursos().isLoaded("ui/skin/uiskin.json", Skin.class))
+			Quetzal.getManejaRecursos().load("ui/skin/uiskin.json", Skin.class);
+		Quetzal.getManejaRecursos().finishLoading();
+		
+        skin = Quetzal.getManejaRecursos().get("ui/skin/uiskin.json");
         color = new Color(99, 145, 0, 0.4f);
-        batch = juego.getSpriteBatch();
+        batch = Quetzal.getSpriteBatch();
         
-        if(!juego.manejadorRecursos.isLoaded("images/menus/mainmenu_BG.jpg"))
-			juego.manejadorRecursos.load("images/menus/mainmenu_BG.jpg", Texture.class);
+        if(!Quetzal.getManejaRecursos().isLoaded("images/menus/mainmenu_BG.jpg"))
+			Quetzal.getManejaRecursos().load("images/menus/mainmenu_BG.jpg", Texture.class);
 	 
-	    juego.manejadorRecursos.load("images/menus/titulo_niveles.png",Texture.class);
-	    juego.manejadorRecursos.load("images/menus/titulo_seleccionarnivel.png",Texture.class);
+	    Quetzal.getManejaRecursos().load("images/menus/titulo_niveles.png",Texture.class);
+	    Quetzal.getManejaRecursos().load("images/menus/titulo_seleccionarnivel.png",Texture.class);
 	    for(int i=1;i<=numNiveles;i++)
-	    	juego.manejadorRecursos.load("images/menus/nivel"+i+".png",Texture.class);
-	    juego.manejadorRecursos.finishLoading();
+	    	Quetzal.getManejaRecursos().load("images/menus/nivel"+i+".png",Texture.class);
+	    Quetzal.getManejaRecursos().finishLoading();
 
         
         
 
-        textureFondo = juego.manejadorRecursos.get("images/menus/mainmenu_BG.jpg"); 
+        textureFondo = Quetzal.getManejaRecursos().get("images/menus/mainmenu_BG.jpg"); 
         fondo = new Image(textureFondo);
         
         
-        textureTitulo = juego.manejadorRecursos.get("images/menus/titulo_niveles.png");
+        textureTitulo = Quetzal.getManejaRecursos().get("images/menus/titulo_niveles.png");
         tituloNiveles = new Image(textureTitulo);
         
         
-        textureSeleccionar = textureTitulo = juego.manejadorRecursos.get("images/menus/titulo_seleccionarnivel.png");
+        textureSeleccionar = textureTitulo = Quetzal.getManejaRecursos().get("images/menus/titulo_seleccionarnivel.png");
         subSeleccionar = new Image(textureSeleccionar);
         
         captura = new Table(skin);
@@ -182,7 +187,7 @@ public class PantallaSeleccionNivel implements Screen{
 		zonaTexto.add("Por favor seleccione un nivel de \n\r y presione el boton Jugar");
 		capturaNivel = new Texture[numNiveles];
 		for (int i = 0; i < numNiveles; i++) 
-			capturaNivel[i] = juego.manejadorRecursos.get("images/menus/nivel"+(i+1)+".png");
+			capturaNivel[i] = Quetzal.getManejaRecursos().get("images/menus/nivel"+(i+1)+".png");
 		
 		botonJugar.setColor(color);
 		botonRegresar.setColor(color);

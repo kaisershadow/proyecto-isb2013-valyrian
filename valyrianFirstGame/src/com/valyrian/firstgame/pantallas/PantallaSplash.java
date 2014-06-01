@@ -37,7 +37,7 @@ public class PantallaSplash implements Screen {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
-		juego.manejadorRecursos.update();
+		Quetzal.getManejaRecursos().update();
 		splashImage.act(delta);
 		spriteBatch.begin();
 		splashImage.draw(spriteBatch, 1);	
@@ -52,20 +52,20 @@ public class PantallaSplash implements Screen {
 
 	@Override
 	public void show() {
-		spriteBatch = juego.getSpriteBatch();
+		spriteBatch = Quetzal.getSpriteBatch();
 		//Cargar recursos del manejador
-		sound = juego.manejadorRecursos.get("audio/splash_sound.mp3");
-		splashTexture = juego.manejadorRecursos.get("images/splash.png");
+		sound = Quetzal.getManejaRecursos().get("audio/splash_sound.mp3");
+		splashTexture = Quetzal.getManejaRecursos().get("images/splash.png");
 	
 		//Cargar imagen de fondo de las pantallas de menu
-		juego.manejadorRecursos.load("images/menus/mainmenu_BG.jpg", Texture.class);
+		Quetzal.getManejaRecursos().load("images/menus/mainmenu_BG.jpg", Texture.class);
 		
 		//Cargar imagenes de la siguiente pantalla
-		juego.manejadorRecursos.load("images/menus/titulo_quetzal.png", Texture.class);
-		juego.manejadorRecursos.load("images/menus/titulo_labusqueda.png", Texture.class);
+		Quetzal.getManejaRecursos().load("images/menus/titulo_quetzal.png", Texture.class);
+		Quetzal.getManejaRecursos().load("images/menus/titulo_labusqueda.png", Texture.class);
 		
 		//Cargar SKIN para las pantallas
-		juego.manejadorRecursos.load("ui/skin/uiskin.json", Skin.class);
+		Quetzal.getManejaRecursos().load("ui/skin/uiskin.json", Skin.class);
 		
 		//Seleccionar Linear para mejorar el estiramiento 
 		splashTexture.setFilter( TextureFilter.Linear, TextureFilter.Linear ); 
@@ -81,7 +81,7 @@ public class PantallaSplash implements Screen {
 			    	@Override       
 			    	public boolean act(float delta){
 			    	// La última acción nos direcciona hacia la siguiente pantalla (menu) 
-			    		juego.manejadorRecursos.finishLoading();
+			    		Quetzal.getManejaRecursos().finishLoading();
 			    		juego.setScreen(juego.pantallaMenu);
 			    		return true; 
 			        }  
@@ -99,8 +99,8 @@ public class PantallaSplash implements Screen {
 //		spriteBatch.dispose();
 //		ManejadorRecursos.getInstancia().disposeTexture("splash_texture");
 //		ManejadorRecursos.getInstancia().disposeSound("roar_sound");
-		juego.manejadorRecursos.unload("images/splash.png");
-		juego.manejadorRecursos.unload("audio/splash_sound.mp3");
+		Quetzal.getManejaRecursos().unload("images/splash.png");
+		Quetzal.getManejaRecursos().unload("audio/splash_sound.mp3");
 		if(debug)
 			System.out.println("SE LLAMO AL DISPOSE DE SPLASH");
 		

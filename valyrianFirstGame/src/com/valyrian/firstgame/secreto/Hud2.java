@@ -1,20 +1,20 @@
-package com.valyrian.firstgame.entidades;
+package com.valyrian.firstgame.secreto;
+
+
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.valyrian.firstgame.Quetzal;
 
-import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
+public class Hud2 {
 
-public class Hud {
-
-	private Jugador jugador;
+	private Bucket jugador;
 	private TextureRegion[] font;
 	private Texture tex, texHeart, score;
 	
-	public Hud(Jugador j){
+	public Hud2(Bucket j){
 		jugador = j;
 		tex = Quetzal.getManejaRecursos().get("images/hud.png",Texture.class);
 		texHeart = Quetzal.getManejaRecursos().get("images/corazon.png",Texture.class);
@@ -35,21 +35,21 @@ public class Hud {
 	
 	public void render(SpriteBatch sb){
 		sb.begin();
-		drawString(sb, String.valueOf(jugador.getVidaActual()), 16, 16);
+		
+		
+		drawString(sb, String.valueOf(jugador.getPuntuacion()), 16, 16);
+		drawString(sb, "100", 16, 16);
 		sb.draw(texHeart, 16, 16, 16, 16);
 		sb.draw(score, 96, 16, 16, 16);
-		drawString(sb, String.valueOf(jugador.getVidaActual()), 96, 16);
+		drawString(sb, String.valueOf(jugador.getPuntuacion()), 96, 16);
 		sb.end();
 	}
 	
 	public void dispose(){
 		
-//		tex.dispose();
-//		texHeart.dispose();
+		tex.dispose();
+		texHeart.dispose();
 		score.dispose();
-		if(debug){
-			System.out.println("SE LLAMO AL DISPOSE DE HUD");
-		}
 	}
 	
 	private void drawString(SpriteBatch sb, String s, float x, float y) {

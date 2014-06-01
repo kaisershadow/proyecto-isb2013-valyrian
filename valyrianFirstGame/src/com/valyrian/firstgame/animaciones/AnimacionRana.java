@@ -16,8 +16,8 @@ public class AnimacionRana implements ManejadorAnimacion{
 	}
 	
 	@Override
-	public void cargarAnimacion(Texture textura) {
-		TextureRegion[] rana = TextureRegion.split(textura, 32, 32)[0];
+	public void cargarAnimacion(Texture t) {
+		TextureRegion[] rana = TextureRegion.split(t, 32, 32)[0];
 		animacion = new Animation(1/5f,rana[0],rana[1],rana[2],rana[3],rana[4]);
 		animacion.setPlayMode(Animation.LOOP);		
 	}

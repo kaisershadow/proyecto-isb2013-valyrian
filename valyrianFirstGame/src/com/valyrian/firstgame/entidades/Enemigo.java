@@ -10,7 +10,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.valyrian.firstgame.Quetzal;
 import com.valyrian.firstgame.interfaces.ManejadorAnimacion;
 import com.valyrian.firstgame.interfaces.ManejadorInteligencia;
 
@@ -22,11 +21,12 @@ public class Enemigo extends EntidadDibujable {
 	public boolean mirandoDerecha;
 	private ManejadorInteligencia manIntel;
 	
-	public Enemigo(Quetzal game,float ancho, float alto, float posIniX, float posIniY,Vector2 vel,int danioAux,int vidaMax,World m,ManejadorAnimacion ma) {
-		super(game,ancho, alto, vel,posIniX,posIniY, m,ma);
+	public Enemigo(float ancho, float alto, float posIniX, float posIniY,Vector2 vel,int danioAux,int vidaMax,World m,ManejadorAnimacion ma) {
+		super(ancho, alto, vel,posIniX,posIniY, m,ma);
 		this.vidaActual = this.maxVida = vidaMax;
 		this.danio = danioAux;
 		this.mirandoDerecha=true;
+		this.cuerpo.setLinearVelocity(vel);
 	}
 	
 	public void setInteligencia(ManejadorInteligencia mi){ this.manIntel= mi; }
@@ -58,7 +58,7 @@ public class Enemigo extends EntidadDibujable {
 	protected void crearCuerpo(World mundo, float ancho, float alto,float posX,float posY) {
 		//Definicicion del cuerpo
 		BodyDef bodyDef = new BodyDef();
-		bodyDef.type = BodyType.DynamicBody;
+		bodyDef.type = BodyType.KinematicBody;
 		bodyDef.position.set(posX/PIXELSTOMETERS,posY/PIXELSTOMETERS);
 		
 		//Definicion de la forma del fixture
@@ -68,8 +68,8 @@ public class Enemigo extends EntidadDibujable {
 		//Definicion del fixture
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = boxShape;
-		fixtureDef.friction = 10000;
-		fixtureDef.density = 500;
+//		fixtureDef.friction = 10000;
+//		fixtureDef.density = 500;
 		fixtureDef.restitution = 0;
 		fixtureDef.isSensor =false;
 		fixtureDef.filter.categoryBits = BITS_ENEMIGO;

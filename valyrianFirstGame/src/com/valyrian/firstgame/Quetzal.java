@@ -15,11 +15,12 @@ import com.valyrian.firstgame.pantallas.PantallaNivel;
 import com.valyrian.firstgame.pantallas.PantallaPuntuaciones;
 import com.valyrian.firstgame.pantallas.PantallaSeleccionNivel;
 import com.valyrian.firstgame.pantallas.PantallaSplash;
+import com.valyrian.firstgame.secreto.PantallaNivelSecreto;
 
 
 public class Quetzal extends Game {
-	public AssetManager manejadorRecursos;
-	private SpriteBatch sb;
+	private static AssetManager manejadorRecursos;
+	private static SpriteBatch sb;
 	
 	public Screen pantallaSplash;
 	public Screen pantallaMenu;
@@ -29,6 +30,7 @@ public class Quetzal extends Game {
 	public Screen pantallaCreditos;
 	public Screen pantallaNivel;
 	public Screen pantallaCargaNivel;
+	public Screen pantallaSecreto;
 	//public Screen pantallaPrueba;	
 	
 	public Quetzal() {
@@ -47,13 +49,14 @@ public class Quetzal extends Game {
 		//pantallaNivel = new PantallaNivel(this);
 		pantallaCargaNivel = new PantallaCargaNivel(this);
 		pantallaNivel = new PantallaNivel(this);
+		pantallaSecreto = new PantallaNivelSecreto(this);
 	}
 	
 	@Override
 	public void create() {
 		sb = new SpriteBatch();
 		manejadorRecursos.finishLoading();
-		setScreen(pantallaSplash);
+		setScreen(pantallaSeleccionNivel);
 	}
 	
 	@Override
@@ -65,5 +68,7 @@ public class Quetzal extends Game {
 			System.out.println("SE LLAMO AL DISPOSE DE QUETZAL (GAME)");
 	}
 	
-	public SpriteBatch getSpriteBatch(){ return sb; }
+	public static SpriteBatch getSpriteBatch(){ return sb; }
+	
+	public static AssetManager getManejaRecursos(){ return manejadorRecursos; }
 }

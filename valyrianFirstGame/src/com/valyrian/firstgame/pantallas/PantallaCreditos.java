@@ -110,26 +110,26 @@ public class PantallaCreditos implements Screen{
 	public void dispose() {
 
 		escena.dispose();
-		juego.manejadorRecursos.unload("images/menus/titulo_creditos.png");
+		Quetzal.getManejaRecursos().unload("images/menus/titulo_creditos.png");
 		if(debug)
 			System.out.println("SE LLAMO AL DISPOSE DE CREDITOS");
 	}
 
 	void inicializar_variables(){
-	    skin = juego.manejadorRecursos.get("ui/skin/uiskin.json");
+	    skin = Quetzal.getManejaRecursos().get("ui/skin/uiskin.json");
 	    color = new Color(99, 145, 0, 0.4f);
-	    batch = juego.getSpriteBatch();
+	    batch = Quetzal.getSpriteBatch();
 	    
-	    if(!juego.manejadorRecursos.isLoaded("images/menus/mainmenu_BG.jpg"))
-			juego.manejadorRecursos.load("images/menus/mainmenu_BG.jpg", Texture.class);
+	    if(!Quetzal.getManejaRecursos().isLoaded("images/menus/mainmenu_BG.jpg"))
+	    	Quetzal.getManejaRecursos().load("images/menus/mainmenu_BG.jpg", Texture.class);
 	 
-	    juego.manejadorRecursos.load("images/menus/titulo_creditos.png",Texture.class);
-	    juego.manejadorRecursos.finishLoading();
+	    Quetzal.getManejaRecursos().load("images/menus/titulo_creditos.png",Texture.class);
+	    Quetzal.getManejaRecursos().finishLoading();
 	    
-	    textureFondo = juego.manejadorRecursos.get("images/menus/mainmenu_BG.jpg");
+	    textureFondo = Quetzal.getManejaRecursos().get("images/menus/mainmenu_BG.jpg");
 	    fondo = new Image(textureFondo);
 	    
-	    textureTitulo = juego.manejadorRecursos.get("images/menus/titulo_creditos.png"); 
+	    textureTitulo = Quetzal.getManejaRecursos().get("images/menus/titulo_creditos.png"); 
 	    tituloQuetzal = new Image(textureTitulo);
 		
 	    escena = new Stage();
