@@ -7,3 +7,4 @@ valyrianFirstGame-android/bin/
 valyrianFirstGame-android/gen/
 valyrianFirstGame-desktop/.settings/
 valyrianFirstGame-desktop/bin/
+valyrianFirstGame-desktop/*.log

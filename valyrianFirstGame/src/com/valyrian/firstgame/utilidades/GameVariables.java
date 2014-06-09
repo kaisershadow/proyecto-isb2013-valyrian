@@ -16,10 +16,11 @@ public final class  GameVariables {
 	public static final short BITS_PLATAFORMA = 64;
 	public static final short BITS_META = 128;
 	
-	public static final boolean debug = true;
+	public static final boolean debug = false;
 	public static final int V_WIDTH = 640;
 	public static final int V_HEIGHT = 400;
 	
+	public static float VOLUMEN = 0.6f;
 	public static boolean PAUSE = false;
 
 	

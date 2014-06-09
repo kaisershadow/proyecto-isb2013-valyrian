@@ -39,6 +39,7 @@ public class Quetzal extends Game {
 		
 		manejadorRecursos.load("images/splash.png",Texture.class);
 		manejadorRecursos.load("audio/splash_sound.mp3",Sound.class);
+		manejadorRecursos.load("images/menus/Carga_BG.jpg",Texture.class);
 		
 		pantallaSplash = new PantallaSplash(this);
 		pantallaMenu = new PantallaMenuInicio(this);
@@ -56,7 +57,7 @@ public class Quetzal extends Game {
 	public void create() {
 		sb = new SpriteBatch();
 		manejadorRecursos.finishLoading();
-		setScreen(pantallaSeleccionNivel);
+		setScreen(pantallaSplash);
 	}
 	
 	@Override

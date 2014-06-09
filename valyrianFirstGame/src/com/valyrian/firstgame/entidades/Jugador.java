@@ -2,6 +2,7 @@ package com.valyrian.firstgame.entidades;
 
 import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -22,8 +23,10 @@ public class Jugador extends EntidadDibujable{
 	
 	private int maxVida;
 	private int vidaActual;
+	private int puntaje;
 	private boolean mirandoDerecha;
 	private String nombre;
+	private Sound salto;
 	public enum ESTADO_ACTUAL{Atacando, Moviendose, Quieto,Saltando}
 
 	public ESTADO_ACTUAL estado;
@@ -35,11 +38,13 @@ public class Jugador extends EntidadDibujable{
 		super(ancho, alto,vel,posIniX,posIniY, mundo,ma);
 		this.vidaActual = this.maxVida = vidaMax;
 		this.nombre = "Jugador";
+		this.puntaje =0;
 		this.mirandoDerecha=true;
 		estado=ESTADO_ACTUAL.Quieto;
 //		this.cuerpo.getPosition().x = posIniX/PIXELSTOMETERS;
 //		this.cuerpo.getPosition().y = posIniY/PIXELSTOMETERS;
 		mab = new AnimacionEstatica(Quetzal.getManejaRecursos().get("personajes/dardo.png", Texture.class));
+		salto = Quetzal.getManejaRecursos().get("audio/salto.wav",Sound.class);
 //		manAnim = new AnimacionJugador(t);
 	}
 	
@@ -48,6 +53,10 @@ public class Jugador extends EntidadDibujable{
 	public int getMaxVida(){ return this.maxVida; }
 	
 	public int getVidaActual(){ return vidaActual; }
+	
+	public void setPuntaje(int p){ this.puntaje+=p ; }
+	
+	public int getPuntaje(){ return puntaje; }
 	
 	//@brief Metodo para aumentar o reducir la vida en @value unidades
 	public int setVidaActual(int value){
@@ -175,6 +184,7 @@ public class Jugador extends EntidadDibujable{
 		if(this.numContactos>0){
 			this.cuerpo.setLinearVelocity(this.cuerpo.getLinearVelocity().x, this.velocidad.y);
 			this.estado = ESTADO_ACTUAL.Saltando;
+			salto.play(VOLUMEN);
 		}
 	}
 	

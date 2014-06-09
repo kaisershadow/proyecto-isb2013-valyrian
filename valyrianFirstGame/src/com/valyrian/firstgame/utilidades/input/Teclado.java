@@ -21,7 +21,8 @@ public class Teclado implements InputProcessor {
 		
 		switch(keycode){
 			case(Input.Keys.P):
-				pantallaNivel.getJugador().Pausar();
+				if(!pantallaNivel.getJugador().estaMuerto())
+					pantallaNivel.getJugador().Pausar();
 				break;
 			
 			case(Input.Keys.D):
@@ -53,8 +54,10 @@ public class Teclado implements InputProcessor {
 
 	@Override
 	public boolean keyUp(int keycode) {
-		if(PAUSE)
-			return true;
+		if(PAUSE && !pantallaNivel.getJugador().estaMuerto())
+//			if(){
+				return true;
+//			}
 		
 		switch(keycode){
 		
@@ -74,6 +77,10 @@ public class Teclado implements InputProcessor {
 		case Input.Keys.ESCAPE:
 			pantallaNivel.getJuego().setScreen(pantallaNivel.getJuego().pantallaSeleccionNivel);
 			break;
+		case Input.Keys.R:
+			pantallaNivel.getJuego().setScreen(pantallaNivel.getJuego().pantallaCargaNivel);
+			break;
+			
 		}
 		return false;
 	}

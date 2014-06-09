@@ -1,6 +1,7 @@
 package com.valyrian.firstgame.pantallas;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -8,6 +9,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputEvent.Type;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -21,18 +24,28 @@ import static com.valyrian.firstgame.utilidades.GameVariables.*;
 public class PantallaPuntuaciones implements Screen{
 	
 	private Stage escena;
-	private Table tabla;
+	private Table tabla1, tabla2;
 	private TextButton botonSalir;
 	private Skin skin;
 	private SpriteBatch batch;
 	private Texture textureFondo;
 	private Texture textureTitulo;
-	private Texture textureSubtitulo;	
+	private Texture textureSubtitulo;
+	private Texture texturePrimero;
+	private Texture textureSegundo;
+	private Texture textureTercero;
 	private Image fondo;
 	private Image tituloQuetzal;
 	private Image subQuetzal;
+	private Image primero;
+	private Image segundo;
+	private Image tercero;
 	private Quetzal juego;
 	private Color color;
+	private String labelPrimero;
+	private String labelSegundo;
+	private String labelTercero;
+	protected int buttonToggleState = 1;
 	
 	public PantallaPuntuaciones(Quetzal primerJuego) {
 		juego = primerJuego;
@@ -64,9 +77,13 @@ public class PantallaPuntuaciones implements Screen{
 
 		escena.setViewport(width , height, true);
 		
-		tabla.setBounds(width*0.05f, 30, width, height);
-		tabla.setSize(width*0.2f,height*0.50f);
-		tabla.invalidateHierarchy();
+		tabla1.setBounds(width*0.05f, 30, width, height);
+		tabla1.setSize(width*0.2f,height*0.50f);
+		tabla1.invalidateHierarchy();
+		
+		tabla2.setBounds(width*0.3f, 30, width, height);
+		tabla2.setSize(width*0.2f,height*0.50f);
+		tabla2.invalidateHierarchy();
 		
 		botonSalir.setBounds(width*0.75f , 30, width , height*0.30f);
 		botonSalir.setSize(width*0.2f, (int)(height*0.5/4));
@@ -87,6 +104,8 @@ public class PantallaPuntuaciones implements Screen{
 		
 		Gdx.input.setInputProcessor(escena);
 		mouse_listeners();
+		touch_listeners();
+		keyboard_listeners();
 		
 		cargar_actores_escenario();
 	}
@@ -126,6 +145,9 @@ public class PantallaPuntuaciones implements Screen{
 	 
 	    Quetzal.getManejaRecursos().load("images/menus/titulo_puntuaciones.png",Texture.class);
 	    Quetzal.getManejaRecursos().load("images/menus/titulo_mas_altas.png",Texture.class);
+	    Quetzal.getManejaRecursos().load("images/menus/primero.png",Texture.class);
+	    Quetzal.getManejaRecursos().load("images/menus/segundo.png",Texture.class);
+	    Quetzal.getManejaRecursos().load("images/menus/tercero.png",Texture.class);
 	    Quetzal.getManejaRecursos().finishLoading();
 
 	    
@@ -138,13 +160,62 @@ public class PantallaPuntuaciones implements Screen{
 	    textureSubtitulo = Quetzal.getManejaRecursos().get("images/menus/titulo_mas_altas.png");
 	    subQuetzal = new Image(textureSubtitulo);
 		
+	    texturePrimero = Quetzal.getManejaRecursos().get("images/menus/primero.png"); 
+	    primero = new Image(texturePrimero);
+
+	    textureSegundo = Quetzal.getManejaRecursos().get("images/menus/segundo.png"); 
+	    segundo = new Image(textureSegundo);
+
+	    textureTercero = Quetzal.getManejaRecursos().get("images/menus/tercero.png"); 
+	    tercero = new Image(textureTercero);
+	    
 	    escena = new Stage();
-		tabla = new Table(skin);
+		tabla1 = new Table(skin);
+		tabla2 = new Table(skin);
 		
-	
+		labelPrimero = Gdx.files.internal("data/puntuacion_primero.txt").readString();
+		labelSegundo = Gdx.files.internal("data/puntuacion_segundo.txt").readString();
+		labelTercero = Gdx.files.internal("data/puntuacion_tercero.txt").readString();
+
 		botonSalir = new TextButton("Atras", skin);
 		botonSalir.setColor(color);
 
+	}
+	
+	void cargar_actores_escenario(){
+		if(debug)
+			tabla1.debug();
+
+		escena.addActor(fondo);
+		escena.addActor(botonSalir);
+		escena.addActor(tabla1);
+		escena.addActor(tabla2);
+		escena.addActor(tituloQuetzal);
+		escena.addActor(subQuetzal);
+		tabla1.add(primero).space( 10f ).fill().expand();
+		tabla1.row();
+		tabla1.add().space(20f).fill().expand();
+		tabla1.row();
+		tabla1.add(segundo).space(10f).fill().expand();
+		tabla1.row();
+		tabla1.add().space(20f).fill().expand();
+		tabla1.row();
+		tabla1.add(tercero).space(10f).fill().expand();
+		tabla1.row();
+		tabla1.add().space(10f).fill().expand();
+		
+		
+		tabla2.add(labelPrimero).space( 10f ).fill().expand();
+		tabla2.row();
+		tabla2.add().space( 20f ).fill().expand();
+		tabla2.row();
+		tabla2.add(labelSegundo).space(10f).fill().expand();
+		tabla2.row();
+		tabla2.add().space( 20f ).fill().expand();
+		tabla2.row();
+		tabla2.add(labelTercero).fill().expand();
+		tabla2.row();
+		tabla2.add().space( 10f ).fill().expand();
 	}
 	
 	void mouse_listeners(){
@@ -168,19 +239,43 @@ public class PantallaPuntuaciones implements Screen{
 				
 	}
 	
-	/*private void keyboard_listeners(){
-		// TODO implementar listeners para el teclado
-	}*/
-	
-	void cargar_actores_escenario(){
-		if(debug)
-			tabla.debug();
+	private void touch_listeners(){
+		
+		botonSalir.addListener(new InputListener(){
 
-		escena.addActor(fondo);
-		escena.addActor(botonSalir);
-		escena.addActor(tabla);
-		escena.addActor(tituloQuetzal);
-		escena.addActor(subQuetzal);
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+	
+				juego.setScreen(juego.pantallaMenu);
+				return super.touchDown(event, x, y, pointer, button);
+			}	
+		});
+	}
+
+	private void keyboard_listeners(){
+
+		escena.addListener(new InputListener(){
+
+			public boolean keyDown (InputEvent event, int keycode) {
+				InputEvent eventoSalir = new InputEvent();
+				eventoSalir.setType(Type.exit);
+				InputEvent evenEntrar = new InputEvent();
+				evenEntrar.setType(Type.enter);
+				 
+				botonSalir.fire(evenEntrar);
+				escena.setKeyboardFocus(botonSalir);
+			
+				if(Keys.ENTER == keycode){
+					InputEvent e = new InputEvent();
+					e.setType(Type.touchDown);
+					escena.getKeyboardFocus().fire(e);
+					
+				}
+				return true;
+			}
+		});
+
 	}
 
 }

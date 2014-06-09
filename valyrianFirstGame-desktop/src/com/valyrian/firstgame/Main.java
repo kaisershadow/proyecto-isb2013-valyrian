@@ -10,7 +10,7 @@ public class Main {
 		cfg.useGL20 = true;
 		cfg.width = LwjglApplicationConfiguration.getDesktopDisplayMode().width/2;
 		cfg.height = LwjglApplicationConfiguration.getDesktopDisplayMode().height/2;
-//		cfg.fullscreen=true;
+		cfg.fullscreen=true;
 		new LwjglApplication(new Quetzal(), cfg);
 	}
 }

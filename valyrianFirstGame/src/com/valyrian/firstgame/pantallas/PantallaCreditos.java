@@ -3,6 +3,7 @@ package com.valyrian.firstgame.pantallas;
 import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -10,6 +11,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputEvent.Type;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
@@ -85,7 +88,8 @@ public class PantallaCreditos implements Screen{
 		
 		Gdx.input.setInputProcessor(escena);
 		mouse_listeners();
-		
+		touch_listeners();
+		keyboard_listeners();
 		cargar_actores_escenario();
 	}
 
@@ -192,4 +196,44 @@ public class PantallaCreditos implements Screen{
 		escena.addActor(tituloQuetzal);
 	}
 
+private void touch_listeners(){
+		
+		botonSalir.addListener(new InputListener(){
+
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+	
+				juego.setScreen(juego.pantallaMenu);
+				return super.touchDown(event, x, y, pointer, button);
+			}	
+		});
+	}
+
+	private void keyboard_listeners(){
+
+		escena.addListener(new InputListener(){
+
+			public boolean keyDown (InputEvent event, int keycode) {
+				InputEvent eventoSalir = new InputEvent();
+				eventoSalir.setType(Type.exit);
+				InputEvent evenEntrar = new InputEvent();
+				evenEntrar.setType(Type.enter);
+				 
+				botonSalir.fire(evenEntrar);
+				escena.setKeyboardFocus(botonSalir);
+			
+				if(Keys.ENTER == keycode){
+					InputEvent e = new InputEvent();
+					e.setType(Type.touchDown);
+					escena.getKeyboardFocus().fire(e);
+					
+				}
+				return true;
+			}
+		});
+
+	}
+	
+	
 }

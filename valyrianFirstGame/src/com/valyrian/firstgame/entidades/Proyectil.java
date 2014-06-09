@@ -47,7 +47,7 @@ public class Proyectil extends EntidadDibujable{
 		this.cuerpo= mundo.createBody(bodyDef);
 		this.cuerpo.createFixture(fixtureDef);		
 		this.cuerpo.setFixedRotation(true);
-		this.cuerpo.setBullet(true);
+//		this.cuerpo.setBullet(true);
 		this.cuerpo.setUserData(this);
 		
 		this.cuerpo.getFixtureList().first().setUserData("Proyectil");
@@ -62,6 +62,6 @@ public class Proyectil extends EntidadDibujable{
 	
 	public void dispose(){
 		if(debug)
-		System.out.println("SE LLAMO AL DISPOSE DE PROYECTIL");
+			System.out.println("SE LLAMO AL DISPOSE DE PROYECTIL");
 	}
 }
