@@ -3,6 +3,7 @@ package com.valyrian.firstgame.pantallas;
 import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -10,6 +11,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputEvent.Type;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -37,7 +40,8 @@ public class PantallaMenuInicio implements Screen{
 	private Image subQuetzal;
 	private Quetzal juego;
 	private Color color;
-	
+	private int buttonToggleState = 5;
+
 	public PantallaMenuInicio(Quetzal primerJuego) {
 		juego = primerJuego;
 	}
@@ -91,9 +95,14 @@ public class PantallaMenuInicio implements Screen{
 		inicializar_variables();
 		
 		Gdx.input.setInputProcessor(escena);
+		
 		mouse_listeners();
 		
+		touch_listeners();
+				
 		cargar_actores_escenario();
+
+		keyboard_listeners();
 	}
 
 	@Override
@@ -249,9 +258,134 @@ public class PantallaMenuInicio implements Screen{
 				
 	}
 	
-	/*private void keyboard_listeners(){
-		// TODO implementar listeners para el teclado
-	}*/
+private void touch_listeners(){
+		
+		botonSalir.addListener(new InputListener(){
+
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+	
+				Gdx.app.exit();
+				return super.touchDown(event, x, y, pointer, button);
+			}	
+		});
+		
+		botonJugar.addListener(new InputListener(){
+
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				juego.setScreen(juego.pantallaSeleccionNivel);
+				return super.touchDown(event, x, y, pointer, button);
+			}
+		});
+		
+		botonConfiguraciones.addListener(new InputListener(){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				
+				return super.touchDown(event, x, y, pointer, button);
+			}
+		});
+		
+		botonCreditos.addListener(new InputListener(){
+			
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				juego.setScreen(juego.pantallaCreditos);
+				return super.touchDown(event, x, y, pointer, button);
+			}
+		});
+		
+		botonPuntuaciones.addListener(new InputListener(){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y,
+					int pointer, int button) {
+				juego.setScreen(juego.pantallaPuntuaciones);
+				return super.touchDown(event, x, y, pointer, button);
+			}
+		});
+		
+	}
+
+	private void keyboard_listeners(){
+
+		escena.addListener(new InputListener(){
+
+			public boolean keyDown (InputEvent event, int keycode) {
+				InputEvent eventoSalir = new InputEvent();
+				eventoSalir.setType(Type.exit);
+				InputEvent evenEntrar = new InputEvent();
+				evenEntrar.setType(Type.enter);
+				
+				
+				if (keycode == Keys.DOWN) {
+					if (buttonToggleState == 5) {
+						buttonToggleState = 1;
+					} else {
+						buttonToggleState++;
+					}
+					System.out.println(buttonToggleState);
+				}
+
+				if (keycode == Keys.UP) {
+					if (buttonToggleState == 1) {
+						buttonToggleState = 5;
+					} else {
+						buttonToggleState--;
+					}
+					System.out.println(buttonToggleState);
+				}
+
+				switch (buttonToggleState) {
+				case 1:  
+					botonSalir.fire(eventoSalir);
+					botonJugar.fire(evenEntrar);
+					botonConfiguraciones.fire(eventoSalir);
+					escena.setKeyboardFocus(botonJugar);
+					break;
+				case 2:  
+					botonJugar.fire(eventoSalir);
+					botonConfiguraciones.fire(evenEntrar);
+					botonPuntuaciones.fire(eventoSalir);
+					escena.setKeyboardFocus(botonConfiguraciones);
+					break;
+				case 3:  
+					botonConfiguraciones.fire(eventoSalir);
+					botonPuntuaciones.fire(evenEntrar);
+					botonCreditos.fire(eventoSalir);
+					escena.setKeyboardFocus(botonPuntuaciones);
+					break;
+				case 4:  
+					botonPuntuaciones.fire(eventoSalir);
+					botonCreditos.fire(evenEntrar);
+					botonSalir.fire(eventoSalir);
+					escena.setKeyboardFocus(botonCreditos);
+					break;
+				case 5:  
+					botonCreditos.fire(eventoSalir);
+					botonSalir.fire(evenEntrar);
+					botonJugar.fire(eventoSalir);
+					escena.setKeyboardFocus(botonSalir);
+					break;
+				default: 
+					break;
+				}   
+
+				if(Keys.ENTER == keycode){
+					InputEvent e = new InputEvent();
+					e.setType(Type.touchDown);
+					escena.getKeyboardFocus().fire(e);
+					
+				}
+				return true;
+			}
+		});
+
+	}
 	
 	void cargar_actores_escenario(){
 		if(debug)

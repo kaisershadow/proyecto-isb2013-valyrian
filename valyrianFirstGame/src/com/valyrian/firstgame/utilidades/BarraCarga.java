@@ -23,7 +23,7 @@ public class BarraCarga extends Actor {
         barra = new Texture(Gdx.files.internal("images/barra.png"));
         llenado = new Texture(Gdx.files.internal("images/llenado.png"));
         //Lo coloco en el centro, yo lo e puesto en cualquier lado.
-        this.setPosition(Gdx.graphics.getWidth()/2-barra.getWidth()/2,0.6f*Gdx.graphics.getHeight());
+        this.setPosition(Gdx.graphics.getWidth()/2-barra.getWidth()/2,0.2f*Gdx.graphics.getHeight());
         font = new BitmapFont();
 		font.setColor(Color.WHITE);
 //		font.setScale(1f/PIXELSTOMETERS);

@@ -4,6 +4,8 @@ import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -26,13 +28,14 @@ public class PantallaCargaNivel implements Screen {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
+		batch.draw(Quetzal.getManejaRecursos().get("images/menus/Carga_BG.jpg",Texture.class),0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		barra.draw(batch, 1);
 		batch.end();
 	}
 
 	@Override
 	public void resize(int width, int height) {
-//		barra.setPosition(width/2-200,height/2);
+		
 	}
 
 	@Override
@@ -47,6 +50,12 @@ public class PantallaCargaNivel implements Screen {
 		Quetzal.getManejaRecursos().load("images/hud.png", Texture.class);
 		Quetzal.getManejaRecursos().load("images/calendario_maya.png", Texture.class);
 		Quetzal.getManejaRecursos().load("images/pausa.png", Texture.class);
+		Quetzal.getManejaRecursos().load("images/moneda.png", Texture.class);
+		Quetzal.getManejaRecursos().load("images/juego_acabado.png", Texture.class);
+//		Quetzal.getManejaRecursos().load("images/juego_acabado.png", Texture.class);
+		Quetzal.getManejaRecursos().load("audio/nivel1.mp3", Music.class);
+		Quetzal.getManejaRecursos().load("personajes/moneda.png", Texture.class);
+		Quetzal.getManejaRecursos().load("audio/salto.wav", Sound.class);
 		
 		Quetzal.getManejaRecursos().load("secreto/balde.png", Texture.class);
 		Quetzal.getManejaRecursos().load("secreto/gota.png", Texture.class);

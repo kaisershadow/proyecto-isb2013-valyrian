@@ -38,7 +38,7 @@ public class Hud {
 		drawString(sb, String.valueOf(jugador.getVidaActual()), 16, 16);
 		sb.draw(texHeart, 16, 16, 16, 16);
 		sb.draw(score, 96, 16, 16, 16);
-		drawString(sb, String.valueOf(jugador.getVidaActual()), 96, 16);
+		drawString(sb, String.valueOf(jugador.getPuntaje()), 96, 16);
 		sb.end();
 	}
 	

@@ -10,21 +10,21 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.utils.Array;
+import com.valyrian.firstgame.entidades.Coleccionable;
 import com.valyrian.firstgame.entidades.Enemigo;
 import com.valyrian.firstgame.entidades.Jugador;
 import com.valyrian.firstgame.entidades.Jugador.ESTADO_ACTUAL;
+import com.valyrian.firstgame.entidades.Proyectil;
 
 public class ManejadorColisiones implements ContactListener {
 
 	private Array<Body> cuerposABorrar;
-	private boolean gameover;
 	private Jugador player;
 
 
 	public ManejadorColisiones(Jugador personaje) {
 		super();
 		cuerposABorrar= new Array<Body>();
-		gameover= false;
 		player=personaje;
 	}
 
@@ -36,75 +36,95 @@ public class ManejadorColisiones implements ContactListener {
 		Fixture fB=contact.getFixtureB();
 		//Verificacion del salto del personaje, para evitar que pueda saltar varias veces
 		if(fA.getUserData() !=null && fA.getUserData().equals("Salto")){
-			player.numContactos++;
-			if(player.getCuerpo().getLinearVelocity().x!= 0)
-				player.estado = ESTADO_ACTUAL.Moviendose;
-			else
-				player.estado = ESTADO_ACTUAL.Quieto;
+			this.saltar();
 		}
 		if(fB.getUserData() !=null && fB.getUserData().equals("Salto")){
-			player.numContactos++;
-			if(player.getCuerpo().getLinearVelocity().x!= 0)
-				player.estado = ESTADO_ACTUAL.Moviendose;
-			else
-				player.estado = ESTADO_ACTUAL.Quieto;
+			this.saltar();
 		}
 		
+		
+		//Colisiones del enemigo
 		if(fA.getUserData() !=null && fA.getUserData().equals("Enemigo")){
 			if(fB.getUserData() !=null && fB.getUserData().equals("Jugador")){
-				//System.out.println("VIDA ANTES: "+player.getVidaActual());
-				player.setVidaActual(((Enemigo)fA.getBody().getUserData()).getDanio()*-1);
-				fB.getBody().applyLinearImpulse(new Vector2(player.getDireccion().x*-10,0), fB.getBody().getWorldCenter(), true);
-				//System.out.println("VIDA DESPUEs: "+player.getVidaActual());
-			}else if(fB.getUserData() !=null && fB.getUserData().equals("Proyectil")){
-				System.out.println("VIDA Enemigo ANTES FA: "+((Enemigo)fA.getBody().getUserData()).getVidaActual());
-				//((Enemigo)fA.getBody().getUserData()).cambiarVidaActual(((Proyectil)fB.getUserData()).getDamage()*-1);
-				((Enemigo)fA.getBody().getUserData()).setVidaActual(-10);
-				System.out.println("VIDA Enemigo DESPUEs FA: "+((Enemigo)fA.getBody().getUserData()).getVidaActual());
+				
+				this.jugadorEnemigo(fB, fA);
 			}
-			if(((Enemigo)fA.getBody().getUserData()).estaMuerto())
+			else if(fB.getUserData() !=null && fB.getUserData().equals("Proyectil")){
+				
+				this.enemigoProyectil(fA, fB);
+				cuerposABorrar.add(fB.getBody());
+			}
+			if(((Enemigo)fA.getBody().getUserData()).estaMuerto()){
 				cuerposABorrar.add(fA.getBody());
+				player.setPuntaje(((Enemigo)fA.getBody().getUserData()).getDanio());
+			}
 		}
+		
+		
 		if(fB.getUserData() !=null && fB.getUserData().equals("Enemigo")){
 			if(fA.getUserData() !=null && fA.getUserData().equals("Jugador")){
-				//System.out.println("VIDA ANTES FB: "+player.getVidaActual());
-				player.setVidaActual(((Enemigo)fB.getBody().getUserData()).getDanio()*-1);
 				
-				
-				fA.getBody().applyLinearImpulse(new Vector2(player.getDireccion().x*-10,0), fA.getBody().getWorldCenter(), true);
-				//System.out.println("VIDA DESPUEs FB: "+player.getVidaActual());
-			}else if(fA.getUserData() !=null && fA.getUserData().equals("Proyectil")){
-				System.out.println("VIDA Enemigo ANTES FB: "+((Enemigo)fB.getBody().getUserData()).getVidaActual());
-//				((Enemigo)fB.getBody().getUserData()).cambiarVidaActual(((Proyectil)fA.getUserData()).getDamage()*-1);
-				((Enemigo)fB.getBody().getUserData()).setVidaActual(-10);
-
-				System.out.println("VIDA Enemigo DESPUEs FB: "+((Enemigo)fB.getBody().getUserData()).getVidaActual());
+				this.jugadorEnemigo(fA, fB);
+		
 			}
-			if(((Enemigo)fB.getBody().getUserData()).estaMuerto())
-				cuerposABorrar.add(fB.getBody());
-		}
-		if(fA.getUserData() !=null && fA.getUserData().equals("Proyectil")){
-			if(fB.getUserData() !=null && fB.getUserData().equals("Jugador")){
-				System.out.println("CHOCO CON BALA");
+			else if(fA.getUserData() !=null && fA.getUserData().equals("Proyectil")){
+				
+				this.enemigoProyectil(fB, fA);
 				cuerposABorrar.add(fA.getBody());
 			}
+			if(((Enemigo)fB.getBody().getUserData()).estaMuerto()){
+				cuerposABorrar.add(fB.getBody());
+				player.setPuntaje(((Enemigo)fA.getBody().getUserData()).getDanio());
+			}
 		}
+		
+		//Colisiones del Proyectil
+		if(fA.getUserData() !=null && fA.getUserData().equals("Proyectil")){
+			if(fB.getUserData() !=null && fB.getUserData().equals("Jugador")){
+				
+				this.jugadorProyectil(fB, fA);
+				cuerposABorrar.add(fA.getBody());
+			}
+//			return;
+		}
+		
+		
 		if(fB.getUserData() !=null && fB.getUserData().equals("Proyectil")){
 			if(fA.getUserData() !=null && fA.getUserData().equals("Jugador")){
-				System.out.println("CHOCO CON BALA");
+				this.jugadorProyectil(fA, fB);
 				cuerposABorrar.add(fB.getBody());
 			}
+//			return;
 		}
 
 		
+		System.out.println("Despues Proyectil");
+		
+		
+		//Colisiones del jugador
 		if(fA.getUserData() !=null && fA.getUserData().equals("Jugador")){
 			if(fB.getUserData() !=null && fB.getUserData().equals("Muerte")){
-				System.out.println("MURIO");
+				this.jugadorMuerte();
+			}
+			else if(fB.getUserData() !=null && fB.getUserData().equals("Coleccionable")){
+				this.jugadorColectable(fB);
+				this.cuerposABorrar.add(fB.getBody());
+			}
+			else if(fB.getUserData() !=null && fB.getUserData().equals("Meta")){
+				this.jugadorMeta();
 			}
 		}
+		
 		if(fB.getUserData() !=null && fB.getUserData().equals("Jugador")){
 			if(fA.getUserData() !=null && fA.getUserData().equals("Muerte")){
-				System.out.println("MURIO");
+				this.jugadorMuerte();
+			}
+			else if(fA.getUserData() !=null && fA.getUserData().equals("Coleccionable")){
+				this.jugadorColectable(fA);
+				this.cuerposABorrar.add(fA.getBody());
+			}
+			else if(fA.getUserData() !=null && fA.getUserData().equals("Meta")){
+				this.jugadorMeta();
 			}
 		}
 
@@ -113,6 +133,9 @@ public class ManejadorColisiones implements ContactListener {
 	}	
 	
 	
+
+
+
 
 	@Override
 	public void endContact(Contact contact) {
@@ -146,11 +169,6 @@ public class ManejadorColisiones implements ContactListener {
 	@Override
 	public void postSolve(Contact contact, ContactImpulse impulse) {
 		// TODO Auto-generated method stub
-
-	}
-
-	public boolean getGameOver(){
-		return gameover;
 	}
 
 	public Array<Body> getCuerposABorrar() {
@@ -160,5 +178,54 @@ public class ManejadorColisiones implements ContactListener {
 
 	public void setCuerposABorrar(Array<Body> listaABorrar) {
 		cuerposABorrar= listaABorrar;
+	}
+	
+//	METODOS DE MANEJO DE COLISIONES
+	
+	private void saltar(){
+		player.numContactos++;
+		if(player.getCuerpo().getLinearVelocity().x!= 0)
+			player.estado = ESTADO_ACTUAL.Moviendose;
+		else
+			player.estado = ESTADO_ACTUAL.Quieto;
+	}
+
+	//	fA = Jugador, fB = Enemigo
+	private void jugadorEnemigo(Fixture fA,Fixture fB){
+		player.setVidaActual(((Enemigo)fB.getBody().getUserData()).getDanio()*-1);
+		fA.getBody().applyLinearImpulse(new Vector2(player.getDireccion().x*-7f,0), fA.getBody().getWorldCenter(), true);
+		if(player.estaMuerto())
+			PAUSE = true;
+	}
+	
+//	fA = Enemigo, fB = Proyectil
+	private void enemigoProyectil(Fixture fA,Fixture fB){
+		int danio = ((Proyectil)fB.getBody().getUserData()).getDamage();
+		((Enemigo)fA.getBody().getUserData()).setVidaActual(-danio);
+	}
+	
+//	fA = Jugador, fB = Proyectil
+	private void jugadorProyectil(Fixture fA,Fixture fB){
+		int danio = ((Proyectil)fB.getBody().getUserData()).getDamage();
+		((Jugador)fA.getBody().getUserData()).setVidaActual(-danio);
+		if(player.estaMuerto())
+			PAUSE = true;
+	}
+	
+	//fA = Jugador
+	private void jugadorMuerte() {
+	player.setVidaActual(-player.getMaxVida());
+	PAUSE = true;
+		
+	}
+	
+	//fB = Colectable
+	private void jugadorColectable(Fixture fB) {
+		int p = ((Coleccionable)fB.getBody().getUserData()).getPuntos();
+		player.setPuntaje(p);
+	}
+
+	private void jugadorMeta(){
+		// TO DO
 	}
 }

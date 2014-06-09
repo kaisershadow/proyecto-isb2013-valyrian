@@ -1,0 +1,26 @@
+
+moneda.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+moneda1
+  rotate: false
+  xy: 0, 0
+  size: 168, 168
+  orig: 168, 168
+  offset: 0, 0
+  index: -1
+moneda2
+  rotate: false
+  xy: 168, 0
+  size: 168, 168
+  orig: 168, 168
+  offset: 0, 0
+  index: -1
+moneda3
+  rotate: false
+  xy: 336, 0
+  size: 168, 168
+  orig: 168, 168
+  offset: 0, 0
+  index: -1

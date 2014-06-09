@@ -6,6 +6,7 @@ import net.dermetfan.utils.libgdx.box2d.Box2DMapObjectParser;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -22,8 +23,11 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.valyrian.firstgame.Quetzal;
 import com.valyrian.firstgame.animaciones.AnimacionAvispa;
+import com.valyrian.firstgame.animaciones.AnimacionEstatica;
 import com.valyrian.firstgame.animaciones.AnimacionJugador;
+import com.valyrian.firstgame.animaciones.AnimacionMoneda;
 import com.valyrian.firstgame.animaciones.AnimacionRana;
+import com.valyrian.firstgame.entidades.Coleccionable;
 import com.valyrian.firstgame.entidades.Enemigo;
 import com.valyrian.firstgame.entidades.EntidadDibujable;
 import com.valyrian.firstgame.entidades.Hud;
@@ -55,6 +59,9 @@ public class PantallaNivel implements Screen {
 	private Box2DMapObjectParser mapParser;
 	private Quetzal juego;
 	private Texture pausa;
+	private Texture gameover;
+	
+	private Music musica;
 	
 	private int[] alante={6};
 	private int[] atras={2,3};
@@ -73,16 +80,18 @@ public class PantallaNivel implements Screen {
 			//		Eliminar cuerpos
 			if(!mundo.isLocked()){
 				Array<Body> cuerpos = manejaColisiones.getCuerposABorrar();
-				//for (Body body : cuerpos) {
 				for(int i=0;i<cuerpos.size;i++){
+					System.out.println("PRUEBA a");
 					Body b = cuerpos.get(i);
+					System.out.println("PRUEBA b");
 					EntidadDibujable entidad = ((EntidadDibujable)b.getUserData());
-					//frog.dispose();
+					System.out.println("PRUEBA c");
 					entidades.removeValue(entidad, true);
 					mundo.destroyBody(b);
 					//Sumar puntos por la rana o hacer alguna actualizacion (dentro del FOR aun)
 				}
 				manejaColisiones.getCuerposABorrar().clear();
+				System.out.println("PRUEBA 2");
 			}
 			//Actualizar Personaje
 			jugador.actualizarCamara(camera, mapW, mapH, tileW, tileH);
@@ -107,9 +116,11 @@ public class PantallaNivel implements Screen {
 		hud.render(batch);
 //		
 		if(PAUSE){
-//			batch.setProjectionMatrix(hudCam.combined);
 			batch.begin();
-			batch.draw(pausa, Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
+			if(jugador.estaMuerto())
+				batch.draw(gameover, Gdx.graphics.getWidth()/8,Gdx.graphics.getHeight()/2);
+			else
+				batch.draw(pausa, Gdx.graphics.getWidth()/2-128, Gdx.graphics.getHeight()/2-16);
 			batch.end();
 		}
 		if(debug)
@@ -127,12 +138,16 @@ public class PantallaNivel implements Screen {
 	public void show() {
 		
 		entidades = new Array<EntidadDibujable>();
-	
+		PAUSE = false;
+		musica = Quetzal.getManejaRecursos().get("audio/nivel1.mp3",Music.class);
+		musica.setLooping(true);
+		musica.setVolume(VOLUMEN);
+		musica.play();
 		pausa = Quetzal.getManejaRecursos().get("images/pausa.png", Texture.class);
+		gameover = Quetzal.getManejaRecursos().get("images/juego_acabado.png", Texture.class);
 //		font = new BitmapFont();
 //		font.setColor(Color.WHITE);
 //		font.setScale(1f/PIXELSTOMETERS);
-	
 		//Inicializacion de las variables
 		debugRenderer = new Box2DDebugRenderer();
 		camera = new OrthographicCamera();
@@ -163,8 +178,6 @@ public class PantallaNivel implements Screen {
 		mapParser.load(mundo, otmr.getMap());	
 	
 		
-//		personaje = new Jugador(32/PIXELSTOMETERS, 64/PIXELSTOMETERS, 100, new Vector2(2.5f,5.5f), new Vector2(500/PIXELSTOMETERS, 500/PIXELSTOMETERS),mundo);
-		//AnimacionJugador maj = new AnimacionJugador(new Texture("personajes/nativo.png"));
 		AnimacionJugador maj = new AnimacionJugador(Quetzal.getManejaRecursos().get("personajes/nativo.png",Texture.class));
 		jugador = new Jugador(32, 64, 500,500, new Vector2(2.5f,5.5f), 100, mundo,maj);
 		hud = new Hud(jugador);
@@ -185,7 +198,7 @@ public class PantallaNivel implements Screen {
 				AnimacionRana mar = new AnimacionRana(tx);
 				Vector2 posAux = new Vector2();
 				posAux.x = (Float) mo.getProperties().get("x");
-				posAux.y = (Float) mo.getProperties().get("y");
+				posAux.y = (Float) mo.getProperties().get("y")-16f;
 				Enemigo rana = new Enemigo(32, 32, posAux.x,posAux.y, new Vector2(0,0),10,100,mundo,mar);
 				float lim = 4+(float)Math.random()*(2);
 				InteligenciaRana mir  = new InteligenciaRana(lim, rana);
@@ -207,6 +220,28 @@ public class PantallaNivel implements Screen {
 				InteligenciaAvispa mia  = new InteligenciaAvispa(avispa);
 				avispa.setInteligencia(mia);
 				entidades.add(avispa);
+			}
+			
+			//Cargar Cofres
+			layer = otmr.getMap().getLayers().get("SpawnCofre");
+			for(MapObject mo : layer.getObjects()){
+				AnimacionMoneda mae = new AnimacionMoneda(Quetzal.getManejaRecursos().get("personajes/moneda.png",Texture.class));
+				Vector2 posAux = new Vector2();
+				posAux.x = (Float) mo.getProperties().get("x");
+				posAux.y = (Float) mo.getProperties().get("y");
+				Coleccionable col= new Coleccionable(32, 32, posAux.x,posAux.y, new Vector2(0,0),10,mundo,mae);
+				entidades.add(col);
+			}
+			
+			//Cargar mas cofres
+			layer = otmr.getMap().getLayers().get("SpawnArbusto");
+			for(MapObject mo : layer.getObjects()){
+				AnimacionMoneda mae = new AnimacionMoneda(Quetzal.getManejaRecursos().get("personajes/moneda.png",Texture.class));
+				Vector2 posAux = new Vector2();
+				posAux.x = (Float) mo.getProperties().get("x");
+				posAux.y = (Float) mo.getProperties().get("y");
+				Coleccionable col= new Coleccionable(32, 32, posAux.x,posAux.y, new Vector2(0,0),10,mundo,mae);
+				entidades.add(col);
 			}
 			
 			
@@ -237,8 +272,10 @@ public class PantallaNivel implements Screen {
 	//	personaje.dispose();
 		debugRenderer.dispose();
 		otmr.getMap().dispose();
+		Quetzal.getManejaRecursos().unload("audio/nivel1.mp3");
 		otmr.dispose();
 		entidades.clear();
+		mundo.dispose();
 		Controllers.removeListener(js);
 		if(debug)
 			System.out.println("SE LLAMO AL DISPOSE DE PANTALLA NIVEL");
