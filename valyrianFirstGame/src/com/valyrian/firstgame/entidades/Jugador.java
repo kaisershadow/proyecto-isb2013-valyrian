@@ -15,7 +15,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.valyrian.firstgame.Quetzal;
-import com.valyrian.firstgame.animaciones.AnimacionEstatica;
+import com.valyrian.firstgame.animaciones.AnimacionUnica;
 import com.valyrian.firstgame.entidades.Proyectil;
 import com.valyrian.firstgame.interfaces.ManejadorAnimacion;
 
@@ -43,7 +43,12 @@ public class Jugador extends EntidadDibujable{
 		estado=ESTADO_ACTUAL.Quieto;
 //		this.cuerpo.getPosition().x = posIniX/PIXELSTOMETERS;
 //		this.cuerpo.getPosition().y = posIniY/PIXELSTOMETERS;
-		mab = new AnimacionEstatica(Quetzal.getManejaRecursos().get("personajes/dardo.png", Texture.class));
+		
+//		mab = new AnimacionEstatica(Quetzal.getManejaRecursos().get("personajes/dardo.png", Texture.class));
+		
+		Texture tx = Quetzal.getManejaRecursos().get("personajes/dardo.png", Texture.class);
+		mab = new AnimacionUnica(tx,7,3,0);
+		
 		salto = Quetzal.getManejaRecursos().get("audio/salto.wav",Sound.class);
 //		manAnim = new AnimacionJugador(t);
 	}
@@ -117,21 +122,23 @@ public class Jugador extends EntidadDibujable{
 	
 	public void render(float deltaTime,SpriteBatch batch) {
 		TextureRegion frame = null;
-		switch (this.estado)
-		{
-			case Quieto:
-				frame = manAnim.getAnimacion(deltaTime,1);
-				break;
-			case Moviendose:
-				frame = manAnim.getAnimacion(deltaTime,2);
-				break;
-			case Saltando:
-				frame = manAnim.getAnimacion(deltaTime,3);
-				break;
-			case Atacando:
-				frame = manAnim.getAnimacion(deltaTime,4);
-				break;
-		}
+		
+		frame = manAnim.getAnimacion(deltaTime);
+//		switch (this.estado)
+//		{
+//			case Quieto:
+//				frame = manAnim.getAnimacion(deltaTime);
+//				break;
+//			case Moviendose:
+//				frame = manAnim.getAnimacion(deltaTime);
+//				break;
+//			case Saltando:
+//				frame = manAnim.getAnimacion(deltaTime);
+//				break;
+//			case Atacando:
+//				frame = manAnim.getAnimacion(deltaTime);
+//				break;
+//		}
 		if(mirandoDerecha)
 			batch.draw(frame, this.cuerpo.getPosition().x - this.ancho/2/PIXELSTOMETERS, this.cuerpo.getPosition().y- this.alto/2/PIXELSTOMETERS, this.ancho/PIXELSTOMETERS, this.alto/PIXELSTOMETERS);
 		else
@@ -184,7 +191,7 @@ public class Jugador extends EntidadDibujable{
 		if(this.numContactos>0){
 			this.cuerpo.setLinearVelocity(this.cuerpo.getLinearVelocity().x, this.velocidad.y);
 			this.estado = ESTADO_ACTUAL.Saltando;
-			salto.play(VOLUMEN);
+			salto.play(VOLUMEN*0.55f);
 		}
 	}
 	

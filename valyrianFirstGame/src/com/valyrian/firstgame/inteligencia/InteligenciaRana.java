@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.World;
 import com.valyrian.firstgame.Quetzal;
-import com.valyrian.firstgame.animaciones.AnimacionEstatica;
+import com.valyrian.firstgame.animaciones.AnimacionUnica;
 import com.valyrian.firstgame.entidades.Enemigo;
 import com.valyrian.firstgame.entidades.Proyectil;
 import com.valyrian.firstgame.pantallas.PantallaNivel;
@@ -30,7 +30,8 @@ public class InteligenciaRana implements ManejadorInteligencia {
 		this.limite = lim;
 		dispIzq=false;
 		dispDer=false;
-		mab = new AnimacionEstatica(Quetzal.getManejaRecursos().get("personajes/dardo.png", Texture.class));
+		Texture tx = Quetzal.getManejaRecursos().get("personajes/dardo.png", Texture.class);
+		mab = new AnimacionUnica(tx,7,3,0);
 		stateTime =0;
 	}
 	

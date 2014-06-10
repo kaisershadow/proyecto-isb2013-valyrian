@@ -17,6 +17,7 @@ public class BarraCarga extends Actor {
     private Texture barra,llenado;
     private Quetzal juego;
     private BitmapFont font;
+   
     public BarraCarga(Quetzal game){
         this.juego = game;
         //Instancio imagenes a la antigua.

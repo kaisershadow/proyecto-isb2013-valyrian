@@ -8,9 +8,9 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "Quetzal: La Busqueda";
 		cfg.useGL20 = true;
-		cfg.width = LwjglApplicationConfiguration.getDesktopDisplayMode().width/2;
-		cfg.height = LwjglApplicationConfiguration.getDesktopDisplayMode().height/2;
-		cfg.fullscreen=true;
+		cfg.width = 800;
+		cfg.height = 600;
+//		cfg.fullscreen=true;
 		new LwjglApplication(new Quetzal(), cfg);
 	}
 }
