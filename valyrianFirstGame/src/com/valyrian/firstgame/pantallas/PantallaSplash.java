@@ -47,7 +47,7 @@ public class PantallaSplash implements Screen {
 	@Override
 	public void resize(int width, int height) {
 		splashImage.setBounds(0, 0, width, height);
-		splashImage.setSize(width, height);
+		splashImage.setSize(V_WIDTH, V_HEIGHT);
 	}
 
 	@Override
@@ -56,7 +56,6 @@ public class PantallaSplash implements Screen {
 		//Cargar recursos del manejador
 		sound = Quetzal.getManejaRecursos().get("audio/splash_sound.mp3");
 		splashTexture = Quetzal.getManejaRecursos().get("images/splash.png");
-	
 		//Cargar imagen de fondo de las pantallas de menu
 		Quetzal.getManejaRecursos().load("images/menus/mainmenu_BG.jpg", Texture.class);
 		
@@ -96,9 +95,6 @@ public class PantallaSplash implements Screen {
 
 	@Override
 	public void dispose() {
-//		spriteBatch.dispose();
-//		ManejadorRecursos.getInstancia().disposeTexture("splash_texture");
-//		ManejadorRecursos.getInstancia().disposeSound("roar_sound");
 		Quetzal.getManejaRecursos().unload("images/splash.png");
 		Quetzal.getManejaRecursos().unload("audio/splash_sound.mp3");
 		if(debug)

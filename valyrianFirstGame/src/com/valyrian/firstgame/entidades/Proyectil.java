@@ -57,7 +57,7 @@ public class Proyectil extends EntidadDibujable{
 	}
 	
 	public void render(float deltaTime,SpriteBatch batch){
-		batch.draw(manAnim.getAnimacion(deltaTime, 0), this.cuerpo.getPosition().x-this.ancho/2/PIXELSTOMETERS, this.cuerpo.getPosition().y-this.alto/2/PIXELSTOMETERS, this.ancho/PIXELSTOMETERS, this.alto/PIXELSTOMETERS);
+		batch.draw(manAnim.getAnimacion(deltaTime), this.cuerpo.getPosition().x-this.ancho/2/PIXELSTOMETERS, this.cuerpo.getPosition().y-this.alto/2/PIXELSTOMETERS, this.ancho/PIXELSTOMETERS, this.alto/PIXELSTOMETERS);
 	}
 	
 	public void dispose(){

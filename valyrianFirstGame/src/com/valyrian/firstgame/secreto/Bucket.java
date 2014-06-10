@@ -47,7 +47,7 @@ public class Bucket extends EntidadDibujable{
 
 	@Override
 	public void render(float deltaTime, SpriteBatch batch) {
-		TextureRegion frame = manAnim.getAnimacion(deltaTime, 0);
+		TextureRegion frame = manAnim.getAnimacion(deltaTime);
 		batch.draw(frame, cuerpo.getPosition().x*PIXELSTOMETERS-this.ancho/2, cuerpo.getPosition().y*PIXELSTOMETERS-this.alto/2, this.ancho, this.alto);
 	}
 	

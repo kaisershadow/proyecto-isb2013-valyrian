@@ -31,21 +31,25 @@ public class DContactListener implements ContactListener {
 			return;
 		
 		if(a.getUserData().equals("Bucket") && b.getUserData().equals("Product")){
-			toRemove.add(b.getBody());
+			if(!toRemove.contains(b.getBody(), true))
+				toRemove.add(b.getBody());
 			bucket.setPuntuacion(bucket.getPuntuacion()+1);
 		}
 		
 		if(a.getUserData().equals("Ground") && b.getUserData().equals("Product")){
-			toRemove.add(b.getBody());
+			if(!toRemove.contains(b.getBody(), true))
+				toRemove.add(b.getBody());
 		}
 		
 		if(b.getUserData().equals("Bucket") && a.getUserData().equals("Product")){
-			toRemove.add(a.getBody());
+			if(!toRemove.contains(b.getBody(), true))
+				toRemove.add(a.getBody());
 			bucket.setPuntuacion(bucket.getPuntuacion()+1);
 		}
 		
 		if(b.getUserData().equals("Ground") && a.getUserData().equals("Product")){
-			toRemove.add(b.getBody());
+			if(!toRemove.contains(b.getBody(), true))
+				toRemove.add(b.getBody());
 		}
 		
 		

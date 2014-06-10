@@ -27,6 +27,7 @@ public class Product extends EntidadDibujable{
 		bodyDef.position.set(posX/PIXELSTOMETERS, posY/PIXELSTOMETERS);
 		cuerpo = mundo.createBody(bodyDef);
 		cuerpo.setUserData(this);
+//		cuerpo.setLinearVelocity(0, -1);
 		
 		PolygonShape shape = new PolygonShape();
 		shape.setAsBox((ancho/2)/PIXELSTOMETERS, (alto/2)/PIXELSTOMETERS);
@@ -46,7 +47,7 @@ public class Product extends EntidadDibujable{
 
 	@Override
 	public void render(float deltaTime, SpriteBatch batch) {
-		TextureRegion frame = manAnim.getAnimacion(deltaTime, 0);
+		TextureRegion frame = manAnim.getAnimacion(deltaTime);
 		batch.draw(frame, cuerpo.getPosition().x*PIXELSTOMETERS-this.ancho/2, cuerpo.getPosition().y*PIXELSTOMETERS-this.alto/2, this.ancho, this.alto);
 	}
 	

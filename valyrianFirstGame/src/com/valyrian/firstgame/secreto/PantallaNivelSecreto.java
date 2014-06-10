@@ -22,7 +22,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.valyrian.firstgame.Quetzal;
-import com.valyrian.firstgame.animaciones.AnimacionEstatica;
+import com.valyrian.firstgame.animaciones.AnimacionUnica;
 
 
 public class PantallaNivelSecreto implements Screen {
@@ -49,7 +49,7 @@ public class PantallaNivelSecreto implements Screen {
 	Array<Product> rainDrop;
 	long lastDropTime;
 	long score = 0;
-	AnimacionEstatica animGota;
+	AnimacionUnica animGota;
 
 	@Override
 	public void render(float delta) {
@@ -118,7 +118,7 @@ public class PantallaNivelSecreto implements Screen {
 		
 		//Creating the Bucket 
 		System.out.println("OJO 1");
-		AnimacionEstatica ae = new AnimacionEstatica(Quetzal.getManejaRecursos().get("secreto/balde.png", Texture.class));
+		AnimacionUnica ae = new AnimacionUnica(Quetzal.getManejaRecursos().get("secreto/balde.png", Texture.class),64,64,0);
 		System.out.println("OJO 1.5");
 //		bucket = new Bucket(64, 64, new Vector2((Gdx.graphics.getWidth()/2), 64) , new Vector2(0, 0), world, ae);
 		bucket = new Bucket(64, 64, new Vector2(0,0), Gdx.graphics.getWidth()/2, 64, world, ae);
@@ -128,7 +128,7 @@ public class PantallaNivelSecreto implements Screen {
 		hud = new Hud2(bucket);
 		
 		
-		animGota = new AnimacionEstatica(Quetzal.getManejaRecursos().get("secreto/gota.png",Texture.class));
+		animGota = new AnimacionUnica(Quetzal.getManejaRecursos().get("secreto/gota.png",Texture.class),64,64,0);
 		//Creating the ground
 		createGround();
 		
@@ -230,7 +230,7 @@ public class PantallaNivelSecreto implements Screen {
 		fixtureDef.isSensor = false;
 //		fixtureDef.filter.categoryBits = 4;
 //		fixtureDef.filter.maskBits = 2;
-		rightWallB.createFixture(fixtureDef).setUserData("Ground");;
+		rightWallB.createFixture(fixtureDef).setUserData("Ground");
 		
 		shape.dispose();
 	}

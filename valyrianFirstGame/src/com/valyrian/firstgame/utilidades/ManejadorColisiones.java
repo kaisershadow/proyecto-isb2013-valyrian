@@ -34,6 +34,7 @@ public class ManejadorColisiones implements ContactListener {
 	
 		Fixture fA=contact.getFixtureA();
 		Fixture fB=contact.getFixtureB();
+		
 		//Verificacion del salto del personaje, para evitar que pueda saltar varias veces
 		if(fA.getUserData() !=null && fA.getUserData().equals("Salto")){
 			this.saltar();
@@ -42,6 +43,30 @@ public class ManejadorColisiones implements ContactListener {
 			this.saltar();
 		}
 		
+		//Colisiones del Proyectil
+		if(fA.getUserData() !=null && fA.getUserData().equals("Proyectil")){
+			if(fB.getUserData() !=null && fB.getUserData().equals("Jugador")){
+				
+				this.jugadorProyectil(fB, fA);
+				if(!cuerposABorrar.contains(fA.getBody(),true))
+					cuerposABorrar.add(fA.getBody());
+			}
+			else if(fB.getUserData() !=null && fB.getUserData().equals("Entorno"))
+				if(!cuerposABorrar.contains(fA.getBody(),true))
+					cuerposABorrar.add(fA.getBody());
+		}
+		
+		
+		if(fB.getUserData() !=null && fB.getUserData().equals("Proyectil")){
+			if(fA.getUserData() !=null && fA.getUserData().equals("Jugador")){
+				this.jugadorProyectil(fA, fB);
+				if(!cuerposABorrar.contains(fB.getBody(),true))
+					cuerposABorrar.add(fB.getBody());
+			}
+			else if(fA.getUserData() !=null && fA.getUserData().equals("Entorno"))
+				if(!cuerposABorrar.contains(fB.getBody(),true))
+					cuerposABorrar.add(fB.getBody());
+		}
 		
 		//Colisiones del enemigo
 		if(fA.getUserData() !=null && fA.getUserData().equals("Enemigo")){
@@ -52,10 +77,12 @@ public class ManejadorColisiones implements ContactListener {
 			else if(fB.getUserData() !=null && fB.getUserData().equals("Proyectil")){
 				
 				this.enemigoProyectil(fA, fB);
-				cuerposABorrar.add(fB.getBody());
+				if(!cuerposABorrar.contains(fB.getBody(),true))
+					cuerposABorrar.add(fB.getBody());
 			}
 			if(((Enemigo)fA.getBody().getUserData()).estaMuerto()){
-				cuerposABorrar.add(fA.getBody());
+				if(!cuerposABorrar.contains(fA.getBody(),true))
+					cuerposABorrar.add(fA.getBody());
 				player.setPuntaje(((Enemigo)fA.getBody().getUserData()).getDanio());
 			}
 		}
@@ -70,36 +97,15 @@ public class ManejadorColisiones implements ContactListener {
 			else if(fA.getUserData() !=null && fA.getUserData().equals("Proyectil")){
 				
 				this.enemigoProyectil(fB, fA);
-				cuerposABorrar.add(fA.getBody());
+				if(!cuerposABorrar.contains(fA.getBody(),true))
+					cuerposABorrar.add(fA.getBody());
 			}
 			if(((Enemigo)fB.getBody().getUserData()).estaMuerto()){
-				cuerposABorrar.add(fB.getBody());
-				player.setPuntaje(((Enemigo)fA.getBody().getUserData()).getDanio());
+				if(!cuerposABorrar.contains(fB.getBody(),true))
+					cuerposABorrar.add(fB.getBody());
+				player.setPuntaje(((Enemigo)fB.getBody().getUserData()).getDanio());
 			}
 		}
-		
-		//Colisiones del Proyectil
-		if(fA.getUserData() !=null && fA.getUserData().equals("Proyectil")){
-			if(fB.getUserData() !=null && fB.getUserData().equals("Jugador")){
-				
-				this.jugadorProyectil(fB, fA);
-				cuerposABorrar.add(fA.getBody());
-			}
-//			return;
-		}
-		
-		
-		if(fB.getUserData() !=null && fB.getUserData().equals("Proyectil")){
-			if(fA.getUserData() !=null && fA.getUserData().equals("Jugador")){
-				this.jugadorProyectil(fA, fB);
-				cuerposABorrar.add(fB.getBody());
-			}
-//			return;
-		}
-
-		
-		System.out.println("Despues Proyectil");
-		
 		
 		//Colisiones del jugador
 		if(fA.getUserData() !=null && fA.getUserData().equals("Jugador")){
@@ -108,7 +114,8 @@ public class ManejadorColisiones implements ContactListener {
 			}
 			else if(fB.getUserData() !=null && fB.getUserData().equals("Coleccionable")){
 				this.jugadorColectable(fB);
-				this.cuerposABorrar.add(fB.getBody());
+				if(!cuerposABorrar.contains(fB.getBody(),true))
+					this.cuerposABorrar.add(fB.getBody());
 			}
 			else if(fB.getUserData() !=null && fB.getUserData().equals("Meta")){
 				this.jugadorMeta();
@@ -121,7 +128,8 @@ public class ManejadorColisiones implements ContactListener {
 			}
 			else if(fA.getUserData() !=null && fA.getUserData().equals("Coleccionable")){
 				this.jugadorColectable(fA);
-				this.cuerposABorrar.add(fA.getBody());
+				if(!cuerposABorrar.contains(fA.getBody(),true))
+					this.cuerposABorrar.add(fA.getBody());
 			}
 			else if(fA.getUserData() !=null && fA.getUserData().equals("Meta")){
 				this.jugadorMeta();
@@ -131,11 +139,6 @@ public class ManejadorColisiones implements ContactListener {
 		
 		
 	}	
-	
-	
-
-
-
 
 	@Override
 	public void endContact(Contact contact) {

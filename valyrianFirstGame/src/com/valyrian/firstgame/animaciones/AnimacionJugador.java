@@ -3,33 +3,32 @@ package com.valyrian.firstgame.animaciones;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.valyrian.firstgame.entidades.Jugador;
+import com.valyrian.firstgame.entidades.Jugador.ESTADO_ACTUAL;
 import com.valyrian.firstgame.interfaces.ManejadorAnimacion;
 
 public class AnimacionJugador implements ManejadorAnimacion{
 
 	Animation ataca,quieto,salto, moviendo;
 	private float stateTime;
-	private static final int Quieto =1;
-	private static final int Caminando = 2;
-	private static final int Saltando = 3;
-	private static final int Atacando = 4;
+	private Jugador jugador;
 	
-	public AnimacionJugador(Texture textura){
-		cargarAnimacion(textura);
+	public AnimacionJugador(Texture textura, int ancho, int alto, float time){
+		cargarAnimacion(textura,ancho,alto,time);
 		stateTime =0;
 	}
 	
 	
 	@Override
-	public void cargarAnimacion(Texture textura) {
-		TextureRegion[] jugador = TextureRegion.split(textura, 32, 64)[0];
+	public void cargarAnimacion(Texture t, int ancho, int alto, float time){
+		TextureRegion[] jugador = TextureRegion.split(t, ancho, alto)[0];
 		
 		quieto = new Animation(0,jugador[2]);
 		
-		moviendo= new Animation(1/12f, jugador[2],jugador[3],jugador[4],jugador[5],jugador[6],jugador[7]);
+		moviendo= new Animation(time, jugador[2],jugador[3],jugador[4],jugador[5],jugador[6],jugador[7]);
 		moviendo.setPlayMode(Animation.LOOP);
 		
-		ataca =new Animation(1/12f,jugador[1],jugador[0]);
+		ataca =new Animation(time,jugador[1],jugador[0]);
 		ataca.setPlayMode(Animation.NORMAL);
 		
 		salto = new Animation(0,jugador[10]);
@@ -37,23 +36,21 @@ public class AnimacionJugador implements ManejadorAnimacion{
 	}
 
 	@Override
-	public TextureRegion getAnimacion(float deltaTime,int opc) {
+	public TextureRegion getAnimacion(float deltaTime) {
 		stateTime+=deltaTime;
 		TextureRegion frame = null;
-		switch (opc) {
-			case Quieto:
+		int opc= 1;
+		if(jugador.estado == ESTADO_ACTUAL.Quieto)
 				frame = quieto.getKeyFrame(stateTime);
-				break;
-			case Caminando:
+		else if(jugador.estado == ESTADO_ACTUAL.Moviendose)
 				frame = moviendo.getKeyFrame(stateTime);
-				break;
-			case Saltando:
+		else if(jugador.estado == ESTADO_ACTUAL.Saltando)
 				frame = salto.getKeyFrame(stateTime);
-				break;
-			case Atacando:
+		else
 				frame = ataca.getKeyFrame(stateTime);
-				break;
-		}	
+		
 		return frame;
 	}
+	
+	public void setJugador(Jugador j){this.jugador = j;}
 }

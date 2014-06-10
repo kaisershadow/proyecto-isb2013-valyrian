@@ -89,7 +89,7 @@ public class Enemigo extends EntidadDibujable {
 		if(!PAUSE)
 			this.manIntel.Actualizar(deltaTime);
 		
-		TextureRegion frame = manAnim.getAnimacion(deltaTime, 0);
+		TextureRegion frame = manAnim.getAnimacion(deltaTime);
 		if(mirandoDerecha)
 			batch.draw(frame, this.cuerpo.getPosition().x - this.ancho/2/PIXELSTOMETERS, this.cuerpo.getPosition().y- (this.alto/2-8)/PIXELSTOMETERS, this.ancho/PIXELSTOMETERS, this.alto/PIXELSTOMETERS);
 		else

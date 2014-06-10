@@ -22,11 +22,8 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.valyrian.firstgame.Quetzal;
-import com.valyrian.firstgame.animaciones.AnimacionAvispa;
-import com.valyrian.firstgame.animaciones.AnimacionEstatica;
 import com.valyrian.firstgame.animaciones.AnimacionJugador;
-import com.valyrian.firstgame.animaciones.AnimacionMoneda;
-import com.valyrian.firstgame.animaciones.AnimacionRana;
+import com.valyrian.firstgame.animaciones.AnimacionUnica;
 import com.valyrian.firstgame.entidades.Coleccionable;
 import com.valyrian.firstgame.entidades.Enemigo;
 import com.valyrian.firstgame.entidades.EntidadDibujable;
@@ -104,7 +101,8 @@ public class PantallaNivel implements Screen {
 		//Renderizar entidades
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		jugador.render(delta, batch);
+		if(!jugador.estaMuerto())
+			jugador.render(delta, batch);
 		
 		for (EntidadDibujable ent : entidades) {
 			ent.render(delta,batch);
@@ -178,8 +176,10 @@ public class PantallaNivel implements Screen {
 		mapParser.load(mundo, otmr.getMap());	
 	
 		
-		AnimacionJugador maj = new AnimacionJugador(Quetzal.getManejaRecursos().get("personajes/nativo.png",Texture.class));
+		AnimacionJugador maj = new AnimacionJugador(Quetzal.getManejaRecursos().get("personajes/nativo.png",Texture.class),32,64,1/12f);
 		jugador = new Jugador(32, 64, 500,500, new Vector2(2.5f,5.5f), 100, mundo,maj);
+		maj.setJugador(jugador);
+		
 		hud = new Hud(jugador);
 		
 		System.out.println("SE CREO EL PERSONAJE");
@@ -195,7 +195,7 @@ public class PantallaNivel implements Screen {
 			
 			Texture tx =Quetzal.getManejaRecursos().get("personajes/rana.png",Texture.class);
 			for(MapObject mo : layer.getObjects()){
-				AnimacionRana mar = new AnimacionRana(tx);
+				AnimacionUnica mar = new AnimacionUnica(tx, 32, 32, 1/5f);
 				Vector2 posAux = new Vector2();
 				posAux.x = (Float) mo.getProperties().get("x");
 				posAux.y = (Float) mo.getProperties().get("y")-16f;
@@ -208,10 +208,11 @@ public class PantallaNivel implements Screen {
 			
 			//Cargar Avispas
 			layer = otmr.getMap().getLayers().get("SpawnAvispa");
-			
+			if(layer != null){
+				
 			tx =Quetzal.getManejaRecursos().get("personajes/avispa.png",Texture.class);
 			for(MapObject mo : layer.getObjects()){
-				AnimacionAvispa mav = new AnimacionAvispa(tx);
+				AnimacionUnica mav = new AnimacionUnica(tx, 32, 32, 1/11f);
 				Vector2 posAux = new Vector2();
 				posAux.x = (Float) mo.getProperties().get("x");
 				posAux.y = (Float) mo.getProperties().get("y");
@@ -221,11 +222,12 @@ public class PantallaNivel implements Screen {
 				avispa.setInteligencia(mia);
 				entidades.add(avispa);
 			}
-			
+			}
 			//Cargar Cofres
 			layer = otmr.getMap().getLayers().get("SpawnCofre");
+			tx =Quetzal.getManejaRecursos().get("personajes/moneda.png",Texture.class);
 			for(MapObject mo : layer.getObjects()){
-				AnimacionMoneda mae = new AnimacionMoneda(Quetzal.getManejaRecursos().get("personajes/moneda.png",Texture.class));
+				AnimacionUnica mae = new AnimacionUnica(tx, 168, 168, 1/11f);
 				Vector2 posAux = new Vector2();
 				posAux.x = (Float) mo.getProperties().get("x");
 				posAux.y = (Float) mo.getProperties().get("y");
@@ -233,16 +235,16 @@ public class PantallaNivel implements Screen {
 				entidades.add(col);
 			}
 			
-			//Cargar mas cofres
-			layer = otmr.getMap().getLayers().get("SpawnArbusto");
-			for(MapObject mo : layer.getObjects()){
-				AnimacionMoneda mae = new AnimacionMoneda(Quetzal.getManejaRecursos().get("personajes/moneda.png",Texture.class));
-				Vector2 posAux = new Vector2();
-				posAux.x = (Float) mo.getProperties().get("x");
-				posAux.y = (Float) mo.getProperties().get("y");
-				Coleccionable col= new Coleccionable(32, 32, posAux.x,posAux.y, new Vector2(0,0),10,mundo,mae);
-				entidades.add(col);
-			}
+//			//Cargar mas cofres
+//			layer = otmr.getMap().getLayers().get("SpawnArbusto");
+//			for(MapObject mo : layer.getObjects()){
+//				AnimacionMoneda mae = new AnimacionMoneda(Quetzal.getManejaRecursos().get("personajes/moneda.png",Texture.class));
+//				Vector2 posAux = new Vector2();
+//				posAux.x = (Float) mo.getProperties().get("x");
+//				posAux.y = (Float) mo.getProperties().get("y");
+//				Coleccionable col= new Coleccionable(32, 32, posAux.x,posAux.y, new Vector2(0,0),10,mundo,mae);
+//				entidades.add(col);
+//			}
 			
 			
 			
