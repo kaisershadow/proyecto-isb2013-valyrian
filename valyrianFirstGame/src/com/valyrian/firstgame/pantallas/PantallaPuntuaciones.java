@@ -1,23 +1,24 @@
 package com.valyrian.firstgame.pantallas;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputEvent.Type;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.valyrian.firstgame.Quetzal;
+import com.valyrian.firstgame.utilidades.input.MenuJoystick;
+import com.valyrian.firstgame.utilidades.input.MenuListener;
+import com.valyrian.firstgame.utilidades.input.TextButtonListener;
 
 import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
@@ -41,11 +42,13 @@ public class PantallaPuntuaciones implements Screen{
 	private Image segundo;
 	private Image tercero;
 	private Quetzal juego;
-	private Color color;
+	private Color colorExit;
+	private Color colorEnter;
+	private MenuJoystick mjs;
+	
 	private String labelPrimero;
 	private String labelSegundo;
 	private String labelTercero;
-	protected int buttonToggleState = 1;
 	
 	public PantallaPuntuaciones(Quetzal primerJuego) {
 		juego = primerJuego;
@@ -73,8 +76,6 @@ public class PantallaPuntuaciones implements Screen{
 
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-
 		escena.setViewport(width , height, true);
 		
 		tabla1.setBounds(width*0.05f, 30, width, height);
@@ -103,10 +104,9 @@ public class PantallaPuntuaciones implements Screen{
 		inicializar_variables();
 		
 		Gdx.input.setInputProcessor(escena);
-		mouse_listeners();
-		touch_listeners();
-		keyboard_listeners();
-		
+	
+		button_listeners();
+	
 		cargar_actores_escenario();
 	}
 
@@ -129,14 +129,18 @@ public class PantallaPuntuaciones implements Screen{
 
 	@Override
 	public void dispose() {
-		escena.dispose();
+//		escena.dispose();
+		Controllers.removeListener(mjs);
 		if(debug)
 			System.out.println("SE LLAMO AL DISPOSE DE PUNTUACIONES");
 	}
 
 	void inicializar_variables(){
 	    skin = Quetzal.getManejaRecursos().get("ui/skin/uiskin.json");
-	    color = new Color(99, 145, 0, 0.4f);
+	    
+	    colorExit = new Color(99, 145, 0, 0.4f);
+		colorEnter = new Color(1f, 1f, 1f, 0.3f);
+	    
 	    batch = Quetzal.getSpriteBatch();
 	    
 	    //Cargar las imagenes de la pantalla
@@ -178,7 +182,10 @@ public class PantallaPuntuaciones implements Screen{
 		labelTercero = Gdx.files.internal("data/puntuacion_tercero.txt").readString();
 
 		botonSalir = new TextButton("Atras", skin);
-		botonSalir.setColor(color);
+		botonSalir.setColor(colorEnter);
+		
+		mjs = new MenuJoystick(escena);
+		Controllers.addListener(mjs);
 
 	}
 	
@@ -216,66 +223,24 @@ public class PantallaPuntuaciones implements Screen{
 		tabla2.add(labelTercero).fill().expand();
 		tabla2.row();
 		tabla2.add().space( 10f ).fill().expand();
+		
+		
+		escena.setKeyboardFocus(botonSalir);
+		
+		ArrayList<TextButton> lista = new ArrayList<TextButton>();
+		lista.add(botonSalir);
+		escena.addListener(new MenuListener(escena, lista));
 	}
 	
-	void mouse_listeners(){
-		
-		botonSalir.addListener(new ClickListener(){
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				super.clicked(event, x, y);
-				juego.setScreen(juego.pantallaMenu);
-			}
-			
-			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
-            }
-
-			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				event.getListenerActor().setColor(color);
-            }	
-		});
-		
-				
-	}
 	
-	private void touch_listeners(){
+	private void button_listeners(){
 		
-		botonSalir.addListener(new InputListener(){
-
+		botonSalir.addListener(new TextButtonListener(colorEnter, colorExit){
 			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
-	
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				juego.setScreen(juego.pantallaMenu);
-				return super.touchDown(event, x, y, pointer, button);
+				return true;
 			}	
 		});
 	}
-
-	private void keyboard_listeners(){
-
-		escena.addListener(new InputListener(){
-
-			public boolean keyDown (InputEvent event, int keycode) {
-				InputEvent eventoSalir = new InputEvent();
-				eventoSalir.setType(Type.exit);
-				InputEvent evenEntrar = new InputEvent();
-				evenEntrar.setType(Type.enter);
-				 
-				botonSalir.fire(evenEntrar);
-				escena.setKeyboardFocus(botonSalir);
-			
-				if(Keys.ENTER == keycode){
-					InputEvent e = new InputEvent();
-					e.setType(Type.touchDown);
-					escena.getKeyboardFocus().fire(e);
-					
-				}
-				return true;
-			}
-		});
-
-	}
-
 }

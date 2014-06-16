@@ -1,24 +1,25 @@
 package com.valyrian.firstgame.pantallas;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputEvent.Type;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.valyrian.firstgame.Quetzal;
+import com.valyrian.firstgame.utilidades.input.MenuJoystick;
+import com.valyrian.firstgame.utilidades.input.MenuListener;
+import com.valyrian.firstgame.utilidades.input.TextButtonListener;
 
 import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
@@ -32,7 +33,8 @@ public class PantallaSeleccionNivel implements Screen{
 	private TextButton botonRegresar;
 	private TextButton niveles[];
 	private Skin skin;
-	private Color color;
+	private Color colorEnter;
+	private Color colorExit;
 	private SpriteBatch batch;
 	private Texture textureFondo;
 	private Texture textureTitulo;
@@ -43,9 +45,10 @@ public class PantallaSeleccionNivel implements Screen{
 	private Texture capturaNivel[];
 	private Window zonaTexto;
 	private Quetzal juego;
+	private MenuJoystick mjs;
+	
 	private int numNiveles; //numero de niveles del juego
 	private int nivelActual;
-	private int buttonToggleState = 1;
 
 	public PantallaSeleccionNivel(Quetzal primerJuego) {
 		juego = primerJuego;
@@ -53,7 +56,6 @@ public class PantallaSeleccionNivel implements Screen{
 
 	@Override
 	public void render(float delta) {
-		// TODO Auto-generated method stub
 		Gdx.gl.glClearColor( 0f, 0f, 0f, 1f ); 
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT );
     	
@@ -104,9 +106,8 @@ public class PantallaSeleccionNivel implements Screen{
 		inicializar_variables();
 		
 		Gdx.input.setInputProcessor(escena);
-		mouse_listeners();
-		touch_listeners();
-		keyboard_listeners();
+		
+		button_listeners();
 		
 		cargar_actores_escenario();
 		
@@ -132,11 +133,12 @@ public class PantallaSeleccionNivel implements Screen{
 
 	@Override
 	public void dispose() {
-		escena.dispose();
+//		escena.dispose();
 		Quetzal.getManejaRecursos().unload("images/menus/titulo_niveles.png");
 		Quetzal.getManejaRecursos().unload("images/menus/titulo_seleccionarnivel.png");
 		for(int i=1;i<=numNiveles;i++)
 			Quetzal.getManejaRecursos().unload("images/menus/nivel"+i+".png");
+		Controllers.removeListener(mjs);
 
 		if(debug)
 			System.out.println("SE LLAMO AL DISPOSE DE SELECCION NIVEL");
@@ -150,7 +152,9 @@ public class PantallaSeleccionNivel implements Screen{
 		Quetzal.getManejaRecursos().finishLoading();
 		
         skin = Quetzal.getManejaRecursos().get("ui/skin/uiskin.json");
-        color = new Color(99, 145, 0, 0.4f);
+        colorExit = new Color(99, 145, 0, 0.4f);
+		colorEnter = new Color(1f, 1f, 1f, 0.3f);        
+
         batch = Quetzal.getSpriteBatch();
         
         if(!Quetzal.getManejaRecursos().isLoaded("images/menus/mainmenu_BG.jpg"))
@@ -160,10 +164,7 @@ public class PantallaSeleccionNivel implements Screen{
 	    Quetzal.getManejaRecursos().load("images/menus/titulo_seleccionarnivel.png",Texture.class);
 	    for(int i=1;i<=numNiveles;i++)
 	    	Quetzal.getManejaRecursos().load("images/menus/nivel"+i+".png",Texture.class);
-	    Quetzal.getManejaRecursos().finishLoading();
-
-        
-        
+	    Quetzal.getManejaRecursos().finishLoading();        
 
         textureFondo = Quetzal.getManejaRecursos().get("images/menus/mainmenu_BG.jpg"); 
         fondo = new Image(textureFondo);
@@ -187,7 +188,7 @@ public class PantallaSeleccionNivel implements Screen{
 		niveles = new TextButton[numNiveles];
 		for (int i = 0; i < numNiveles ; i++) {
 			niveles[i] = new TextButton("nivel " + Integer.toString(i+1) , skin);
-			niveles[i].setColor(color);
+			niveles[i].setColor(colorExit);
 			niveles[i].setName("nivel" + Integer.toString(i+1) );
 		}
 		
@@ -196,200 +197,66 @@ public class PantallaSeleccionNivel implements Screen{
 		for (int i = 0; i < numNiveles; i++) 
 			capturaNivel[i] = Quetzal.getManejaRecursos().get("images/menus/nivel"+(i+1)+".png");
 		
-		botonJugar.setColor(color);
-		botonRegresar.setColor(color);
-		zonaTexto.setColor(color);
+		botonJugar.setColor(colorEnter);
+		botonRegresar.setColor(colorExit);
+		zonaTexto.setColor(colorExit);
+		
+		mjs = new MenuJoystick(escena);
+		Controllers.addListener(mjs);
+		
 	}
 	
-void mouse_listeners(){
+	private void button_listeners(){
 		
-		botonJugar.addListener(new ClickListener(){
+		botonRegresar.addListener(new TextButtonListener(colorEnter, colorExit){
 			@Override
-			public void clicked(InputEvent event, float x, float y) {
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				juego.setScreen(juego.pantallaMenu);
+				return true;
+			}});
+		
+		botonJugar.addListener(new TextButtonListener(colorEnter, colorExit){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				switch (nivelActual){
 				case 1:
-//					juego.setScreen(juego.pan);
+					((PantallaCargaNivel)juego.pantallaCargaNivel).setPantallaActual(juego.pantallaNivel);
 					break;
 					
 				case 2:
-//					juego.setScreen(juego.pantallaNivel1);
+					((PantallaCargaNivel)juego.pantallaCargaNivel).setPantallaActual(juego.pantallaNivel);
 					break;
 					
 				case 3:
-//					juego.setScreen(juego.pantallaNivel1);
+					((PantallaCargaNivel)juego.pantallaCargaNivel).setPantallaActual(juego.pantallaNivel);
 					break;
 				
 				default:
 					//Si no se selecciona ningun nivel, se carga el nivel secreto
-					juego.setScreen(juego.pantallaCargaNivel);
+					((PantallaCargaNivel)juego.pantallaCargaNivel).setPantallaActual(juego.pantallaSecreto);
 					break;
 				}
-			}
-			
-			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {	
-				event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
-	        }
-			
-			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				event.getListenerActor().setColor(color);
-	        }	
-		});
-			
-		botonRegresar.addListener(new ClickListener(){
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				juego.setScreen(juego.pantallaMenu);
-			}
-			
-			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {	
-				event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
-	        }
-			
-			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				event.getListenerActor().setColor(color);
-	        }	
-		});
-	
-		for(int i = 0; i < numNiveles; i++){
-			niveles[i].addListener(new ClickListener(){
-				@Override
-				public void clicked(InputEvent event, float x, float y) {
-					zonaTexto.clear();
-					zonaTexto.add(Gdx.files.internal("ui/texto/" + event.getListenerActor().getName()+ ".txt").readString());
-					captura.clear();
-					captura.add(new Image(capturaNivel[Integer.parseInt(event.getListenerActor().getName().substring(5,6))-1]));
-					nivelActual = Integer.parseInt(event.getListenerActor().getName().substring(5, 6));
-				}	
-			});		
-		}
-					
-	}
-	
-	private void keyboard_listeners(){
-
-		escena.addListener(new InputListener(){
-
-			public boolean keyDown (InputEvent event, int keycode) {
-				InputEvent eventoSalir = new InputEvent();
-				eventoSalir.setType(Type.exit);
-				InputEvent evenEntrar = new InputEvent();
-				evenEntrar.setType(Type.enter);
-				
-				
-				if (keycode == Keys.DOWN) {
-					if (buttonToggleState == 5) {
-						buttonToggleState = 1;
-					} else {
-						buttonToggleState++;
-					}
-					System.out.println(buttonToggleState);
-				}
-
-				if (keycode == Keys.UP) {
-					if (buttonToggleState == 1) {
-						buttonToggleState = 5;
-					} else {
-						buttonToggleState--;
-					}
-					System.out.println(buttonToggleState);
-				}
-
-				switch (buttonToggleState) {
-				case 1:  
-					botonRegresar.fire(eventoSalir);
-					botonJugar.fire(evenEntrar);
-					niveles[0].fire(eventoSalir);
-					escena.setKeyboardFocus(botonJugar);
-					break;
-				case 2:  
-					botonJugar.fire(eventoSalir);
-					niveles[0].fire(evenEntrar);
-					niveles[1].fire(eventoSalir);
-					escena.setKeyboardFocus(niveles[0]);
-					break;
-				case 3:  
-					niveles[0].fire(eventoSalir);
-					niveles[1].fire(evenEntrar);
-					niveles[2].fire(eventoSalir);
-					escena.setKeyboardFocus(niveles[1]);
-					break;
-				case 4:  
-					niveles[1].fire(eventoSalir);
-					niveles[2].fire(evenEntrar);
-					botonRegresar.fire(eventoSalir);
-					escena.setKeyboardFocus(niveles[2]);
-					break;
-				case 5:  
-					niveles[2].fire(eventoSalir);
-					botonRegresar.fire(evenEntrar);
-					botonJugar.fire(eventoSalir);
-					escena.setKeyboardFocus(botonRegresar);
-					break;
-				default: 
-					break;
-				}   
-
-				if(Keys.ENTER == keycode){
-					InputEvent e = new InputEvent();
-					e.setType(Type.touchDown);
-					escena.getKeyboardFocus().fire(e);
-					
-				}
-				return true;
-			}
-		});
-
-	}
-	
-private void touch_listeners(){
-		
-		botonRegresar.addListener(new InputListener(){
-
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
-	
-				juego.setScreen(juego.pantallaMenu);
-				return super.touchDown(event, x, y, pointer, button);
-			}	
-		});
-		
-		botonJugar.addListener(new InputListener(){
-
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
 				juego.setScreen(juego.pantallaCargaNivel);
-				return super.touchDown(event, x, y, pointer, button);
-			}
-		});
+				return true;
+			}});
+		
 		
 		for(int i = 0; i < numNiveles; i++){
-			niveles[i].addListener(new InputListener(){
+			niveles[i].addListener(new TextButtonListener(colorEnter, colorExit){
 				@Override
-				public boolean touchDown(InputEvent event, float x, float y,
-						int pointer, int button) {
+				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
 					zonaTexto.clear();
 					zonaTexto.add(Gdx.files.internal("ui/texto/" + event.getListenerActor().getName()+ ".txt").readString());
 					captura.clear();
 					captura.add(new Image(capturaNivel[Integer.parseInt(event.getListenerActor().getName().substring(5,6))-1]));
 					nivelActual = Integer.parseInt(event.getListenerActor().getName().substring(5, 6));
-					event.setType(Type.touchUp);
-					event.getListenerActor().fire(event);
-					return super.touchDown(event, x, y, pointer, button);
+					event.getListenerActor().setColor(colorExit);
+					return true;
 				}	
-				
-				public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-					event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
-	            }
-	
-				public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-					event.getListenerActor().setColor(color);
-	            }	
 			});		
 		}
-		
 	}
+	
 	void cargar_actores_escenario(){
 		if(debug){
 			tablaNiveles.debug();
@@ -409,5 +276,14 @@ private void touch_listeners(){
 		escena.addActor(subSeleccionar);
 		escena.addActor(captura);
 		escena.addActor(zonaTexto);		
+		
+		escena.setKeyboardFocus(botonJugar);
+		
+		ArrayList<TextButton> lista = new ArrayList<TextButton>();
+		lista.add(botonJugar);
+		for (int i = 0; i < numNiveles ; i++)
+			lista.add(niveles[i]);
+		lista.add(botonRegresar);
+		escena.addListener(new MenuListener(escena, lista));
 	}
 }

@@ -2,24 +2,25 @@ package com.valyrian.firstgame.pantallas;
 
 import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputEvent.Type;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.valyrian.firstgame.Quetzal;
+import com.valyrian.firstgame.utilidades.input.MenuJoystick;
+import com.valyrian.firstgame.utilidades.input.MenuListener;
+import com.valyrian.firstgame.utilidades.input.TextButtonListener;
 
 public class PantallaMenuInicio implements Screen{
 	
@@ -39,8 +40,9 @@ public class PantallaMenuInicio implements Screen{
 	private Image tituloQuetzal;
 	private Image subQuetzal;
 	private Quetzal juego;
-	private Color color;
-	private int buttonToggleState = 5;
+	private Color colorExit;
+	private Color colorEnter;
+	private MenuJoystick mjs;
 
 	public PantallaMenuInicio(Quetzal primerJuego) {
 		juego = primerJuego;
@@ -55,22 +57,19 @@ public class PantallaMenuInicio implements Screen{
 
         //Se actualiza la escena (escene)
         escena.act(delta);
-        batch.begin();
-       
-	        fondo.draw(batch, 1);
-			escena.draw();
-			
+        batch.begin();       
+        	fondo.draw(batch, 1);
+        	escena.draw();
         batch.end();
         
-        //Para ver las lineas de decupuracion
+        //Para ver las lineas de depuracion
         if(debug)
         	Table.drawDebug(escena);
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-
+		
 		escena.setViewport(width , height, true);
 		
 		tabla.setBounds(width*0.05f, 30, width, height);
@@ -96,13 +95,9 @@ public class PantallaMenuInicio implements Screen{
 		
 		Gdx.input.setInputProcessor(escena);
 		
-		mouse_listeners();
-		
-		touch_listeners();
+		button_listeners();
 				
 		cargar_actores_escenario();
-
-		keyboard_listeners();
 	}
 
 	@Override
@@ -124,11 +119,12 @@ public class PantallaMenuInicio implements Screen{
 
 	@Override
 	public void dispose() {
-		escena.dispose();
-//		batch.dispose();
-//		skin.dispose();
+	//	escena.dispose();
+		
 		Quetzal.getManejaRecursos().unload("images/menus/titulo_labusqueda.png");
 		Quetzal.getManejaRecursos().unload("images/menus/titulo_quetzal.png");
+		
+		Controllers.removeListener(mjs);
 		if(debug)
 			System.out.println("SE LLAMO AL DISPOSE DE MENU INICIO");
 	}
@@ -136,12 +132,6 @@ public class PantallaMenuInicio implements Screen{
 	void inicializar_variables(){
 		if(!Quetzal.getManejaRecursos().isLoaded("ui/skin/uiskin.json", Skin.class))
 			Quetzal.getManejaRecursos().load("ui/skin/uiskin.json", Skin.class);
-		Quetzal.getManejaRecursos().finishLoading();
-		
-	    skin = Quetzal.getManejaRecursos().get("ui/skin/uiskin.json");
-	    color = new Color(99, 145, 0, 0.4f);
-	    batch = Quetzal.getSpriteBatch();
-	    
 		if(!Quetzal.getManejaRecursos().isLoaded("images/menus/mainmenu_BG.jpg"))
 			Quetzal.getManejaRecursos().load("images/menus/mainmenu_BG.jpg", Texture.class);
 		if(!Quetzal.getManejaRecursos().isLoaded("images/menus/titulo_quetzal.png"))
@@ -149,6 +139,11 @@ public class PantallaMenuInicio implements Screen{
 		if(!Quetzal.getManejaRecursos().isLoaded("images/menus/titulo_labusqueda.png"))
 			Quetzal.getManejaRecursos().load("images/menus/titulo_labusqueda.png", Texture.class);
 		Quetzal.getManejaRecursos().finishLoading();
+		
+		skin = Quetzal.getManejaRecursos().get("ui/skin/uiskin.json");
+		colorExit = new Color(99, 145, 0, 0.4f);
+		colorEnter = new Color(1f, 1f, 1f, 0.3f);
+		batch = Quetzal.getSpriteBatch();
 		
 		textureFondo = Quetzal.getManejaRecursos().get("images/menus/mainmenu_BG.jpg");
 	    fondo = new Image(textureFondo);
@@ -162,232 +157,67 @@ public class PantallaMenuInicio implements Screen{
 	    escena = new Stage();
 		tabla = new Table(skin);
 		
-		botonJugar = new TextButton("Jugar", skin);
+		botonJugar = new TextButton("Iniciar", skin);
 		botonConfiguraciones = new TextButton("Configuraciones", skin);
 		botonPuntuaciones = new TextButton("Puntuaciones", skin);
 		botonSalir = new TextButton("Salir del juego", skin);
 		botonCreditos = new TextButton("Creditos", skin);
 		
-		botonJugar.setColor(color);
-		botonConfiguraciones.setColor(color);
-		botonPuntuaciones.setColor(color);
-		botonSalir.setColor(color);
-		botonCreditos.setColor(color);
+		botonJugar.setColor(colorEnter);
+		botonConfiguraciones.setColor(colorExit);
+		botonPuntuaciones.setColor(colorExit);
+		botonSalir.setColor(colorExit);
+		botonCreditos.setColor(colorExit);
+		
+		mjs = new MenuJoystick(escena);
+		Controllers.addListener(mjs);
+		
 	}
 	
-	void mouse_listeners(){
+	private void button_listeners(){
 		
-		botonSalir.addListener(new ClickListener(){
+		botonJugar.addListener(new TextButtonListener(colorEnter, colorExit){
 			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				super.clicked(event, x, y);
-				Gdx.app.exit();
-			}
-			
-			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
-            }
-
-			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				event.getListenerActor().setColor(color);
-            }	
-		});
-		
-		botonJugar.addListener(new ClickListener(){
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				super.clicked(event, x, y);
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				System.out.println("SE LLAMO AL TOUCH DE BOTON JUGAR");
 				juego.setScreen(juego.pantallaSeleccionNivel);
-			}
-			
-			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
-            }
-
-			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				event.getListenerActor().setColor(color);
-            }	
-		});
+				return false;
+			}});
 		
-		botonConfiguraciones.addListener(new ClickListener(){
+		botonConfiguraciones.addListener(new TextButtonListener(colorEnter, colorExit){
 			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				super.clicked(event, x, y);
-			}
-			
-			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
-            }
-
-			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				event.getListenerActor().setColor(color);
-            }	
-		});
- 
-		botonPuntuaciones.addListener(new ClickListener(){
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				super.clicked(event, x, y);
-				juego.setScreen(juego.pantallaPuntuaciones);
-			}
-			
-			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
-            }
-
-			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				event.getListenerActor().setColor(color);
-            }	
-		});
-
-		botonCreditos.addListener(new ClickListener(){
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				super.clicked(event, x, y);
-				juego.setScreen(juego.pantallaCreditos);
-			}
-			
-			public void enter (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				event.getListenerActor().setColor(1f, 1f, 1f, 0.3f);
-            }
-
-			public void exit (InputEvent event, float x, float y, int pointer, Actor fromActor) {
-				event.getListenerActor().setColor(color);
-            }	
-		});
-				
-	}
-	
-private void touch_listeners(){
-		
-		botonSalir.addListener(new InputListener(){
-
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
-	
-				Gdx.app.exit();
-				return super.touchDown(event, x, y, pointer, button);
-			}	
-		});
-		
-		botonJugar.addListener(new InputListener(){
-
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
-				juego.setScreen(juego.pantallaSeleccionNivel);
-				return super.touchDown(event, x, y, pointer, button);
-			}
-		});
-		
-		botonConfiguraciones.addListener(new InputListener(){
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
-				
-				return super.touchDown(event, x, y, pointer, button);
-			}
-		});
-		
-		botonCreditos.addListener(new InputListener(){
-			
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
-				juego.setScreen(juego.pantallaCreditos);
-				return super.touchDown(event, x, y, pointer, button);
-			}
-		});
-		
-		botonPuntuaciones.addListener(new InputListener(){
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y,
-					int pointer, int button) {
-				juego.setScreen(juego.pantallaPuntuaciones);
-				return super.touchDown(event, x, y, pointer, button);
-			}
-		});
-		
-	}
-
-	private void keyboard_listeners(){
-
-		escena.addListener(new InputListener(){
-
-			public boolean keyDown (InputEvent event, int keycode) {
-				InputEvent eventoSalir = new InputEvent();
-				eventoSalir.setType(Type.exit);
-				InputEvent evenEntrar = new InputEvent();
-				evenEntrar.setType(Type.enter);
-				
-				
-				if (keycode == Keys.DOWN) {
-					if (buttonToggleState == 5) {
-						buttonToggleState = 1;
-					} else {
-						buttonToggleState++;
-					}
-					System.out.println(buttonToggleState);
-				}
-
-				if (keycode == Keys.UP) {
-					if (buttonToggleState == 1) {
-						buttonToggleState = 5;
-					} else {
-						buttonToggleState--;
-					}
-					System.out.println(buttonToggleState);
-				}
-
-				switch (buttonToggleState) {
-				case 1:  
-					botonSalir.fire(eventoSalir);
-					botonJugar.fire(evenEntrar);
-					botonConfiguraciones.fire(eventoSalir);
-					escena.setKeyboardFocus(botonJugar);
-					break;
-				case 2:  
-					botonJugar.fire(eventoSalir);
-					botonConfiguraciones.fire(evenEntrar);
-					botonPuntuaciones.fire(eventoSalir);
-					escena.setKeyboardFocus(botonConfiguraciones);
-					break;
-				case 3:  
-					botonConfiguraciones.fire(eventoSalir);
-					botonPuntuaciones.fire(evenEntrar);
-					botonCreditos.fire(eventoSalir);
-					escena.setKeyboardFocus(botonPuntuaciones);
-					break;
-				case 4:  
-					botonPuntuaciones.fire(eventoSalir);
-					botonCreditos.fire(evenEntrar);
-					botonSalir.fire(eventoSalir);
-					escena.setKeyboardFocus(botonCreditos);
-					break;
-				case 5:  
-					botonCreditos.fire(eventoSalir);
-					botonSalir.fire(evenEntrar);
-					botonJugar.fire(eventoSalir);
-					escena.setKeyboardFocus(botonSalir);
-					break;
-				default: 
-					break;
-				}   
-
-				if(Keys.ENTER == keycode){
-					InputEvent e = new InputEvent();
-					e.setType(Type.touchDown);
-					escena.getKeyboardFocus().fire(e);
-					
-				}
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				System.out.println("SE LLAMO AL TOUCH DE BOTON CONFIGURACIONES");
+				juego.setScreen(juego.pantallaOpciones);
 				return true;
-			}
-		});
-
+			}});
+		
+		botonPuntuaciones.addListener(new TextButtonListener(colorEnter, colorExit){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				System.out.println("SE LLAMO AL TOUCH DE BOTON PUNTUACIONES");
+				juego.setScreen(juego.pantallaPuntuaciones);
+				return true;
+			}});
+//		
+		botonCreditos.addListener(new TextButtonListener(colorEnter, colorExit){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				System.out.println("SE LLAMO AL TOUCH DE BOTON CREDITOS");
+				juego.setScreen(juego.pantallaCreditos);
+				return true;
+			}});
+		
+		botonSalir.addListener(new TextButtonListener(colorEnter, colorExit){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				System.out.println("SE LLAMO AL TOUCH DE BOTON SALIR");
+				Gdx.app.exit();
+				return true;
+			}});
 	}
-	
-	void cargar_actores_escenario(){
+
+	private void cargar_actores_escenario(){
 		if(debug)
 			tabla.debug();
 
@@ -404,6 +234,16 @@ private void touch_listeners(){
 		escena.addActor(tabla);
 		escena.addActor(tituloQuetzal);
 		escena.addActor(subQuetzal);
+		
+		escena.setKeyboardFocus(botonJugar);
+		
+		ArrayList<TextButton> lista = new ArrayList<TextButton>();
+		lista.add(botonJugar);
+		lista.add(botonConfiguraciones);
+		lista.add(botonPuntuaciones);
+		lista.add(botonCreditos);
+		lista.add(botonSalir);
+		escena.addListener(new MenuListener(escena, lista));
+		
 	}
-
 }

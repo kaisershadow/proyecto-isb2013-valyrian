@@ -26,11 +26,13 @@ public class Jugador extends EntidadDibujable{
 	private int puntaje;
 	private boolean mirandoDerecha;
 	private String nombre;
-	private Sound salto;
+	private Sound salto,disparo;
 	public enum ESTADO_ACTUAL{Atacando, Moviendose, Quieto,Saltando}
 
 	public ESTADO_ACTUAL estado;
 	public int numContactos;
+	
+	public boolean finJuego;
 	
 	private ManejadorAnimacion mab;
 	
@@ -40,7 +42,8 @@ public class Jugador extends EntidadDibujable{
 		this.nombre = "Jugador";
 		this.puntaje =0;
 		this.mirandoDerecha=true;
-		estado=ESTADO_ACTUAL.Quieto;
+		this.estado=ESTADO_ACTUAL.Quieto;
+		this.finJuego = false;
 //		this.cuerpo.getPosition().x = posIniX/PIXELSTOMETERS;
 //		this.cuerpo.getPosition().y = posIniY/PIXELSTOMETERS;
 		
@@ -50,6 +53,7 @@ public class Jugador extends EntidadDibujable{
 		mab = new AnimacionUnica(tx,7,3,0);
 		
 		salto = Quetzal.getManejaRecursos().get("audio/salto.wav",Sound.class);
+		disparo = Quetzal.getManejaRecursos().get("audio/disparo.mp3",Sound.class);
 //		manAnim = new AnimacionJugador(t);
 	}
 	
@@ -124,21 +128,6 @@ public class Jugador extends EntidadDibujable{
 		TextureRegion frame = null;
 		
 		frame = manAnim.getAnimacion(deltaTime);
-//		switch (this.estado)
-//		{
-//			case Quieto:
-//				frame = manAnim.getAnimacion(deltaTime);
-//				break;
-//			case Moviendose:
-//				frame = manAnim.getAnimacion(deltaTime);
-//				break;
-//			case Saltando:
-//				frame = manAnim.getAnimacion(deltaTime);
-//				break;
-//			case Atacando:
-//				frame = manAnim.getAnimacion(deltaTime);
-//				break;
-//		}
 		if(mirandoDerecha)
 			batch.draw(frame, this.cuerpo.getPosition().x - this.ancho/2/PIXELSTOMETERS, this.cuerpo.getPosition().y- this.alto/2/PIXELSTOMETERS, this.ancho/PIXELSTOMETERS, this.alto/PIXELSTOMETERS);
 		else
@@ -211,6 +200,7 @@ public class Jugador extends EntidadDibujable{
 		filter.maskBits |=BITS_ENEMIGO;
 		bala.getCuerpo().getFixtureList().first().setFilterData(filter);
 
+		disparo.play(VOLUMEN*0.1f);
 		this.estado = ESTADO_ACTUAL.Atacando;
 		return bala;
 	}
