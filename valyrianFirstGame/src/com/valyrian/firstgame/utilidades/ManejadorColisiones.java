@@ -2,6 +2,7 @@ package com.valyrian.firstgame.utilidades;
 
 import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -10,22 +11,27 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.utils.Array;
+import com.valyrian.firstgame.Quetzal;
 import com.valyrian.firstgame.entidades.Coleccionable;
 import com.valyrian.firstgame.entidades.Enemigo;
 import com.valyrian.firstgame.entidades.Jugador;
 import com.valyrian.firstgame.entidades.Jugador.ESTADO_ACTUAL;
+import com.valyrian.firstgame.entidades.Plataforma;
 import com.valyrian.firstgame.entidades.Proyectil;
 
 public class ManejadorColisiones implements ContactListener {
 
 	private Array<Body> cuerposABorrar;
 	private Jugador player;
-
+	private Sound moneda,dolor,muerte;
 
 	public ManejadorColisiones(Jugador personaje) {
 		super();
 		cuerposABorrar= new Array<Body>();
 		player=personaje;
+		moneda = Quetzal.getManejaRecursos().get("audio/moneda.ogg",Sound.class);
+		dolor=Quetzal.getManejaRecursos().get("audio/dolor.wav",Sound.class);
+		muerte=Quetzal.getManejaRecursos().get("audio/muerte.wav",Sound.class);
 	}
 
 
@@ -136,7 +142,16 @@ public class ManejadorColisiones implements ContactListener {
 			}
 		}
 
-		
+		if(fA.getUserData()!=null && fA.getUserData().equals("Plataforma")){
+			if(fB.getUserData()!=null && fB.getUserData().equals("Sensor")){
+				this.plataformaSensor(fA);
+			}
+		}
+		if(fB.getUserData()!=null && fB.getUserData().equals("Plataforma")){
+			if(fA.getUserData()!=null && fA.getUserData().equals("Sensor")){
+				this.plataformaSensor(fB);
+			}
+		}
 		
 	}	
 
@@ -197,8 +212,11 @@ public class ManejadorColisiones implements ContactListener {
 	private void jugadorEnemigo(Fixture fA,Fixture fB){
 		player.setVidaActual(((Enemigo)fB.getBody().getUserData()).getDanio()*-1);
 		fA.getBody().applyLinearImpulse(new Vector2(player.getDireccion().x*-7f,0), fA.getBody().getWorldCenter(), true);
-		if(player.estaMuerto())
-			PAUSE = true;
+		dolor.play(VOLUMEN*0.3f);
+		if(player.estaMuerto()){
+			muerte.play(VOLUMEN*0.8f);
+			player.finJuego = true;
+		}
 	}
 	
 //	fA = Enemigo, fB = Proyectil
@@ -211,24 +229,38 @@ public class ManejadorColisiones implements ContactListener {
 	private void jugadorProyectil(Fixture fA,Fixture fB){
 		int danio = ((Proyectil)fB.getBody().getUserData()).getDamage();
 		((Jugador)fA.getBody().getUserData()).setVidaActual(-danio);
-		if(player.estaMuerto())
-			PAUSE = true;
+		dolor.play(VOLUMEN*0.3f);
+		if(player.estaMuerto()){
+			muerte.play(VOLUMEN*0.8f);
+			player.finJuego = true;
+		}
 	}
 	
 	//fA = Jugador
 	private void jugadorMuerte() {
 	player.setVidaActual(-player.getMaxVida());
-	PAUSE = true;
-		
+	muerte.play(VOLUMEN*0.8f);
+	player.finJuego = true;
+		System.out.println("SE MATO");
 	}
 	
 	//fB = Colectable
 	private void jugadorColectable(Fixture fB) {
 		int p = ((Coleccionable)fB.getBody().getUserData()).getPuntos();
+		moneda.play(VOLUMEN*0.5f);
 		player.setPuntaje(p);
 	}
 
 	private void jugadorMeta(){
-		// TO DO
+		player.finJuego = true;
+		System.out.println("LLEGO AL FINAL DEL NIVEL");
+	}
+	
+	private void plataformaSensor(Fixture fA){
+		float dirX = ((Plataforma)fA.getBody().getUserData()).getDireccion().x*=-1;
+		float dirY = ((Plataforma)fA.getBody().getUserData()).getDireccion().y*=-1;
+		float velX = ((Plataforma)fA.getBody().getUserData()).getVelocidad().x;
+		float velY = ((Plataforma)fA.getBody().getUserData()).getVelocidad().y;
+		fA.getBody().setLinearVelocity(velX*dirX,velY*dirY);
 	}
 }

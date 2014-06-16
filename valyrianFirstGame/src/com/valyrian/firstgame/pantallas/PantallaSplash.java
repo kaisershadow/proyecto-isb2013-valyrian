@@ -53,9 +53,11 @@ public class PantallaSplash implements Screen {
 	@Override
 	public void show() {
 		spriteBatch = Quetzal.getSpriteBatch();
+		
 		//Cargar recursos del manejador
 		sound = Quetzal.getManejaRecursos().get("audio/splash_sound.mp3");
 		splashTexture = Quetzal.getManejaRecursos().get("images/splash.png");
+		
 		//Cargar imagen de fondo de las pantallas de menu
 		Quetzal.getManejaRecursos().load("images/menus/mainmenu_BG.jpg", Texture.class);
 		

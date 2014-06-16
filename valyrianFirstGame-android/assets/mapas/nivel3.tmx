@@ -1,0 +1,1096 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="300" height="300" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="bw5" tilewidth="32" tileheight="32">
+  <image source="Assets/bw5.gif" trans="000000" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="257" name="templetrans" tilewidth="32" tileheight="32">
+  <image source="Assets/templetrans.gif" trans="000000" width="128" height="192"/>
+ </tileset>
+ <tileset firstgid="281" name="z67AuSg" tilewidth="32" tileheight="32">
+  <image source="Assets/z67AuSg.png" trans="000000" width="96" height="64"/>
+ </tileset>
+ <tileset firstgid="287" name="espinas" tilewidth="32" tileheight="32">
+  <image source="Assets/espinas.png" trans="000000" width="450" height="312"/>
+ </tileset>
+ <tileset firstgid="413" name="bw5" tilewidth="32" tileheight="32">
+  <image source="Assets/bw5.png" trans="000000" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="669" name="objects" tilewidth="32" tileheight="32">
+  <image source="Assets/objects.PNG" trans="000000" width="224" height="96"/>
+ </tileset>
+ <tileset firstgid="690" name="templ" tilewidth="32" tileheight="32">
+  <image source="Assets/templ.png" trans="000000" width="144" height="161"/>
+ </tileset>
+ <layer name="fondo" width="300" height="300">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3YQW4bWRBEwb46RyeQeQJaF50Rxh8ofzfl8sJgdiEWDYYoUt4VXvp2HMetPP9sP7//wVP/xtt/z7eTv/35/v3Hs36+MTM3ffas3z++eM4+//34/07dj1/v3Xr/48ezfn5nZm76WSc9u2vrvfX69uR3n3+r3rfPW7ZuVf2ZmbnrZ41V789ZJ63Xe/lMbav676y7ltCTzHxdfz5f/Z/U+uzj+PkGrdfP515+t/5m3X/rriX0JDNf1/tuq821btX95HPrXu337/14ftcSepKZr+tnt6fetf17e5PV+3d2q+5HTk8y83Vdn3p76t1Z96s+j/K99ffqdz6On+/d+syre5KZr+m9p/Z7sz6737X9Tp3duGfd9uqeZOZr+qynnt2m/UbV79a7tN+9+p378fqeZOZrev28//7ZfXq2F7+6Vfv/g6W0JTNfy2f9tO7S3kWP43wvPo7zW7W++7v3mJk7fj951l1aN+vs2e/OfqvOtuLedK9uS2a+lh/H+R1ad63esbPPrZ/rrdq3Yv38vfjVbcnM1/LtON9/Z7ep3q76t/a2Ws9b+e66VR/l51e3JTNfy/X/n2oD3f7w2fvq2/a6blW9X69uS2a+ltedqe+tO/a7Dbie9bl6s/bXj+Pnzqq3LKEzmTnf657Ue1Tv0n6z1nv1eZTXerfq/arttu7Xq9uSma/ldavqvVo366v7VJ96m+otrP/Oem911t9oRWae7c/7cbb96p06u0/1BtXb9Owurte3I6ctmflarnfoWUd1Gq3+jXrH6lMb6293IzPP8+34tZ/O7tRXv6/Ntt+x+px9npm564TGY2bu7sFXNx4zc8cJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMkJjcfM3HFC4zEz24PMPMn/AuCx8xhAfgUA
+  </data>
+ </layer>
+ <layer name="estructura" width="300" height="300">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="delante" width="300" height="300">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3c223cMBAFUGcLSQkuwSW4hFQQpAIDacAluAL/uQ6XkGaCBbLIQtaDL5Ea6Jw/ywLIFTCXlETx4QGA0X5ejtFuaj/26O+oawDkeRlUq9N2U/uxR39HXQM4kqVxe2s8TxnvfzeqsdeOtfr5bbnd1H7s0d+e1wCOamnc3hrPU8b7Vnn11rFW/9zl1bTd1H7s0d+e1wCOamnc3hrPU8b7VnkFcCWvgCha59X73XF5BbS09Fxk63nJ0v8/5BUAAAAAGUrXfZauIwUoVbrus3QdKUCp0nUJpescSGP+Cl+VrksoXedAGvNXIArzVyAK8ysgCnkFROH5IAAAAADAuVl/DUThfTsQhfXXQK1e92nWB21zzwzros573oP2e417ZlgXdd7zEbTfa6KOHcD5mF8BUUSd6wIAAAAAAAAAsdV8c+N7HaBWTo7UrAm1nhSolZMj8goYSV5BLGd+tiKvIJYz11LOb6/Zg8H+DdDGmWsp57fXfNPse2ho48x5JUcgFjULAMAINe9Rn81hgY5qnvPJK6CnmnUf8groSV4BUdS8R5VXAAAAAOypdg+LM++BAVM//tXDrS6e7upjWivfL/P1k3KstO5S28s9t5faPSzOvAcGTN3y6mUmr6a1cs2rufpJOVZad6nt5Z7bS+034Wf+phymbnn1OpNX01qRV/nkFbSzllfXWn+8+1te5avdw8IeGPDf1v2gvAKOQl4BUXjeDkQhr/Zl7ytoR17ty95X0I682pe9ZKAdebUve8lAO/IKiEJeAVHk5NWjvAIGysmrJ3mVrWY9w+i9JeBocvLqWV5lq2l/dN/haHL2Z7ieO7eeKOVY6Tqk1PZyz+2lpv3RfYejueXV20xeTd/F/7rMv59POVb6Xj+1vdxzezG/AqIwvwKiML8Coqi5Hx19LwsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB89RfWE7/3QH4FAA==
+  </data>
+ </layer>
+ <layer name="atras" width="300" height="300">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3czW3cMBAGUGcLSQkuwSW4BBfgQxrIIQW4k9xSh0tIM4EAL5IQ2hV/JJJjvQfkIqwhZoH5RC2HfHgAAIA83y9z3Dd3HEeMd9R3AGfxo7LGfiZ/9zqoVtP75o7jiPGO+g5gJree21vP85znfW1e/Ur+7m1Qrab3zR3HEeMd9R3AKOm8ZXHrub31PM953tfmFUA6b1nIKyCK0ry6ztHkFdDbrd9Fbl2/ztFyfk+RVwAAAAAAfBa1fZ+1faQt1vrDgPOo7aOq7ctqsdYfBpzHVt9BaT+DfSH7GDF/BagxYv4KUENeAVHIKyAKeQUA7O39y+gRAOT5La8AAABC0X8NRGG9HYjC/kGg1b33NOe09OWdGe67N+9xTktf3pmBKOQVEIW8AgAAAPic9F0AUfTqu5CLQBT60QAA5tOy58Z+HaBVSY609ITqJwValeSIvAJyba3x1awByiuIJcpvK1trfDVrgPIKYjlzLZX831vOLXTmIZRbe2c6c17JEZjX2juTmgUAIJpnc1igo5Z1VHkF9NSyLiGvgJ7kFRBFyzqqvAIAAABg4Zx2iOfppHV71DntrWdYRDkDA3p4+aiHa138m1dprXy9rNdPzrXausu9X+lne2ndE37mPeWQuubV60pepbWy5NVa/axdS3Oitu5y71f62V7kFeznqLxKr501r1rPsHAGBvy1lVePH/8W8goYSV4BUXgfBKKQV/OydxD+J6+O5ewr2I+8OpazZGA/8upYzpKB/cgrIAp5dZ990DCPkrx6PGFeHbUPGihXkldPJ8wrYB4lefUsr4q19DOMPlsCZlOSVy/yqljL/UePHWZzzau3lbxK1+K/XdbX59eupbVWu66fe7/Sz/Yir2B+o3NiFvIKiEJeAVG0zDPNUQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGA+fwDEnaIFQH4FAA==
+  </data>
+ </layer>
+ <objectgroup name="Entorno" width="300" height="300">
+  <object name="entorno" type="object" x="0" y="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 4160,-32 4160,2752 0,2752 0,-32"/>
+  </object>
+  <object name="sueloytecho" type="fixture" x="0" y="864">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 32,0 32,-480 320,-480 320,-544 384,-544 384,-480 480,-480 480,-576 32,-576 32,-768 1184,-768 1184,-576 1024,-576 1024,32 800,32 800,640 416,640 416,736 160,736 160,960 352,960 352,896 480,896 480,960 672,960 672,896 800,896 800,960 960,960 960,800 992,800 992,704 928,704 928,608 992,608 992,448 896,448 896,352 992,352 992,160 832,160 832,64 1120,64 1120,352 1184,352 1184,448 1120,448 1120,608 1184,608 1184,704 1120,704 1120,800 1216,800 1216,-128 1120,-128 1120,-256 1216,-256 1216,-480 1344,-480 1344,-576 1216,-576 1216,-768 1472,-768 1472,-704 1504,-704 1504,-576 1696,-576 1696,-384 1504,-384 1504,-320 1376,-320 1376,-256 1504,-256 1504,-128 1376,-128 1376,-32 1504,-32 1504,96 1376,96 1376,160 1696,160 1696,320 1408,320 1376,320 1376,416 1504,416 1504,544 1376,544 1376,640 1504,640 1504,768 1376,768 1376,960 1600,960 1600,416 1824,416 1824,64 1600,64 1600,-224 1792,-224 1792,-704 1536,-704 1536,-832 4096,-832 4096,-704 3840,-704 3840,-224 3424,-224 3424,-160 3168,-160 3168,0 3328,0 3328,160 2944,160 2944,320 2848,320 2848,352 2944,352 3520,352 3520,320 3456,320 3456,256 3392,256 3392,160 3456,160 3456,-96 3808,-96 3808,64 3680,64 3680,96 3808,96 3808,256 3680,256 3680,416 3616,416 3616,448 3680,448 3680,832 3456,832 3456,576 2944,576 2944,672 3008,672 3008,608 3104,608 3104,672 3168,672 3168,608 3264,608 3264,672 3328,672 3328,832 3264,832 3264,896 3168,896 3168,832 3104,832 3104,896 3008,896 3008,832 2912,832 2912,928 3680,928 3680,1312 3456,1312 3456,1088 2912,1088 2912,1184 3008,1184 3008,1120 3104,1120 3104,1184 3168,1184 3168,1120 3264,1120 3264,1184 3328,1184 3328,1312 3264,1312 3264,1376 3168,1376 3168,1312 3104,1312 3104,1376 3008,1376 3008,1312 2912,1312 2912,1408 3680,1408 3680,1824 3424,1824 3424,1632 2432,1632 2432,1728 2112,1728 2112,1504 2624,1504 2624,608 2560,608 2560,736 2496,736 2496,608 1792,608 1792,768 1728,768 1728,960 1920,960 1920,704 2336,704 2336,800 2432,800 2432,928 2528,928 2528,1120 2592,1120 2592,1184 2528,1184 2528,1408 2144,1408 2144,1248 2272,1248 2272,1184 2208,1184 2208,1120 2272,1120 2272,992 2144,992 2144,832 2048,832 2048,1568 32,1568 32,192 352,192 352,96 0,96"/>
+  </object>
+  <object name="suelo" type="fixture" x="608" y="288">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 0,96 128,96 128,64 192,64 192,96 320,96 320,0 224,0 192,0 192,-32 128,-32 128,0 0,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="192" y="512">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 128,0 128,64 192,64 192,0 288,0 288,96 0,96 0,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="384" y="704">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 224,0 224,-192 352,-192 352,-96 416,-96 416,-192 512,-192 512,64 224,64 224,32 160,32 160,64 0,64 0,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="2048" y="160">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 192,0 192,-32 288,-32 288,0 416,0 416,96 512,96 512,0 704,0 704,128 800,128 800,0 896,0 896,128 960,128 960,0 1152,0 1152,288 704,288 704,512 800,512 800,544 704,544 704,576 576,576 576,1088 512,1088 512,992 448,992 448,1088 352,1088 352,1056 384,1056 384,544 544,544 544,352 384,352 384,256 224,256 224,128 96,128 96,64 0,64 0,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="3360" y="160">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 128,0 128,288 0,288 0,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="3648" y="160">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 0,288 64,288 64,0 0,0"/>
+  </object>
+  <object name="plataforma" type="fixture" x="1376" y="384" width="64" height="32">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plataforma" type="fixture" x="192" y="2176" width="128" height="32">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plataforma" type="fixture" x="512" y="2176" width="128" height="32">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plataforma" type="fixture" x="832" y="2176" width="96" height="32">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plataforma" type="fixture" x="1408" y="2176" width="128" height="32">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plataforma" type="fixture" x="1760" y="2176" width="128" height="32">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plataforma" type="fixture" x="2976" y="672" width="96" height="32">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plataforma" type="fixture" x="2848" y="800" width="96" height="32">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plataforma" type="fixture" x="2976" y="896" width="96" height="32">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plataforma" type="fixture" x="2688" y="1056" width="96" height="32">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plataforma" type="fixture" x="3520" y="992" width="64" height="32">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="spawn" type="body" x="3072" y="1376">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="suelo" type="fixture" x="448" y="960">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 96,0 96,96 160,96 160,0 224,0 224,384 128,384 128,256 128,224 0,224 0,0"/>
+  </object>
+  <object name="finjuego" type="fixture" x="2208" y="2464">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="Meta"/>
+   </properties>
+   <polyline points="-64,96 0,96"/>
+  </object>
+  <object name="cuerpoB3" type="object" x="3168" y="2432" width="128" height="64">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+    <property name="density" value="1"/>
+    <property name="fricition" value="0"/>
+   </properties>
+  </object>
+  <object name="cuerpoB5" type="object" x="3488" y="2528" width="128" height="32">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+    <property name="density" value="90"/>
+   </properties>
+  </object>
+  <object name="cuerpoA5" type="object" x="2560" y="2400" width="64" height="96">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+    <property name="categoryBits" value="4"/>
+    <property name="density" value="60"/>
+    <property name="maskBits" value="2"/>
+   </properties>
+  </object>
+  <object name="polea3" type="joint" x="3200" y="2624">
+   <properties>
+    <property name="bodyA" value="cuerpoA5"/>
+    <property name="bodyB" value="cuerpoB5"/>
+    <property name="groundAnchorAX" value="81"/>
+    <property name="groundAnchorAY" value="228"/>
+    <property name="groundAnchorBX" value="111"/>
+    <property name="groundAnchorBY" value="228"/>
+    <property name="jointType" value="PulleyJoint"/>
+    <property name="lengthA" value="6"/>
+    <property name="lengthB" value="5"/>
+    <property name="localAnchorAX" value="1"/>
+    <property name="localAnchorAY" value="3"/>
+    <property name="localAnchorBX" value="2"/>
+    <property name="localAnchorBY" value="1"/>
+    <property name="ratio" value="1"/>
+   </properties>
+   <polyline points="0,-64 -192,-64"/>
+  </object>
+  <object name="plataforma" type="fixture" x="3008" y="1920" width="32" height="32">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plataforma" type="fixture" x="3008" y="1408" width="32" height="32">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plataforma" type="fixture" x="3008" y="2464" width="32" height="32">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="SpawnMurcielago" width="300" height="300">
+  <object name="spawnmurcielago1" type="body" x="352" y="384">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="96" y="480">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="288" y="672">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="576" y="800">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="1120" y="256">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="1280" y="256">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="1152" y="704">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="64" y="1376">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="416" y="1856">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="960" y="1280">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="1120" y="1536">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="736" y="2272">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="1152" y="1984">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="1344" y="1952">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="1472" y="1600">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="1472" y="1376">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="1632" y="448">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="1664" y="1440">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="2368" y="1792">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="2208" y="2240">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="2528" y="1216">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="2528" y="672">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="2784" y="640">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="2976" y="224">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="3264" y="256">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="3552" y="256">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="3744" y="896">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="3424" y="1088">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="3168" y="1344">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="3200" y="1728">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="3040" y="1536">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="3040" y="2048">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="3232" y="2208">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="3264" y="2400">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="SpawnCofre" width="300" height="300">
+  <object name="spawnColeccionable1" type="body" x="64" y="256">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="1152" y="256">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="1248" y="256">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="512" y="672">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="480" y="928">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="512" y="1472">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="928" y="1280">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="864" y="992">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="1152" y="1280">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="1152" y="1536">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="960" y="1536">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="576" y="2144">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="1568" y="128">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="1664" y="448">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="1632" y="896">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="1472" y="928">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="1632" y="1152">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="1792" y="2144">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="2176" y="2240">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="2368" y="1440">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="2560" y="672">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="2880" y="768">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="2912" y="128">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="3264" y="992">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="4032" y="128">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="3776" y="896">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="3296" y="1664">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="3296" y="2144">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnColeccionable1" type="body" x="288" y="480">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="SpawnRaton" width="300" height="300">
+  <object name="spawnraton1" type="body" x="128" y="256">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnraton1" type="body" x="320" y="928">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnraton1" type="body" x="896" y="992">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnraton1" type="body" x="1632" y="128">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnraton1" type="body" x="1696" y="896">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnraton1" type="body" x="1536" y="1152">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnraton1" type="body" x="2080" y="1440">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnraton1" type="body" x="2176" y="128">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnraton1" type="body" x="2688" y="128">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrato1" type="body" x="3104" y="128">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrato1" type="body" x="3584" y="608">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrato1" type="body" x="3232" y="672">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrato1" type="body" x="3040" y="992">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrato1" type="body" x="3104" y="1888">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrato1" type="body" x="3072" y="2432">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrato1" type="body" x="2688" y="2464">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Muerte" width="300" height="300">
+  <object name="muerte1" type="object" x="32" y="2400">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="setRestitution" value="1"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="0,0 2016,0"/>
+  </object>
+  <object name="muerte1" type="object" x="320" y="544">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="setRestitution" value="1"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object name="muerte1" type="object" x="736" y="576">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="setRestitution" value="1"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object name="muerte1" type="object" x="544" y="1024">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="setRestitution" value="1"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object name="muerte1" type="object" x="160" y="1568">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="setRestitution" value="1"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="0,32 0,0 256,0"/>
+  </object>
+  <object name="muerte1" type="object" x="2496" y="1568">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="setRestitution" value="1"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="LimitesVerticales" width="300" height="300">
+  <object name="limiteI1" type="object" x="928" y="864">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteS1" type="object" x="928" y="320">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteI2" type="object" x="672" y="1440">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteS2" type="object" x="672" y="992">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteI3" type="object" x="64" y="2304">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteS3" type="object" x="64" y="1536">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteI4" type="object" x="1024" y="2240">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteS4" type="object" x="1024" y="1024">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteI5" type="object" x="1632" y="2240">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteS5" type="object" x="1632" y="1504">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteI6" type="object" x="1248" y="2240">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteS6" type="object" x="1248" y="512">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteI7" type="object" x="1952" y="2240">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteS7" type="object" x="1952" y="1696">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteI8" type="object" x="1824" y="640">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteS8" type="object" x="1824" y="192">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteI9" type="object" x="2240" y="1408">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteS9" type="object" x="2240" y="960">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteI10" type="object" x="2688" y="2400">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteS10" type="object" x="2688" y="1472">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+    <property name="userData" value="Sensor"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteI11" type="object" x="2272" y="2208">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteS11" type="object" x="2272" y="1760">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteI12" type="object" x="3712" y="576">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="limiteS12" type="object" x="3712" y="128">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="LimitesHorizontales" width="300" height="300">
+  <object name="limiteR1" type="object" x="320" y="1472">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="96,-32 96,0"/>
+  </object>
+  <object name="limiteL1" type="object" x="96" y="1408">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,32 0,64"/>
+  </object>
+  <object name="limiteR2" type="object" x="2112" y="960">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="96,-32 96,0"/>
+  </object>
+  <object name="limiteL2" type="object" x="1856" y="896">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,32 0,64"/>
+  </object>
+  <object name="limiteR3" type="object" x="2336" y="640">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="96,-32 96,0"/>
+  </object>
+  <object name="limiteL3" type="object" x="2016" y="576">
+   <properties>
+    <property name="active" value="false"/>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+   <polyline points="0,32 0,64"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="BasesMoviblesVertical" width="300" height="300">
+  <object name="plataformamovilv1" type="body" x="928" y="448" width="64" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="plataformamovilv2" type="body" x="704" y="1376" width="64" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="plataformamovilv3" type="body" x="64" y="2176" width="64" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="plataformamovilv4" type="body" x="1024" y="2176" width="64" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="plataformamovilv6" type="body" x="1216" y="2176" width="96" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="plataformamovilv5" type="body" x="1632" y="2176" width="64" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="plataformamovilv7" type="body" x="1952" y="1952" width="64" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="plataformamovilv11" type="body" x="2304" y="2144" width="96" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="plataformamovilv9" type="body" x="2208" y="1344" width="128" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="plataformamovilv8" type="body" x="1824" y="320" width="128" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="plataformamovilv10" type="body" x="2688" y="1536" width="128" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="plataformamovilv12" type="body" x="3744" y="512" width="64" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="BasesMoviblesHorizontal" width="300" height="300">
+  <object name="plataformamovilh1" type="body" x="160" y="1440" width="64" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="plataformamovilh2" type="body" x="1888" y="928" width="160" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="plataformamovilh3" type="body" x="2176" y="608" width="128" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Poleas" width="300" height="300">
+  <object name="cuerpoB2" type="object" x="3520" y="1536" width="128" height="32">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+    <property name="density" value="79"/>
+   </properties>
+  </object>
+  <object name="cuerpoA2" type="object" x="2944" y="1824" width="64" height="128">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+    <property name="categoryBits" value="4"/>
+    <property name="density" value="40"/>
+    <property name="maskBits" value="2"/>
+   </properties>
+  </object>
+  <object name="polea2" type="joint" x="3520" y="1824">
+   <properties>
+    <property name="bodyA" value="cuerpoA2"/>
+    <property name="bodyB" value="cuerpoB2"/>
+    <property name="groundAnchorAX" value="93"/>
+    <property name="groundAnchorAY" value="255"/>
+    <property name="groundAnchorBX" value="112"/>
+    <property name="groundAnchorBY" value="255"/>
+    <property name="jointType" value="PulleyJoint"/>
+    <property name="lengthA" value="7"/>
+    <property name="lengthB" value="5"/>
+    <property name="localAnchorAX" value="1"/>
+    <property name="localAnchorAY" value="4"/>
+    <property name="localAnchorBX" value="2"/>
+    <property name="localAnchorBY" value="1"/>
+    <property name="ratio" value="1"/>
+   </properties>
+   <polyline points="0,-64 -192,-64"/>
+  </object>
+  <object name="cuerpoB3" type="object" x="3296" y="1344" width="128" height="64">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+    <property name="density" value="1"/>
+    <property name="fricition" value="0"/>
+   </properties>
+  </object>
+  <object name="cuerpoB3" type="object" x="3328" y="1856" width="128" height="64">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+    <property name="density" value="1"/>
+    <property name="fricition" value="0"/>
+   </properties>
+  </object>
+  <object name="cuerpoB4" type="object" x="3520" y="2016" width="128" height="32">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+    <property name="density" value="148"/>
+   </properties>
+  </object>
+  <object name="polea2" type="joint" x="3296" y="2368">
+   <properties>
+    <property name="bodyA" value="cuerpoA4"/>
+    <property name="bodyB" value="cuerpoB4"/>
+    <property name="groundAnchorAX" value="93"/>
+    <property name="groundAnchorAY" value="238"/>
+    <property name="groundAnchorBX" value="112"/>
+    <property name="groundAnchorBY" value="238"/>
+    <property name="jointType" value="PulleyJoint"/>
+    <property name="lengthA" value="6"/>
+    <property name="lengthB" value="5"/>
+    <property name="localAnchorAX" value="1"/>
+    <property name="localAnchorAY" value="4"/>
+    <property name="localAnchorBX" value="2"/>
+    <property name="localAnchorBY" value="1"/>
+    <property name="ratio" value="1"/>
+   </properties>
+   <polyline points="0,-64 -192,-64"/>
+  </object>
+  <object name="cuerpoA4" type="object" x="2944" y="2272" width="64" height="160">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+    <property name="categoryBits" value="4"/>
+    <property name="density" value="60"/>
+    <property name="maskBits" value="2"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Monedas" width="300" height="300">
+  <object name="spawnraton1" type="body" x="256" y="224">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnraton1" type="body" x="2464" y="2112">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnraton1" type="body" x="2272" y="2496">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

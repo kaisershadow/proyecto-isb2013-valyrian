@@ -1,0 +1,1453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="400" height="36" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="fondo4" tilewidth="32" tileheight="32">
+  <image source="Assets/fondo4.jpg" trans="6ff1ff" width="1600" height="1200"/>
+ </tileset>
+ <tileset firstgid="1851" name="N6maFB7" tilewidth="32" tileheight="32">
+  <image source="Assets/N6maFB7.png" trans="6ff1ff" width="208" height="207"/>
+ </tileset>
+ <tileset firstgid="1887" name="sprites" tilewidth="32" tileheight="32">
+  <image source="Assets/sprites.png" trans="6ff1ff" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="1951" name="Jungle_terrainwater" tilewidth="32" tileheight="32">
+  <image source="Assets/Jungle_terrainwater.png" trans="6ff1ff" width="384" height="320"/>
+ </tileset>
+ <tileset firstgid="2071" name="terraintrans" tilewidth="32" tileheight="32">
+  <image source="Assets/terraintrans.png" trans="6ff1ff" width="288" height="320"/>
+ </tileset>
+ <tileset firstgid="2161" name="Forest_Tree" tilewidth="32" tileheight="32">
+  <image source="Assets/Forest_Tree.png" trans="000000" width="320" height="352"/>
+ </tileset>
+ <tileset firstgid="2271" name="tileset" tilewidth="32" tileheight="32">
+  <image source="Assets/tileset.png" trans="000000" width="450" height="312"/>
+ </tileset>
+ <tileset firstgid="2397" name="NES - Blaster Master - Area 1 Overworld" tilewidth="32" tileheight="32">
+  <image source="Assets/NES - Blaster Master - Area 1 Overworld.png" trans="000000" width="203" height="220"/>
+ </tileset>
+ <tileset firstgid="2433" name="objects" tilewidth="32" tileheight="32">
+  <image source="Assets/objects.PNG" trans="000000" width="224" height="96"/>
+ </tileset>
+ <tileset firstgid="2454" name="tierra" tilewidth="32" tileheight="32">
+  <image source="Assets/tierra.jpg" trans="000000" width="174" height="290"/>
+ </tileset>
+ <tileset firstgid="2499" name="bw5" tilewidth="32" tileheight="32" spacing="2">
+  <image source="Assets/bw5.png" trans="ffffff" width="512" height="512"/>
+ </tileset>
+ <layer name="fondo3" width="400" height="36">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="estr" width="400" height="36">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <layer name="delante" width="400" height="36">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3dS07CQBgAYHYoa4zu8QR4RreudK0JPs7CMXwtBV0KmjgkrVQDCkMt0/p9yZ+BxTTTBuadaasFAAAAAAAAAAAAAEDdDXe2XQIAAAAA/jPzUwBASmZ9E/0TAAAAAAAgRtlrDMV1i/xz3dcyvt9H3e8HNrUffv8HDf4PnOymdR0AqhfT1zsrqd4v6zpAmmO3WV+66f1pAICypdanAwCoM3NT6dP/BYh33m61Ltp/d/2mtqO34Znd/eFzK8t9KONDiMcalBVSlNdhTazH2I6nUB+PshhnMYpIY/Isy/ucxbjwPU9ftB8ASXgN9fEki2kWk4g0Js+yvG9ZTAvf8/R9hfbDfB4AAABANZq6Zg9sptvZdgnSMdsDlO+viU033ZejroY41puqNWs79rQfn54W7LNZN7UvB/gPeqHtONR+fPF9n8266Sr7cgDq5LgzH290s+iHONJ+VM554ECdnHbm441eIdYdf+Tn3P503u2yecjf8m1q0bWXvfelinfADMJY5DLEVYjrEDfZ2CQ/D3yd5zB0vjCwJYPCeKNfCOMPAAAAAFL3AalwmC4A4QAA
+  </data>
+ </layer>
+ <objectgroup name="Entorno" width="400" height="36">
+  <properties>
+   <property name="userData" value="Entorno"/>
+  </properties>
+  <object name="entorno" type="object" x="0" y="0">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 0,1152 12800,1152 12800,0 0,0"/>
+  </object>
+  <object name="spawn" type="body" x="736" y="992">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="sueloytecho" type="fixture" x="768" y="1056">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,96 0,0 -544,0 -544,-32 -576,-32 -576,-192 -576,-736 0,-736 0,-480 0,-192 0,-128 64,-128 64,-992 96,-992 96,-960 160,-960 160,-928 224,-928 224,-896 320,-896 320,-864 384,-864 384,-832 416,-832 416,-544 480,-544 480,-608 480,-640 1024,-640 1024,-512 1088,-512 1088,-768 1152,-768 1152,-800 1184,-800 1184,-832 1280,-832 1280,-896 1344,-896 1344,-704 1344,-480 1408,-480 1408,-640 1888,-640 1888,-480 1888,-448 1952,-448 1952,-992 1984,-992 1984,-960 2112,-960 2112,-928 2176,-928 2176,-896 2240,-896 2240,-864 2304,-864 2304,-832 2336,-832 2336,-672 2336,-608 2400,-608 2400,-832 2432,-832 2432,-864 2496,-864 2496,-896 2592,-896 2592,-928 2688,-928 2688,-896 2752,-896 2752,-864 2784,-864 2784,-832 2816,-832 2816,-800 2912,-800 2912,-608 2912,-416 2912,-384 2976,-384 2976,-800 3040,-800 3040,-832 3072,-832 3072,-864 3168,-864 3168,-800 3232,-800 3232,-768 3264,-768 3264,-736 3296,-736 3296,-704 3424,-704 3424,-736 3456,-736 3456,-768 3488,-768 3488,-800 3552,-800 3552,-864 3648,-864 3648,-928 3680,-928 3680,-960 3712,-960 3712,-864 3776,-864 3776,-992 4064,-992 4064,-960 4192,-960 4192,-928 4224,-928 4224,-896 4256,-896 4256,-832 4416,-832 4416,-800 4448,-800 4448,-768 4480,-768 4480,-736 4512,-736 4512,-512 4576,-512 4576,-736 4608,-736 4608,-800 4672,-800 4672,-832 4704,-832 4704,-864 4768,-864 4768,-896 4864,-896 4864,-928 4960,-928 4960,-864 4992,-864 4992,-768 5152,-768 5152,-800 5216,-800 5216,-864 5280,-864 5280,-800 5376,-800 5376,-768 5472,-768 5472,-736 5536,-736 5536,-704 5696,-704 5696,-736 5760,-736 5760,-768 5888,-768 5888,-800 5952,-800 5952,-832 5984,-832 5984,-864 6016,-864 6016,-832 6048,-832 6048,-800 6080,-800 6080,-768 6112,-768 6112,-736 6144,-736 6144,-704 6240,-704 6240,-512 6304,-512 6304,-704 6368,-704 6368,-736 6464,-736 6464,-768 6496,-768 6496,-800 6528,-800 6528,-832 6560,-832 6560,-864 6688,-864 6688,-832 6720,-832 6720,-800 6752,-800 6752,-768 6976,-768 6976,-736 7040,-736 7040,-768 6976,-768 6976,-800 6848,-800 6848,-992 6944,-992 6944,-960 7008,-960 7040,-960 7040,-928 7104,-928 7104,-896 7168,-896 7168,-864 7232,-864 7232,-832 7328,-832 7328,-800 7424,-800 7424,-832 7520,-832 7520,-736 7648,-736 7648,-768 7712,-768 7712,-736 7744,-736 7744,-704 7776,-704 7776,-672 7840,-672 7840,-640 8032,-640 8032,-672 8096,-672 8096,-704 8128,-704 8128,-736 8160,-736 8192,-736 8192,-800 8224,-800 8224,-832 8256,-832 8256,-896 8288,-896 8288,-864 8352,-864 8352,-832 8448,-832 8448,-800 8512,-800 8512,-768 8704,-768 8704,-800 8768,-800 8768,-832 8832,-832 8832,-864 8864,-864 8864,-896 8992,-896 8992,-864 9056,-864 9056,-832 9120,-832 9120,-800 9248,-800 9280,-800 9280,-832 9344,-832 9344,-896 9376,-896 9376,-928 9408,-928 9408,-896 9472,-896 9472,-864 9504,-864 9504,-832 9536,-832 9536,-800 9568,-800 9568,-768 9600,-768 9600,-736 9632,-736 9632,-704 9856,-704 9856,-736 9920,-736 9920,-768 9952,-768 9952,-800 10016,-800 10016,-832 10080,-832 10080,-864 10112,-864 10112,-896 10176,-896 10176,-864 10240,-864 10240,-832 10272,-832 10272,-800 10368,-800 10368,-768 10528,-768 10528,-800 10560,-800 10560,-864 10592,-864 10592,-960 10688,-960 10688,-928 10752,-928 10752,-896 10944,-896 10944,-960 11008,-960 11008,-896 11040,-896 11040,-864 11168,-864 11168,-896 11200,-896 11200,-928 11232,-928 11232,-960 11360,-960 11360,-992 11392,-992 11392,-1024 12032,-1024 12032,-832 11840,-832 11840,-864 11776,-864 11776,-928 11520,-928 11520,-864 11456,-864 11456,-800 11360,-800 11360,-704 11360,-672 11424,-672 11424,-640 11552,-640 11552,-672 11584,-672 11584,-640 11616,-640 11616,-512 11680,-512 11680,-480 11712,-480 11712,-416 11968,-416 11968,-256 11904,-256 11904,-192 11808,-192 11808,-96 11968,-96 11968,-160 12000,-160 12000,-192 12032,-192 12032,0 10912,0 10912,-64 10880,-64 10880,-96 10848,-96 10848,-544 10784,-544 10784,-352 10784,-224 10784,-96 10752,-96 10752,-32 10720,-32 10720,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="832" y="1152">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 0,-96 224,-96 224,-160 288,-160 288,-96 640,-96 640,-288 640,-384 704,-384 704,-96 736,-96 736,-64 768,-64 768,-96 864,-96 864,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="1760" y="1152">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 0,-96 288,-96 288,-192 416,-192 384,-192 384,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="2208" y="960">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="2336" y="960">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="2464" y="960">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="2656" y="1152">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 0,-160 0,-192 96,-192 96,-96 512,-96 512,-224 576,-224 576,-160 640,-160 576,-160 576,-96 608,-96 608,-64 704,-64 704,-96 864,-96 864,-160 896,-160 896,-224 960,-224 960,-160 992,-160 992,-128 1024,-128 1024,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="4096" y="1152">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 0,-256 64,-256 64,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="5120" y="1152">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 0,-384 64,-384 64,0 64,-384 192,-384"/>
+  </object>
+  <object name="suelo" type="fixture" x="5376" y="768">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="5504" y="768">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="5792" y="768">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="6272" y="768">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="6496" y="768">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 64,0 64,384"/>
+  </object>
+  <object name="suelo" type="fixture" x="6624" y="1152">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 0,-384 -64,-384"/>
+  </object>
+  <object name="suelo" type="fixture" x="7968" y="1152">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 0,-576 96,-576 96,-480 192,-480 192,-384 288,-384 288,-288 96,-288 96,-160 320,-160 320,-96 896,-96 896,-448 1056,-448 1056,-288 1088,-288 1088,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="9440" y="1152">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 0,-544 64,-544 64,-608 160,-608 160,-672 320,-672 320,-608 480,-608 480,-544 320,-544 320,-352 192,-352 192,-224 64,-224 64,-96 992,-96 992,-384 1056,-384 1056,-96 1344,-96 1344,-512 1408,-512 1408,-96 1440,-96 1440,-64"/>
+  </object>
+  <object name="suelo" type="fixture" x="11168" y="1088">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="-288,0 0,0 0,-256 -32,-256 -32,-352 64,-352 64,0 320,0 320,-32"/>
+  </object>
+  <object name="plat5" type="object" x="384" y="608" width="160" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat5" type="object" x="1728" y="800" width="160" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat5" type="object" x="2400" y="640" width="160" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat5" type="object" x="2816" y="832" width="160" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat5" type="object" x="4608" y="480" width="160" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat5" type="object" x="4736" y="256" width="160" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="384" y="768" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="544" y="864" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="384" y="960" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="4544" y="800" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="4544" y="352" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="4800" y="608" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="4992" y="672" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="5632" y="832" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="5952" y="928" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="6112" y="832" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="7328" y="704" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="7136" y="608" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="7520" y="768" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="7552" y="960" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="7680" y="864" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="7712" y="640" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="7872" y="768" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="8160" y="512" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="8352" y="832" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="8544" y="928" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="8672" y="832" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="8768" y="800" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="9216" y="608" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="9344" y="736" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="9088" y="800" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="9216" y="864" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="9408" y="384" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="10048" y="576" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="9952" y="704" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="9856" y="800" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="9760" y="928" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="10240" y="928" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="10240" y="640" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="10976" y="640" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="10944" y="896" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="11040" y="768" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="11168" y="640" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="11328" y="736" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="11840" y="672" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="11680" y="576" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="11840" y="480" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="12000" y="768" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="11904" y="864" width="96" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat4" type="object" x="1056" y="704" width="128" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat4" type="object" x="1184" y="928" width="128" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat4" type="object" x="1280" y="704" width="128" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat4" type="object" x="2624" y="736" width="128" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat4" type="object" x="3232" y="640" width="128" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat4" type="object" x="3392" y="736" width="128" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat4" type="object" x="3712" y="928" width="128" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat4" type="object" x="4352" y="896" width="128" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat4" type="object" x="12000" y="352" width="128" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat6" type="object" x="1536" y="608" width="192" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat6" type="object" x="5376" y="576" width="192" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat6" type="object" x="10528" y="512" width="192" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat2" type="object" x="3552" y="800" width="64" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat2" type="object" x="3936" y="896" width="64" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat2" type="object" x="4224" y="992" width="64" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat2" type="object" x="5376" y="992" width="64" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat2" type="object" x="5504" y="928" width="64" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat2" type="object" x="6720" y="896" width="64" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat2" type="object" x="6848" y="800" width="64" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat2" type="object" x="6976" y="896" width="64" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat2" type="object" x="6944" y="672" width="64" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat2" type="object" x="7104" y="960" width="64" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat2" type="object" x="7264" y="960" width="64" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat2" type="object" x="7424" y="960" width="64" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat8" type="object" x="4672" y="704" width="224" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat8" type="object" x="8704" y="512" width="384" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat8" type="object" x="5696" y="576" width="352" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat8" type="object" x="6240" y="576" width="256" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="8000" y="416" width="64" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="plat3" type="object" x="7488" y="416" width="384" height="32">
+   <properties>
+    <property name="userData" value="Entorno"/>
+   </properties>
+  </object>
+  <object name="suelo" type="fixture" x="2592" y="960">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="1376" y="864">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 96,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="2048" y="352">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="-32,0 64,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="3104" y="992">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="768" y="576">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="768" y="800">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="2656" y="544">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -96,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="3104" y="352">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -64,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="3680" y="416">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -224,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="3680" y="608">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -64,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="10784" y="704">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -96,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="10784" y="864">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -96,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="11552" y="640">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="11552" y="800">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -64,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="320" y="896">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="320" y="704">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="960" y="704">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="32,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="960" y="640">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="-64,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="960" y="896">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="1664" y="800">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="-64,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="1664" y="992">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="-64,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="1984" y="512">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="2304" y="544">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="32,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="2848" y="544">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="352,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="3872" y="544">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="672,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="4672" y="160">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="32,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="5280" y="416">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -448,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="5472" y="384">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="-32,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="5472" y="512">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="-32,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="6560" y="864">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -96,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="6752" y="800">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="-64,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="6752" y="992">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="-64,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="7200" y="512">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="-32,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="10976" y="768">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="-32,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="10976" y="992">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="-64,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="10624" y="960">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="10624" y="800">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="-32,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="10432" y="864">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -96,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="11744" y="832">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="11808" y="992">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="-96,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="5120" y="864">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 -96,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="5312" y="800">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="-64,0 -128,0"/>
+  </object>
+  <object name="suelo" type="fixture" x="5312" y="992">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="-64,0 -128,0"/>
+  </object>
+  <object name="plat3" type="object" x="11392" y="352" width="352" height="32"/>
+  <object name="finjuego" type="fixture" x="12608" y="960">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="isSensor" value="true"/>
+    <property name="userData" value="Meta"/>
+   </properties>
+   <polyline points="0,0 0,96"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="SpawnRana" width="400" height="36">
+  <object name="spawnrana1" type="body" x="416" y="736">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana2" type="body" x="1184" y="1024">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana3" type="body" x="1888" y="1024">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana4" type="body" x="2432" y="608">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana5" type="body" x="2720" y="928">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana6" type="body" x="3040" y="1024">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana7" type="body" x="3424" y="704">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana8" type="body" x="3488" y="1024">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana9" type="body" x="4480" y="864">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana10" type="body" x="7168" y="576">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana11" type="body" x="8128" y="960">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana12" type="body" x="8320" y="1024">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana13" type="body" x="9728" y="448">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana14" type="body" x="9888" y="512">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana15" type="body" x="9632" y="1024">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana16" type="body" x="10400" y="832">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana17" type="body" x="11648" y="800">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana18" type="body" x="12096" y="320">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana19" type="body" x="12704" y="192">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana20" type="body" x="12064" y="1024">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana21" type="body" x="11872" y="1024">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="SpawnAvispa" width="400" height="36">
+  <object name="spawnavispa1" type="body" x="256" y="640">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa2" type="body" x="960" y="640">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa3" type="body" x="896" y="992">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa4" type="body" x="1888" y="736">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa5" type="body" x="2016" y="992">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa6" type="body" x="2272" y="480">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa7" type="body" x="2944" y="480">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa8" type="body" x="2368" y="896">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa9" type="body" x="3296" y="864">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa10" type="body" x="3264" y="576">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa11" type="body" x="4512" y="288">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa12" type="body" x="4224" y="832">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa13" type="body" x="5056" y="736">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa14" type="body" x="5440" y="704">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa15" type="body" x="5312" y="960">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa16" type="body" x="5632" y="896">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa17" type="body" x="6080" y="864">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa18" type="body" x="6432" y="704">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa19" type="body" x="6656" y="864">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa20" type="body" x="6976" y="736">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa21" type="body" x="7296" y="896">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa22" type="body" x="7616" y="896">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa23" type="body" x="7840" y="800">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa24" type="body" x="8256" y="928">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa25" type="body" x="8736" y="896">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa26" type="body" x="8704" y="992">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa27" type="body" x="9408" y="800">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa28" type="body" x="10080" y="992">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa29" type="body" x="9568" y="992">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa30" type="body" x="10688" y="736">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa31" type="body" x="10752" y="928">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa32" type="body" x="11104" y="832">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa33" type="body" x="11488" y="672">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa34" type="body" x="11808" y="736">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa35" type="body" x="12032" y="576">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa36" type="body" x="12064" y="416">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa37" type="body" x="12192" y="64">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa38" type="body" x="12544" y="64">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnavispa39" type="body" x="12512" y="992">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="SpawnCofre" width="400" height="36">
+  <object name="spawncofre1" type="body" x="480" y="736">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawncofre2" type="body" x="672" y="544">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawncofre3" type="body" x="2208" y="512">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawncofre4" type="body" x="2816" y="512">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawncofre5" type="body" x="3840" y="512">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawncofre6" type="body" x="4192" y="1088">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawncofre7" type="body" x="5056" y="384">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawncofre8" type="body" x="4576" y="128">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawncofre9" type="body" x="5216" y="960">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawncofre10" type="body" x="7520" y="384">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawncofre11" type="body" x="7648" y="224">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawncofre12" type="body" x="9536" y="1024">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawncofre13" type="body" x="12768" y="192">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawncofre14" type="body" x="12384" y="96">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnarbusto1" type="body" x="864" y="608">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnarbusto2" type="body" x="1344" y="1024">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnarbusto3" type="body" x="4000" y="512">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnarbusto4" type="body" x="4448" y="1088">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnarbusto5" type="body" x="4992" y="1088">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnarbusto6" type="body" x="5984" y="896">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnarbusto7" type="body" x="7008" y="864">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnarbusto8" type="body" x="7136" y="928">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnarbusto9" type="body" x="7552" y="928">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnarbusto10" type="body" x="8192" y="960">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnarbusto11" type="body" x="8768" y="480">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnarbusto12" type="body" x="9280" y="832">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnarbusto13" type="body" x="9792" y="1024">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnarbusto14" type="body" x="10400" y="1024">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnarbusto15" type="body" x="10656" y="1024">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnarbusto16" type="body" x="11744" y="1024">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Muerte" width="400" height="36">
+  <object name="muerte1" type="object" x="768" y="1088">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="setRestitution" value="1"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object name="muerte2" type="object" x="1696" y="1120">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="0,0 64,0"/>
+  </object>
+  <object name="muerte3" type="object" x="2144" y="1056">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="0,0 512,0"/>
+  </object>
+  <object name="muerte4" type="object" x="3680" y="1120">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="0,0 416,0"/>
+  </object>
+  <object name="muerte5" type="object" x="4192" y="1120">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="-32,0 928,0"/>
+  </object>
+  <object name="muerte6" type="object" x="5216" y="1056">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="-32,0 160,0 160,-32"/>
+  </object>
+  <object name="muerte7" type="object" x="5504" y="1056">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="-64,-32 -64,0 1056,0"/>
+  </object>
+  <object name="muerte8" type="object" x="6720" y="1056">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="-96,0 1248,0"/>
+  </object>
+  <object name="muerte9" type="object" x="9120" y="1056">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="-64,0 320,0"/>
+  </object>
+  <object name="muerte10" type="object" x="10912" y="1056">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="-32,0 256,0"/>
+  </object>
+  <object name="muerte11" type="object" x="11136" y="704">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="0,32 0,0 96,0 96,32"/>
+  </object>
+  <object name="muerte12" type="object" x="11264" y="1056">
+   <properties>
+    <property name="categoryBits" value="8"/>
+    <property name="maskBits" value="2"/>
+    <property name="userData" value="Muerte"/>
+   </properties>
+   <polyline points="-32,0 224,0"/>
+  </object>
+ </objectgroup>
+</map>

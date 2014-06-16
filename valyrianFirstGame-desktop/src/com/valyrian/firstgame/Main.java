@@ -2,14 +2,15 @@ package com.valyrian.firstgame;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
 public class Main {
 	public static void main(String[] args) {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "Quetzal: La Busqueda";
 		cfg.useGL20 = true;
-		cfg.width = 800;
-		cfg.height = 600;
+		cfg.width = V_WIDTH;
+		cfg.height = V_HEIGHT;
 //		cfg.fullscreen=true;
 		new LwjglApplication(new Quetzal(), cfg);
 	}
