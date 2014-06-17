@@ -151,7 +151,7 @@ public class PantallaNivel implements Screen {
 		debugRenderer = new Box2DDebugRenderer();
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false);
-		otmr = new OrthogonalTiledMapRenderer(new TmxMapLoader().load("mapas/nivel3.tmx"),1/PIXELSTOMETERS);
+		otmr = new OrthogonalTiledMapRenderer(new TmxMapLoader().load("mapas/nivel1.tmx"),1/PIXELSTOMETERS);
 		
 		batch = Quetzal.getSpriteBatch();
 		
@@ -180,7 +180,7 @@ public class PantallaNivel implements Screen {
 	
 		
 		AnimacionJugador maj = new AnimacionJugador(Quetzal.getManejaRecursos().get("personajes/nativo.png",Texture.class),32,64,1/12f);
-		jugador = new Jugador(32, 64, posAuxB.x*PIXELSTOMETERS,posAuxB.y*PIXELSTOMETERS, new Vector2(2.5f,5.5f), 10000, mundo,maj);
+		jugador = new Jugador(32, 64, posAuxB.x*PIXELSTOMETERS,posAuxB.y*PIXELSTOMETERS, new Vector2(2.5f,5.5f), 150, mundo,maj);
 		maj.setJugador(jugador);
 	
 		hud = new Hud(jugador);

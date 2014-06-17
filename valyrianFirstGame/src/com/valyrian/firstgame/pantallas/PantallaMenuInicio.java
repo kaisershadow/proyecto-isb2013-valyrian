@@ -30,7 +30,7 @@ public class PantallaMenuInicio implements Screen{
 	private TextButton botonConfiguraciones;
 	private TextButton botonPuntuaciones;
 	private TextButton botonSalir;
-	private TextButton botonCreditos;
+	private TextButton botonAcercaDe;
 	private Skin skin;
 	private SpriteBatch batch;
 	private Texture textureFondo;
@@ -161,13 +161,13 @@ public class PantallaMenuInicio implements Screen{
 		botonConfiguraciones = new TextButton("Configuraciones", skin);
 		botonPuntuaciones = new TextButton("Puntuaciones", skin);
 		botonSalir = new TextButton("Salir del juego", skin);
-		botonCreditos = new TextButton("Creditos", skin);
+		botonAcercaDe = new TextButton("Acerca de", skin);
 		
 		botonJugar.setColor(colorEnter);
 		botonConfiguraciones.setColor(colorExit);
 		botonPuntuaciones.setColor(colorExit);
 		botonSalir.setColor(colorExit);
-		botonCreditos.setColor(colorExit);
+		botonAcercaDe.setColor(colorExit);
 		
 		mjs = new MenuJoystick(escena);
 		Controllers.addListener(mjs);
@@ -200,7 +200,7 @@ public class PantallaMenuInicio implements Screen{
 				return true;
 			}});
 //		
-		botonCreditos.addListener(new TextButtonListener(colorEnter, colorExit){
+		botonAcercaDe.addListener(new TextButtonListener(colorEnter, colorExit){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 				System.out.println("SE LLAMO AL TOUCH DE BOTON CREDITOS");
@@ -227,7 +227,7 @@ public class PantallaMenuInicio implements Screen{
 		tabla.row();
 		tabla.add(botonPuntuaciones).space(10f).fill().expand();
 		tabla.row();
-		tabla.add(botonCreditos).space(10f).fill().expand();
+		tabla.add(botonAcercaDe).space(10f).fill().expand();
 
 		escena.addActor(fondo);
 		escena.addActor(botonSalir);
@@ -241,7 +241,7 @@ public class PantallaMenuInicio implements Screen{
 		lista.add(botonJugar);
 		lista.add(botonConfiguraciones);
 		lista.add(botonPuntuaciones);
-		lista.add(botonCreditos);
+		lista.add(botonAcercaDe);
 		lista.add(botonSalir);
 		escena.addListener(new MenuListener(escena, lista));
 		
