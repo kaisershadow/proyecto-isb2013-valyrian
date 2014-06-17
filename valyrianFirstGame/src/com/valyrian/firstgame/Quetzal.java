@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.valyrian.firstgame.pantallas.PantallaCargaNivel;
 import com.valyrian.firstgame.pantallas.PantallaFinNivel;
 import com.valyrian.firstgame.pantallas.PantallaMenuInicio;
-import com.valyrian.firstgame.pantallas.PantallaCreditos;
+import com.valyrian.firstgame.pantallas.PantallaAcercaDe;
 import com.valyrian.firstgame.pantallas.PantallaNivel;
 import com.valyrian.firstgame.pantallas.PantallaOpciones;
 import com.valyrian.firstgame.pantallas.PantallaPuntuaciones;
@@ -47,7 +47,7 @@ public class Quetzal extends Game {
 		pantallaSeleccionNivel = new PantallaSeleccionNivel(this);
 		pantallaOpciones = new PantallaOpciones(this);
 		pantallaPuntuaciones = new PantallaPuntuaciones(this);
-		pantallaCreditos = new PantallaCreditos(this);
+		pantallaCreditos = new PantallaAcercaDe(this);
 		pantallaCargaNivel = new PantallaCargaNivel(this);
 		pantallaNivel = new PantallaNivel(this);
 		pantallaSecreto = new PantallaNivelSecreto(this);
@@ -58,7 +58,7 @@ public class Quetzal extends Game {
 	public void create() {
 		Quetzal.sb = new SpriteBatch();
 		Quetzal.manejadorRecursos.finishLoading();
-		this.setScreen(pantallaSeleccionNivel);
+		this.setScreen(pantallaSplash);
 	}
 	
 	@Override

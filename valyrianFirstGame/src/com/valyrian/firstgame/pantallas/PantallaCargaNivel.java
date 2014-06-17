@@ -69,8 +69,6 @@ public class PantallaCargaNivel implements Screen {
 		Quetzal.getManejaRecursos().load("images/pausa.png", Texture.class);
 //		Quetzal.getManejaRecursos().load("images/moneda.png", Texture.class);
 		
-		Quetzal.getManejaRecursos().load("images/juego_acabado.png", Texture.class);
-		
 		Quetzal.getManejaRecursos().load("audio/nivel1.mp3", Music.class);
 		Quetzal.getManejaRecursos().load("audio/salto.wav", Sound.class);
 		Quetzal.getManejaRecursos().load("audio/moneda.ogg",Sound.class);

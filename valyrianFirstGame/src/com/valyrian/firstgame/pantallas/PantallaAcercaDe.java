@@ -23,7 +23,7 @@ import com.valyrian.firstgame.utilidades.input.MenuJoystick;
 import com.valyrian.firstgame.utilidades.input.MenuListener;
 import com.valyrian.firstgame.utilidades.input.TextButtonListener;
 
-public class PantallaCreditos implements Screen{
+public class PantallaAcercaDe implements Screen{
 	
 	private Stage escena;
 	private Table tabla,container;
@@ -32,15 +32,14 @@ public class PantallaCreditos implements Screen{
 	private Skin skin;
 	private SpriteBatch batch;
 	private Texture textureFondo;
-	private Texture textureTitulo;
 	private Image fondo;
-	private Image tituloQuetzal;
+	private Image acercaDe;
 	private Quetzal juego;
 	private Color colorExit;
 	private Color colorEnter;
 	private MenuJoystick mjs;
 	
-	public PantallaCreditos(Quetzal primerJuego) {
+	public PantallaAcercaDe(Quetzal primerJuego) {
 		juego = primerJuego;
 	}
 	
@@ -78,9 +77,9 @@ public class PantallaCreditos implements Screen{
 		botonSalir.setSize(width*0.2f, (int)(height*0.5/4));
 		
 		fondo.setSize(width, height);
-		
-		tituloQuetzal.setBounds(width*0.25f, height*0.75f, width, height);
-		tituloQuetzal.setSize(width*0.5f, height*0.2f);
+				
+		acercaDe.setBounds(width*0.1f, height*0.1f, width, height);
+		acercaDe.setSize(width*0.85f, height*0.9f);
 			
 	}
 
@@ -117,7 +116,7 @@ public class PantallaCreditos implements Screen{
 	public void dispose() {
 
 //		escena.dispose();
-		Quetzal.getManejaRecursos().unload("images/menus/titulo_creditos.png");
+		Quetzal.getManejaRecursos().unload("images/menus/about.png");
 		Controllers.removeListener(mjs);
 		if(debug)
 			System.out.println("SE LLAMO AL DISPOSE DE CREDITOS");
@@ -134,14 +133,14 @@ public class PantallaCreditos implements Screen{
 	    if(!Quetzal.getManejaRecursos().isLoaded("images/menus/mainmenu_BG.jpg"))
 	    	Quetzal.getManejaRecursos().load("images/menus/mainmenu_BG.jpg", Texture.class);
 	 
-	    Quetzal.getManejaRecursos().load("images/menus/titulo_creditos.png",Texture.class);
+	    Quetzal.getManejaRecursos().load("images/menus/about.png", Texture.class);
 	    Quetzal.getManejaRecursos().finishLoading();
 	    
 	    textureFondo = Quetzal.getManejaRecursos().get("images/menus/mainmenu_BG.jpg");
 	    fondo = new Image(textureFondo);
 	    
-	    textureTitulo = Quetzal.getManejaRecursos().get("images/menus/titulo_creditos.png"); 
-	    tituloQuetzal = new Image(textureTitulo);
+	    Texture textureAbout = Quetzal.getManejaRecursos().get("images/menus/about.png");
+	    acercaDe = new Image(textureAbout);
 		
 	    escena = new Stage();
 		tabla = new Table(skin);
@@ -175,8 +174,8 @@ public class PantallaCreditos implements Screen{
 		escena.addActor(container);
 
 		escena.addActor(fondo);
+		escena.addActor(acercaDe);
 		escena.addActor(botonSalir);
-		escena.addActor(tituloQuetzal);
 		
 		escena.setKeyboardFocus(botonSalir);
 		

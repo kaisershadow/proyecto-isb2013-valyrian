@@ -22,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.valyrian.firstgame.Quetzal;
 import com.valyrian.firstgame.utilidades.GameVariables;
@@ -45,6 +46,14 @@ public class PantallaOpciones implements Screen {
 	private Color colorExit;
 	private Color colorEnter;
 	private MenuJoystick mjs;
+	
+	
+
+	private TextButton botonFullScreen;
+	private TextButton botonNombre;
+	private Boolean fullScreen = false;
+	private TextField nombre;
+	
 	
 	public PantallaOpciones(Quetzal primerJuego) {
 		juego = primerJuego;
@@ -86,11 +95,16 @@ public class PantallaOpciones implements Screen {
 		
 		tituloOpciones.setBounds(width*0.15f, height*0.75f, width, height);
 		tituloOpciones.setSize(width*0.7f, height*0.2f);
-		
-		sliderVolume.setBounds(width*0.15f,  height*0.3f, width, height);
+				
 		sliderVolume.setSize(width*0.5f, height*0.05f);
 		
+		botonFullScreen.setSize(width*0.2f, (int)(height*0.5/4));
 		
+		nombre.setSize(width*0.2f, height*0.05f);
+		
+		tabla.setBounds(width*0.15f, height*0.15f, width, height);
+		tabla.setSize(width*0.5f, height*0.5f);
+
 			
 	}
 
@@ -166,6 +180,15 @@ public class PantallaOpciones implements Screen {
 		mjs = new MenuJoystick(escena);
 		Controllers.addListener(mjs);
 		
+		botonFullScreen = new TextButton("Pantalla Completa", skin);
+		botonFullScreen.setColor(colorExit);
+		
+		botonNombre = new TextButton("Guardar Nombre", skin);
+		botonNombre.setColor(colorExit);
+		
+		nombre = new TextField(GameVariables.PLAYER_NAME, skin);
+		
+		
 		SliderStyle style = new SliderStyle(
 									new TextureRegionDrawable(
 											new TextureRegion(
@@ -184,25 +207,29 @@ public class PantallaOpciones implements Screen {
 		if(debug)
 			tabla.debug();
 		
-//		tabla.add(_creditos1).fill().expand();
-//		tabla.row();
-//		tabla.add(t2).fill().expand();
-//		tabla.row();
-		//tabla.setFillParent(true);
-	
-		//scroller.setFillParent(true);
-//		container.add(scroller).fill().expand();
-		
-//		escena.addActor(container);
-//		escena.addActor(tabla);
 		escena.addActor(fondo);
 		escena.addActor(botonSalir);
 		escena.addActor(tituloOpciones);
-		escena.addActor(sliderVolume);
+		tabla.add("Nombre del Jugador:").space(10f).left();
+		tabla.row();
+		tabla.add(nombre).fill().expand().space(10f);
+		tabla.row();
+		tabla.add(botonNombre).space(10f).left();
+		tabla.row();
+		tabla.add("Volúmen de juego:").fill().expand().space(10f);
+		tabla.row();
+		tabla.add(sliderVolume).fill().expand().space(10f);;
+		tabla.row();
+		tabla.add("Opciones de Pantalla:").fill().expand().space(10f);
+		tabla.row();
+		tabla.add(botonFullScreen).space(10f).left();
 		
-		escena.setKeyboardFocus(botonSalir);
+		escena.addActor(tabla);		
+		escena.setKeyboardFocus(sliderVolume);
 		
 		ArrayList<TextButton> lista = new ArrayList<TextButton>();
+		lista.add(botonNombre);
+		lista.add(botonFullScreen);
 		lista.add(botonSalir);
 		escena.addListener(new MenuListener(escena, lista));
 	}
@@ -217,13 +244,35 @@ private void button_listeners(){
 			}	
 		});
 		
-		sliderVolume.addListener(new EventListener() {
-			
+	sliderVolume.addListener(new EventListener() {		
 			@Override
 			public boolean handle(Event event) {
 					GameVariables.VOLUMEN = sliderVolume.getValue();
 				return false;
 			}
 		});
-	}	
+	
+	botonFullScreen.addListener(new TextButtonListener(colorEnter,colorExit){
+		@Override
+		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			fullScreen = !fullScreen;
+			if(fullScreen){
+				botonFullScreen.setText("Ventana");
+				Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width, Gdx.graphics.getDesktopDisplayMode().height, true);
+			}else{
+				botonFullScreen.setText("Pantalla Completa");
+				Gdx.graphics.setDisplayMode(GameVariables.V_WIDTH, GameVariables.V_HEIGHT, false);
+			}
+			return true;
+		}	
+	});
+	
+	botonNombre.addListener(new TextButtonListener(colorEnter,colorExit){
+		@Override
+		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+			GameVariables.PLAYER_NAME = nombre.getText();
+			return true;
+		}	
+	});
+	}
 }
