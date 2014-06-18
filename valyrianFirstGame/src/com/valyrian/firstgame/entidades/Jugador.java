@@ -24,8 +24,9 @@ public class Jugador extends EntidadDibujable{
 	private int maxVida;
 	private int vidaActual;
 	private int puntaje;
+	private int puntajeAcum;
 	private boolean mirandoDerecha;
-	private String nombre;
+//	private String nombre;
 	private Sound salto,disparo;
 	public enum ESTADO_ACTUAL{Atacando, Moviendose, Quieto,Saltando}
 
@@ -39,8 +40,9 @@ public class Jugador extends EntidadDibujable{
 	public Jugador(float ancho, float alto,float posIniX,float posIniY,Vector2 vel,int vidaMax, World mundo,ManejadorAnimacion ma) {
 		super(ancho, alto,vel,posIniX,posIniY, mundo,ma);
 		this.vidaActual = this.maxVida = vidaMax;
-		this.nombre = "Jugador";
+//		this.nombre = "Jugador";
 		this.puntaje =0;
+		this.puntajeAcum =0;
 		this.mirandoDerecha=true;
 		this.estado=ESTADO_ACTUAL.Quieto;
 		this.finJuego = false;
@@ -63,7 +65,16 @@ public class Jugador extends EntidadDibujable{
 	
 	public int getVidaActual(){ return vidaActual; }
 	
-	public void setPuntaje(int p){ this.puntaje+=p ; }
+	public void setPuntaje(int p){ 
+		this.puntaje+=p;
+		this.puntajeAcum+=p;
+		if(this.puntajeAcum>=100){
+			this.puntajeAcum=0;
+			int vidaAux = (int)(this.maxVida*0.1f);
+			this.setVidaActual(vidaAux);
+		}
+			
+	}
 	
 	public int getPuntaje(){ return puntaje; }
 	
@@ -80,9 +91,9 @@ public class Jugador extends EntidadDibujable{
 	
 	public boolean estaMuerto(){ return(vidaActual<=0); }
 	
-	public void setNombre(String n){ this.nombre = n; }
-	
-	public String getNombre(){ return this.nombre; }
+//	public void setNombre(String n){ this.nombre = n; }
+//	
+//	public String getNombre(){ return this.nombre; }
 
 	@Override
 	protected void crearCuerpo(World mundo, float ancho, float alto,float posX,float posY) {
@@ -99,7 +110,8 @@ public class Jugador extends EntidadDibujable{
 		//Definicion del fixture
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = boxShape;
-		fixtureDef.friction = 0;
+		fixtureDef.density = 100;
+		fixtureDef.friction = 0.001f;
 		fixtureDef.restitution = 0;
 		fixtureDef.isSensor =false;
 		fixtureDef.filter.categoryBits = BITS_JUGADOR;
@@ -117,8 +129,8 @@ public class Jugador extends EntidadDibujable{
 		//Definicion del sensor para el salto
 		 boxShape.setAsBox(((ancho/2 -8)/PIXELSTOMETERS), 1/PIXELSTOMETERS,new Vector2(0, ((-alto/2+3)/PIXELSTOMETERS)) , 0);
 	     fixtureDef.isSensor = true;
-//	     fixtureDef.filter.categoryBits = BITS_JUGADOR;
-		fixtureDef.filter.maskBits = BITS_ENTORNO | BITS_MUERTE | BITS_PLATAFORMA;
+	     fixtureDef.density = 10;
+	     fixtureDef.filter.maskBits = BITS_ENTORNO | BITS_MUERTE | BITS_PLATAFORMA;
 	     cuerpo.createFixture(fixtureDef);
 	     this.cuerpo.getFixtureList().get(1).setUserData("Salto");
 	     boxShape.dispose();

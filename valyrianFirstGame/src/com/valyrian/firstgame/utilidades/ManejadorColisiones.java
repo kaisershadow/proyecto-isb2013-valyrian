@@ -145,11 +145,17 @@ public class ManejadorColisiones implements ContactListener {
 		if(fA.getUserData()!=null && fA.getUserData().equals("Plataforma")){
 			if(fB.getUserData()!=null && fB.getUserData().equals("Sensor")){
 				this.plataformaSensor(fA);
+			}else if(fB.getUserData()!=null && fB.getUserData().equals("Proyectil")){
+				if(!cuerposABorrar.contains(fB.getBody(),true))
+					this.cuerposABorrar.add(fB.getBody());
 			}
 		}
 		if(fB.getUserData()!=null && fB.getUserData().equals("Plataforma")){
 			if(fA.getUserData()!=null && fA.getUserData().equals("Sensor")){
 				this.plataformaSensor(fB);
+			}else if(fA.getUserData()!=null && fA.getUserData().equals("Proyectil")){
+				if(!cuerposABorrar.contains(fA.getBody(),true))
+					this.cuerposABorrar.add(fA.getBody());
 			}
 		}
 		
@@ -238,9 +244,9 @@ public class ManejadorColisiones implements ContactListener {
 	
 	//fA = Jugador
 	private void jugadorMuerte() {
-	player.setVidaActual(-player.getMaxVida());
-	muerte.play(VOLUMEN*0.8f);
-	player.finJuego = true;
+//	player.setVidaActual(-player.getMaxVida());
+//	muerte.play(VOLUMEN*0.8f);
+//	player.finJuego = true;
 		System.out.println("SE MATO");
 	}
 	

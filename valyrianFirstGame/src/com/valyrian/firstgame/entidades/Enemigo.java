@@ -73,7 +73,7 @@ public class Enemigo extends EntidadDibujable {
 		fixtureDef.restitution = 0;
 		fixtureDef.isSensor =false;
 		fixtureDef.filter.categoryBits = BITS_ENEMIGO;
-		fixtureDef.filter.maskBits = BITS_JUGADOR |BITS_ENTORNO | BITS_PLATAFORMA |BITS_PROYECTIL;
+		fixtureDef.filter.maskBits = BITS_JUGADOR |BITS_ENTORNO |BITS_PROYECTIL;
 
 		this.cuerpo= mundo.createBody(bodyDef);
 		this.cuerpo.createFixture(fixtureDef);		

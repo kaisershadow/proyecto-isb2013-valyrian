@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="300" height="300" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="248" height="147" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="bw5" tilewidth="32" tileheight="32">
   <image source="Assets/bw5.png" trans="000000" width="512" height="512"/>
  </tileset>
@@ -18,28 +18,25 @@
  <tileset firstgid="2344" name="Jungle_terrainwater" tilewidth="32" tileheight="32">
   <image source="Assets/Jungle_terrainwater.png" trans="000000" width="384" height="320"/>
  </tileset>
- <layer name="fondo1" width="300" height="300">
+ <tileset firstgid="2464" name="templetrans" tilewidth="32" tileheight="32">
+  <image source="Assets/templetrans.gif" trans="ffffff" width="128" height="192"/>
+ </tileset>
+ <layer name="fondo1" width="248" height="147">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
- <layer name="estru" width="300" height="300">
+ <layer name="estru" width="248" height="147">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
- <layer name="delante" width="300" height="300">
+ <layer name="delante" width="248" height="147">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
- <objectgroup name="Entorno" width="300" height="300">
-  <object name="entorno" type="object" x="9568" y="32">
-   <properties>
-    <property name="userData" value="Entorno"/>
-   </properties>
-   <polyline points="32,-32 32,6560 -9568,6560 -9568,-32 32,-32"/>
-  </object>
+ <objectgroup name="Entorno" width="248" height="147">
   <object name="sueloytecho" type="fixture" x="0" y="256">
    <properties>
     <property name="body" value="entorno"/>
@@ -453,7 +450,7 @@
    </properties>
    <polyline points="0,0 64,0"/>
   </object>
-  <object name="spawn" type="body" x="480" y="160">
+  <object name="spawn" type="body" x="60" y="213">
    <properties>
     <property name="bodyType" value="StaticBody"/>
     <property name="userData" value="Entorno"/>
@@ -466,7 +463,7 @@
    </properties>
    <polyline points="-32,0 160,0"/>
   </object>
-  <object name="finjuego" type="fixture" x="7744" y="3840">
+  <object name="finjuego" type="fixture" x="7808" y="3840">
    <properties>
     <property name="body" value="entorno"/>
     <property name="isSensor" value="true"/>
@@ -474,8 +471,46 @@
    </properties>
    <polyline points="0,-32 0,96"/>
   </object>
+  <object name="entorno" type="object" x="0" y="0">
+   <polyline points="0,0 0,4704 7936,4704 7936,0 0,0"/>
+  </object>
+  <object name="plataforma" type="fixture" x="7776" y="3936">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 160,0"/>
+  </object>
+  <object name="plataforma" type="fixture" x="7776" y="4000">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 160,0"/>
+  </object>
+  <object name="plataforma" type="fixture" x="7776" y="3808">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="0,0 160,0"/>
+  </object>
+  <object name="plataforma" type="fixture" x="7776" y="3872">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="128,-64 128,128"/>
+  </object>
+  <object name="plataforma" type="fixture" x="7936" y="3872">
+   <properties>
+    <property name="body" value="entorno"/>
+    <property name="userData" value="Entorno"/>
+   </properties>
+   <polyline points="128,-64 128,128"/>
+  </object>
  </objectgroup>
- <objectgroup name="SpawnRana" width="300" height="300">
+ <objectgroup name="SpawnRana" width="248" height="147">
   <object name="spawnrana1" type="body" x="352" y="288">
    <properties>
     <property name="bodyType" value="StaticBody"/>
@@ -512,11 +547,6 @@
    </properties>
   </object>
   <object name="spawnrana8" type="body" x="1152" y="1600">
-   <properties>
-    <property name="bodyType" value="StaticBody"/>
-   </properties>
-  </object>
-  <object name="spawnrana9" type="body" x="32" y="1632">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -576,11 +606,6 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnrana21" type="body" x="3680" y="2400">
-   <properties>
-    <property name="bodyType" value="StaticBody"/>
-   </properties>
-  </object>
   <object name="spawnrana22" type="body" x="3264" y="2048">
    <properties>
     <property name="bodyType" value="StaticBody"/>
@@ -597,16 +622,6 @@
    </properties>
   </object>
   <object name="spawnrana25" type="body" x="6304" y="4160">
-   <properties>
-    <property name="bodyType" value="StaticBody"/>
-   </properties>
-  </object>
-  <object name="spawnrana26" type="body" x="6272" y="4032">
-   <properties>
-    <property name="bodyType" value="StaticBody"/>
-   </properties>
-  </object>
-  <object name="spawnrana27" type="body" x="6816" y="3488">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -657,11 +672,6 @@
    </properties>
   </object>
   <object name="spawnrana37" type="body" x="6176" y="928">
-   <properties>
-    <property name="bodyType" value="StaticBody"/>
-   </properties>
-  </object>
-  <object name="spawnrana38" type="body" x="5536" y="672">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -741,11 +751,6 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnrana54" type="body" x="1664" y="3712">
-   <properties>
-    <property name="bodyType" value="StaticBody"/>
-   </properties>
-  </object>
   <object name="spawnrana55" type="body" x="2176" y="3456">
    <properties>
     <property name="bodyType" value="StaticBody"/>
@@ -807,7 +812,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="SpawnAvispa" width="300" height="300">
+ <objectgroup name="SpawnAvispa" width="248" height="147">
   <object name="spawnavispa1" type="body" x="416" y="576">
    <properties>
     <property name="bodyType" value="StaticBody"/>
@@ -1138,7 +1143,7 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnavispa67" type="body" x="7168" y="3776">
+  <object name="spawnavispa67" type="body" x="7168" y="3808">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -1223,8 +1228,38 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
+  <object name="spawnrana38" type="body" x="5536" y="672">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana27" type="body" x="6816" y="3488">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana26" type="body" x="6272" y="4032">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana9" type="body" x="32" y="1632">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana21" type="body" x="3680" y="2400">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnrana54" type="body" x="1664" y="3712">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup name="SpawnCofre" width="300" height="300">
+ <objectgroup name="SpawnCofre" width="248" height="147">
   <object name="spawnColeccionable1" type="body" x="352" y="608">
    <properties>
     <property name="bodyType" value="StaticBody"/>
@@ -1646,7 +1681,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="Muerte" width="300" height="300">
+ <objectgroup name="Muerte" width="248" height="147">
   <object name="muerte1" type="object" x="1696" y="576" width="256" height="32">
    <properties>
     <property name="categoryBits" value="8"/>
@@ -1844,7 +1879,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="BasesMoviblesHorizontal" width="300" height="300">
+ <objectgroup name="BasesMoviblesHorizontal" width="248" height="147">
   <object name="plataformamovilh1" type="body" x="672" y="288" width="96" height="32">
    <properties>
     <property name="bodyType" value="StaticBody"/>
@@ -1861,11 +1896,6 @@
    </properties>
   </object>
   <object name="plataformamovilh4" type="body" x="2848" y="448" width="160" height="32">
-   <properties>
-    <property name="bodyType" value="StaticBody"/>
-   </properties>
-  </object>
-  <object name="plataformamovilh5" type="body" x="3456" y="960" width="128" height="32">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -1895,7 +1925,7 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="plataformamovilh11" type="body" x="5376" y="704" width="192" height="32">
+  <object name="plataformamovilh11" type="body" x="5280" y="704" width="192" height="32">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -1906,11 +1936,6 @@
    </properties>
   </object>
   <object name="plataformamovilh12" type="body" x="5504" y="1344" width="128" height="32">
-   <properties>
-    <property name="bodyType" value="StaticBody"/>
-   </properties>
-  </object>
-  <object name="plataformamovilh14" type="body" x="5344" y="1728" width="128" height="32">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -1955,11 +1980,6 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="plataformamovilh23" type="body" x="3904" y="3616" width="96" height="32">
-   <properties>
-    <property name="bodyType" value="StaticBody"/>
-   </properties>
-  </object>
   <object name="plataformamovilh24" type="body" x="4992" y="3872" width="96" height="32">
    <properties>
     <property name="bodyType" value="StaticBody"/>
@@ -1980,17 +2000,12 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="plataformamovilh28" type="body" x="5248" y="3104" width="160" height="32">
+  <object name="plataformamovilh28" type="body" x="5184" y="3104" width="160" height="32">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="plataformamovilh29" type="body" x="5152" y="2496" width="192" height="32">
-   <properties>
-    <property name="bodyType" value="StaticBody"/>
-   </properties>
-  </object>
-  <object name="plataformamovilh30" type="body" x="2048" y="3904" width="128" height="32">
+  <object name="plataformamovilh29" type="body" x="5120" y="2496" width="192" height="32">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -2046,13 +2061,13 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="BasesMoviblesVertical" width="300" height="300">
-  <object name="plataformamovilv1" type="body" x="1536" y="384" width="96" height="32">
+ <objectgroup name="BasesMoviblesVertical" width="248" height="147">
+  <object name="plataformamovilv1" type="body" x="1536" y="448" width="96" height="32">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="plataformamovilv2" type="body" x="3104" y="736" width="160" height="32">
+  <object name="plataformamovilv2" type="body" x="3094" y="864" width="160" height="32">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -2067,7 +2082,7 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="plataformamovilv5" type="body" x="5696" y="704" width="96" height="32">
+  <object name="plataformamovilv5" type="body" x="5632" y="704" width="96" height="32">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -2128,11 +2143,6 @@
    </properties>
   </object>
   <object name="plataformamovilv17" type="body" x="0" y="1664" width="160" height="32">
-   <properties>
-    <property name="bodyType" value="StaticBody"/>
-   </properties>
-  </object>
-  <object name="plataformamovilv18" type="body" x="224" y="2144" width="96" height="32">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -2222,11 +2232,6 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="plataformamovilv45" type="body" x="384" y="3616" width="96" height="32">
-   <properties>
-    <property name="bodyType" value="StaticBody"/>
-   </properties>
-  </object>
   <object name="plataformamovilv46" type="body" x="736" y="3648" width="96" height="32">
    <properties>
     <property name="bodyType" value="StaticBody"/>
@@ -2287,7 +2292,7 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="plataformamovilv26" type="body" x="4032" y="3104" width="96" height="32">
+  <object name="plataformamovilv26" type="body" x="3968" y="3168" width="96" height="32">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -2303,829 +2308,995 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup name="LimitesVerticales" width="300" height="300">
-  <object name="limiteI1" type="object" x="1536" y="800">
+ <objectgroup name="LimitesVerticales" width="248" height="147">
+  <object name="limiteI1" type="object" x="1536" y="832">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteS1" type="object" x="1536" y="352">
+  <object name="limiteS1" type="object" x="1536" y="416">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI2" type="object" x="3136" y="992">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS2" type="object" x="3136" y="480">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI3" type="object" x="4160" y="1024">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS3" type="object" x="4160" y="768">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI4" type="object" x="3968" y="608">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS4" type="object" x="3968" y="384">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteI5" type="object" x="5696" y="1088">
+  <object name="limiteI5" type="object" x="5632" y="1088">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteS5" type="object" x="5696" y="672">
+  <object name="limiteS5" type="object" x="5632" y="544">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI6" type="object" x="5632" y="1888">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS6" type="object" x="5632" y="1440">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI7" type="object" x="6048" y="1600">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS7" type="object" x="6048" y="480">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI8" type="object" x="5344" y="1984">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS8" type="object" x="5344" y="1824">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI9" type="object" x="3296" y="2112">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS9" type="object" x="3296" y="1824">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI10" type="object" x="2080" y="1952">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS10" type="object" x="2080" y="896">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI11" type="object" x="1696" y="1952">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS11" type="object" x="1696" y="1760">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI12" type="object" x="1312" y="1120">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS12" type="object" x="1312" y="768">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI13" type="object" x="640" y="1024">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteS13" type="object" x="640" y="896">
+  <object name="limiteS13" type="object" x="640" y="864">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI14" type="object" x="1216" y="1824">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteS14" type="object" x="1216" y="1664">
+  <object name="limiteS14" type="object" x="1216" y="1632">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI15" type="object" x="992" y="1600">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS15" type="object" x="992" y="1376">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI16" type="object" x="832" y="1824">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS16" type="object" x="832" y="1664">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI17" type="object" x="32" y="2368">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS17" type="object" x="32" y="1120">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
-    <property name="userData" value="Sensor"/>
-   </properties>
-   <polyline points="0,0 96,0"/>
-  </object>
-  <object name="limiteI18" type="object" x="160" y="2368">
-   <properties>
+    <property name="categoryBits" value="256"/>
     <property name="isSensor" value="true"/>
-    <property name="bodyType" value="StaticBody"/>
-    <property name="userData" value="Sensor"/>
-   </properties>
-   <polyline points="0,0 96,0"/>
-  </object>
-  <object name="limiteS18" type="object" x="192" y="2112">
-   <properties>
-    <property name="isSensor" value="true"/>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI19" type="object" x="2528" y="2592">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteS19" type="object" x="2528" y="2144">
+  <object name="limiteS19" type="object" x="2528" y="2112">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI20" type="object" x="3488" y="2624">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS20" type="object" x="3488" y="2432">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI21" type="object" x="3648" y="2624">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS21" type="object" x="3648" y="2432">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI22" type="object" x="3776" y="2624">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS22" type="object" x="3776" y="2432">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI23" type="object" x="3904" y="2624">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS23" type="object" x="3904" y="2432">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI24" type="object" x="4608" y="2528">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteS24" type="object" x="4608" y="2304">
+  <object name="limiteS24" type="object" x="4608" y="2272">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI25" type="object" x="4064" y="3616">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS25" type="object" x="4064" y="3328">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteI26" type="object" x="3968" y="3232">
+  <object name="limiteI26" type="object" x="3968" y="3296">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS26" type="object" x="3968" y="3008">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI27" type="object" x="4224" y="3392">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS27" type="object" x="4224" y="2848">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI28" type="object" x="4480" y="3328">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS28" type="object" x="4480" y="3040">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI29" type="object" x="4608" y="3456">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS29" type="object" x="4608" y="3072">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI30" type="object" x="4416" y="2944">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS30" type="object" x="4416" y="2624">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI31" type="object" x="2976" y="3424">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteS31" type="object" x="2976" y="3200">
+  <object name="limiteS31" type="object" x="2976" y="3136">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI32" type="object" x="3104" y="3872">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS32" type="object" x="3104" y="3488">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI33" type="object" x="3456" y="3872">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS33" type="object" x="3456" y="3584">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI34" type="object" x="3008" y="4192">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteS34" type="object" x="3008" y="3936">
+  <object name="limiteS34" type="object" x="3008" y="3904">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI35" type="object" x="4512" y="4192">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS35" type="object" x="4512" y="4000">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI36" type="object" x="4800" y="4032">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS36" type="object" x="4832" y="3840">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI37" type="object" x="5312" y="3616">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS37" type="object" x="5312" y="3264">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI38" type="object" x="5088" y="3424">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteS38" type="object" x="5088" y="3104">
+  <object name="limiteS38" type="object" x="5088" y="3168">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI39" type="object" x="4992" y="2944">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS39" type="object" x="4992" y="2560">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI40" type="object" x="6176" y="2752">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteS40" type="object" x="6176" y="2560">
+  <object name="limiteS40" type="object" x="6176" y="2528">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI41" type="object" x="6560" y="2432">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteS41" type="object" x="6560" y="2176">
+  <object name="limiteS41" type="object" x="6560" y="2144">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI42" type="object" x="6720" y="2592">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteS42" type="object" x="6720" y="2208">
+  <object name="limiteS42" type="object" x="6720" y="2144">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI43" type="object" x="6912" y="2816">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS43" type="object" x="6912" y="2496">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI44" type="object" x="1664" y="3808">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteS44" type="object" x="1664" y="3648">
+  <object name="limiteS44" type="object" x="1664" y="3616">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
-    <property name="userData" value="Sensor"/>
-   </properties>
-   <polyline points="0,0 96,0"/>
-  </object>
-  <object name="limiteI45" type="object" x="384" y="3680">
-   <properties>
+    <property name="categoryBits" value="256"/>
     <property name="isSensor" value="true"/>
-    <property name="bodyType" value="StaticBody"/>
-    <property name="userData" value="Sensor"/>
-   </properties>
-   <polyline points="0,0 96,0"/>
-  </object>
-  <object name="limiteS45" type="object" x="384" y="3584">
-   <properties>
-    <property name="isSensor" value="true"/>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI46" type="object" x="736" y="3840">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS46" type="object" x="736" y="3584">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI47" type="object" x="6912" y="3328">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS47" type="object" x="6912" y="2944">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI48" type="object" x="6656" y="3328">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS48" type="object" x="6656" y="3008">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI49" type="object" x="6688" y="3968">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS49" type="object" x="6688" y="3648">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI50" type="object" x="5600" y="3232">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteS50" type="object" x="5600" y="2720">
+  <object name="limiteS50" type="object" x="5600" y="2688">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteI51" type="object" x="736" y="4352">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
   <object name="limiteS51" type="object" x="736" y="3968">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
  </objectgroup>
- <objectgroup name="LimitesHorizontales" width="300" height="300">
+ <objectgroup name="LimitesHorizontales" width="248" height="147">
   <object name="limiteR1" type="object" x="832" y="320">
    <properties>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
     <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
@@ -3133,631 +3304,709 @@
   <object name="limiteL1" type="object" x="608" y="256">
    <properties>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
     <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR2" type="object" x="864" y="448">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL2" type="object" x="640" y="384">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR3" type="object" x="1824" y="416">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL3" type="object" x="1664" y="352">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
-  <object name="limiteR4" type="object" x="2944" y="480">
+  <object name="limiteR4" type="object" x="3008" y="480">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL4" type="object" x="2752" y="416">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
-    <property name="userData" value="Sensor"/>
-   </properties>
-   <polyline points="0,32 0,64"/>
-  </object>
-  <object name="limiteR5" type="object" x="3584" y="992">
-   <properties>
+    <property name="categoryBits" value="256"/>
     <property name="isSensor" value="true"/>
-    <property name="bodyType" value="StaticBody"/>
-    <property name="userData" value="Sensor"/>
-   </properties>
-   <polyline points="96,-32 96,0"/>
-  </object>
-  <object name="limiteL5" type="object" x="3360" y="928">
-   <properties>
-    <property name="isSensor" value="true"/>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR6" type="object" x="4352" y="704">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL6" type="object" x="3872" y="640">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR7" type="object" x="4224" y="320">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL7" type="object" x="3840" y="256">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR8" type="object" x="5088" y="352">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL8" type="object" x="4800" y="288">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR9" type="object" x="5120" y="480">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL9" type="object" x="4896" y="416">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR10" type="object" x="5216" y="608">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL10" type="object" x="4992" y="544">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR11" type="object" x="5472" y="736">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
-  <object name="limiteL11" type="object" x="5216" y="672">
+  <object name="limiteL11" type="object" x="4992" y="672">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
-  <object name="limiteR12" type="object" x="5568" y="1376">
+  <object name="limiteR12" type="object" x="5632" y="1376">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL12" type="object" x="5440" y="1312">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR13" type="object" x="5728" y="1216">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL13" type="object" x="5408" y="1152">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
-    <property name="userData" value="Sensor"/>
-   </properties>
-   <polyline points="0,32 0,64"/>
-  </object>
-  <object name="limiteR14" type="object" x="5440" y="1760">
-   <properties>
+    <property name="categoryBits" value="256"/>
     <property name="isSensor" value="true"/>
-    <property name="bodyType" value="StaticBody"/>
-    <property name="userData" value="Sensor"/>
-   </properties>
-   <polyline points="96,-32 96,0"/>
-  </object>
-  <object name="limiteL14" type="object" x="5312" y="1696">
-   <properties>
-    <property name="isSensor" value="true"/>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR15" type="object" x="4224" y="1792">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL15" type="object" x="4000" y="1728">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR16" type="object" x="3776" y="1728">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
-  <object name="limiteL16" type="object" x="3424" y="1664">
+  <object name="limiteL16" type="object" x="3264" y="1664">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR17" type="object" x="3936" y="2144">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL17" type="object" x="3456" y="2080">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR18" type="object" x="2752" y="1856">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL18" type="object" x="2560" y="1792">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR19" type="object" x="1440" y="1568">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL19" type="object" x="1216" y="1504">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR20" type="object" x="160" y="2464">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL20" type="object" x="32" y="2400">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR21" type="object" x="2336" y="2464">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL21" type="object" x="2240" y="2400">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
-  <object name="limiteR22" type="object" x="4352" y="2560">
+  <object name="limiteR22" type="object" x="4448" y="2560">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL22" type="object" x="4160" y="2496">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
-    <property name="userData" value="Sensor"/>
-   </properties>
-   <polyline points="0,32 0,64"/>
-  </object>
-  <object name="limiteR23" type="object" x="3936" y="3648">
-   <properties>
+    <property name="categoryBits" value="256"/>
     <property name="isSensor" value="true"/>
-    <property name="bodyType" value="StaticBody"/>
-    <property name="userData" value="Sensor"/>
-   </properties>
-   <polyline points="96,-32 96,0"/>
-  </object>
-  <object name="limiteL23" type="object" x="3712" y="3584">
-   <properties>
-    <property name="isSensor" value="true"/>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR24" type="object" x="5216" y="3904">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL24" type="object" x="4960" y="3840">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR25" type="object" x="5248" y="3776">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL25" type="object" x="4992" y="3712">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR26" type="object" x="5184" y="3648">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL26" type="object" x="4960" y="3584">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
-  <object name="limiteR27" type="object" x="5216" y="3008">
+  <object name="limiteR27" type="object" x="5312" y="3008">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
-  <object name="limiteL27" type="object" x="5056" y="2944">
+  <object name="limiteL27" type="object" x="4960" y="2944">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR28" type="object" x="5280" y="3136">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
-  <object name="limiteL28" type="object" x="5216" y="3072">
+  <object name="limiteL28" type="object" x="4992" y="3072">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
-  <object name="limiteR29" type="object" x="5248" y="2528">
+  <object name="limiteR29" type="object" x="5344" y="2528">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
-  <object name="limiteL29" type="object" x="5120" y="2464">
+  <object name="limiteL29" type="object" x="4992" y="2464">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
-  <object name="limiteR30" type="object" x="2176" y="3936">
+  <object name="limiteR31" type="object" x="2240" y="3936">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
-    <property name="userData" value="Sensor"/>
-   </properties>
-   <polyline points="96,-32 96,0"/>
-  </object>
-  <object name="limiteL30" type="object" x="1952" y="3872">
-   <properties>
+    <property name="categoryBits" value="256"/>
     <property name="isSensor" value="true"/>
-    <property name="bodyType" value="StaticBody"/>
-    <property name="userData" value="Sensor"/>
-   </properties>
-   <polyline points="0,32 0,64"/>
-  </object>
-  <object name="limiteR31" type="object" x="1728" y="3936">
-   <properties>
-    <property name="isSensor" value="true"/>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL31" type="object" x="1536" y="3872">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR32" type="object" x="1888" y="3552">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL32" type="object" x="1568" y="3488">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR33" type="object" x="1088" y="3680">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL33" type="object" x="864" y="3616">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR34" type="object" x="1088" y="3968">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL34" type="object" x="864" y="3904">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR35" type="object" x="608" y="4320">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL35" type="object" x="384" y="4256">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR36" type="object" x="6784" y="2912">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL36" type="object" x="6464" y="2848">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR37" type="object" x="6816" y="3552">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL37" type="object" x="6592" y="3488">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR38" type="object" x="6688" y="4096">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL38" type="object" x="6144" y="4032">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR39" type="object" x="5920" y="3232">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL39" type="object" x="5728" y="3168">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
   <object name="limiteR40" type="object" x="6432" y="3808">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="96,-32 96,0"/>
   </object>
   <object name="limiteL40" type="object" x="6176" y="3744">
    <properties>
-    <property name="isSensor" value="true"/>
     <property name="bodyType" value="StaticBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
    </properties>
    <polyline points="0,32 0,64"/>

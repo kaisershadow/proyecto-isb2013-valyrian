@@ -4,6 +4,7 @@ import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.valyrian.firstgame.entidades.Jugador;
 import com.valyrian.firstgame.entidades.Proyectil;
 import com.valyrian.firstgame.pantallas.PantallaNivel;
 
@@ -46,6 +47,9 @@ public class Teclado implements InputProcessor {
 				Proyectil bala2= pantallaNivel.getJugador().Disparar(pantallaNivel.getWorld(),10);
 				if(bala2!=null)
 					PantallaNivel.getEntidades().add(bala2);
+				break;
+			case(Input.Keys.O):
+				pantallaNivel.getJugador().setmaxVida(10000);
 				break;
 		}
 		return true;
