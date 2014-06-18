@@ -16,12 +16,13 @@ import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.valyrian.firstgame.Quetzal;
@@ -46,14 +47,11 @@ public class PantallaOpciones implements Screen {
 	private Color colorExit;
 	private Color colorEnter;
 	private MenuJoystick mjs;
-	
-	
-
 	private TextButton botonFullScreen;
 	private TextButton botonNombre;
 	private Boolean fullScreen = false;
 	private TextField nombre;
-	
+	private CheckBox facil, medio, dificil;
 	
 	public PantallaOpciones(Quetzal primerJuego) {
 		juego = primerJuego;
@@ -80,21 +78,16 @@ public class PantallaOpciones implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
 
 		escena.setViewport(width , height, true);
-		
-		container.setBounds(width*0.05f, 30, width, height);
-		container.setSize(width*0.6f,height*0.60f);
-		container.invalidateHierarchy();
 		
 		botonSalir.setBounds(width*0.75f , 30, width , height*0.30f);
 		botonSalir.setSize(width*0.2f, (int)(height*0.5/4));
 		
 		fondo.setSize(width, height);
 		
-		tituloOpciones.setBounds(width*0.15f, height*0.75f, width, height);
-		tituloOpciones.setSize(width*0.7f, height*0.2f);
+		tituloOpciones.setBounds(width*0.08f, height*0.83f, width, height);
+		tituloOpciones.setSize(width*0.4f, height*0.13f);
 				
 		sliderVolume.setSize(width*0.5f, height*0.05f);
 		
@@ -102,8 +95,8 @@ public class PantallaOpciones implements Screen {
 		
 		nombre.setSize(width*0.2f, height*0.05f);
 		
-		tabla.setBounds(width*0.15f, height*0.15f, width, height);
-		tabla.setSize(width*0.5f, height*0.5f);
+		tabla.setBounds(width*0.1f, height*0.07f, width, height);
+		tabla.setSize(width*0.7f, height*0.7f);
 
 			
 	}
@@ -187,6 +180,12 @@ public class PantallaOpciones implements Screen {
 		botonNombre.setColor(colorExit);
 		
 		nombre = new TextField(GameVariables.PLAYER_NAME, skin);
+		nombre.setColor(colorExit);
+		
+		dificil = new CheckBox("Dificil", skin);
+		medio = new CheckBox("Medio", skin);
+		medio.setChecked(true);
+		facil = new CheckBox("Facil", skin);
 		
 		
 		SliderStyle style = new SliderStyle(
@@ -210,19 +209,25 @@ public class PantallaOpciones implements Screen {
 		escena.addActor(fondo);
 		escena.addActor(botonSalir);
 		escena.addActor(tituloOpciones);
-		tabla.add("Nombre del Jugador:").space(10f).left();
+		
+		container.add(facil).expand().left();
+		container.row();
+		container.add(medio).expand().left();
+		container.row();
+		container.add(dificil).expand().left();
+		
+		tabla.add("Nombre del Jugador:").expand().left();
+		tabla.add(nombre).expand().left();
+		tabla.add(botonNombre).expand().left();
 		tabla.row();
-		tabla.add(nombre).fill().expand().space(10f);
+		tabla.add("Volúmen de juego:").expand().left();
+		tabla.add(sliderVolume).fill().expand().left();
 		tabla.row();
-		tabla.add(botonNombre).space(10f).left();
+		tabla.add("Opciones de Pantalla:").expand().left();
+		tabla.add(botonFullScreen).space(10f).expand().left();
 		tabla.row();
-		tabla.add("Volúmen de juego:").fill().expand().space(10f);
-		tabla.row();
-		tabla.add(sliderVolume).fill().expand().space(10f);;
-		tabla.row();
-		tabla.add("Opciones de Pantalla:").fill().expand().space(10f);
-		tabla.row();
-		tabla.add(botonFullScreen).space(10f).left();
+		tabla.add("Dificultad:").expand().left();
+		tabla.add(container).expand().left();
 		
 		escena.addActor(tabla);		
 		escena.setKeyboardFocus(sliderVolume);
@@ -236,43 +241,84 @@ public class PantallaOpciones implements Screen {
 
 private void button_listeners(){
 		
-	botonSalir.addListener(new TextButtonListener(colorEnter, colorExit){
+		botonSalir.addListener(new TextButtonListener(colorEnter, colorExit){
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+					juego.setScreen(juego.pantallaMenu);
+					return true;
+				}	
+			});
+			
+		sliderVolume.addListener(new EventListener() {		
+				@Override
+				public boolean handle(Event event) {
+						GameVariables.VOLUMEN = sliderVolume.getValue();
+					return false;
+				}
+			});
+		
+		botonFullScreen.addListener(new TextButtonListener(colorEnter,colorExit){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				juego.setScreen(juego.pantallaMenu);
+				fullScreen = !fullScreen;
+				if(fullScreen){
+					botonFullScreen.setText("Ventana");
+					Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width, Gdx.graphics.getDesktopDisplayMode().height, true);
+				}else{
+					botonFullScreen.setText("Pantalla Completa");
+					Gdx.graphics.setDisplayMode(GameVariables.V_WIDTH, GameVariables.V_HEIGHT, false);
+				}
 				return true;
 			}	
 		});
 		
-	sliderVolume.addListener(new EventListener() {		
+		botonNombre.addListener(new TextButtonListener(colorEnter,colorExit){
+			@Override
+			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+				GameVariables.PLAYER_NAME = nombre.getText();
+				return true;
+			}	
+		});
+		
+		facil.addListener(new EventListener() {
+			
 			@Override
 			public boolean handle(Event event) {
-					GameVariables.VOLUMEN = sliderVolume.getValue();
+				if(facil.isChecked()){
+					GameVariables.DIFICULTAD = 1;
+					medio.setChecked(false);
+					dificil.setChecked(false);
+				}
+				return false;
+			}
+		});
+		
+		medio.addListener(new EventListener() {
+			
+			@Override
+			public boolean handle(Event event) {
+				if(medio.isChecked()){
+					GameVariables.DIFICULTAD = 2;
+					facil.setChecked(false);
+					dificil.setChecked(false);
+				}
+				return false;
+			}
+		});
+		
+		dificil.addListener(new EventListener() {
+			
+			@Override
+			public boolean handle(Event event) {
+				if(dificil.isChecked()){
+					GameVariables.DIFICULTAD = 3;
+					facil.setChecked(false);
+					medio.setChecked(false);
+				}
 				return false;
 			}
 		});
 	
-	botonFullScreen.addListener(new TextButtonListener(colorEnter,colorExit){
-		@Override
-		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-			fullScreen = !fullScreen;
-			if(fullScreen){
-				botonFullScreen.setText("Ventana");
-				Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width, Gdx.graphics.getDesktopDisplayMode().height, true);
-			}else{
-				botonFullScreen.setText("Pantalla Completa");
-				Gdx.graphics.setDisplayMode(GameVariables.V_WIDTH, GameVariables.V_HEIGHT, false);
-			}
-			return true;
-		}	
-	});
 	
-	botonNombre.addListener(new TextButtonListener(colorEnter,colorExit){
-		@Override
-		public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-			GameVariables.PLAYER_NAME = nombre.getText();
-			return true;
-		}	
-	});
 	}
 }

@@ -38,19 +38,14 @@ import com.valyrian.firstgame.utilidades.input.Joystick;
 import com.valyrian.firstgame.utilidades.input.Teclado;
 
 public class PantallaNivel implements Screen {
-		
-//	private BitmapFont font; 
+
 	private Joystick js;
-	
 	private Box2DDebugRenderer debugRenderer;
 	private OrthographicCamera camera,hudCam;	
-	
 	private SpriteBatch batch;
 	private Jugador jugador;
 	private Hud hud;
-	
 	private static Array<EntidadDibujable> entidades;
-	
 	private World mundo;
 	private OrthogonalTiledMapRenderer otmr;
 	private int mapW,mapH,tileW,tileH;
@@ -58,68 +53,65 @@ public class PantallaNivel implements Screen {
 	private Box2DMapObjectParser mapParser;
 	private Quetzal juego;
 	private Texture pausa;
-	
+	private  String nivel;
 	private Music musica;
-	
-	private Vector2 posAuxB;
-	
 	private int[] alante={2};
 	private int[] atras={0,1,3};
 	
 	public PantallaNivel(Quetzal primerJuego) {
 		juego = primerJuego;
+		this.nivel="nivel1";
 	}
 
+	private void eliminarCuerpos(){
+		if(!mundo.isLocked()){
+			Array<Body> cuerpos = manejaColisiones.getCuerposABorrar();
+			for(int i=0;i<cuerpos.size;i++){
+				Body b = cuerpos.get(i);
+				EntidadDibujable entidad = ((EntidadDibujable)b.getUserData());
+				entidades.removeValue(entidad, true);
+				mundo.destroyBody(b);
+			}
+			manejaColisiones.getCuerposABorrar().clear();
+		}
+	}
+	
+	private void update(){
+		if(PAUSE)
+			return;
+		mundo.step(TIMESTEP, VELOCITYITERATIONS, POSITIONITERATIONS);
+		this.eliminarCuerpos();
+		if(jugador.finJuego){
+			juego.setScreen(juego.pantallaFinNivel);
+			return;
+		}	
+		//Actualizar Personaje
+		jugador.actualizarCamara(camera, mapW, mapH, tileW, tileH);
+	}
+	
 	@Override
 	public void render(float delta) {
+		this.update();
+		if(jugador.finJuego)
+			return;
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		if(!PAUSE){
-			mundo.step(TIMESTEP, VELOCITYITERATIONS, POSITIONITERATIONS);
-
-			//		Eliminar cuerpos
-			if(!mundo.isLocked()){
-				Array<Body> cuerpos = manejaColisiones.getCuerposABorrar();
-				for(int i=0;i<cuerpos.size;i++){
-					Body b = cuerpos.get(i);
-					EntidadDibujable entidad = ((EntidadDibujable)b.getUserData());
-					entidades.removeValue(entidad, true);
-					mundo.destroyBody(b);
-					//Sumar puntos por la rana o hacer alguna actualizacion (dentro del FOR aun)
-				}
-				manejaColisiones.getCuerposABorrar().clear();
-			}
-			if(jugador.finJuego){
-				juego.setScreen(juego.pantallaFinNivel);
-				return;
-			}
-			
-			//Actualizar Personaje
-			jugador.actualizarCamara(camera, mapW, mapH, tileW, tileH);
-		}
-		
 		//Renderizar mapa
 		otmr.setView(camera);
 		otmr.render(atras);
-//		otmr.render();
 		//Renderizar entidades
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-		if(!jugador.estaMuerto())
-			jugador.render(delta, batch);
-		
+		jugador.render(delta, batch);
 		for (EntidadDibujable ent : entidades) {
 			ent.render(delta,batch);
-		
 		}
-//		batch.draw(meta, posAuxB.x, posAuxB.y, 32/PIXELSTOMETERS, 32/PIXELSTOMETERS);
 		batch.end();
 		otmr.render(alante);
-//		otmr.render();
 		
 		batch.setProjectionMatrix(hudCam.combined);
 		hud.render(batch);
-//		
+		
 		if(PAUSE){
 			batch.begin();
 			batch.draw(pausa, Gdx.graphics.getWidth()/2-128, Gdx.graphics.getHeight()/2-16);
@@ -130,28 +122,21 @@ public class PantallaNivel implements Screen {
 	}
 
 	@Override
-	public void resize(int width, int height) {
-//		camera.viewportWidth = (width/2/ManejadorVariables.PIXELSTOMETERS);
-//		camera.viewportHeight =(height/2/ManejadorVariables.PIXELSTOMETERS);
-//		camera.update();
-	}
+	public void resize(int width, int height) {}
 
 	@Override
 	public void show() {
-		
 		PAUSE = false;
-		musica = Quetzal.getManejaRecursos().get("audio/nivel1.mp3",Music.class);		
+		musica = Quetzal.getManejaRecursos().get("audio/"+nivel+".mp3",Music.class);
 		musica.setLooping(true);
 		musica.setVolume(VOLUMEN);
 		musica.play();
-		
 		pausa = Quetzal.getManejaRecursos().get("images/pausa.png", Texture.class);
-		
 		entidades = new Array<EntidadDibujable>();
 		debugRenderer = new Box2DDebugRenderer();
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false);
-		otmr = new OrthogonalTiledMapRenderer(new TmxMapLoader().load("mapas/nivel1.tmx"),1/PIXELSTOMETERS);
+		otmr = new OrthogonalTiledMapRenderer(new TmxMapLoader().load("mapas/"+nivel+".tmx"),1/PIXELSTOMETERS);
 		
 		batch = Quetzal.getSpriteBatch();
 		
@@ -174,17 +159,14 @@ public class PantallaNivel implements Screen {
 		mapParser.load(mundo, otmr.getMap());	
 
 		
-		//OJO
-		posAuxB = new Vector2();
-		posAuxB = mapParser.getBodies().get("spawn").getPosition();
+		Vector2 posSpawn = new Vector2();
+		posSpawn = mapParser.getBodies().get("spawn").getPosition();
 	
-		
 		AnimacionJugador maj = new AnimacionJugador(Quetzal.getManejaRecursos().get("personajes/nativo.png",Texture.class),32,64,1/12f);
-		jugador = new Jugador(32, 64, posAuxB.x*PIXELSTOMETERS,posAuxB.y*PIXELSTOMETERS, new Vector2(2.5f,5.5f), 150, mundo,maj);
+		jugador = new Jugador(32, 64, posSpawn.x*PIXELSTOMETERS,posSpawn.y*PIXELSTOMETERS, new Vector2(2.5f,6f),(400-DIFICULTAD*100) , mundo,maj);
 		maj.setJugador(jugador);
 	
 		hud = new Hud(jugador);
-		
 		Gdx.input.setInputProcessor(new Teclado(this));
 		js = new Joystick(this);
 		Controllers.addListener(js);
@@ -198,7 +180,7 @@ public class PantallaNivel implements Screen {
 				Vector2 posAux = new Vector2();
 				posAux.x = (Float) mo.getProperties().get("x");
 				posAux.y = (Float) mo.getProperties().get("y")-16f;
-				Enemigo rana = new Enemigo(32, 32, posAux.x,posAux.y, new Vector2(0,0),10,100,mundo,mar);
+				Enemigo rana = new Enemigo(32, 32, posAux.x,posAux.y, new Vector2(0,0),15,(DIFICULTAD*2-1)*20,mundo,mar);
 				float lim = 4+(float)Math.random()*(2);
 				InteligenciaRana mir  = new InteligenciaRana(lim, rana);
 				rana.setInteligencia(mir);
@@ -215,7 +197,7 @@ public class PantallaNivel implements Screen {
 				Vector2 posAux = new Vector2();
 				posAux.x = (Float) mo.getProperties().get("x");
 				posAux.y = (Float) mo.getProperties().get("y");
-				Enemigo avispa = new Enemigo(32, 32, posAux.x,posAux.y, new Vector2(1,0),15,100,mundo,mav);
+				Enemigo avispa = new Enemigo(32, 32, posAux.x,posAux.y, new Vector2(1,0),20,DIFICULTAD*20,mundo,mav);
 				InteligenciaAvispa mia  = new InteligenciaAvispa(avispa);
 				avispa.setInteligencia(mia);
 				entidades.add(avispa);
@@ -239,9 +221,9 @@ public class PantallaNivel implements Screen {
 		//		Cargar Plataformas horizontales
 		layer = otmr.getMap().getLayers().get("BasesMoviblesHorizontal");
 		if(layer != null){
-			Texture tx =Quetzal.getManejaRecursos().get("personajes/moneda.png",Texture.class);
+			Texture tx =Quetzal.getManejaRecursos().get("images/plat"+nivel+".png",Texture.class);
 			for(MapObject mo : layer.getObjects()){
-				AnimacionUnica mae = new AnimacionUnica(tx, 168, 168, 1/11f);
+				AnimacionUnica mae = new AnimacionUnica(tx, 504, 114, 0);
 				Vector2 posAux = new Vector2();
 				float anc = (float) ((RectangleMapObject)mo).getRectangle().getWidth();
 				float alt = (float) ((RectangleMapObject)mo).getRectangle().getHeight();
@@ -257,9 +239,9 @@ public class PantallaNivel implements Screen {
 		//Cargar Plataformas verticales
 		layer = otmr.getMap().getLayers().get("BasesMoviblesVertical");
 		if(layer != null){
-			Texture tx =Quetzal.getManejaRecursos().get("personajes/moneda.png",Texture.class);
+			Texture tx =Quetzal.getManejaRecursos().get("images/plat"+nivel+".png",Texture.class);
 			for(MapObject mo : layer.getObjects()){
-				AnimacionUnica mae = new AnimacionUnica(tx, 168, 168, 1/11f);
+				AnimacionUnica mae = new AnimacionUnica(tx, 504, 114, 0);
 				Vector2 posAux = new Vector2();
 				float anc = (float) ((RectangleMapObject)mo).getRectangle().getWidth();
 				float alt = (float) ((RectangleMapObject)mo).getRectangle().getHeight();
@@ -297,7 +279,7 @@ public class PantallaNivel implements Screen {
 		debugRenderer.dispose();
 		otmr.getMap().dispose();
 		musica.stop();
-		Quetzal.getManejaRecursos().unload("audio/nivel1.mp3");
+		Quetzal.getManejaRecursos().unload("audio/"+nivel+".mp3");
 		otmr.dispose();
 		entidades.clear();
 		mundo.dispose();
@@ -317,4 +299,8 @@ public class PantallaNivel implements Screen {
 	public static Array<EntidadDibujable> getEntidades(){ return entidades; }
 	
 	public World getWorld() { return mundo; }	
+	
+	public String getNivel(){return nivel; }
+	
+	public void setNivel(String level){ this.nivel = level; }
 }

@@ -37,10 +37,10 @@ public class Plataforma extends EntidadDibujable {
 		fixtureDef.shape = boxShape;
 		fixtureDef.restitution = 0;
 		fixtureDef.isSensor =false;
-		fixtureDef.density = 10000;
-		fixtureDef.friction = 0.1f;
-//		fixtureDef.filter.categoryBits = BITS_PLATAFORMA;
-//		fixtureDef.filter.maskBits = BITS_JUGADOR |BITS_ENEMIGO |BITS_PROYECTIL;
+		fixtureDef.density = 100000;
+		fixtureDef.friction = 0.5f;
+		fixtureDef.filter.categoryBits = BITS_PLATAFORMA;
+		fixtureDef.filter.maskBits = BITS_JUGADOR  |BITS_PROYECTIL | BITS_SENSOR;
 
 		this.cuerpo= mundo.createBody(bodyDef);
 		this.cuerpo.createFixture(fixtureDef);		

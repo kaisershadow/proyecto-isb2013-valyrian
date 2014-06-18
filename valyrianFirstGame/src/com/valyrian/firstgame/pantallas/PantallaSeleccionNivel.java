@@ -9,7 +9,9 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -29,7 +31,6 @@ public class PantallaSeleccionNivel implements Screen{
 	private Table tablaNiveles;
 	private Table tablaControles;
 	private Table captura;
-	private TextButton botonJugar;
 	private TextButton botonRegresar;
 	private TextButton niveles[];
 	private Skin skin;
@@ -46,9 +47,9 @@ public class PantallaSeleccionNivel implements Screen{
 	private Window zonaTexto;
 	private Quetzal juego;
 	private MenuJoystick mjs;
+	private MenuListener menulistener;
 	
 	private int numNiveles; //numero de niveles del juego
-	private int nivelActual;
 
 	public PantallaSeleccionNivel(Quetzal primerJuego) {
 		juego = primerJuego;
@@ -133,13 +134,13 @@ public class PantallaSeleccionNivel implements Screen{
 
 	@Override
 	public void dispose() {
-//		escena.dispose();
 		Quetzal.getManejaRecursos().unload("images/menus/titulo_niveles.png");
 		Quetzal.getManejaRecursos().unload("images/menus/titulo_seleccionarnivel.png");
 		for(int i=1;i<=numNiveles;i++)
 			Quetzal.getManejaRecursos().unload("images/menus/nivel"+i+".png");
 		Controllers.removeListener(mjs);
-
+		escena.removeListener(menulistener);
+//		escena.dispose();
 		if(debug)
 			System.out.println("SE LLAMO AL DISPOSE DE SELECCION NIVEL");
 	}
@@ -182,12 +183,11 @@ public class PantallaSeleccionNivel implements Screen{
 		tablaNiveles = new Table(skin);
 		tablaControles = new Table(skin);
 		zonaTexto = new Window("Resumen: ", skin);
-		botonJugar = new TextButton("Jugar", skin);
 		botonRegresar = new TextButton("Regresar", skin);
 		
 		niveles = new TextButton[numNiveles];
 		for (int i = 0; i < numNiveles ; i++) {
-			niveles[i] = new TextButton("nivel " + Integer.toString(i+1) , skin);
+			niveles[i] = new TextButton("Nivel " + Integer.toString(i+1) , skin);
 			niveles[i].setColor(colorExit);
 			niveles[i].setName("nivel" + Integer.toString(i+1) );
 		}
@@ -197,9 +197,14 @@ public class PantallaSeleccionNivel implements Screen{
 		for (int i = 0; i < numNiveles; i++) 
 			capturaNivel[i] = Quetzal.getManejaRecursos().get("images/menus/nivel"+(i+1)+".png");
 		
-		botonJugar.setColor(colorEnter);
+		niveles[0].setColor(colorEnter);
 		botonRegresar.setColor(colorExit);
 		zonaTexto.setColor(colorExit);
+		
+		zonaTexto.clear();
+		zonaTexto.add(Gdx.files.internal("ui/texto/nivel1.txt").readString());
+		captura.clear();
+		captura.add(new Image(capturaNivel[0]));
 		
 		mjs = new MenuJoystick(escena);
 		Controllers.addListener(mjs);
@@ -215,44 +220,26 @@ public class PantallaSeleccionNivel implements Screen{
 				return true;
 			}});
 		
-		botonJugar.addListener(new TextButtonListener(colorEnter, colorExit){
-			@Override
-			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				switch (nivelActual){
-				case 1:
-					((PantallaCargaNivel)juego.pantallaCargaNivel).setPantallaActual(juego.pantallaNivel);
-					break;
-					
-				case 2:
-					((PantallaCargaNivel)juego.pantallaCargaNivel).setPantallaActual(juego.pantallaNivel);
-					break;
-					
-				case 3:
-					((PantallaCargaNivel)juego.pantallaCargaNivel).setPantallaActual(juego.pantallaNivel);
-					break;
-				
-				default:
-					//Si no se selecciona ningun nivel, se carga el nivel secreto
-					((PantallaCargaNivel)juego.pantallaCargaNivel).setPantallaActual(juego.pantallaSecreto);
-					break;
-				}
-				juego.setScreen(juego.pantallaCargaNivel);
-				return true;
-			}});
-		
-		
 		for(int i = 0; i < numNiveles; i++){
 			niveles[i].addListener(new TextButtonListener(colorEnter, colorExit){
 				@Override
-				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+				public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+					super.enter(event, x, y, pointer, fromActor);
 					zonaTexto.clear();
 					zonaTexto.add(Gdx.files.internal("ui/texto/" + event.getListenerActor().getName()+ ".txt").readString());
 					captura.clear();
 					captura.add(new Image(capturaNivel[Integer.parseInt(event.getListenerActor().getName().substring(5,6))-1]));
-					nivelActual = Integer.parseInt(event.getListenerActor().getName().substring(5, 6));
-					event.getListenerActor().setColor(colorExit);
+				}
+				@Override
+				public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+					String nivAux = event.getListenerActor().getName();
+					((PantallaNivel)juego.pantallaNivel).setNivel(nivAux);
+					System.out.println("Nivel Aux: "+nivAux);
+					((PantallaCargaNivel)juego.pantallaCargaNivel).setPantallaActual(juego.pantallaNivel);
+					((PantallaCargaNivel)juego.pantallaCargaNivel).setNivel(nivAux);
+					juego.setScreen(juego.pantallaCargaNivel);
 					return true;
-				}	
+				}
 			});		
 		}
 	}
@@ -267,8 +254,7 @@ public class PantallaSeleccionNivel implements Screen{
 			tablaNiveles.row();
 		}
 		
-		tablaControles.add(botonRegresar).fill().expand().space(10f);
-		tablaControles.add(botonJugar).fill().expand().space(10f);		
+		tablaControles.add(botonRegresar).fill().expand().space(10f);		
 		escena.addActor(fondo);
 		escena.addActor(tablaNiveles);
 		escena.addActor(tablaControles);
@@ -277,13 +263,13 @@ public class PantallaSeleccionNivel implements Screen{
 		escena.addActor(captura);
 		escena.addActor(zonaTexto);		
 		
-		escena.setKeyboardFocus(botonJugar);
-		
+		escena.setKeyboardFocus(niveles[0]);
 		ArrayList<TextButton> lista = new ArrayList<TextButton>();
-		lista.add(botonJugar);
+//		lista.add(botonJugar);
 		for (int i = 0; i < numNiveles ; i++)
 			lista.add(niveles[i]);
 		lista.add(botonRegresar);
-		escena.addListener(new MenuListener(escena, lista));
+		menulistener = new MenuListener(escena, lista);
+		escena.addListener(menulistener);
 	}
 }
