@@ -30,6 +30,7 @@ public class TextButtonListener extends InputListener{
 
 	@Override
 	public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+		event.getStage().setKeyboardFocus(event.getListenerActor());
 		event.getListenerActor().setColor(colorEnter);
 	}
 

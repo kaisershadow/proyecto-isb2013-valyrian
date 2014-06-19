@@ -1,6 +1,6 @@
 package com.valyrian.firstgame.pantallas;
 
-import static com.valyrian.firstgame.utilidades.GameVariables.debug;
+import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -9,7 +9,6 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -25,7 +24,6 @@ public class PantallaCargaNivel implements Screen {
 
 	private Stage escena;
 	private Skin skin;
-	private SpriteBatch batch;
 	private BarraCarga barra;
 	private Quetzal juego;
 	private Screen pantallaActual;
@@ -48,26 +46,24 @@ public class PantallaCargaNivel implements Screen {
 		
 		escena.act(delta);
 		escena.draw();
-		batch.begin();
-		
-		barra.draw(batch, 1);
-
-		batch.end();
+		if(debug)
+			Table.drawDebug(escena);
 	}
 
 	@Override
 	public void resize(int width, int height) {
 		escena.setViewport(width, height);
-		
+//		escena.setViewport(width, height, true);
 		fondo.setSize(width, height);
 		
 		tabla.setBounds(0, height*0.5f, width, height);
 		tabla.setSize(width, height*0.5f);
+		
+		barra.setBounds(width*0.5f-barra.barra.getWidth()/2,0.2f*height, barra.barra.getWidth(), barra.barra.getHeight());
 	}
 
 	@Override
 	public void show() {
-		this.batch = Quetzal.getSpriteBatch();
 		barra = new BarraCarga();
 		escena = new Stage();
 		skin = Quetzal.getManejaRecursos().get("ui/skin/uiskin.json");
@@ -78,10 +74,15 @@ public class PantallaCargaNivel implements Screen {
 		
 		tabla = new Table(skin);
 		tabla.add(Gdx.files.internal("ui/texto/"+nivel+".txt").readString()).expand();
+//		tabla.row();
+//		tabla.add(barra).fillX();
 		tabla.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("images/sliderbg.png"))));
 		escena.addActor(fondo);
 		escena.addActor(tabla);
+		escena.addActor(barra);
 		
+		if(debug)
+			tabla.debug();
 		Gdx.input.setInputProcessor(escena);
 		
 		escena.addListener(new InputListener(){
@@ -109,6 +110,8 @@ public class PantallaCargaNivel implements Screen {
 		Quetzal.getManejaRecursos().load("personajes/avispa.png", Texture.class);
 		Quetzal.getManejaRecursos().load("personajes/dardo.png", Texture.class);
 		Quetzal.getManejaRecursos().load("personajes/moneda.png", Texture.class);
+		Quetzal.getManejaRecursos().load("personajes/murcielago.png", Texture.class);
+		Quetzal.getManejaRecursos().load("personajes/raton.png", Texture.class);
 		
 		Quetzal.getManejaRecursos().load("images/corazon.png", Texture.class);
 		Quetzal.getManejaRecursos().load("images/hud.png", Texture.class);
@@ -118,6 +121,9 @@ public class PantallaCargaNivel implements Screen {
 		Quetzal.getManejaRecursos().load("images/calendario_maya3.png", Texture.class);
 		Quetzal.getManejaRecursos().load("images/pausa.png", Texture.class);
 //		Quetzal.getManejaRecursos().load("images/moneda.png", Texture.class);
+		Quetzal.getManejaRecursos().load("images/juego_acabado.png", Texture.class);
+		Quetzal.getManejaRecursos().load("images/juego_completo.png", Texture.class);
+		
 		
 		Quetzal.getManejaRecursos().load("audio/"+nivel+".mp3", Music.class);
 		Quetzal.getManejaRecursos().load("audio/salto.wav", Sound.class);

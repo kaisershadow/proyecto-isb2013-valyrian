@@ -177,9 +177,9 @@ public class PantallaPuntuaciones implements Screen{
 		tabla1 = new Table(skin);
 		tabla2 = new Table(skin);
 		
-		labelPrimero = Gdx.files.internal("data/puntuacion_primero.txt").readString();
-		labelSegundo = Gdx.files.internal("data/puntuacion_segundo.txt").readString();
-		labelTercero = Gdx.files.internal("data/puntuacion_tercero.txt").readString();
+		labelPrimero = Gdx.files.internal("data/puntuacion1.txt").readString();
+		labelSegundo = Gdx.files.internal("data/puntuacion2.txt").readString();
+		labelTercero = Gdx.files.internal("data/puntuacion3.txt").readString();
 
 		botonSalir = new TextButton("Atras", skin);
 		botonSalir.setColor(colorEnter);

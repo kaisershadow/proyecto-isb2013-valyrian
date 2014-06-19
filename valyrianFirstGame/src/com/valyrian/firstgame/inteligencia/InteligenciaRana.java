@@ -65,10 +65,10 @@ public class InteligenciaRana implements ManejadorInteligencia {
 		Vector2 velAux = new Vector2();
 		posAux.x =this.enemigo.getCuerpo().getPosition().x+ this.enemigo.getDireccion().x*((this.enemigo.getAncho()/2+4)/PIXELSTOMETERS);
 		posAux.y =this.enemigo.getCuerpo().getPosition().y;
-		velAux.x = this.enemigo.getDireccion().x*3;
+		velAux.x = this.enemigo.getDireccion().x*5;
 		velAux.y = 0;
 		bala = new Proyectil(7, 3, posAux.x, posAux.y, velAux, mundo, mab, this.enemigo.getDanio());
-//		bala = new Proyectil(7, 3, posAux, velAux, mundo, new Texture("personajes/dardo.png"),this.enemigo.getDanio());
+		bala.getCuerpo().setGravityScale(0.1f);
 		Filter filter = bala.getCuerpo().getFixtureList().first().getFilterData();
 		filter.maskBits |=BITS_JUGADOR;
 		bala.getCuerpo().getFixtureList().first().setFilterData(filter);

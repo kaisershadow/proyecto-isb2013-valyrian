@@ -20,7 +20,11 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.joints.PulleyJoint;
+import com.badlogic.gdx.physics.box2d.joints.PulleyJointDef;
 import com.badlogic.gdx.utils.Array;
 import com.valyrian.firstgame.Quetzal;
 import com.valyrian.firstgame.animaciones.AnimacionJugador;
@@ -82,6 +86,8 @@ public class PantallaNivel implements Screen {
 		mundo.step(TIMESTEP, VELOCITYITERATIONS, POSITIONITERATIONS);
 		this.eliminarCuerpos();
 		if(jugador.finJuego){
+			((PantallaFinNivel)juego.pantallaFinNivel).setAprobado(!jugador.estaMuerto());
+			((PantallaFinNivel)juego.pantallaFinNivel).setPuntuacion(jugador.getPuntaje());
 			juego.setScreen(juego.pantallaFinNivel);
 			return;
 		}	
@@ -94,6 +100,7 @@ public class PantallaNivel implements Screen {
 		this.update();
 		if(jugador.finJuego)
 			return;
+		
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		//Renderizar mapa
@@ -114,7 +121,7 @@ public class PantallaNivel implements Screen {
 		
 		if(PAUSE){
 			batch.begin();
-			batch.draw(pausa, Gdx.graphics.getWidth()/2-128, Gdx.graphics.getHeight()/2-16);
+			batch.draw(pausa, Gdx.graphics.getWidth()/2-pausa.getWidth()/2, Gdx.graphics.getHeight()/2-pausa.getHeight()/2);
 			batch.end();
 		}
 		if(debug)
@@ -198,11 +205,53 @@ public class PantallaNivel implements Screen {
 				posAux.x = (Float) mo.getProperties().get("x");
 				posAux.y = (Float) mo.getProperties().get("y");
 				Enemigo avispa = new Enemigo(32, 32, posAux.x,posAux.y, new Vector2(1,0),20,DIFICULTAD*20,mundo,mav);
-				InteligenciaAvispa mia  = new InteligenciaAvispa(avispa);
+				InteligenciaAvispa mia  = new InteligenciaAvispa(4,avispa);
 				avispa.setInteligencia(mia);
 				entidades.add(avispa);
 			}
 		}
+		
+		
+		//Cargar Murcielagos
+		layer = otmr.getMap().getLayers().get("SpawnMurcielago");
+		if(layer != null){
+			Texture tx =Quetzal.getManejaRecursos().get("personajes/murcielago.png",Texture.class);
+			for(MapObject mo : layer.getObjects()){
+				AnimacionUnica mav = new AnimacionUnica(tx, 32, 32, 1/5f);
+				Vector2 posAux = new Vector2();
+				posAux.x = (Float) mo.getProperties().get("x");
+				posAux.y = (Float) mo.getProperties().get("y");
+				Enemigo bat = new Enemigo(32, 32, posAux.x,posAux.y, new Vector2(1,0),20,DIFICULTAD*20,mundo,mav);
+				float lim = 2+(float)Math.random()*(3);
+				InteligenciaRana mir  = new InteligenciaRana(lim, bat);
+				bat.setInteligencia(mir);
+				InteligenciaAvispa mia  = new InteligenciaAvispa(lim, bat);
+				bat.setInteligencia(mia);
+				entidades.add(bat);
+			}
+		}
+		
+		
+		//Cargar Ratones
+		layer = otmr.getMap().getLayers().get("SpawnRaton");
+		if(layer != null){
+			Texture tx =Quetzal.getManejaRecursos().get("personajes/raton.png",Texture.class);
+			for(MapObject mo : layer.getObjects()){
+				AnimacionUnica mav = new AnimacionUnica(tx, 32, 32, 1/5f);
+				Vector2 posAux = new Vector2();
+				posAux.x = (Float) mo.getProperties().get("x");
+				posAux.y = (Float) mo.getProperties().get("y");
+				Enemigo raton = new Enemigo(32, 32, posAux.x,posAux.y-8, new Vector2(1,0),20,DIFICULTAD*20,mundo,mav);
+				InteligenciaAvispa mia  = new InteligenciaAvispa(4,raton);
+				raton.setInteligencia(mia);
+				entidades.add(raton);
+			}
+		}
+		
+		
+		
+		
+		
 
 		//Cargar Cofres
 		layer = otmr.getMap().getLayers().get("SpawnCofre");
@@ -231,7 +280,7 @@ public class PantallaNivel implements Screen {
 				posAux.x+= anc/2;
 				posAux.y = (Float) mo.getProperties().get("y");
 				posAux.y+= alt/2;
-				Plataforma plat= new Plataforma(anc,alt , new Vector2(1.5f,0), posAux.x, posAux.y, mundo, mae);
+				Plataforma plat= new Plataforma(anc,alt , new Vector2(1f,0), posAux.x, posAux.y, mundo, mae);
 				entidades.add(plat);
 			}
 		}
@@ -249,10 +298,39 @@ public class PantallaNivel implements Screen {
 				posAux.x+= anc/2;
 				posAux.y = (Float) mo.getProperties().get("y");
 				posAux.y+= alt/2;
-				Plataforma plat= new Plataforma(anc,alt , new Vector2(0,1.5f), posAux.x, posAux.y, mundo, mae);
+				Plataforma plat= new Plataforma(anc,alt , new Vector2(0,1f), posAux.x, posAux.y, mundo, mae);
 				entidades.add(plat);
 			}
 		}
+		
+		
+		//Cargar cajas de poleas
+		layer = otmr.getMap().getLayers().get("Caja");
+		if(layer != null){
+			Texture tx =Quetzal.getManejaRecursos().get("images/plat"+nivel+".png",Texture.class);
+			for(MapObject mo : layer.getObjects()){
+				AnimacionUnica mae = new AnimacionUnica(tx, 504, 114, 0);
+				Vector2 posAux = new Vector2();
+				float anc = (float) ((RectangleMapObject)mo).getRectangle().getWidth();
+				float alt = (float) ((RectangleMapObject)mo).getRectangle().getHeight();
+				posAux.x = (Float) mo.getProperties().get("x");
+				posAux.x+= anc/2;
+				posAux.y = (Float) mo.getProperties().get("y");
+				posAux.y+= alt/2;
+				Plataforma plat= new Plataforma(anc,alt , new Vector2(0,0), posAux.x, posAux.y, mundo, mae);
+				plat.getCuerpo().setType(BodyType.DynamicBody);
+				plat.getCuerpo().setGravityScale(1f);
+				Filter filtAux = plat.getCuerpo().getFixtureList().first().getFilterData();
+				filtAux.maskBits = BITS_JUGADOR  |BITS_PROYECTIL | BITS_ENTORNO;
+				plat.getCuerpo().getFixtureList().first().setFilterData(filtAux);
+				plat.getCuerpo().getFixtureList().first().setFriction(0.0001f);
+				entidades.add(plat);
+			}
+		}
+		
+//		PulleyJointDef a;
+//		a.initialize(bodyA, bodyB, groundAnchorA, groundAnchorB, anchorA, anchorB, ratio);
+		
 			manejaColisiones= new ManejadorColisiones(jugador);
 			mundo.setContactListener(manejaColisiones);
 	}

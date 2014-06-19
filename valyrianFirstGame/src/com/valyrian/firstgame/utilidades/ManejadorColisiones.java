@@ -186,8 +186,6 @@ public class ManejadorColisiones implements ContactListener {
 	@Override
 	public void preSolve(Contact contact, Manifold oldManifold) {
 		// TODO Auto-generated method stub
-		
-
 	}
 
 	@Override
@@ -244,10 +242,9 @@ public class ManejadorColisiones implements ContactListener {
 	
 	//fA = Jugador
 	private void jugadorMuerte() {
-//	player.setVidaActual(-player.getMaxVida());
-//	muerte.play(VOLUMEN*0.8f);
-//	player.finJuego = true;
-		System.out.println("SE MATO");
+	player.setVidaActual(-player.getMaxVida());
+	muerte.play(VOLUMEN*0.8f);
+	player.finJuego = true;
 	}
 	
 	//fB = Colectable

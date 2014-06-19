@@ -23,22 +23,22 @@
  </tileset>
  <layer name="fondo" width="130" height="86">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer name="estructura" width="130" height="86">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer name="delante" width="130" height="86">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3c0W3CMBDGcZpBOgIjMAIjdIKqEyB1AUZgAt6YoyN0meoeEGnkkDs75/jM//fWNJIv4cPBPtrdDujb59DGuNo6POrd6h605LTRPZiOq63Do17vezCXs6X8afL5vVLt54o5+HmbH1dbh0e93vdgLmdL+dPkc60cXCrm4HeUg+m42jo86vW+B3M5W8qfJp9r5QD+yAHE2jm4jo6TgzjmnjtLz6O539/IAQAAzcvdD8rdX0KbcveDcveX0Kbc9V/uehI6tefb3PVf7noSOsy3EMy3EMwHEOQAgs9fAACgN/QXIFjXQLDf1bZa8zXr22VbPjujvk+vQet+ZstnZ9T36S1o3c9EfU9iXXyWhog6NwMAAAAA1lOyd0zPtm2W16dkr4h9prZZXh9y0C9y8PDKzy5y8BChRi+Way/pKUboR0ao0Yvl2kt6SRH6UK+cgwivTy3cCwCwKVlXHZlzu1HyOYoc9KNkfU0O+kEOIErWVeQAAID+lPZka/V0P4b/4x1G405reB/SdWmO5V6PdjzrubWU9mRr9XTvOTglcjCtQXKQqktzLPd6tONZz62ltBdXq5d3z8E5kYNpDeTAroccyD3cj34mB3alPdlaPd2l5wI5eA3kAILPiRDkwFeU7x6QA19RvntADnxF6TmTA19Res7kAIIcQFhysCcH3bLk4EAOzKL8DwxLDo7kwKxk/Jq1W/qNcm5qPaw5lruO1o5nPbeWKH/rfM/BJZGD6Zrna0ivgzTHctdP2vGs59YSZT6AryjzAXwxH0CUPJe2fqYBAAAAAAD8AUj4ExKwrgAA
+   H4sIAAAAAAAAC+3c0W3CMBDGcZpBOgIjMAIjdIKqEyB1AUZgAt6YoyN0meoeEGnkkDs75/jM//fWNJIv4cPBPtrdDujb59DGuNo6POrd6h605LTRPZiOq63Do17vezCXs6X8afL5vVLt54o5+HmbH1dbh0e93vdgLmdL+dPkc60cXCrm4HeUg+m42jo86vW+B3M5W8qfJp9r5QD+yAHE2jm4jo6TgzjmnjtLz6O539/IAQAAzcvdD8rdX0KbcveDcveX0Kbc9V/uehI6tefb3PVf7noSOsy3EMy3EMwHEOQAgs9fAACgN/QXIFjXQLDf1bZa8zXr22VbPjujvk+vQet+ZstnZ9T36S1o3c9EfU9iXXyWhog6NwMAAAAA1lOyd0zPtm2W16dkr4h9prZZXh9y0C9y8PDKzy5y8BChRi+Way/pKUboR0ao0Yvl2kt6SRH6UK+cgwivTy3cCwCwKVlXHZlzu1HyOYoc9KNkfU0O+kEOIErWVeQAAID+lPZka/V0P4b/4x1G405reB/SdWmO5V6PdjzrubWU9mRr9XTvOTglcjCtQXKQqktzLPd6tONZz62ltBdXq5d3z8E5kYNpDeTAroccyD3cj34mB3alPdlaPd2l5wI5eA3kAILPiRDkwFeU7x6QA19RvntADnxF6TmTA19Res7kAIIcQFhysCcH3bLk4EAOzKL8DwxLDo7kwKxk/Jq1W/qNcm5qPaw5lruO1o5nPbeWKH/rfM/BJZGD6Zrna0ivgzTHctdP2vGs59YSZT6AryjzAXwxH0CUPJe2fqYBAAAAAAD8AUj4ExKwrgAA
   </data>
  </layer>
  <layer name="atras" width="130" height="86">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3dzXHCMBCGYeJCUgIlUAIlUACHNJBDCqCT3FIHJaSZzE7icdDIWLuy/t9nJhePQWvxYSPJ4xwOANC/96mOdkPrSFFvqT7Yw4ex9k/ndddCfeC2G1pHinpT98FazrbyF5JPaw6+nNfdCuXAbTe0jhT17vme7vdMrOVsK38h+bTmAGm53zNBDiC0OZjPKeSgL2vXnbXt8zkl5HpFDgAAAOplnQ+yzi/F8M1vYB/WeQDrvEIM3/wG9rE1vtOOG0vN8famxPkW9SlxvkV9yAEEOYAgB8Di/lK6AtTgmxwAQBeY74JgXAPB+kLdnp2vWc/Nq+S189n3lPXcvLh2QpADCHIAAMB+GN9C5BrfkjcI5lMA7Clm7pg127ppPp+YuSLmmeqm+XzIQR22fvNbxgTkYNHKtWvrN79lTEAOFi3UmIrm2GPux6ntXh7N8xRHUNvnk4vv3DlqXwBACWfOud2IGVeRg37E/J4mB/0gBxAx4ypyAABAOdyH+Og0aH+kug8xdk0215ruZXps738O3BpeJ39dIdusxxPannbfXGLX4nKt5c05uHpy4NYgOfDV5dvm9r/1eELb0+6by+g5sP5fS8t7W/bNJXZNNtea7lYOjn9/ghz0ixxAcF2AIAf1yrm2QA7SauXeA3KQVitrzuQgrVbWnMkBBDl4bpT1J00OjgPmYJTnYGhycBowB6PQ5OBMDtRaeQaGJgcXcqAW037O2ucc3Dw5cMc8b5N/HOTb5h6DdfwU2p5231xayUEqpfu/FqPnAL/IAURPz8AAAAAAAADj+QGDu9ugsK4AAA==
+   H4sIAAAAAAAAC+3dzXHCMBCGYeJCUgIlUAIlUACHNJBDCqCT3FIHJaSZzE7icdDIWLuy/t9nJhePQWvxYSPJ4xwOANC/96mOdkPrSFFvqT7Yw4ex9k/ndddCfeC2G1pHinpT98FazrbyF5JPaw6+nNfdCuXAbTe0jhT17vme7vdMrOVsK38h+bTmAGm53zNBDiC0OZjPKeSgL2vXnbXt8zkl5HpFDgAAAOplnQ+yzi/F8M1vYB/WeQDrvEIM3/wG9rE1vtOOG0vN8famxPkW9SlxvkV9yAEEOYAgB8Di/lK6AtTgmxwAQBeY74JgXAPB+kLdnp2vWc/Nq+S189n3lPXcvLh2QpADCHIAAMB+GN9C5BrfkjcI5lMA7Clm7pg127ppPp+YuSLmmeqm+XzIQR22fvNbxgTkYNHKtWvrN79lTEAOFi3UmIrm2GPux6ntXh7N8xRHUNvnk4vv3DlqXwBACWfOud2IGVeRg37E/J4mB/0gBxAx4ypyAABAOdyH+Og0aH+kug8xdk0215ruZXps738O3BpeJ39dIdusxxPannbfXGLX4nKt5c05uHpy4NYgOfDV5dvm9r/1eELb0+6by+g5sP5fS8t7W/bNJXZNNtea7lYOjn9/ghz0ixxAcF2AIAf1yrm2QA7SauXeA3KQVitrzuQgrVbWnMkBBDl4bpT1J00OjgPmYJTnYGhycBowB6PQ5OBMDtRaeQaGJgcXcqAW037O2ucc3Dw5cMc8b5N/HOTb5h6DdfwU2p5231xayUEqpfu/FqPnAL/IAURPz8AAAAAAAADj+QGDu9ugsK4AAA==
   </data>
  </layer>
  <objectgroup name="Entorno" width="130" height="86">
@@ -523,82 +523,82 @@
   </object>
  </objectgroup>
  <objectgroup name="SpawnRaton" width="130" height="86">
-  <object name="spawnraton1" type="body" x="128" y="256">
+  <object name="spawnraton1" type="body" x="128" y="268">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnraton1" type="body" x="224" y="928">
+  <object name="spawnraton1" type="body" x="200" y="941">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnraton1" type="body" x="896" y="992">
+  <object name="spawnraton1" type="body" x="906" y="1004">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnraton1" type="body" x="1632" y="128">
+  <object name="spawnraton1" type="body" x="1633" y="141">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnraton1" type="body" x="1696" y="896">
+  <object name="spawnraton1" type="body" x="1690" y="909">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnraton1" type="body" x="1536" y="1152">
+  <object name="spawnraton1" type="body" x="1536" y="1164">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnraton1" type="body" x="2080" y="1440">
+  <object name="spawnraton1" type="body" x="2080" y="1454">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnraton1" type="body" x="2176" y="128">
+  <object name="spawnraton1" type="body" x="2178" y="141">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnraton1" type="body" x="2688" y="128">
+  <object name="spawnraton1" type="body" x="2688" y="140">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnrato1" type="body" x="3104" y="128">
+  <object name="spawnrato1" type="body" x="3105" y="141">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnrato1" type="body" x="3584" y="608">
+  <object name="spawnrato1" type="body" x="3582" y="621">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnrato1" type="body" x="3232" y="672">
+  <object name="spawnrato1" type="body" x="3301" y="684">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnrato1" type="body" x="3040" y="992">
+  <object name="spawnrato1" type="body" x="3058" y="1003">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnrato1" type="body" x="3104" y="1920">
+  <object name="spawnrato1" type="body" x="3143" y="1930">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnrato1" type="body" x="3072" y="2464">
+  <object name="spawnrato1" type="body" x="3144" y="2477">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnrato1" type="body" x="2688" y="2464">
+  <object name="spawnrato1" type="body" x="2761" y="2477">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -663,8 +663,9 @@
  <objectgroup name="LimitesVerticales" width="130" height="86">
   <object name="limiteI1" type="object" x="928" y="864">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -673,8 +674,9 @@
   </object>
   <object name="limiteS1" type="object" x="928" y="288">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -683,8 +685,9 @@
   </object>
   <object name="limiteI2" type="object" x="672" y="1440">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -693,8 +696,9 @@
   </object>
   <object name="limiteS2" type="object" x="672" y="960">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -703,8 +707,9 @@
   </object>
   <object name="limiteI3" type="object" x="64" y="2304">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -713,8 +718,9 @@
   </object>
   <object name="limiteS3" type="object" x="64" y="1536">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -723,8 +729,9 @@
   </object>
   <object name="limiteI4" type="object" x="1024" y="2240">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -733,8 +740,9 @@
   </object>
   <object name="limiteS4" type="object" x="1024" y="1024">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -743,8 +751,9 @@
   </object>
   <object name="limiteI5" type="object" x="1632" y="2240">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -753,8 +762,9 @@
   </object>
   <object name="limiteS5" type="object" x="1632" y="1472">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -763,8 +773,9 @@
   </object>
   <object name="limiteI6" type="object" x="1248" y="2240">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -773,8 +784,9 @@
   </object>
   <object name="limiteS6" type="object" x="1248" y="512">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -783,8 +795,9 @@
   </object>
   <object name="limiteI7" type="object" x="1952" y="2240">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -793,8 +806,9 @@
   </object>
   <object name="limiteS7" type="object" x="1952" y="1696">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -803,8 +817,9 @@
   </object>
   <object name="limiteI8" type="object" x="1824" y="640">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -813,8 +828,9 @@
   </object>
   <object name="limiteS8" type="object" x="1824" y="160">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -823,8 +839,9 @@
   </object>
   <object name="limiteI9" type="object" x="2240" y="1408">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -833,8 +850,9 @@
   </object>
   <object name="limiteS9" type="object" x="2240" y="960">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -843,8 +861,9 @@
   </object>
   <object name="limiteI10" type="object" x="2688" y="2400">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -853,8 +872,9 @@
   </object>
   <object name="limiteS10" type="object" x="2688" y="1472">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -863,8 +883,9 @@
   </object>
   <object name="limiteI11" type="object" x="2272" y="2208">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -873,8 +894,9 @@
   </object>
   <object name="limiteS11" type="object" x="2272" y="1760">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -883,8 +905,9 @@
   </object>
   <object name="limiteI12" type="object" x="3712" y="576">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -893,8 +916,9 @@
   </object>
   <object name="limiteS12" type="object" x="3712" y="160">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -905,8 +929,9 @@
  <objectgroup name="LimitesHorizontales" width="130" height="86">
   <object name="limiteR1" type="object" x="320" y="1472">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -915,8 +940,9 @@
   </object>
   <object name="limiteL1" type="object" x="96" y="1408">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -925,8 +951,9 @@
   </object>
   <object name="limiteR2" type="object" x="2112" y="960">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -935,8 +962,9 @@
   </object>
   <object name="limiteL2" type="object" x="1856" y="896">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -945,8 +973,9 @@
   </object>
   <object name="limiteR3" type="object" x="2336" y="640">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
@@ -955,8 +984,9 @@
   </object>
   <object name="limiteL3" type="object" x="2016" y="576">
    <properties>
-    <property name="bodyType" value="StaticBody"/>
+    <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
     <property name="isSensor" value="true"/>
     <property name="maskBits" value="64"/>
     <property name="userData" value="Sensor"/>
