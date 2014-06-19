@@ -55,7 +55,7 @@ public class MenuListener extends InputListener {
 					break;
 				botonAux = botones.remove(botones.size()-1);
 				botonAux.fire(eventoEntrar);
-				escena.setKeyboardFocus(botonAux);
+//				escena.setKeyboardFocus(botonAux);
 				botones.get(0).fire(eventoSalir);
 				botones.add(0, botonAux);
 				break;
@@ -64,7 +64,7 @@ public class MenuListener extends InputListener {
 					break;
 				botonAux = botones.remove(0);
 				botonAux.fire(eventoSalir);
-				escena.setKeyboardFocus(botones.get(0));
+//				escena.setKeyboardFocus(botones.get(0));
 				botones.get(0).fire(eventoEntrar);
 				botones.add(botones.size(),botonAux);
 				break;

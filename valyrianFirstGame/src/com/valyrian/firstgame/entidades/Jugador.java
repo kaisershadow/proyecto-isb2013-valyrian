@@ -120,7 +120,6 @@ public class Jugador extends EntidadDibujable{
 		this.cuerpo= mundo.createBody(bodyDef);
 		this.cuerpo.createFixture(fixtureDef);
 		this.cuerpo.setFixedRotation(true);
-//		this.cuerpo.setBullet(true);
 		this.cuerpo.setUserData(this);
 		
 		this.cuerpo.getFixtureList().first().setUserData("Jugador");
@@ -128,8 +127,8 @@ public class Jugador extends EntidadDibujable{
 		
 		//Definicion del sensor para el salto
 		 boxShape.setAsBox(((ancho/2 -8)/PIXELSTOMETERS), 1/PIXELSTOMETERS,new Vector2(0, ((-alto/2+3)/PIXELSTOMETERS)) , 0);
-	     fixtureDef.isSensor = true;
-	     fixtureDef.density = 10;
+		 fixtureDef.density = 10;
+		 fixtureDef.isSensor = true;
 	     fixtureDef.filter.maskBits = BITS_ENTORNO | BITS_MUERTE | BITS_PLATAFORMA;
 	     cuerpo.createFixture(fixtureDef);
 	     this.cuerpo.getFixtureList().get(1).setUserData("Salto");

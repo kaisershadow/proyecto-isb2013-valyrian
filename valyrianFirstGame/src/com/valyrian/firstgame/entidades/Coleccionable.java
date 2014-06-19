@@ -42,7 +42,7 @@ public class Coleccionable extends EntidadDibujable {
 				fixtureDef.shape = boxShape;
 				fixtureDef.friction = 0;
 				fixtureDef.restitution = 0;
-				fixtureDef.isSensor =false;
+				fixtureDef.isSensor =true;
 				fixtureDef.filter.categoryBits = BITS_COLECTABLE;
 				fixtureDef.filter.maskBits = BITS_JUGADOR;
 				

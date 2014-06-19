@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.valyrian.firstgame.interfaces.ManejadorAnimacion;
 import com.valyrian.firstgame.interfaces.ManejadorInteligencia;
 
@@ -19,7 +20,7 @@ public class Enemigo extends EntidadDibujable {
 	private int vidaActual;
 	private int danio;
 	public boolean mirandoDerecha;
-	private ManejadorInteligencia manIntel;
+	private Array<ManejadorInteligencia> manIntel;
 	
 	public Enemigo(float ancho, float alto, float posIniX, float posIniY,Vector2 vel,int danioAux,int vidaMax,World m,ManejadorAnimacion ma) {
 		super(ancho, alto, vel,posIniX,posIniY, m,ma);
@@ -27,9 +28,13 @@ public class Enemigo extends EntidadDibujable {
 		this.danio = danioAux;
 		this.mirandoDerecha=true;
 		this.cuerpo.setLinearVelocity(vel);
+		manIntel = new Array<ManejadorInteligencia>();
 	}
 	
-	public void setInteligencia(ManejadorInteligencia mi){ this.manIntel= mi; }
+	public void setInteligencia(ManejadorInteligencia mi){ 
+		if(manIntel.contains(mi, true))
+			return;
+		this.manIntel.add(mi); }
 	
 	public void setmaxVida(int mv){ this.maxVida = mv; }
 	
@@ -87,7 +92,9 @@ public class Enemigo extends EntidadDibujable {
 	public void render(float deltaTime, SpriteBatch batch) {
 		//Actualizar enemigo
 		if(!PAUSE)
-			this.manIntel.Actualizar(deltaTime);
+			for (ManejadorInteligencia maAux : manIntel) {				
+				maAux.Actualizar(deltaTime);
+			}
 		
 		TextureRegion frame = manAnim.getAnimacion(deltaTime);
 		if(mirandoDerecha)

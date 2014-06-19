@@ -24,7 +24,7 @@ public class Plataforma extends EntidadDibujable {
 	protected void crearCuerpo(World mundo, float ancho, float alto, float posX, float posY) {
 		//Definicicion del cuerpo
 		BodyDef bodyDef = new BodyDef();
-		bodyDef.type = BodyType.DynamicBody;
+		bodyDef.type = BodyType.KinematicBody;
 		bodyDef.position.set(posX/PIXELSTOMETERS,posY/PIXELSTOMETERS);
 		bodyDef.gravityScale =0;
 		
@@ -37,14 +37,15 @@ public class Plataforma extends EntidadDibujable {
 		fixtureDef.shape = boxShape;
 		fixtureDef.restitution = 0;
 		fixtureDef.isSensor =false;
-		fixtureDef.density = 100000;
-		fixtureDef.friction = 0.5f;
+		fixtureDef.density = 100;
+		fixtureDef.friction = 100f;
 		fixtureDef.filter.categoryBits = BITS_PLATAFORMA;
 		fixtureDef.filter.maskBits = BITS_JUGADOR  |BITS_PROYECTIL | BITS_SENSOR;
 
 		this.cuerpo= mundo.createBody(bodyDef);
 		this.cuerpo.createFixture(fixtureDef);		
 		this.cuerpo.setFixedRotation(true);
+		this.cuerpo.getMassData().mass = 0;
 		this.cuerpo.setUserData(this);
 		this.cuerpo.getFixtureList().first().setUserData("Plataforma");
 		boxShape.dispose();
