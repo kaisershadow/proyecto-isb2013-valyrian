@@ -10,7 +10,6 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -30,7 +29,6 @@ public class PantallaAcercaDe implements Screen{
 	private ScrollPane scroller;
 	private TextButton botonSalir,t1,t2;
 	private Skin skin;
-	private SpriteBatch batch;
 	private Texture textureFondo;
 	private Image fondo;
 	private Image acercaDe;
@@ -52,12 +50,7 @@ public class PantallaAcercaDe implements Screen{
 
         //Se actualiza la escena (escene)
         escena.act(delta);
-        batch.begin();
-        
-	        fondo.draw(batch, 1);
-			escena.draw();
-			
-        batch.end();
+        escena.draw();
         //Para ver las lineas de decupuracion
 		if(debug)
 			Table.drawDebug(escena);
@@ -128,7 +121,6 @@ public class PantallaAcercaDe implements Screen{
 	    colorExit = new Color(99, 145, 0, 0.4f);
 		colorEnter = new Color(1f, 1f, 1f, 0.3f);
 		
-	    batch = Quetzal.getSpriteBatch();
 	    
 	    if(!Quetzal.getManejaRecursos().isLoaded("images/menus/mainmenu_BG.jpg"))
 	    	Quetzal.getManejaRecursos().load("images/menus/mainmenu_BG.jpg", Texture.class);

@@ -146,7 +146,7 @@ public class PantallaNivel implements Screen {
 		otmr = new OrthogonalTiledMapRenderer(new TmxMapLoader().load("mapas/"+nivel+".tmx"),1/PIXELSTOMETERS);
 		
 		batch = Quetzal.getSpriteBatch();
-		
+		batch.flush();
 		
 		camera.viewportWidth = (V_WIDTH/PIXELSTOMETERS);
 		camera.viewportHeight =(V_HEIGHT/PIXELSTOMETERS);

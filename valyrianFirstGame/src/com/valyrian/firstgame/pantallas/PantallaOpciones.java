@@ -10,7 +10,6 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
@@ -37,7 +36,6 @@ public class PantallaOpciones implements Screen {
 	private Table tabla,container;
 	private TextButton botonSalir;
 	private Skin skin;
-	private SpriteBatch batch;
 	private Texture textureFondo;
 	private Texture textureTitulo;
 	private Image fondo;
@@ -49,7 +47,7 @@ public class PantallaOpciones implements Screen {
 	private MenuJoystick mjs;
 	private TextButton botonFullScreen;
 	private TextButton botonNombre;
-	private Boolean fullScreen = false;
+	private Boolean fullScreen;
 	private TextField nombre;
 	private CheckBox facil, medio, dificil;
 	
@@ -65,12 +63,7 @@ public class PantallaOpciones implements Screen {
 
         //Se actualiza la escena (escene)
         escena.act(delta);
-        batch.begin();
-        
-	        fondo.draw(batch, 1);
-			escena.draw();
-			
-        batch.end();
+        escena.draw();
         //Para ver las lineas de decupuracion
 		if(debug)
 			Table.drawDebug(escena);
@@ -146,9 +139,7 @@ public class PantallaOpciones implements Screen {
 	    
 	    colorExit = new Color(99, 145, 0, 0.4f);
 		colorEnter = new Color(1f, 1f, 1f, 0.3f);
-	    
-		batch = Quetzal.getSpriteBatch();
-	    
+	    	    
 	    if(!Quetzal.getManejaRecursos().isLoaded("images/menus/mainmenu_BG.jpg"))
 	    	Quetzal.getManejaRecursos().load("images/menus/mainmenu_BG.jpg", Texture.class);	    
 		 
@@ -162,7 +153,8 @@ public class PantallaOpciones implements Screen {
 	    textureTitulo = Quetzal.getManejaRecursos().get("images/menus/titulo_configuraciones.png"); 
 	    tituloOpciones = new Image(textureTitulo);
 	    
-		
+	    fullScreen = Gdx.graphics.isFullscreen();
+	    
 	    escena = new Stage();
 		tabla = new Table(skin);
 		container = new Table(skin);
@@ -174,6 +166,9 @@ public class PantallaOpciones implements Screen {
 		Controllers.addListener(mjs);
 		
 		botonFullScreen = new TextButton("Pantalla Completa", skin);
+		if(fullScreen)
+			botonFullScreen.setText("Ventana");
+		
 		botonFullScreen.setColor(colorExit);
 		
 		botonNombre = new TextButton("Guardar Nombre", skin);
@@ -184,8 +179,21 @@ public class PantallaOpciones implements Screen {
 		
 		dificil = new CheckBox("Dificil", skin);
 		medio = new CheckBox("Medio", skin);
-		medio.setChecked(true);
 		facil = new CheckBox("Facil", skin);
+		
+		switch (DIFICULTAD) {
+		case 1:
+			facil.setChecked(true);	
+			break;
+		case 2:
+			medio.setChecked(true);	
+			break;
+		case 3:
+			dificil.setChecked(true);	
+			break;
+		default:
+			break;
+		}
 		
 		
 		SliderStyle style = new SliderStyle(
@@ -285,7 +293,7 @@ private void button_listeners(){
 			@Override
 			public boolean handle(Event event) {
 				if(facil.isChecked()){
-					GameVariables.DIFICULTAD = 1;
+					DIFICULTAD = 1;
 					medio.setChecked(false);
 					dificil.setChecked(false);
 				}
@@ -298,7 +306,7 @@ private void button_listeners(){
 			@Override
 			public boolean handle(Event event) {
 				if(medio.isChecked()){
-					GameVariables.DIFICULTAD = 2;
+					DIFICULTAD = 2;
 					facil.setChecked(false);
 					dificil.setChecked(false);
 				}
@@ -311,7 +319,7 @@ private void button_listeners(){
 			@Override
 			public boolean handle(Event event) {
 				if(dificil.isChecked()){
-					GameVariables.DIFICULTAD = 3;
+					DIFICULTAD = 3;
 					facil.setChecked(false);
 					medio.setChecked(false);
 				}

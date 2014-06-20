@@ -9,7 +9,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -24,7 +23,6 @@ public class PantallaFinNivel implements Screen{
 	private Stage escena;
 	private Skin skin;
 	private Quetzal juego;
-	private SpriteBatch batch;
 	private Texture textureFondo, textureAprobado, texturaNoAprobado;
 	private Image fondo, imagenAprobado, imagenNoAprobado;
 	private Table tabla1, tabla2;
@@ -43,8 +41,6 @@ public class PantallaFinNivel implements Screen{
 		
 		escena.act();
 		escena.draw();
-		batch.begin();
-		batch.end();
 		if(debug){
 			Table.drawDebug(escena);
 		}
@@ -74,7 +70,6 @@ public class PantallaFinNivel implements Screen{
 	public void show() {
 		inputs();
 		
-		batch=Quetzal.getSpriteBatch();
 		skin = Quetzal.getManejaRecursos().get("ui/skin/uiskin.json");
 		escena = new Stage();
 		textureFondo = Quetzal.getManejaRecursos().get("images/menus/carga_BG.jpg",Texture.class);
