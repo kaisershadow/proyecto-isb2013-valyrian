@@ -159,7 +159,7 @@ public class PantallaOpciones implements Screen {
 		tabla = new Table(skin);
 		container = new Table(skin);
 
-		botonSalir = new TextButton("Atras", skin);
+		botonSalir = new TextButton("Regresar", skin);
 		botonSalir.setColor(colorEnter);
 		
 		mjs = new MenuJoystick(escena);

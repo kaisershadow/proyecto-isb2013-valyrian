@@ -8,7 +8,7 @@ import com.valyrian.firstgame.interfaces.ManejadorAnimacion;
 public class AnimacionUnica implements ManejadorAnimacion{
 
 	private Animation animacion;
-	float stateTime;
+	private float stateTime;
 	
 	
 	public AnimacionUnica(Texture t, int ancho, int alto, float time){
@@ -21,7 +21,6 @@ public class AnimacionUnica implements ManejadorAnimacion{
 		TextureRegion[] spriteSheet = TextureRegion.split(t, ancho, alto)[0];
 		animacion = new Animation(time,spriteSheet);
 		animacion.setPlayMode(Animation.LOOP);
-		
 	}
 
 	@Override
@@ -29,6 +28,4 @@ public class AnimacionUnica implements ManejadorAnimacion{
 		stateTime+=deltaTime;
 		return animacion.getKeyFrame(stateTime);
 	}
-
-
 }

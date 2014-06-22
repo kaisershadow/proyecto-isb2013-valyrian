@@ -23,17 +23,16 @@ public class ManejadorColisiones implements ContactListener {
 
 	private Array<Body> cuerposABorrar;
 	private Jugador player;
-	private Sound moneda,dolor,muerte;
+	private Sound calendario;
+	public int numCalendarios;
 
 	public ManejadorColisiones(Jugador personaje) {
 		super();
 		cuerposABorrar= new Array<Body>();
 		player=personaje;
-		moneda = Quetzal.getManejaRecursos().get("audio/moneda.ogg",Sound.class);
-		dolor=Quetzal.getManejaRecursos().get("audio/dolor.wav",Sound.class);
-		muerte=Quetzal.getManejaRecursos().get("audio/muerte.wav",Sound.class);
+		calendario = Quetzal.getManejaRecursos().get("audio/calendario.wav", Sound.class);
+		numCalendarios =0;
 	}
-
 
 	@Override
 	public void beginContact(Contact contact) {
@@ -96,9 +95,7 @@ public class ManejadorColisiones implements ContactListener {
 		
 		if(fB.getUserData() !=null && fB.getUserData().equals("Enemigo")){
 			if(fA.getUserData() !=null && fA.getUserData().equals("Jugador")){
-				
 				this.jugadorEnemigo(fA, fB);
-		
 			}
 			else if(fA.getUserData() !=null && fA.getUserData().equals("Proyectil")){
 				
@@ -123,6 +120,13 @@ public class ManejadorColisiones implements ContactListener {
 				if(!cuerposABorrar.contains(fB.getBody(),true))
 					this.cuerposABorrar.add(fB.getBody());
 			}
+			else if(fB.getUserData() !=null && fB.getUserData().equals("Calendario")){
+				if(!cuerposABorrar.contains(fB.getBody(),true))
+					this.cuerposABorrar.add(fB.getBody());
+				numCalendarios++;
+				calendario.play(VOLUMEN);
+				
+			}
 			else if(fB.getUserData() !=null && fB.getUserData().equals("Meta")){
 				this.jugadorMeta();
 			}
@@ -137,6 +141,14 @@ public class ManejadorColisiones implements ContactListener {
 				if(!cuerposABorrar.contains(fA.getBody(),true))
 					this.cuerposABorrar.add(fA.getBody());
 			}
+			else if(fA.getUserData() !=null && fA.getUserData().equals("Calendario")){
+				if(!cuerposABorrar.contains(fA.getBody(),true))
+					this.cuerposABorrar.add(fA.getBody());
+				numCalendarios++;
+				calendario.play(VOLUMEN);
+			}
+			
+			
 			else if(fA.getUserData() !=null && fA.getUserData().equals("Meta")){
 				this.jugadorMeta();
 			}
@@ -181,8 +193,6 @@ public class ManejadorColisiones implements ContactListener {
 		}
 	}
 	
-	
-
 	@Override
 	public void preSolve(Contact contact, Manifold oldManifold) {
 		// TODO Auto-generated method stub
@@ -193,14 +203,10 @@ public class ManejadorColisiones implements ContactListener {
 		// TODO Auto-generated method stub
 	}
 
-	public Array<Body> getCuerposABorrar() {
-		return cuerposABorrar;
-	}
+	public Array<Body> getCuerposABorrar() { return cuerposABorrar; }
 
 
-	public void setCuerposABorrar(Array<Body> listaABorrar) {
-		cuerposABorrar= listaABorrar;
-	}
+	public void setCuerposABorrar(Array<Body> listaABorrar) { cuerposABorrar= listaABorrar; }
 	
 //	METODOS DE MANEJO DE COLISIONES
 	
@@ -212,58 +218,53 @@ public class ManejadorColisiones implements ContactListener {
 			player.estado = ESTADO_ACTUAL.Quieto;
 	}
 
-	//	fA = Jugador, fB = Enemigo
-	private void jugadorEnemigo(Fixture fA,Fixture fB){
-		player.setVidaActual(((Enemigo)fB.getBody().getUserData()).getDanio()*-1);
-		fA.getBody().applyLinearImpulse(new Vector2(player.getDireccion().x*-7f,0), fA.getBody().getWorldCenter(), true);
-		dolor.play(VOLUMEN*0.3f);
+	private void jugadorEnemigo(Fixture jugador,Fixture enemigo){
+		player.setVidaActual(((Enemigo)enemigo.getBody().getUserData()).getDanio()*-1);
+		jugador.getBody().applyLinearImpulse(new Vector2(player.getDireccion().x*-7f,0), jugador.getBody().getWorldCenter(), true);
+		player.sonidoDolor(VOLUMEN*0.3f);
 		if(player.estaMuerto()){
-			muerte.play(VOLUMEN*0.8f);
+			player.sonidoMuerte(VOLUMEN);
 			player.finJuego = true;
 		}
 	}
 	
-//	fA = Enemigo, fB = Proyectil
-	private void enemigoProyectil(Fixture fA,Fixture fB){
-		int danio = ((Proyectil)fB.getBody().getUserData()).getDamage();
-		((Enemigo)fA.getBody().getUserData()).setVidaActual(-danio);
+	private void enemigoProyectil(Fixture enemigo,Fixture proyectil){
+		int danio = ((Proyectil)proyectil.getBody().getUserData()).getDamage();
+		((Enemigo)enemigo.getBody().getUserData()).setVidaActual(-danio);
 	}
 	
-//	fA = Jugador, fB = Proyectil
-	private void jugadorProyectil(Fixture fA,Fixture fB){
-		int danio = ((Proyectil)fB.getBody().getUserData()).getDamage();
-		((Jugador)fA.getBody().getUserData()).setVidaActual(-danio);
-		dolor.play(VOLUMEN*0.3f);
+	private void jugadorProyectil(Fixture jugador,Fixture proyectil){
+		int danio = ((Proyectil)proyectil.getBody().getUserData()).getDamage();
+		((Jugador)jugador.getBody().getUserData()).setVidaActual(-danio);
+		player.sonidoDolor(VOLUMEN*0.3f);
 		if(player.estaMuerto()){
-			muerte.play(VOLUMEN*0.8f);
+			player.sonidoMuerte(VOLUMEN);
 			player.finJuego = true;
 		}
 	}
 	
-	//fA = Jugador
 	private void jugadorMuerte() {
 	player.setVidaActual(-player.getMaxVida());
-	muerte.play(VOLUMEN*0.8f);
+	player.sonidoMuerte(VOLUMEN);
 	player.finJuego = true;
 	}
 	
-	//fB = Colectable
-	private void jugadorColectable(Fixture fB) {
-		int p = ((Coleccionable)fB.getBody().getUserData()).getPuntos();
-		moneda.play(VOLUMEN*0.5f);
+	private void jugadorColectable(Fixture colectable) {
+		int p = ((Coleccionable)colectable.getBody().getUserData()).getPuntos();
+		((Coleccionable)colectable.getBody().getUserData()).recogerMoneda(VOLUMEN*0.5f);
 		player.setPuntaje(p);
 	}
 
 	private void jugadorMeta(){
-		player.finJuego = true;
-		System.out.println("LLEGO AL FINAL DEL NIVEL");
+		if(numCalendarios>=3)
+			player.finJuego = true;
 	}
 	
-	private void plataformaSensor(Fixture fA){
-		float dirX = ((Plataforma)fA.getBody().getUserData()).getDireccion().x*=-1;
-		float dirY = ((Plataforma)fA.getBody().getUserData()).getDireccion().y*=-1;
-		float velX = ((Plataforma)fA.getBody().getUserData()).getVelocidad().x;
-		float velY = ((Plataforma)fA.getBody().getUserData()).getVelocidad().y;
-		fA.getBody().setLinearVelocity(velX*dirX,velY*dirY);
+	private void plataformaSensor(Fixture plataforma){
+		float dirX = ((Plataforma)plataforma.getBody().getUserData()).getDireccion().x*=-1;
+		float dirY = ((Plataforma)plataforma.getBody().getUserData()).getDireccion().y*=-1;
+		float velX = ((Plataforma)plataforma.getBody().getUserData()).getVelocidad().x;
+		float velY = ((Plataforma)plataforma.getBody().getUserData()).getVelocidad().y;
+		plataforma.getBody().setLinearVelocity(velX*dirX,velY*dirY);
 	}
 }

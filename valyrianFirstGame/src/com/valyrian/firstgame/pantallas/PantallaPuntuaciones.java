@@ -24,29 +24,26 @@ import static com.valyrian.firstgame.utilidades.GameVariables.*;
 public class PantallaPuntuaciones implements Screen{
 	
 	private Stage escena;
-	private Table tabla1, tabla2;
+	private Table tabla1;
 	private TextButton botonSalir;
 	private Skin skin;
 	private Texture textureFondo;
 	private Texture textureTitulo;
 	private Texture textureSubtitulo;
-	private Texture texturePrimero;
-	private Texture textureSegundo;
-	private Texture textureTercero;
 	private Image fondo;
 	private Image tituloQuetzal;
 	private Image subQuetzal;
-	private Image primero;
-	private Image segundo;
-	private Image tercero;
 	private Quetzal juego;
 	private Color colorExit;
 	private Color colorEnter;
 	private MenuJoystick mjs;
 	
-	private String labelPrimero;
-	private String labelSegundo;
-	private String labelTercero;
+//	private Image primero;
+//	private Image segundo;
+//	private Image tercero;
+//	private Texture texturePrimero;
+//	private Texture textureSegundo;
+//	private Texture textureTercero;
 	
 	public PantallaPuntuaciones(Quetzal primerJuego) {
 		juego = primerJuego;
@@ -71,13 +68,9 @@ public class PantallaPuntuaciones implements Screen{
 	public void resize(int width, int height) {
 		escena.setViewport(width , height, true);
 		
-		tabla1.setBounds(width*0.05f, 30, width, height);
-		tabla1.setSize(width*0.2f,height*0.50f);
+		tabla1.setBounds(width*0.05f, height*0.2f, width, height);
+		tabla1.setSize(width*0.85f,height*0.5f);
 		tabla1.invalidateHierarchy();
-		
-		tabla2.setBounds(width*0.3f, 30, width, height);
-		tabla2.setSize(width*0.2f,height*0.50f);
-		tabla2.invalidateHierarchy();
 		
 		botonSalir.setBounds(width*0.75f , 30, width , height*0.30f);
 		botonSalir.setSize(width*0.2f, (int)(height*0.5/4));
@@ -88,7 +81,11 @@ public class PantallaPuntuaciones implements Screen{
 		tituloQuetzal.setSize(width*0.65f, height*0.2f);
 		
 		subQuetzal.setBounds(width*0.20f, height*0.65f, width, height);
-		subQuetzal.setSize(width*0.30f, height*0.15f);		
+		subQuetzal.setSize(width*0.30f, height*0.15f);
+		
+//		primero.setSize(width*0.002f, height*0.03f);
+//		segundo.setSize(width*0.05f, height*0.03f);
+//		tercero.setSize(width*0.05f, height*0.03f);
 	}
 
 	@Override
@@ -155,24 +152,19 @@ public class PantallaPuntuaciones implements Screen{
 	    textureSubtitulo = Quetzal.getManejaRecursos().get("images/menus/titulo_mas_altas.png");
 	    subQuetzal = new Image(textureSubtitulo);
 		
-	    texturePrimero = Quetzal.getManejaRecursos().get("images/menus/primero.png"); 
-	    primero = new Image(texturePrimero);
-
-	    textureSegundo = Quetzal.getManejaRecursos().get("images/menus/segundo.png"); 
-	    segundo = new Image(textureSegundo);
-
-	    textureTercero = Quetzal.getManejaRecursos().get("images/menus/tercero.png"); 
-	    tercero = new Image(textureTercero);
+//	    texturePrimero = Quetzal.getManejaRecursos().get("images/menus/primero.png"); 
+//	    primero = new Image(texturePrimero);
+//
+//	    textureSegundo = Quetzal.getManejaRecursos().get("images/menus/segundo.png"); 
+//	    segundo = new Image(textureSegundo);
+//
+//	    textureTercero = Quetzal.getManejaRecursos().get("images/menus/tercero.png"); 
+//	    tercero = new Image(textureTercero);
 	    
 	    escena = new Stage();
 		tabla1 = new Table(skin);
-		tabla2 = new Table(skin);
-		
-		labelPrimero = Gdx.files.internal("data/puntuacion1.txt").readString();
-		labelSegundo = Gdx.files.internal("data/puntuacion2.txt").readString();
-		labelTercero = Gdx.files.internal("data/puntuacion3.txt").readString();
 
-		botonSalir = new TextButton("Atras", skin);
+		botonSalir = new TextButton("Regresar", skin);
 		botonSalir.setColor(colorEnter);
 		
 		mjs = new MenuJoystick(escena);
@@ -187,34 +179,32 @@ public class PantallaPuntuaciones implements Screen{
 		escena.addActor(fondo);
 		escena.addActor(botonSalir);
 		escena.addActor(tabla1);
-		escena.addActor(tabla2);
 		escena.addActor(tituloQuetzal);
-		escena.addActor(subQuetzal);
-		tabla1.add(primero).space( 10f ).fill().expand();
-		tabla1.row();
-		tabla1.add().space(20f).fill().expand();
-		tabla1.row();
-		tabla1.add(segundo).space(10f).fill().expand();
-		tabla1.row();
-		tabla1.add().space(20f).fill().expand();
-		tabla1.row();
-		tabla1.add(tercero).space(10f).fill().expand();
-		tabla1.row();
-		tabla1.add().space(10f).fill().expand();
+		escena.addActor(subQuetzal);		
 		
-		
-		tabla2.add(labelPrimero).space( 10f ).fill().expand();
-		tabla2.row();
-		tabla2.add().space( 20f ).fill().expand();
-		tabla2.row();
-		tabla2.add(labelSegundo).space(10f).fill().expand();
-		tabla2.row();
-		tabla2.add().space( 20f ).fill().expand();
-		tabla2.row();
-		tabla2.add(labelTercero).fill().expand();
-		tabla2.row();
-		tabla2.add().space( 10f ).fill().expand();
-		
+		tabla1.add().fill().expand();
+		tabla1.add("NIVEL 1").fill().expand();
+		tabla1.add("NIVEL 2").fill().expand();
+		tabla1.add("NIVEL 3").fill().expand();
+		tabla1.row();
+		//tabla1.add(primero).space( 10f ).expand();
+		tabla1.add("PRIMER LUGAR").fill().expand().right();
+		tabla1.add(Gdx.files.internal("data/nivel1/puntuacion1.txt").readString()).fill().expand().center();
+		tabla1.add(Gdx.files.internal("data/nivel2/puntuacion1.txt").readString()).fill().expand().center();
+		tabla1.add(Gdx.files.internal("data/nivel3/puntuacion1.txt").readString()).fill().expand().center();
+		tabla1.row();
+//		tabla1.add(segundo).space(10f).expand();
+		tabla1.add("SEGUNDO LUGAR").fill().expand().right();
+		tabla1.add(Gdx.files.internal("data/nivel1/puntuacion2.txt").readString()).fill().expand().center();
+		tabla1.add(Gdx.files.internal("data/nivel2/puntuacion2.txt").readString()).fill().expand().center();
+		tabla1.add(Gdx.files.internal("data/nivel3/puntuacion2.txt").readString()).fill().expand().center();
+		tabla1.row();
+//		tabla1.add(tercero).space(10f).expand();
+		tabla1.add("TERCER LUGAR").fill().expand().right();
+		tabla1.add(Gdx.files.internal("data/nivel1/puntuacion3.txt").readString()).fill().expand().center();
+		tabla1.add(Gdx.files.internal("data/nivel2/puntuacion3.txt").readString()).fill().expand().center();
+		tabla1.add(Gdx.files.internal("data/nivel3/puntuacion3.txt").readString()).fill().expand().center();
+		tabla1.row();
 		
 		escena.setKeyboardFocus(botonSalir);
 		

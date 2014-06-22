@@ -63,4 +63,3 @@ public abstract class EntidadDibujable {
 //			this.direccion.y = -1;
 //	}	
 }
-

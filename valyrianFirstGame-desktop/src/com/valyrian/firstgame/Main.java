@@ -12,6 +12,7 @@ public class Main {
 		cfg.width = V_WIDTH;
 		cfg.height = V_HEIGHT;
 //		cfg.fullscreen=true;
+		cfg.resizable = false;
 		new LwjglApplication(new Quetzal(), cfg);
 	}
 }

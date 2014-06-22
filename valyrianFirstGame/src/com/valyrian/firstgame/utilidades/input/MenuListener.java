@@ -19,20 +19,20 @@ public class MenuListener extends InputListener {
 	
 	public MenuListener(Stage e, ArrayList<TextButton> b) {
 	
-	this.escena = e;
-	this.botones = b;
-	
-	this.eventoSalir = new InputEvent();
-	this.eventoSalir.setType(Type.exit);
-	
-	this.eventoEntrar = new InputEvent();
-	this.eventoEntrar.setType(Type.enter);
-	
-	this.eventoTouchDown = new InputEvent();
-	eventoTouchDown.setType(Type.touchDown);
-	
-	this.eventoKeyDown = new InputEvent();
-	eventoKeyDown.setType(Type.keyDown);
+		this.escena = e;
+		this.botones = b;
+		
+		this.eventoSalir = new InputEvent();
+		this.eventoSalir.setType(Type.exit);
+		
+		this.eventoEntrar = new InputEvent();
+		this.eventoEntrar.setType(Type.enter);
+		
+		this.eventoTouchDown = new InputEvent();
+		eventoTouchDown.setType(Type.touchDown);
+		
+		this.eventoKeyDown = new InputEvent();
+		eventoKeyDown.setType(Type.keyDown);
 
 	}
 	
@@ -55,7 +55,6 @@ public class MenuListener extends InputListener {
 					break;
 				botonAux = botones.remove(botones.size()-1);
 				botonAux.fire(eventoEntrar);
-//				escena.setKeyboardFocus(botonAux);
 				botones.get(0).fire(eventoSalir);
 				botones.add(0, botonAux);
 				break;
@@ -64,7 +63,6 @@ public class MenuListener extends InputListener {
 					break;
 				botonAux = botones.remove(0);
 				botonAux.fire(eventoSalir);
-//				escena.setKeyboardFocus(botones.get(0));
 				botones.get(0).fire(eventoEntrar);
 				botones.add(botones.size(),botonAux);
 				break;

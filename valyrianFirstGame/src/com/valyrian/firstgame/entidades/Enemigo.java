@@ -20,7 +20,7 @@ public class Enemigo extends EntidadDibujable {
 	private int vidaActual;
 	private int danio;
 	public boolean mirandoDerecha;
-	private Array<ManejadorInteligencia> manIntel;
+	private Array<ManejadorInteligencia> inteligencias;
 	
 	public Enemigo(float ancho, float alto, float posIniX, float posIniY,Vector2 vel,int danioAux,int vidaMax,World m,ManejadorAnimacion ma) {
 		super(ancho, alto, vel,posIniX,posIniY, m,ma);
@@ -28,13 +28,13 @@ public class Enemigo extends EntidadDibujable {
 		this.danio = danioAux;
 		this.mirandoDerecha=true;
 		this.cuerpo.setLinearVelocity(vel);
-		manIntel = new Array<ManejadorInteligencia>();
+		inteligencias = new Array<ManejadorInteligencia>();
 	}
 	
-	public void setInteligencia(ManejadorInteligencia mi){ 
-		if(manIntel.contains(mi, true))
+	public void setInteligencia(ManejadorInteligencia mi){
+		if(mi == null || inteligencias.contains(mi, true))
 			return;
-		this.manIntel.add(mi); }
+		this.inteligencias.add(mi); }
 	
 	public void setmaxVida(int mv){ this.maxVida = mv; }
 	
@@ -44,7 +44,6 @@ public class Enemigo extends EntidadDibujable {
 	
 	public int getDanio(){ return danio; }
 	
-	//@brief Metodo para aumentar o reducir la vida en @value unidades
 	public int setVidaActual(int value){
 		
 		vidaActual+=value;
@@ -61,25 +60,17 @@ public class Enemigo extends EntidadDibujable {
 
 	@Override
 	protected void crearCuerpo(World mundo, float ancho, float alto,float posX,float posY) {
-		//Definicicion del cuerpo
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.KinematicBody;
 		bodyDef.position.set(posX/PIXELSTOMETERS,posY/PIXELSTOMETERS);
-		
-		//Definicion de la forma del fixture
 		PolygonShape boxShape = new PolygonShape();
 		boxShape.setAsBox(((ancho/2-3)/PIXELSTOMETERS),((alto/2-8)/PIXELSTOMETERS));
-
-		//Definicion del fixture
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = boxShape;
-//		fixtureDef.friction = 10000;
-//		fixtureDef.density = 500;
 		fixtureDef.restitution = 0;
-		fixtureDef.isSensor =false;
+		fixtureDef.isSensor =true;
 		fixtureDef.filter.categoryBits = BITS_ENEMIGO;
 		fixtureDef.filter.maskBits = BITS_JUGADOR |BITS_ENTORNO |BITS_PROYECTIL;
-
 		this.cuerpo= mundo.createBody(bodyDef);
 		this.cuerpo.createFixture(fixtureDef);		
 		this.cuerpo.setFixedRotation(true);
@@ -92,10 +83,9 @@ public class Enemigo extends EntidadDibujable {
 	public void render(float deltaTime, SpriteBatch batch) {
 		//Actualizar enemigo
 		if(!PAUSE)
-			for (ManejadorInteligencia maAux : manIntel) {				
+			for (ManejadorInteligencia maAux : inteligencias) {				
 				maAux.Actualizar(deltaTime);
 			}
-		
 		TextureRegion frame = manAnim.getAnimacion(deltaTime);
 		if(mirandoDerecha)
 			batch.draw(frame, this.cuerpo.getPosition().x - this.ancho/2/PIXELSTOMETERS, this.cuerpo.getPosition().y- (this.alto/2-8)/PIXELSTOMETERS, this.ancho/PIXELSTOMETERS, this.alto/PIXELSTOMETERS);

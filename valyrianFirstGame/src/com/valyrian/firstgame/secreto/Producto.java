@@ -6,23 +6,25 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.valyrian.firstgame.entidades.EntidadDibujable;
 import com.valyrian.firstgame.interfaces.ManejadorAnimacion;
 
-public class Bucket extends EntidadDibujable{
 
-	private int puntuacion = 0;
+public class Producto extends EntidadDibujable{
+	
+	private int precio;
+	private CodigoProducto codigo;
 
-	public Bucket(float ancho, float alto, Vector2 vel, float posX,float posY, World m, ManejadorAnimacion ma) {
-		super(ancho, alto, vel, posX, posY, m, ma);
+	public Producto(float ancho, float alto, Vector2 vel,float posX,float posY, World m,ManejadorAnimacion ma) {
+		super(ancho, alto,vel, posX,posY, m, ma);
 	}
 
 	@Override
-	protected void crearCuerpo(World mundo, float ancho, float alto,float posX, float posY) {
+	protected void crearCuerpo(World mundo, float ancho, float alto,float posX,float posY) {
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DynamicBody;
 		bodyDef.position.set(posX/PIXELSTOMETERS, posY/PIXELSTOMETERS);
@@ -37,10 +39,8 @@ public class Bucket extends EntidadDibujable{
 		fixtureDef.friction = 0;
 		fixtureDef.restitution = 0;
 		fixtureDef.isSensor = false;
-//		fixtureDef.filter.categoryBits = 2;
-//		fixtureDef.filter.mskBits = 4;
 		
-		cuerpo.createFixture(fixtureDef).setUserData("Bucket");
+		cuerpo.createFixture(fixtureDef).setUserData("Product");
 		shape.dispose();
 		
 	}
@@ -52,14 +52,23 @@ public class Bucket extends EntidadDibujable{
 	}
 	
 	public void dispose(){
-		//textura.dispose();
+	//	textura.dispose();
 	}
-	
-	public void setPuntuacion(int p){
-		puntuacion = p;
+
+	public int getPrecio() {
+		return precio;
 	}
-	
-	public int getPuntuacion(){
-		return puntuacion;
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
 	}
+
+	public CodigoProducto getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(CodigoProducto codigo) {
+		this.codigo = codigo;
+	}
+
 }

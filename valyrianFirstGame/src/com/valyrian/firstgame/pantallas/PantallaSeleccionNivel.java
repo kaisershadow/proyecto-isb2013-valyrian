@@ -94,8 +94,6 @@ escena.act(delta);
                 
                 zonaTexto.setBounds(width*0.4f, height*0.15f, width, height);
                 zonaTexto.setSize(width*0.55f, height*0.45f);
-                
-
         }
 
         @Override
@@ -136,8 +134,7 @@ escena.act(delta);
                 for(int i=1;i<=numNiveles;i++)
                         Quetzal.getManejaRecursos().unload("images/menus/nivel"+i+".png");
                 Controllers.removeListener(mjs);
-//                escena.removeListener(menulistener);
-//              escena.dispose();
+                escena.removeListener(menulistener);
                 if(debug)
                         System.out.println("SE LLAMO AL DISPOSE DE SELECCION NIVEL");
         }
@@ -261,7 +258,6 @@ escena.act(delta);
                 
                 escena.setKeyboardFocus(niveles[0]);
                 ArrayList<TextButton> lista = new ArrayList<TextButton>();
-//              lista.add(botonJugar);
                 for (int i = 0; i < numNiveles ; i++)
                         lista.add(niveles[i]);
                 lista.add(botonRegresar);
