@@ -406,7 +406,9 @@ public class PantallaNivel implements Screen {
 						MassData ma =plat1.getCuerpo().getMassData();
 						ma.mass = 200;
 						plat1.getCuerpo().setMassData(ma);
-						System.out.println("MASA BASE"+i+": "+plat1.getCuerpo().getMassData().mass);
+					
+//						System.out.println("MASA BASE"+i+": "+plat1.getCuerpo().getMassData().mass);
+						
 						filtAux = plat1.getCuerpo().getFixtureList().first().getFilterData();
 						filtAux.maskBits = BITS_JUGADOR  |BITS_PLATAFORMA | BITS_ENTORNO;
 						plat1.getCuerpo().getFixtureList().first().setFilterData(filtAux);
@@ -425,7 +427,7 @@ public class PantallaNivel implements Screen {
 						ma.mass = 160;
 						plat2.getCuerpo().setMassData(ma);
 						
-						System.out.println("MASA PUERTA "+i+": "+plat2.getCuerpo().getMassData().mass);
+//						System.out.println("MASA PUERTA "+i+": "+plat2.getCuerpo().getMassData().mass);
 						
 						
 						filtAux.maskBits = BITS_JUGADOR  |BITS_PROYECTIL |BITS_PLATAFORMA;
@@ -444,11 +446,7 @@ public class PantallaNivel implements Screen {
 
 						
 						PulleyJointDef a= new PulleyJointDef();
-						if(i==2 || i==0)
-							a.initialize(plat1.getCuerpo(), plat2.getCuerpo(), posAux1, posAux, plat1.getCuerpo().getWorldCenter(), plat2.getCuerpo().getWorldCenter(), 0.77f);
-						else
-							a.initialize(plat1.getCuerpo(), plat2.getCuerpo(), posAux1, posAux, plat1.getCuerpo().getWorldCenter(), plat2.getCuerpo().getWorldCenter(), 1);				
-							
+						a.initialize(plat1.getCuerpo(), plat2.getCuerpo(), posAux1, posAux, plat1.getCuerpo().getWorldCenter(), plat2.getCuerpo().getWorldCenter(), 0.77f);	
 						mundo.createJoint(a);
 						
 						layer4.getObjects().iterator().next();
@@ -471,7 +469,7 @@ public class PantallaNivel implements Screen {
 				Vector2 posAux = new Vector2();
 				posAux.x = (Float) mo.getProperties().get("x");
 				posAux.y = (Float) mo.getProperties().get("y");
-				Coleccionable col= new Coleccionable(32,32, posAux.x, posAux.y,new Vector2(0,0),0, mundo, mae);
+				Coleccionable col= new Coleccionable(64,64, posAux.x, posAux.y,new Vector2(0,0),0, mundo, mae);
 				col.getCuerpo().getFixtureList().first().setUserData("Calendario");
 				entidades.add(col);
 				i++;

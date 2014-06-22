@@ -146,8 +146,8 @@ escena.act(delta);
                 Quetzal.getManejaRecursos().finishLoading();
                 
         skin = Quetzal.getManejaRecursos().get("ui/skin/uiskin.json");
-        colorExit = new Color(99, 145, 0, 0.4f);
-        colorEnter = new Color(1f, 1f, 1f, 0.3f);        
+        colorExit = new Color(99, 145, 0, 0.5f);
+		colorEnter = new Color(1f, 1f, 1f, 0.3f);        
 
         batch = Quetzal.getSpriteBatch();
         
@@ -175,7 +175,11 @@ escena.act(delta);
                 escena = new Stage();
                 tablaNiveles = new Table(skin);
                 tablaControles = new Table(skin);
-                zonaTexto = new Window("Resumen: ", skin);
+                zonaTexto = new Window("Descripcion del Nivel: ", skin);
+                
+                //Se le asigna un alpha diferente para que se vea bien el texto
+                zonaTexto.setColor(99,145,0,0.65f);
+                
                 botonRegresar = new TextButton("Regresar", skin);
                 
                 niveles = new TextButton[numNiveles];
@@ -192,7 +196,6 @@ escena.act(delta);
                 
                 niveles[0].setColor(colorEnter);
                 botonRegresar.setColor(colorExit);
-                zonaTexto.setColor(colorExit);
                 
                 zonaTexto.clear();
                 zonaTexto.add(Gdx.files.internal("ui/texto/nivel1.txt").readString());
@@ -255,7 +258,6 @@ escena.act(delta);
                 escena.addActor(subSeleccionar);
                 escena.addActor(captura);
                 escena.addActor(zonaTexto);             
-                
                 escena.setKeyboardFocus(niveles[0]);
                 ArrayList<TextButton> lista = new ArrayList<TextButton>();
                 for (int i = 0; i < numNiveles ; i++)

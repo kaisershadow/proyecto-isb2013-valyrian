@@ -163,7 +163,7 @@
     <property name="userData" value="Entorno"/>
    </properties>
   </object>
-  <object name="spawn" type="body" x="100" y="898">
+  <object name="spawn" type="body" x="62" y="916">
    <properties>
     <property name="bodyType" value="StaticBody"/>
     <property name="userData" value="Entorno"/>
@@ -364,7 +364,7 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnmurcielago1" type="body" x="3232" y="2144">
+  <object name="spawnmurcielago1" type="body" x="3140" y="2126">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -1123,7 +1123,7 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnmurcielago1" type="body" x="3468" y="1987" width="199" height="49">
+  <object name="spawnmurcielago1" type="body" x="3462" y="1981" width="195" height="33">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -1174,7 +1174,7 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnmurcielago1" type="body" x="2976" y="1984">
+  <object name="spawnmurcielago1" type="body" x="2968" y="2006">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -1194,7 +1194,7 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnmurcielago1" type="body" x="3552" y="1952">
+  <object name="spawnmurcielago1" type="body" x="3548" y="1962">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
