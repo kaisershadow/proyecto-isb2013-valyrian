@@ -31,7 +31,7 @@ public class PantallaCargaNivel implements Screen {
 	private Screen pantallaActual;
 	private Texture textureFondo;
 	private Image fondo;
-	private Table tabla;
+	private Table tabla,tabla2;
 	private String nivel;
 	private MenuJoystick mjs;
 
@@ -59,8 +59,9 @@ public class PantallaCargaNivel implements Screen {
 		escena.setViewport(width, height);
 		fondo.setSize(width, height);
 		
-		tabla.setBounds(0, height*0.5f, width, height);
-		tabla.setSize(width, height*0.5f);
+		tabla.setBounds(width*0.1f, height*0.2f, width*0.8f, height);
+		
+		tabla2.setBounds(width*0.02f, -height*0.08f, width*0.96f, height*0.3f);
 		
 		barra.setBounds(width*0.5f-barra.barra.getWidth()/2,0.2f*height, barra.barra.getWidth(), barra.barra.getHeight());
 	}
@@ -76,10 +77,13 @@ public class PantallaCargaNivel implements Screen {
 		
 		
 		tabla = new Table(skin);
+		tabla2 = new Table(skin);
 		tabla.add(Gdx.files.internal("ui/texto/"+nivel+".txt").readString()).expand();
 		tabla.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("images/sliderbg.png"))));
+		tabla2.setBackground(tabla.getBackground());
 		escena.addActor(fondo);
 		escena.addActor(tabla);
+		escena.addActor(tabla2);
 		escena.addActor(barra);
 		
 		

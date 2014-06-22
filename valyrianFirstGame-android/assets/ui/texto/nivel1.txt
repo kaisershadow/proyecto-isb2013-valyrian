@@ -1,4 +1,8 @@
-Esta es una breve descripcion de un nivel de 
-nuestro juego piloto "Quetzal: La búsqueda" 
-esto es lo que se verá a lo que se presione 
-cada boton con el nivel correspondiente.
+Quetzal ha sido elegido por los sabios de su tribu
+para buscar los restos del calendario maya perdido,
+el cual posee la clave para la salvacion no solo de
+su tribu, sino de toda la humanidad.
+
+Para lograr su objetivo Quetzal debe primero entrar
+al bosque de los susurros, y enfrentar los peligros
+que alli aguardan.

@@ -23,7 +23,7 @@ public class BarraCarga extends Actor {
         font = new BitmapFont();
 		font.setColor(Color.WHITE);
 		textoCargado1 = "PRESIONE ENTER (START) PARA CONTINUAR";
-		textoCargado2 = "PRESIONE CONTROL IZQ (LB) o CONTROL DER (RB) PARA VOLVERSE FASCISTA";
+		textoCargado2 = "PRESIONE CONTROL IZQ (LB) o CONTROL DER (RB) PARA TENER LA EXPERIENCIA DEL VENEZOLANO";
 		fWidth1 = font.getBounds(textoCargado1).width;
 		fWidth2 = font.getBounds(textoCargado2).width;
     }

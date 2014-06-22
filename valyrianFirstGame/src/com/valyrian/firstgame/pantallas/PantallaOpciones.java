@@ -137,7 +137,7 @@ public class PantallaOpciones implements Screen {
 	void inicializar_variables(){
 	    skin = Quetzal.getManejaRecursos().get("ui/skin/uiskin.json");
 	    
-	    colorExit = new Color(99, 145, 0, 0.4f);
+	    colorExit = new Color(99, 145, 0, 0.5f);
 		colorEnter = new Color(1f, 1f, 1f, 0.3f);
 	    	    
 	    if(!Quetzal.getManejaRecursos().isLoaded("images/menus/mainmenu_BG.jpg"))

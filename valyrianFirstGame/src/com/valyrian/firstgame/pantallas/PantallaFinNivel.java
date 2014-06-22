@@ -28,7 +28,7 @@ public class PantallaFinNivel implements Screen{
 	private Quetzal juego;
 	private Texture textureFondo, textureAprobado, texturaNoAprobado;
 	private Image fondo, imagenAprobado, imagenNoAprobado;
-	private Table tabla1, tabla2;
+	private Table tabla1, tabla2,tabla3;
 	private int puntuacion;
 	private Boolean aprobado;
 	private int posicion;
@@ -65,6 +65,8 @@ public class PantallaFinNivel implements Screen{
 		tabla2.setBounds(0, height*0.18f, width, height);
 		tabla2.setSize(width, height*0.3f);
 		
+		tabla3.setBounds(width*0.1f, height*0.7f, width*0.8f, height*0.3f);
+		
 		imagenAprobado.setBounds(width*0.2f, height*0.8f, width, height);
 		imagenAprobado.setSize(width*0.6f, height*0.1f);
 		
@@ -88,21 +90,25 @@ public class PantallaFinNivel implements Screen{
 		
 		tabla1 = new Table(skin);
 		tabla2 = new Table(skin);
+		tabla3 = new Table(skin);
 		tabla1.setBackground(new TextureRegionDrawable(new TextureRegion(new Texture("images/sliderbg.png"))));
 		tabla2.setBackground(tabla1.getBackground());
+		tabla3.setBackground(tabla1.getBackground());
 		
 		escena.addActor(fondo);
 		escena.addActor(tabla1);
-		
+		escena.addActor(tabla3);
 		
 		inputs();
 
 		
 		if(aprobado){
 			escena.addActor(imagenAprobado);
+//			tabla3.add("LA BUSQUEDA HA SIDO COMPLETADA");
 		}
 		else{
 			escena.addActor(imagenNoAprobado);
+//			tabla3.add("LA BUSQUEDA NO HA SIDO COMPLETADA");
 		}
 		
 		chequearPosicionPuntuacion();
@@ -193,7 +199,6 @@ public class PantallaFinNivel implements Screen{
 			string = Gdx.files.local("data/"+nivel+"/puntuacion"+String.valueOf(i) +".txt").readString();
 			index = string.indexOf("\n");
 			string = string.substring(0, index);
-			System.out.println(string);
 			if(Integer.valueOf(string) < puntuacion){
 				posicion = i;
 			}
