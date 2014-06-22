@@ -17,6 +17,7 @@ import com.valyrian.firstgame.pantallas.PantallaOpciones;
 import com.valyrian.firstgame.pantallas.PantallaPuntuaciones;
 import com.valyrian.firstgame.pantallas.PantallaSeleccionNivel;
 import com.valyrian.firstgame.pantallas.PantallaSplash;
+import com.valyrian.firstgame.secreto.PantallaFinSecreto;
 import com.valyrian.firstgame.secreto.PantallaNivelSecreto;
 
 
@@ -34,7 +35,7 @@ public class Quetzal extends Game {
 	public Screen pantallaCargaNivel;
 	public Screen pantallaSecreto;
 	public Screen pantallaFinNivel;
-	
+	public Screen pantallaFinSecreto;
 	public Quetzal() {
 		
 		manejadorRecursos = new AssetManager();
@@ -50,8 +51,10 @@ public class Quetzal extends Game {
 		pantallaCreditos = new PantallaAcercaDe(this);
 		pantallaCargaNivel = new PantallaCargaNivel(this);
 		pantallaNivel = new PantallaNivel(this);
-		pantallaSecreto = new PantallaNivelSecreto(this);
 		pantallaFinNivel = new PantallaFinNivel(this);
+		
+		pantallaSecreto = new PantallaNivelSecreto(this);
+		pantallaFinSecreto = new PantallaFinSecreto(this);
 	}
 	
 	@Override

@@ -163,7 +163,7 @@
     <property name="userData" value="Entorno"/>
    </properties>
   </object>
-  <object name="spawn" type="body" x="3136" y="2432">
+  <object name="spawn" type="body" x="100" y="898">
    <properties>
     <property name="bodyType" value="StaticBody"/>
     <property name="userData" value="Entorno"/>
@@ -496,7 +496,7 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnColeccionable1" type="body" x="4032" y="128">
+  <object name="spawnColeccionable1" type="body" x="3894" y="128">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -727,7 +727,7 @@
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteI4" type="object" x="1024" y="2240">
+  <object name="limiteI4" type="object" x="1028" y="2048">
    <properties>
     <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
@@ -771,7 +771,7 @@
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteI6" type="object" x="1248" y="2240">
+  <object name="limiteI6" type="object" x="1242" y="2044">
    <properties>
     <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
@@ -837,7 +837,7 @@
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteI9" type="object" x="2240" y="1408">
+  <object name="limiteI9" type="object" x="2260" y="1408">
    <properties>
     <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
@@ -848,7 +848,7 @@
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteS9" type="object" x="2240" y="960">
+  <object name="limiteS9" type="object" x="2244" y="820">
    <properties>
     <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
@@ -881,7 +881,7 @@
    </properties>
    <polyline points="0,0 96,0"/>
   </object>
-  <object name="limiteI11" type="object" x="2272" y="2208">
+  <object name="limiteI11" type="object" x="2274" y="2236">
    <properties>
     <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
@@ -949,7 +949,7 @@
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
-  <object name="limiteR2" type="object" x="2112" y="960">
+  <object name="limiteR2" type="object" x="2068" y="962">
    <properties>
     <property name="bodyType" value="DynamicBody"/>
     <property name="categoryBits" value="256"/>
@@ -993,6 +993,28 @@
    </properties>
    <polyline points="0,32 0,64"/>
   </object>
+  <object name="limiteR4" type="object" x="1242" y="2208">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
+    <property name="userData" value="Sensor"/>
+   </properties>
+   <polyline points="96,-32 96,0"/>
+  </object>
+  <object name="limiteL4" type="object" x="1018" y="2144">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+    <property name="categoryBits" value="256"/>
+    <property name="gravityScale" value="0"/>
+    <property name="isSensor" value="true"/>
+    <property name="maskBits" value="64"/>
+    <property name="userData" value="Sensor"/>
+   </properties>
+   <polyline points="0,32 0,64"/>
+  </object>
  </objectgroup>
  <objectgroup name="BasesMoviblesVertical" width="130" height="86">
   <object name="plataformamovilv1" type="body" x="928" y="448" width="64" height="32">
@@ -1010,12 +1032,12 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="plataformamovilv4" type="body" x="1024" y="2176" width="64" height="32">
+  <object name="plataformamovilv4" type="body" x="1028" y="1984" width="64" height="32">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="plataformamovilv6" type="body" x="1216" y="2176" width="96" height="32">
+  <object name="plataformamovilv6" type="body" x="1210" y="1980" width="96" height="32">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -1035,7 +1057,7 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="plataformamovilv9" type="body" x="2208" y="1344" width="128" height="32">
+  <object name="plataformamovilv9" type="body" x="2244" y="1344" width="96" height="26">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -1062,12 +1084,17 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="plataformamovilh2" type="body" x="1888" y="928" width="160" height="32">
+  <object name="plataformamovilh2" type="body" x="1888" y="928" width="120" height="34">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
   <object name="plataformamovilh3" type="body" x="2176" y="608" width="128" height="32">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="plataformamovilh4" type="body" x="1036" y="2178" width="106" height="38">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -1079,29 +1106,29 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnraton1" type="body" x="2464" y="2112">
+  <object name="spawnraton1" type="body" x="4004" y="130">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnraton1" type="body" x="2272" y="2496">
+  <object name="spawnraton1" type="body" x="2478" y="2184">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="PoleaBase" width="130" height="86">
-  <object name="spawnmurcielago1" type="body" x="3456" y="1472" width="224" height="32">
+  <object name="spawnmurcielago1" type="body" x="3462" y="1485" width="202" height="37">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnmurcielago1" type="body" x="3456" y="1984" width="224" height="32">
+  <object name="spawnmurcielago1" type="body" x="3468" y="1987" width="199" height="49">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnmurcielago1" type="body" x="3424" y="2528" width="256" height="32">
+  <object name="spawnmurcielago1" type="body" x="3436" y="2537" width="232" height="45">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -1130,19 +1157,19 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnmurcielago1" type="body" x="2560" y="2368" width="64" height="128">
+  <object name="spawnmurcielago1" type="body" x="2944" y="2272" width="64" height="224">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnmurcielago1" type="body" x="2944" y="2272" width="64" height="224">
+  <object name="spawnmurcielago1" type="body" x="2560" y="2368" width="65" height="155">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="GroundPuerta" width="130" height="86">
-  <object name="spawnmurcielago1" type="body" x="2976" y="1440">
+  <object name="spawnmurcielago1" type="body" x="2977" y="1491">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
@@ -1152,24 +1179,27 @@
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
-  <object name="spawnmurcielago1" type="body" x="2592" y="2208">
+  <object name="spawnmurcielago1" type="body" x="2596" y="2102">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup name="GroundBase" width="130" height="86">
-  <object name="spawnmurcielago1" type="body" x="3584" y="1440">
-   <properties>
-    <property name="bodyType" value="StaticBody"/>
-   </properties>
-  </object>
-  <object name="spawnmurcielago1" type="body" x="3552" y="2496">
+  <properties>
+   <property name="numPoleas" value="3"/>
+  </properties>
+  <object name="spawnmurcielago1" type="body" x="3563" y="1459">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>
   </object>
   <object name="spawnmurcielago1" type="body" x="3552" y="1952">
+   <properties>
+    <property name="bodyType" value="StaticBody"/>
+   </properties>
+  </object>
+  <object name="spawnmurcielago1" type="body" x="3548" y="2514">
    <properties>
     <property name="bodyType" value="StaticBody"/>
    </properties>

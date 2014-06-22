@@ -1,7 +1,5 @@
 package com.valyrian.firstgame.secreto;
 
-
-
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -9,18 +7,20 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.utils.Array;
-import com.valyrian.firstgame.secreto.Bucket;
+import com.valyrian.firstgame.secreto.Venezolano;
 
 
-public class DContactListener implements ContactListener {
+public class ColisionesVenezolano implements ContactListener {
 	
 	Array<Body> toRemove;
-	Bucket bucket;
+	Array<Body> collected;
+	Venezolano bucket;
 	
-	public DContactListener(Bucket d){
+	public ColisionesVenezolano(Venezolano d){
 		super();
 		bucket = d;
 		toRemove = new Array<Body>();
+		collected = new Array<Body>();
 	}
 	@Override
 	public void beginContact(Contact contact) {
@@ -31,9 +31,10 @@ public class DContactListener implements ContactListener {
 			return;
 		
 		if(a.getUserData().equals("Bucket") && b.getUserData().equals("Product")){
-			if(!toRemove.contains(b.getBody(), true))
+			if(!toRemove.contains(b.getBody(), true)){
 				toRemove.add(b.getBody());
-			bucket.setPuntuacion(bucket.getPuntuacion()+1);
+				collected.add(b.getBody());
+			}
 		}
 		
 		if(a.getUserData().equals("Ground") && b.getUserData().equals("Product")){
@@ -42,9 +43,10 @@ public class DContactListener implements ContactListener {
 		}
 		
 		if(b.getUserData().equals("Bucket") && a.getUserData().equals("Product")){
-			if(!toRemove.contains(b.getBody(), true))
+			if(!toRemove.contains(b.getBody(), true)){
 				toRemove.add(a.getBody());
-			bucket.setPuntuacion(bucket.getPuntuacion()+1);
+				collected.add(a.getBody());
+			}
 		}
 		
 		if(b.getUserData().equals("Ground") && a.getUserData().equals("Product")){
@@ -77,6 +79,10 @@ public class DContactListener implements ContactListener {
 	
 	public Array<Body> getListToRemove(){
 		return toRemove;
+	}
+	
+	public Array<Body> getCollected(){
+		return collected;
 	}
 
 }

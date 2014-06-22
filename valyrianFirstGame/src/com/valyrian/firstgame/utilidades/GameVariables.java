@@ -17,10 +17,10 @@ public final class  GameVariables {
 	public static final short BITS_META = 128;
 	public static final short BITS_SENSOR = 256;
 	
-	public static final boolean debug = true;
+	public static final boolean debug = false;
 	public static final int V_WIDTH = 800;
 	public static final int V_HEIGHT = 600;
-	public static float VOLUMEN = 0.8f;
+	public static float VOLUMEN = 1f;
 	public static boolean PAUSE = false;
 	public static int DIFICULTAD = 2; //1 Facil  - 2 Medio - 3 Dificil
 	public static String PLAYER_NAME = "Quetzal";

@@ -19,13 +19,10 @@ public class Joystick implements ControllerListener {
 	
 	@Override
 	public void connected(Controller controller) {
-	System.out.println("Se conecto el control");
-
 	}
 
 	@Override
 	public void disconnected(Controller controller) {
-		System.out.println("Se desconecto el control");
 	}
 
 	@Override
@@ -38,7 +35,6 @@ public class Joystick implements ControllerListener {
 			pantallaNivel.getJugador().Saltar();
 			break;
 		case Xbox360Pad.BUTTON_B:
-			//System.out.println("Se presiona el boton B");
 			break;
 		case Xbox360Pad.BUTTON_X:
 			Proyectil bala = pantallaNivel.getJugador().Disparar(pantallaNivel.getWorld(),20);
@@ -46,13 +42,10 @@ public class Joystick implements ControllerListener {
 				PantallaNivel.getEntidades().add(bala);
 			break;
 		case Xbox360Pad.BUTTON_Y:
-			System.out.println("Se presiona el boton Y");
 			break;
 		case Xbox360Pad.BUTTON_LB:
-			System.out.println("Se presiona el boton LB");
 			break;
 		case Xbox360Pad.BUTTON_RB:
-			System.out.println("Se presiona el boton RB");
 			break;
 		case Xbox360Pad.BUTTON_BACK:
 			
@@ -61,10 +54,8 @@ public class Joystick implements ControllerListener {
 			pantallaNivel.getJugador().Pausar();
 			break;
 		case Xbox360Pad.BUTTON_L3:
-			System.out.println("Se presiona el boton L3");
 			break;
 		case Xbox360Pad.BUTTON_R3:
-			System.out.println("Se presiona el boton R3");
 			break;
 		default:
 			return false;
@@ -75,7 +66,7 @@ public class Joystick implements ControllerListener {
 
 	@Override
 	public boolean buttonUp(Controller controller, int buttonCode) {
-		if(PAUSE)
+		if(PAUSE  && buttonCode !=Xbox360Pad.BUTTON_BACK)
 			return true;
 		
 		switch(buttonCode){
@@ -83,31 +74,25 @@ public class Joystick implements ControllerListener {
 			pantallaNivel.getJugador().Aterrizar();
 			break;
 		case Xbox360Pad.BUTTON_B:
-			System.out.println("Se solto el boton B");
 			break;
 		case Xbox360Pad.BUTTON_X:
 			pantallaNivel.getJugador().Enfundar();
 			break;
 		case Xbox360Pad.BUTTON_Y:
-			System.out.println("Se solto el boton Y");
 			break;
 		case Xbox360Pad.BUTTON_LB:
-			System.out.println("Se solto el boton LB");
 			break;
 		case Xbox360Pad.BUTTON_RB:
-			System.out.println("Se solto el boton RB");
 			break;
 		case Xbox360Pad.BUTTON_BACK:
-			pantallaNivel.getJuego().setScreen(pantallaNivel.getJuego().pantallaSeleccionNivel);
+			if(PAUSE)
+				pantallaNivel.getJuego().setScreen(pantallaNivel.getJuego().pantallaSeleccionNivel);
 			break;
 		case Xbox360Pad.BUTTON_START:
-			System.out.println("Se solto el boton START");
 			break;
 		case Xbox360Pad.BUTTON_L3:
-			System.out.println("Se solto el boton L3");
 			break;
 		case Xbox360Pad.BUTTON_R3:
-			System.out.println("Se solto el boton R3");
 			break;
 		default:
 			return false;
@@ -122,7 +107,6 @@ public class Joystick implements ControllerListener {
 		
 		switch(axisCode){
 		case Xbox360Pad.AXIS_LEFT_X:
-			System.out.println("Se movio el AXIS LEFT_X a valor: "+ value);
 			if(value>0.5)
 				pantallaNivel.getJugador().MoverDerecha();
 			else if(value<-0.5)
@@ -130,21 +114,13 @@ public class Joystick implements ControllerListener {
 			else 
 				pantallaNivel.getJugador().Detener();
 			break;
-//		case Xbox360Pad.AXIS_LEFT_Y:
-//			System.out.println("Se movio el AXIS LEFT_Y a valor: "+ value);
-//			break;
-//		case Xbox360Pad.AXIS_RIGHT_X:
-//			System.out.println("Se movio el AXIS RIGHT_X a valor: "+ value);
-//			break;
 		case Xbox360Pad.AXIS_RIGHT_Y:
 			if(value< -0.5 || value>0.5)
 				pantallaNivel.getCamera().zoom+=value/25f;
 			break;
 		case Xbox360Pad.AXIS_LEFT_TRIGGER:
-			System.out.println("Se movio el AXIS LT a valor: "+ value);
 			break;
 		case Xbox360Pad.AXIS_RIGHT_TRIGGER:
-			System.out.println("Se movio el AXIS RT a valor: "+ value);
 			break;
 		default:
 			return false;
@@ -153,15 +129,12 @@ public class Joystick implements ControllerListener {
 	}
 
 	@Override
-	public boolean povMoved(Controller controller, int povCode,
-			PovDirection value) {		
-		System.out.println("Se movio el DPAD en la direccion: " + value +" con el POVCODE: "+ povCode);
+	public boolean povMoved(Controller controller, int povCode, PovDirection value) {		
 		return true;
 	}
 
 	@Override
-	public boolean xSliderMoved(Controller controller, int sliderCode,
-			boolean value) {
+	public boolean xSliderMoved(Controller controller, int sliderCode, boolean value) {
 		// TODO Auto-generated method stub
 		return false;
 	}

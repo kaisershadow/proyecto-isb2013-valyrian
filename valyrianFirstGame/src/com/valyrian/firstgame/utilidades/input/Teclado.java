@@ -4,7 +4,7 @@ import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.valyrian.firstgame.entidades.Jugador;
+import com.badlogic.gdx.Input.Keys;
 import com.valyrian.firstgame.entidades.Proyectil;
 import com.valyrian.firstgame.pantallas.PantallaNivel;
 
@@ -43,13 +43,9 @@ public class Teclado implements InputProcessor {
 				if(bala!=null)
 					PantallaNivel.getEntidades().add(bala);
 				break;
-			case(Input.Keys.L):
-				Proyectil bala2= pantallaNivel.getJugador().Disparar(pantallaNivel.getWorld(),10);
-				if(bala2!=null)
-					PantallaNivel.getEntidades().add(bala2);
-				break;
 			case(Input.Keys.O):
 				pantallaNivel.getJugador().setmaxVida(10000);
+				pantallaNivel.getJugador().setVidaActual(10000);
 				break;
 		}
 		return true;
@@ -58,10 +54,8 @@ public class Teclado implements InputProcessor {
 
 	@Override
 	public boolean keyUp(int keycode) {
-		if(PAUSE && !pantallaNivel.getJugador().estaMuerto())
-//			if(){
+		if(PAUSE && keycode!=Keys.ESCAPE)
 				return true;
-//			}
 		
 		switch(keycode){
 		
@@ -79,7 +73,8 @@ public class Teclado implements InputProcessor {
 			break;
 			
 		case Input.Keys.ESCAPE:
-			pantallaNivel.getJuego().setScreen(pantallaNivel.getJuego().pantallaSeleccionNivel);
+			if(PAUSE)
+				pantallaNivel.getJuego().setScreen(pantallaNivel.getJuego().pantallaSeleccionNivel);
 			break;
 		case Input.Keys.R:
 			pantallaNivel.getJuego().setScreen(pantallaNivel.getJuego().pantallaCargaNivel);

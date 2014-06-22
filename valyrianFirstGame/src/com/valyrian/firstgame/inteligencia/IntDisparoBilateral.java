@@ -16,7 +16,7 @@ import com.valyrian.firstgame.interfaces.ManejadorInteligencia;
 
 
 
-public class InteligenciaRana implements ManejadorInteligencia {
+public class IntDisparoBilateral implements ManejadorInteligencia {
 	private Enemigo enemigo;
 	private float limite;
 	private float stateTime;
@@ -25,7 +25,7 @@ public class InteligenciaRana implements ManejadorInteligencia {
 	private ManejadorAnimacion mab;
 	
 
-	public InteligenciaRana(float lim,Enemigo e) {
+	public IntDisparoBilateral(float lim,Enemigo e) {
 		enemigo = e;
 		this.limite = lim;
 		dispIzq=false;

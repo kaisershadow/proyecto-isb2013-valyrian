@@ -173,7 +173,6 @@ public class PantallaMenuInicio implements Screen{
 		botonJugar.addListener(new TextButtonListener(colorEnter, colorExit){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				System.out.println("SE LLAMO AL TOUCH DE BOTON JUGAR");
 				juego.setScreen(juego.pantallaSeleccionNivel);
 				return false;
 			}});
@@ -181,7 +180,6 @@ public class PantallaMenuInicio implements Screen{
 		botonConfiguraciones.addListener(new TextButtonListener(colorEnter, colorExit){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				System.out.println("SE LLAMO AL TOUCH DE BOTON CONFIGURACIONES");
 				juego.setScreen(juego.pantallaOpciones);
 				return true;
 			}});
@@ -189,7 +187,6 @@ public class PantallaMenuInicio implements Screen{
 		botonPuntuaciones.addListener(new TextButtonListener(colorEnter, colorExit){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				System.out.println("SE LLAMO AL TOUCH DE BOTON PUNTUACIONES");
 				juego.setScreen(juego.pantallaPuntuaciones);
 				return true;
 			}});
@@ -197,7 +194,6 @@ public class PantallaMenuInicio implements Screen{
 		botonAcercaDe.addListener(new TextButtonListener(colorEnter, colorExit){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				System.out.println("SE LLAMO AL TOUCH DE BOTON CREDITOS");
 				juego.setScreen(juego.pantallaCreditos);
 				return true;
 			}});
@@ -205,7 +201,6 @@ public class PantallaMenuInicio implements Screen{
 		botonSalir.addListener(new TextButtonListener(colorEnter, colorExit){
 			@Override
 			public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-				System.out.println("SE LLAMO AL TOUCH DE BOTON SALIR");
 				Gdx.app.exit();
 				return true;
 			}});

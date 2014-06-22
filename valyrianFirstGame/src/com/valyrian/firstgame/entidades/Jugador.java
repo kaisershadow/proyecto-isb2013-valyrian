@@ -26,37 +26,28 @@ public class Jugador extends EntidadDibujable{
 	private int puntaje;
 	private int puntajeAcum;
 	private boolean mirandoDerecha;
-//	private String nombre;
-	private Sound salto,disparo;
+	private Sound salto,disparo,dolor,muerte;
+	private ManejadorAnimacion mab;
 	public enum ESTADO_ACTUAL{Atacando, Moviendose, Quieto,Saltando}
-
 	public ESTADO_ACTUAL estado;
 	public int numContactos;
-	
 	public boolean finJuego;
 	
-	private ManejadorAnimacion mab;
 	
 	public Jugador(float ancho, float alto,float posIniX,float posIniY,Vector2 vel,int vidaMax, World mundo,ManejadorAnimacion ma) {
 		super(ancho, alto,vel,posIniX,posIniY, mundo,ma);
 		this.vidaActual = this.maxVida = vidaMax;
-//		this.nombre = "Jugador";
 		this.puntaje =0;
 		this.puntajeAcum =0;
 		this.mirandoDerecha=true;
 		this.estado=ESTADO_ACTUAL.Quieto;
 		this.finJuego = false;
-//		this.cuerpo.getPosition().x = posIniX/PIXELSTOMETERS;
-//		this.cuerpo.getPosition().y = posIniY/PIXELSTOMETERS;
-		
-//		mab = new AnimacionEstatica(Quetzal.getManejaRecursos().get("personajes/dardo.png", Texture.class));
-		
 		Texture tx = Quetzal.getManejaRecursos().get("personajes/dardo.png", Texture.class);
 		mab = new AnimacionUnica(tx,7,3,0);
-		
 		salto = Quetzal.getManejaRecursos().get("audio/salto.wav",Sound.class);
 		disparo = Quetzal.getManejaRecursos().get("audio/disparo.mp3",Sound.class);
-//		manAnim = new AnimacionJugador(t);
+		dolor=Quetzal.getManejaRecursos().get("audio/dolor.wav",Sound.class);
+		muerte=Quetzal.getManejaRecursos().get("audio/muerte.wav",Sound.class);
 	}
 	
 	public void setmaxVida(int mv){ this.maxVida = mv; }
@@ -78,7 +69,6 @@ public class Jugador extends EntidadDibujable{
 	
 	public int getPuntaje(){ return puntaje; }
 	
-	//@brief Metodo para aumentar o reducir la vida en @value unidades
 	public int setVidaActual(int value){
 		
 		vidaActual+=value;
@@ -91,39 +81,26 @@ public class Jugador extends EntidadDibujable{
 	
 	public boolean estaMuerto(){ return(vidaActual<=0); }
 	
-//	public void setNombre(String n){ this.nombre = n; }
-//	
-//	public String getNombre(){ return this.nombre; }
-
 	@Override
 	protected void crearCuerpo(World mundo, float ancho, float alto,float posX,float posY) {
-	
-		//Definicicion del cuerpo
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DynamicBody;
 		bodyDef.position.set(posX/PIXELSTOMETERS,posY/PIXELSTOMETERS);
-		
-		//Definicion de la forma del fixture
 		PolygonShape boxShape = new PolygonShape();
 		boxShape.setAsBox(((ancho/2-6)/PIXELSTOMETERS),((alto/2-3)/PIXELSTOMETERS));
-		
-		//Definicion del fixture
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = boxShape;
 		fixtureDef.density = 100;
-		fixtureDef.friction = 0.001f;
 		fixtureDef.restitution = 0;
+		fixtureDef.friction= 0;
 		fixtureDef.isSensor =false;
 		fixtureDef.filter.categoryBits = BITS_JUGADOR;
 		fixtureDef.filter.maskBits = BITS_ENEMIGO |BITS_MUERTE |BITS_ENTORNO | BITS_META |BITS_PROYECTIL | BITS_PLATAFORMA |BITS_COLECTABLE ;
-		
 		this.cuerpo= mundo.createBody(bodyDef);
 		this.cuerpo.createFixture(fixtureDef);
 		this.cuerpo.setFixedRotation(true);
-		this.cuerpo.setUserData(this);
-		
+		this.cuerpo.setUserData(this);		
 		this.cuerpo.getFixtureList().first().setUserData("Jugador");
-		
 		
 		//Definicion del sensor para el salto
 		 boxShape.setAsBox(((ancho/2 -8)/PIXELSTOMETERS), 1/PIXELSTOMETERS,new Vector2(0, ((-alto/2+3)/PIXELSTOMETERS)) , 0);
@@ -168,6 +145,9 @@ public class Jugador extends EntidadDibujable{
 			System.out.println("SE LLAMO AL DISPOSE DE JUGADOR");
 	}
 	
+	public void sonidoMuerte(float volumen){ this.muerte.play(volumen); }
+	
+	public void sonidoDolor(float volumen){ this.dolor.play(volumen); }
 	
 	/**************************************************Acciones del Input**************************************************/
 	

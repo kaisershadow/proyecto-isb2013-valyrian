@@ -25,31 +25,23 @@ public class Proyectil extends EntidadDibujable{
 	
 	@Override
 	protected void crearCuerpo(World mundo, float ancho, float alto,float posX,float posY) {
-		//Definicicion del cuerpo
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DynamicBody;
 		bodyDef.angle = 0;
 		bodyDef.position.set(posX,posY);
-
-		//Definicion de la forma del fixture
 		PolygonShape boxShape = new PolygonShape();
 		boxShape.setAsBox(ancho/2/PIXELSTOMETERS,alto/2/PIXELSTOMETERS);
-		
-		//Definicion del fixture
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = boxShape;
 		fixtureDef.friction = 0;
 		fixtureDef.restitution = 0;
-		fixtureDef.isSensor =false;
+		fixtureDef.isSensor =true;
 		fixtureDef.filter.categoryBits = BITS_PROYECTIL;
-		fixtureDef.filter.maskBits = BITS_ENTORNO|BITS_PLATAFORMA;		
-		
+		fixtureDef.filter.maskBits = BITS_ENTORNO|BITS_PLATAFORMA;
 		this.cuerpo= mundo.createBody(bodyDef);
 		this.cuerpo.createFixture(fixtureDef);		
 		this.cuerpo.setFixedRotation(true);
-//		this.cuerpo.setBullet(true);
 		this.cuerpo.setUserData(this);
-		
 		this.cuerpo.getFixtureList().first().setUserData("Proyectil");
 		cuerpo.setGravityScale(0.25f);
 	    boxShape.dispose();

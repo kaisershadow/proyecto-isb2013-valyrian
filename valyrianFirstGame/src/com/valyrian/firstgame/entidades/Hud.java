@@ -29,23 +29,18 @@ public class Hud {
 		for(int i = 0; i < 5; i++) {
 			font[i + 6] = new TextureRegion(tex, 32 + i * 9, 25, 9, 9);
 		}
-		
-	
 	}
 	
 	public void render(SpriteBatch sb){
 		sb.begin();
-		drawString(sb, String.valueOf(jugador.getVidaActual()), 16, 16);
-		sb.draw(texHeart, 16, 16, 16, 16);
-		sb.draw(score, 96, 16, 16, 16);
-		drawString(sb, String.valueOf(jugador.getPuntaje()), 96, 16);
+		drawString(sb, String.valueOf(jugador.getVidaActual())+"/"+String.valueOf(jugador.getMaxVida()), 32, V_HEIGHT-64);
+		sb.draw(texHeart, 16, V_HEIGHT-64, 32, 32);
+		sb.draw(score, 16, V_HEIGHT-128, 32, 32);
+		drawString(sb, String.valueOf(jugador.getPuntaje()), 32, V_HEIGHT-128);
 		sb.end();
 	}
 	
 	public void dispose(){
-		
-//		tex.dispose();
-//		texHeart.dispose();
 		score.dispose();
 		if(debug){
 			System.out.println("SE LLAMO AL DISPOSE DE HUD");
@@ -58,10 +53,7 @@ public class Hud {
 			if(c == '/') c = 10;
 			else if(c >= '0' && c <= '9') c -= '0';
 			else continue;
-			sb.draw(font[c], 16 + x + i * 16, y, 16, 16);
+			sb.draw(font[c], 32 + x + i * 32, y, 32, 32);
 		}
-	}
-	
-
-	
+	}	
 }

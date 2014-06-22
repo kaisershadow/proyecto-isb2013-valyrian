@@ -138,7 +138,7 @@ public class PantallaAcercaDe implements Screen{
 		tabla = new Table(skin);
 		container = new Table(skin);
 
-		botonSalir = new TextButton("Atras", skin);
+		botonSalir = new TextButton("Regresar", skin);
 		botonSalir.setColor(colorEnter);
 		
 		t1 = new TextButton("Hola", skin);

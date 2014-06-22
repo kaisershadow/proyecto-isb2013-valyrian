@@ -3,12 +3,12 @@ package com.valyrian.firstgame.inteligencia;
 import com.valyrian.firstgame.entidades.Enemigo;
 import com.valyrian.firstgame.interfaces.ManejadorInteligencia;
 
-public class InteligenciaAvispa implements ManejadorInteligencia{
+public class IntMovHorizontal implements ManejadorInteligencia{
 	private Enemigo enemigo;
 	private float stateTime;
 	private float limite;
 	
-	public InteligenciaAvispa(float lim, Enemigo e){
+	public IntMovHorizontal(float lim, Enemigo e){
 		this.enemigo = e;
 		stateTime=0;
 		limite = lim;

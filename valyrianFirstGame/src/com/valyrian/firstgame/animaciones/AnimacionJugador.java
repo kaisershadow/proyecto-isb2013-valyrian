@@ -9,7 +9,7 @@ import com.valyrian.firstgame.interfaces.ManejadorAnimacion;
 
 public class AnimacionJugador implements ManejadorAnimacion{
 
-	Animation ataca,quieto,salto, moviendo;
+	private Animation ataca,quieto,salto, moviendo;
 	private float stateTime;
 	private Jugador jugador;
 	
@@ -17,7 +17,6 @@ public class AnimacionJugador implements ManejadorAnimacion{
 		cargarAnimacion(textura,ancho,alto,time);
 		stateTime =0;
 	}
-	
 	
 	@Override
 	public void cargarAnimacion(Texture t, int ancho, int alto, float time){
@@ -39,7 +38,6 @@ public class AnimacionJugador implements ManejadorAnimacion{
 	public TextureRegion getAnimacion(float deltaTime) {
 		stateTime+=deltaTime;
 		TextureRegion frame = null;
-		int opc= 1;
 		if(jugador.estado == ESTADO_ACTUAL.Quieto)
 				frame = quieto.getKeyFrame(stateTime);
 		else if(jugador.estado == ESTADO_ACTUAL.Moviendose)

@@ -11,40 +11,31 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.valyrian.firstgame.Quetzal;
 
 public class BarraCarga extends Actor {
-
-    //No usaré el loader para cargar las imagenes de cargado.
+	
     public Texture barra,llenado;
     private BitmapFont font;
-    private float fWidth;
-    private String textoCargado;
+    private float fWidth1,fWidth2;
+    private String textoCargado1,textoCargado2;
+    
     public BarraCarga(){
-        //Instancio imagenes a la antigua.
         barra = new Texture(Gdx.files.internal("images/barra.png"));
         llenado = new Texture(Gdx.files.internal("images/llenado.png"));
-        
-        //Lo coloco en el centro, yo lo e puesto en cualquier lado.
-//        this.setBounds(0.5f*V_WIDTH-barra.getWidth()/2,0.2f*V_HEIGHT-barra.getHeight()/2, V_WIDTH*0.8f, 128);
         font = new BitmapFont();
 		font.setColor(Color.WHITE);
-		textoCargado = "PRESIONE ESPACIO PARA CONTINUAR O  i PARA EL NIVEL SECRETO";
-		fWidth = font.getBounds(textoCargado).width;
+		textoCargado1 = "PRESIONE ENTER (START) PARA CONTINUAR";
+		textoCargado2 = "PRESIONE CONTROL IZQ (LB) o CONTROL DER (RB) PARA VOLVERSE FASCISTA";
+		fWidth1 = font.getBounds(textoCargado1).width;
+		fWidth2 = font.getBounds(textoCargado2).width;
     }
     
-    //Método de dibujo
     @Override
 	public void draw (Batch batch, float parentAlpha) {
-
-        //Actualizo en mi método draw el manager.
-        if(Quetzal.getManejaRecursos().update())
-        	font.draw(batch, "PRESIONE ESPACIO PARA CONTINUAR O  i PARA EL NIVEL SECRETO", (0.5f*Gdx.graphics.getWidth())-fWidth/2f, 0.1f*Gdx.graphics.getHeight());
-//        	font.drawWrapped(batch, "PRESIONE ESPACIO PARA CONTINUAR O  i PARA EL NIVEL SECRETO", (0.2f*V_WIDTH), 0.1f*V_HEIGHT,0.6f*V_WIDTH);
-        
-        //Dibujo la barra, mas o menos centrada en el contenedor, y la "Estiro" en X, como el valor
-        //del progress va de 0 a 1, la multiplico por 400 así irá de 0 a 400.
+        if(Quetzal.getManejaRecursos().update()){
+        	font.draw(batch, textoCargado1, (0.5f*Gdx.graphics.getWidth())-fWidth1/2f, 0.1f*Gdx.graphics.getHeight());
+        	font.draw(batch, textoCargado2, (0.5f*Gdx.graphics.getWidth())-fWidth2/2f, 0.06f*Gdx.graphics.getHeight());
+        }
         batch.draw(llenado, getX()+50,getY(),Quetzal.getManejaRecursos().getProgress()*406,128);
-        //Dibujo Contenedor.
         batch.draw(barra, getX(),getY());
-        
     }
     
     public void dispose(){

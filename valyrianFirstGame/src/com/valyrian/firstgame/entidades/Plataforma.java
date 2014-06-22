@@ -22,32 +22,30 @@ public class Plataforma extends EntidadDibujable {
 
 	@Override
 	protected void crearCuerpo(World mundo, float ancho, float alto, float posX, float posY) {
-		//Definicicion del cuerpo
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.KinematicBody;
 		bodyDef.position.set(posX/PIXELSTOMETERS,posY/PIXELSTOMETERS);
 		bodyDef.gravityScale =0;
-		
-		//Definicion de la forma del fixture
 		PolygonShape boxShape = new PolygonShape();
 		boxShape.setAsBox(((ancho/2)/PIXELSTOMETERS),((alto/2)/PIXELSTOMETERS));
-
-		//Definicion del fixture
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = boxShape;
 		fixtureDef.restitution = 0;
 		fixtureDef.isSensor =false;
 		fixtureDef.density = 100;
-		fixtureDef.friction = 100f;
+		fixtureDef.friction = 0;
 		fixtureDef.filter.categoryBits = BITS_PLATAFORMA;
 		fixtureDef.filter.maskBits = BITS_JUGADOR  |BITS_PROYECTIL | BITS_SENSOR;
-
 		this.cuerpo= mundo.createBody(bodyDef);
 		this.cuerpo.createFixture(fixtureDef);		
 		this.cuerpo.setFixedRotation(true);
 		this.cuerpo.getMassData().mass = 0;
 		this.cuerpo.setUserData(this);
 		this.cuerpo.getFixtureList().first().setUserData("Plataforma");
+		boxShape.setAsBox(0.5f/PIXELSTOMETERS, 1.5f/PIXELSTOMETERS,new Vector2((-ancho/2)/PIXELSTOMETERS, ((alto/2)/PIXELSTOMETERS)) , 0);
+		cuerpo.createFixture(fixtureDef);
+		boxShape.setAsBox(0.5f/PIXELSTOMETERS, 1.5f/PIXELSTOMETERS,new Vector2((ancho/2)/PIXELSTOMETERS, ((alto/2)/PIXELSTOMETERS)) , 0);
+		cuerpo.createFixture(fixtureDef);
 		boxShape.dispose();
 	}
 
@@ -55,6 +53,5 @@ public class Plataforma extends EntidadDibujable {
 	public void render(float deltaTime, SpriteBatch batch) {		
 		TextureRegion frame = manAnim.getAnimacion(deltaTime);
 		batch.draw(frame, this.cuerpo.getPosition().x - this.ancho/2/PIXELSTOMETERS, this.cuerpo.getPosition().y- (this.alto/2)/PIXELSTOMETERS, this.ancho/PIXELSTOMETERS, this.alto/PIXELSTOMETERS);
-		
 	}
 }

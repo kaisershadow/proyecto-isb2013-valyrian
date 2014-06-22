@@ -20,14 +20,18 @@ public class MenuJoystick implements ControllerListener {
 	public boolean buttonDown(Controller controller, int buttonCode) {
 		switch(buttonCode){
 		case Xbox360Pad.BUTTON_LB:
-			escena.keyDown(Keys.UP);
+			escena.keyDown(Keys.CONTROL_LEFT);
 			break;
 		case Xbox360Pad.BUTTON_RB:
-			escena.keyDown(Keys.DOWN);
+			escena.keyDown(Keys.CONTROL_RIGHT);
 			break;
 		case Xbox360Pad.BUTTON_A:
 		case Xbox360Pad.BUTTON_X:
+		case Xbox360Pad.BUTTON_START:
 			escena.keyDown(Keys.ENTER);
+			break;
+		case Xbox360Pad.BUTTON_BACK:
+			escena.keyDown(Keys.R);
 			break;
 		}
 		return false;
@@ -35,7 +39,6 @@ public class MenuJoystick implements ControllerListener {
 	
 	@Override
 	public boolean axisMoved(Controller controller, int axisCode, float value) {
-		System.out.println("AXIS VALUE: "+value);
 		switch(axisCode){
 		case Xbox360Pad.AXIS_LEFT_Y:
 			if(value>0.95f){
@@ -74,9 +77,17 @@ public class MenuJoystick implements ControllerListener {
 	}
 
 	@Override
-	public boolean povMoved(Controller controller, int povCode,
-			PovDirection value) {
-		// TODO Auto-generated method stub
+	public boolean povMoved(Controller controller, int povCode, PovDirection value) {
+		switch (value) {
+		case north:
+			escena.keyDown(Keys.UP);
+			break;
+		case south:
+			escena.keyDown(Keys.DOWN);
+			break;
+		default:
+			break;
+		}
 		return false;
 	}
 
