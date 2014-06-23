@@ -21,6 +21,12 @@
  <tileset firstgid="690" name="templ" tilewidth="32" tileheight="32">
   <image source="Assets/templ.png" trans="000000" width="144" height="161"/>
  </tileset>
+ <tileset firstgid="710" name="ironthrone" tilewidth="32" tileheight="32">
+  <image source="Assets/ironthrone.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="726" name="star" tilewidth="32" tileheight="32">
+  <image source="Assets/star.png" width="64" height="64"/>
+ </tileset>
  <layer name="fondo" width="130" height="86">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2YQVLDQAwE9+shLwh+AfijQCWqDLJk4KSpog9b7jjrzUHannUua62LjJf0+faHoWtcP8drsfbX/e0x4vMFHuduxJy3k1HNf3/Uf1vHPor7+2PE5xs8zmf7uuuZuBfXa/Pd11raN+/r2QP6GZ7nvK87L1T7Oq6bzFEX6G9Fvzg4EO73+JkbckZEbXV/b/JdrKk5EP3i4EC4z4Uu+/Vs13k+99Zt9f3i4EC4zoWupvlsl+dVWdH1wLZ8HAj//L6gNdV65jNC1Dt7Q5/Z1/c+ym5x8CF8zP+8l3eZX/WMPlv1TueZaQfCR672f1fzXHt9NudF1wPxbuHiQ/jOmg9dXmjdu9w464F8zph2IFznQnVGyJkRda9y423VPVCdGap78Dzns5++G3Z9ov0R6+UeqDIjnpl2IHzk2Mu5vlWfVPMusk7UO2dG9kqwgw/hZ22rHDg7H+Q1qveM/fGMOmCT+9fl4UP4ud/DCbpnuzzoRvbBa7rm/xC0R1zc+J856pcz4TdZEOOW1tqLq3og+sLBh/CdqwzXeldnxepcqV6JftC+UNdEXzj4EL5z9ID2QfTCWd11aM21z/S39P+DaQfCR+4yQOtf1V1rqzXvei6u4QQXH8LHGnf7/iev7GkN7Q8d6gQXH8Lf87waOu/se/VM7g8d1XzYg128BM/ngoOX4PlccPASTC7A8+ziJZhcgOfZxUswuQDPs4uXYHIBnmcXL8HkAjzPLl6CyQV4nl28BJML8Dy7eAkmF+B5dvESTC7A8+ziJZhcgOfZxUswuQDPs4uXYHIBnmcXL8HkAjzPLl6CyQV4nl28BJML8Dy7eAkmF+B5dvESTC7A8+ziJZhcgOfZxUswuQDPs4uXYHIBnmcXL8HkAjzPLl6CyQV4nl28BJML8Dy7eAkmF+B5dvESTC7A8+ziJZhcgOfZxUswuQDPs4uXYHIBnmcXL8HkAjzPLl6CyQV4nl28BJML8Dx/AIDKJkawrgAA
@@ -38,7 +44,7 @@
  </layer>
  <layer name="atras" width="130" height="86">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3dzXHCMBCGYeJCUgIlUAIlUACHNJBDCqCT3FIHJaSZzE7icdDIWLuy/t9nJhePQWvxYSPJ4xwOANC/96mOdkPrSFFvqT7Yw4ex9k/ndddCfeC2G1pHinpT98FazrbyF5JPaw6+nNfdCuXAbTe0jhT17vme7vdMrOVsK38h+bTmAGm53zNBDiC0OZjPKeSgL2vXnbXt8zkl5HpFDgAAAOplnQ+yzi/F8M1vYB/WeQDrvEIM3/wG9rE1vtOOG0vN8famxPkW9SlxvkV9yAEEOYAgB8Di/lK6AtTgmxwAQBeY74JgXAPB+kLdnp2vWc/Nq+S189n3lPXcvLh2QpADCHIAAMB+GN9C5BrfkjcI5lMA7Clm7pg127ppPp+YuSLmmeqm+XzIQR22fvNbxgTkYNHKtWvrN79lTEAOFi3UmIrm2GPux6ntXh7N8xRHUNvnk4vv3DlqXwBACWfOud2IGVeRg37E/J4mB/0gBxAx4ypyAABAOdyH+Og0aH+kug8xdk0215ruZXps738O3BpeJ39dIdusxxPannbfXGLX4nKt5c05uHpy4NYgOfDV5dvm9r/1eELb0+6by+g5sP5fS8t7W/bNJXZNNtea7lYOjn9/ghz0ixxAcF2AIAf1yrm2QA7SauXeA3KQVitrzuQgrVbWnMkBBDl4bpT1J00OjgPmYJTnYGhycBowB6PQ5OBMDtRaeQaGJgcXcqAW037O2ucc3Dw5cMc8b5N/HOTb5h6DdfwU2p5231xayUEqpfu/FqPnAL/IAURPz8AAAAAAAADj+QGDu9ugsK4AAA==
+   H4sIAAAAAAAAC+3d2U3DMBzH8ZJBGKEjMEJH6AB9YAEeGIBNeGMJrnLfiGXwXyIqtdzGR3zE/n4kv0QpcZxfndqOwmwGAPU76co4rm09YtQ3VxuM4dSz7ufa51aZ2kA/rm09YtQ3dhvsytlQ/mzy6ZuDC+1zZ5lyoB/Xth4x6jvm39S/Z2JXzobyZ5NP3xwgLv17JsgBhGsO+j6FHNRl131n1/a+T7G5X5EDAACAcvnOB/nOL4UwzW9gHL7zAL7zCiFM8xsYx9D4znXcmGuOtzY5+luUJ0d/i/KQAwhyAEEOgI31Qe4aoAQ/5AAAqsB8FwTjGgjWF8q2r79mPTetnPfOfd9T1nPT4t4JQQ4gyAEAAONhfAuRanxL3iCYTwEwppC5Y9Zsy+ZyfULmiphnKpvL9SEHZRj6ze8zJiAHG1O5dw395vcZE5CDjSnUMRaXcw95Hqe0Z3lc3qfYgtKuTyqmvrPVtgCAHBb0udUIGVeRg3qE/J4mB/UgBxAh4ypyAABAPjyHuO2o0faI9Rxi6JpsqjXdZbd9vP850Otw2JnrZbPN93xsj+e6byqha3Gp1vL6HKwMOdDrIDkw1cu0TW9/3/OxPZ7rvqm0ngPf/2vp87d99k0ldE021ZruUA7mf0WQg3qRAwjuCxDkoFwp1xbIQVxTefaAHMQ1lTVnchDXVNacyQEEOdivlfUnlxzMG8xBK+/BcMnBUYM5aIVLDhbkwNlU3oHhkoMlOXAWcvyUde9zcGbIgT7mOe7M4yDTNv0cfMdPtsdz3TeVqeQgltzt7+ND1flz5Hq3noMp+lLt/k0OmtT3AZeqXKlyrcpNN17fUNM7MGrW9wG3qqxVuVPlvovTN6B8D+qaP6rypMoz179ZL+rav6rypso7OQAAAEDDfgHcObdFsK4AAA==
   </data>
  </layer>
  <objectgroup name="Entorno" width="130" height="86">
@@ -176,7 +182,7 @@
    </properties>
    <polyline points="0,0 96,0 96,96 160,96 160,0 224,0 224,384 128,384 128,256 128,224 0,224 0,0"/>
   </object>
-  <object name="finjuego" type="fixture" x="2208" y="2464">
+  <object name="finjuego" type="fixture" x="2301" y="2464">
    <properties>
     <property name="body" value="entorno"/>
     <property name="isSensor" value="true"/>
