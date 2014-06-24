@@ -143,6 +143,7 @@ public class PantallaCargaNivel implements Screen {
 		Quetzal.getManejaRecursos().load("audio/disparo.mp3",Sound.class);
 		Quetzal.getManejaRecursos().load("audio/dolor.wav",Sound.class);
 		Quetzal.getManejaRecursos().load("audio/muerte.wav",Sound.class);
+		Quetzal.getManejaRecursos().load("audio/patria.mp3",Music.class);
 	}
 	
 	@Override
