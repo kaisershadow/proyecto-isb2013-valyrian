@@ -1,6 +1,6 @@
 package com.valyrian.firstgame.secreto;
 
-import static com.valyrian.firstgame.utilidades.GameVariables.PIXELSTOMETERS;
+import static com.valyrian.firstgame.utilidades.GameVariables.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -8,6 +8,7 @@ import java.util.Iterator;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.ControllerAdapter;
 import com.badlogic.gdx.controllers.Controllers;
@@ -41,6 +42,7 @@ public class PantallaNivelSecreto implements Screen {
 	OrthographicCamera camera, hudCam;
 	HudVenezolano hud;
 	ColisionesVenezolano dContactListener;
+	Music musica;
 	
 	Body bodyGround;
 	Body leftWallB;
@@ -91,7 +93,6 @@ public class PantallaNivelSecreto implements Screen {
 							item.setCantidad(item.getCantidad() - 1);
 						}
 						hud.actualizar();
-						System.out.println("La cantidad de " + p.getCodigo() + "por recolectar" + "es de: " + item.getCantidad());
 					}
 				}
 			}
@@ -155,14 +156,16 @@ public class PantallaNivelSecreto implements Screen {
 		
 		
 		batch = Quetzal.getSpriteBatch();
-		world = new World(new Vector2(0, -1f), true); 
+		world = new World(new Vector2(0, -1f), true);
 		dbr = new Box2DDebugRenderer();
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false,Gdx.graphics.getWidth()/PIXELSTOMETERS,Gdx.graphics.getHeight()/PIXELSTOMETERS);
 		hudCam = new OrthographicCamera();
 		hudCam.setToOrtho(false);
 		
-		
+		musica = Quetzal.getManejaRecursos().get("audio/patria.mp3", Music.class); 
+		musica.setVolume(VOLUMEN);
+		musica.play();
 		//Creando el personaje
 		AnimacionUnica ae = new AnimacionUnica(Quetzal.getManejaRecursos().get("secreto/fascista.png", Texture.class),32,64,1/6f);
 		venezolano = new Venezolano(64, 64, new Vector2(0,0), Gdx.graphics.getWidth()/2, 64, world, ae);
@@ -253,8 +256,7 @@ public class PantallaNivelSecreto implements Screen {
 
 	@Override
 	public void hide() {
-		// TODO Auto-generated method stub
-		
+		dispose();
 	}
 
 	@Override
@@ -272,6 +274,7 @@ public class PantallaNivelSecreto implements Screen {
 	@Override
 	public void dispose() {
 		venezolano.dispose();
+		musica.stop();
 		Controllers.removeListener(joystick);
 		Iterator<Producto> it = rainDrop.iterator();
 		while(it.hasNext())
@@ -279,6 +282,7 @@ public class PantallaNivelSecreto implements Screen {
 			Producto b = it.next();
 			b.dispose();
 		}
+		world.dispose();
 	}
 
 	private void spawnRaindrop() {

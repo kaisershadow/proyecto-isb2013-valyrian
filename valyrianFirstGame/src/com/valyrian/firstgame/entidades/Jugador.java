@@ -60,7 +60,7 @@ public class Jugador extends EntidadDibujable{
 		this.puntaje+=p;
 		this.puntajeAcum+=p;
 		if(this.puntajeAcum>=100){
-			this.puntajeAcum=0;
+			this.puntajeAcum-=100;
 			int vidaAux = (int)(this.maxVida*0.1f);
 			this.setVidaActual(vidaAux);
 		}
