@@ -82,7 +82,7 @@ public class PantallaFinSecreto implements Screen{
 		if(aprobado)
 			tabla2.add("LOGRASTE CONSEGUIR TODO LO QUE NECESITABAS... DEBES SER TODO UN BURGUESITO");
 		else
-			tabla2.add("SI NECESITAS MAS DINERO, VE Y PIDELE A ALGUN POLITICO... ELLOS TIENEN MUCHO");
+			tabla2.add("SI NECESITAS MAS DINERO, HABLA CON ALGUN POLITICO...ELLOS TIENEN MUCHO");
 		
 		tabla1.add("PRESIONE R (BACK) PARA REINICIAR EL NIVEL"); 
 		tabla1.row();
