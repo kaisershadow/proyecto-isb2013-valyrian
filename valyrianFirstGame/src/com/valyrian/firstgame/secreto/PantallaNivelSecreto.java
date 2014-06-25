@@ -164,7 +164,7 @@ public class PantallaNivelSecreto implements Screen {
 		hudCam.setToOrtho(false);
 		
 		musica = Quetzal.getManejaRecursos().get("audio/patria.mp3", Music.class); 
-		musica.setVolume(VOLUMEN);
+		musica.setVolume(VOLUMEN*0.6f);
 		musica.play();
 		//Creando el personaje
 		AnimacionUnica ae = new AnimacionUnica(Quetzal.getManejaRecursos().get("secreto/fascista.png", Texture.class),32,64,1/6f);

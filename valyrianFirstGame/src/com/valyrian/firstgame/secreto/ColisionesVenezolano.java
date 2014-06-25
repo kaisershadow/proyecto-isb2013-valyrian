@@ -1,5 +1,8 @@
 package com.valyrian.firstgame.secreto;
 
+import static com.valyrian.firstgame.utilidades.GameVariables.*;
+
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -7,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.utils.Array;
+import com.valyrian.firstgame.Quetzal;
 import com.valyrian.firstgame.secreto.Venezolano;
 
 
@@ -15,12 +19,14 @@ public class ColisionesVenezolano implements ContactListener {
 	Array<Body> toRemove;
 	Array<Body> collected;
 	Venezolano bucket;
+	Sound recoger;
 	
 	public ColisionesVenezolano(Venezolano d){
 		super();
 		bucket = d;
 		toRemove = new Array<Body>();
 		collected = new Array<Body>();
+		recoger = Quetzal.getManejaRecursos().get("audio/moneda.ogg",Sound.class);
 	}
 	@Override
 	public void beginContact(Contact contact) {
@@ -34,6 +40,7 @@ public class ColisionesVenezolano implements ContactListener {
 			if(!toRemove.contains(b.getBody(), true)){
 				toRemove.add(b.getBody());
 				collected.add(b.getBody());
+				recoger.play(VOLUMEN*0.8f);
 			}
 		}
 		
@@ -46,6 +53,7 @@ public class ColisionesVenezolano implements ContactListener {
 			if(!toRemove.contains(b.getBody(), true)){
 				toRemove.add(a.getBody());
 				collected.add(a.getBody());
+				recoger.play(VOLUMEN*0.8f);
 			}
 		}
 		
@@ -84,5 +92,4 @@ public class ColisionesVenezolano implements ContactListener {
 	public Array<Body> getCollected(){
 		return collected;
 	}
-
 }
