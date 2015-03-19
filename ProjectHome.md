@@ -1,0 +1,1 @@
+Juego de plataformas desarrollado con LibGDX como proyecto para la materia de Ingenieria de Software en la carrera de Ingenieria de Sistemas en la Universidad de los andes, durante el semestre B2013
